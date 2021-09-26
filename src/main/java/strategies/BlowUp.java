@@ -2,13 +2,15 @@ package strategies;
 
 import javafx.geometry.Point2D;
 import javafx.scene.media.Media;
+import sound.Sound;
 
 public class BlowUp implements Strategy{
 
-	private Media soundEffect;
+	private Sound soundEffect;
 	
 	public Point2D runMoveBehavior() {
 		// TODO Auto-generated method stub
+		soundEffect.playSound();
 		return null;
 	}
 
@@ -17,7 +19,7 @@ public class BlowUp implements Strategy{
 		
 	}
 
-	public void attachSound(Media sound) {
+	public void attachSound(Sound sound) {
 		this.soundEffect = sound;
 	}
 
