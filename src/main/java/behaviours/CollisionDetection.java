@@ -8,11 +8,11 @@ import javafx.scene.Scene;
 
 final public class CollisionDetection {
 	
-	private List<String> gameObjects = new ArrayList<>();
+	private List<Object> gameObjects = new ArrayList<>();
 	public static CollisionDetection shared = new CollisionDetection();
 	private static Scene scene;
 	// Hash map for storing the collided objects of type GameObjects.
-	private HashMap<String, String> collidedObjects = new HashMap<String, String>();
+	private HashMap<Object, Object> collidedObjects = new HashMap<Object, Object>();
 	
 	private CollisionDetection() {}
 	
@@ -21,8 +21,8 @@ final public class CollisionDetection {
 	}
 	
 	public void checkForCollision() {
-		for (String obj1: gameObjects) {
-			for (String obj2: gameObjects) {
+		for (Object obj1: gameObjects) {
+			for (Object obj2: gameObjects) {
 				
 				// Skip same objects
 				if (obj1 == obj2) {
@@ -53,20 +53,39 @@ final public class CollisionDetection {
     }
     
 	
-	private void checkObjectCollision(String object1, String object2) {
+	private void checkObjectCollision(Object object1, Object object2) {
 		// get the objects position
 		
 		// if bounds collide
 		
-		handleCollision();
+		handleCollision(object1,object2);
 		
 		// clear collided Objects List
 		collidedObjects.clear();
 	}
 	
-	private void handleCollision() {
-		
+	private void handleCollision(Object object1, Object object2) {
+		// Break if we already dealt with this collision
+    	// Due to the nature of the double loop it is possible to detect a collision twice in one tick()
+    	if((collidedObjects.containsKey(object1) && collidedObjects.get(object1) == object2) ||
+    			(collidedObjects.containsKey(object2) && collidedObjects.get(object2) == object1))
+    	{
+    		return;
+    	} else {
+        	collidedObjects.put(object1, object2);
+        	String collisionDirection = determineCollisionDirection(object1, object2);
+        	//object1.handleObjectCollision(object2, collisionDirection);
+        	//object2.handleObjectCollision(object1, collisionDirection);
+    	}
 	}
+	
+	 private String determineCollisionDirection(Object object1, Object object2) {
+		return "";
+
+	 }
+	    
+	
+	
 	
 
 }
