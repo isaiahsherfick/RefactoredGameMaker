@@ -4,7 +4,6 @@ package movementBehaviors;
 import behaviors.MoveBehavior;
 import javafx.geometry.Point2D;
 import sound.Sound;
-import strategies.Strategy;
 
 public class UpAndDownMovement implements MoveBehavior{
 

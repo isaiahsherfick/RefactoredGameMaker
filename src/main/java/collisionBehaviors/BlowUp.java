@@ -4,7 +4,6 @@ import behaviors.CollisionBehavior;
 import javafx.geometry.Point2D;
 import javafx.scene.media.Media;
 import sound.Sound;
-import strategies.Strategy;
 
 public class BlowUp implements CollisionBehavior{
 

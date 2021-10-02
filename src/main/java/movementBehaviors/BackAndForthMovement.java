@@ -5,7 +5,6 @@ import behaviors.MoveBehavior;
 import javafx.geometry.Point2D;
 import javafx.scene.media.*;
 import sound.Sound;
-import strategies.Strategy;
 
 public class BackAndForthMovement implements MoveBehavior {
 
