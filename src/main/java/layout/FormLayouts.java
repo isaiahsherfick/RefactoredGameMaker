@@ -12,6 +12,7 @@ import javafx.geometry.Pos;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -21,14 +22,16 @@ import javafx.scene.layout.Priority;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Window;
-import view.EventMenuItem;
-import view.EventsButton;
 
 public class FormLayouts {
 	
 	
 	public static GridPane getSpriteFormLayout() {
-		return createRegistrationFormPane();
+		return createSpriteFormPane();
+	}
+	
+	public static GridPane getShapeFormLayout() {
+		return createShapeFormPane();
 	}
 	
 	public static GridPane getEventsFormLayout() {
@@ -36,8 +39,13 @@ public class FormLayouts {
 	}
 
 	
-	private static GridPane createRegistrationFormPane() {
-		return addUIControls(getGridPane());
+	private static GridPane createSpriteFormPane() {
+		return addSpriteUI(getGridPane());
+
+	}
+	
+	private static GridPane createShapeFormPane() {
+		return addShapeUI(getGridPane());
 
 	}
 	
@@ -73,6 +81,86 @@ public class FormLayouts {
 
 		gridPane.getColumnConstraints().addAll(columnOneConstraints, columnTwoConstrains);
 		return gridPane;
+	}
+	
+	private static GridPane addSpriteUI(GridPane gridPane) {
+		// Add Header
+        Label headerLabel = new Label("Sprite Form");
+        headerLabel.setFont(Font.font("Arial", FontWeight.BOLD, 24));
+        gridPane.add(headerLabel, 0,0,2,1);
+        GridPane.setHalignment(headerLabel, HPos.CENTER);
+        GridPane.setMargin(headerLabel, new Insets(20, 0,20,0));
+        
+        // Add Name Label
+        Label nameLabel = new Label("Sprite Name : ");
+        gridPane.add(nameLabel, 0,1);
+        
+        // Add Name Text Field
+        TextField nameField = new TextField();
+        nameField.setPrefHeight(40);
+        gridPane.add(nameField, 1,1);
+        
+        // Add Submit Button
+        Button submitButton = new Button("Save");
+        submitButton.setPrefHeight(40);
+        submitButton.setDefaultButton(true);
+        submitButton.setPrefWidth(100);
+        gridPane.add(submitButton, 0, 4, 2, 1);
+        GridPane.setHalignment(submitButton, HPos.CENTER);
+        GridPane.setMargin(submitButton, new Insets(20, 0,20,0));
+        
+        submitButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                if(nameField.getText().isEmpty()) {
+                    showAlert(Alert.AlertType.ERROR, gridPane.getScene().getWindow(), "Form Error!", "Please enter sprite name");
+                    return;
+                }
+
+                showAlert(Alert.AlertType.CONFIRMATION, gridPane.getScene().getWindow(), "", nameField.getText()+" Created");
+            }
+        });
+        
+        return gridPane;
+	}
+	
+	private static GridPane addShapeUI(GridPane gridPane) {
+		// Add Header
+        Label headerLabel = new Label("Shape Form");
+        headerLabel.setFont(Font.font("Arial", FontWeight.BOLD, 24));
+        gridPane.add(headerLabel, 0,0,2,1);
+        GridPane.setHalignment(headerLabel, HPos.CENTER);
+        GridPane.setMargin(headerLabel, new Insets(20, 0,20,0));
+        
+        // Add Name Label
+        Label nameLabel = new Label("Select Shape : ");
+        gridPane.add(nameLabel, 0,1);
+        
+        ComboBox shapes = new ComboBox();
+        shapes.getItems().addAll(
+                "Square",
+                "Circle",
+                "Rectangle"
+            );
+        gridPane.add(shapes, 1, 1);
+        
+        // Add Submit Button
+        Button submitButton = new Button("Save");
+        submitButton.setPrefHeight(40);
+        submitButton.setDefaultButton(true);
+        submitButton.setPrefWidth(100);
+        gridPane.add(submitButton, 0, 4, 2, 1);
+        GridPane.setHalignment(submitButton, HPos.CENTER);
+        GridPane.setMargin(submitButton, new Insets(20, 0,20,0));
+        
+        submitButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+
+            }
+        });
+        
+        return gridPane;
 	}
 
 	private static GridPane addUIForEvents(GridPane gridPane) {

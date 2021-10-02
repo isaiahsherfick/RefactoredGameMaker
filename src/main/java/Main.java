@@ -4,32 +4,19 @@ import java.util.List;
 
 import controller.EventsButtonController;
 import javafx.application.Application;
-import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.geometry.HPos;
-import javafx.geometry.Insets;
-import javafx.geometry.Pos;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Priority;
 import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
-import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
-import javafx.stage.Window;
 import layout.CustomLayout;
 import layout.FormLayouts;
 
@@ -39,6 +26,7 @@ public class Main extends Application {
 	private static double orgTranslateX, orgTranslateY;
 	
 	private CustomLayout customLayout;
+	private Button currentEnabled;
 	
 	private static final List<Button> BUTTON_LIST = new ArrayList<>();
 	private static final String CLICKED_BUTTON_STYLE = "-fx-background-color: lightblue; -fx-font-size:17";
@@ -50,8 +38,6 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception{
 		EventsButtonController eventsController = new EventsButtonController();
 		instantiateButtonFormMap();
-		
-	
 		
 		Rectangle2D primScreenBounds = Screen.getPrimary().getVisualBounds();
 		
@@ -86,6 +72,7 @@ public class Main extends Application {
 	
     private void instantiateButtonFormMap() {
     	BUTTON_FORM_MAP.put("Sprites", FormLayouts.getSpriteFormLayout());
+    	BUTTON_FORM_MAP.put("Shapes", FormLayouts.getShapeFormLayout());
     	BUTTON_FORM_MAP.put("Events", FormLayouts.getEventsFormLayout());
 	}
 
@@ -97,7 +84,7 @@ public class Main extends Application {
 		GridPane gridPane = new GridPane();
 		Button button = new Button(actionType);
 		button.setOnAction(event -> {
-			button.setStyle(CLICKED_BUTTON_STYLE);
+			setEnableCurrentButton(button);
 			customLayout.addNewChildPane(BUTTON_FORM_MAP.get(button.getText()), 0, 15);
 		});
 		
@@ -112,6 +99,13 @@ public class Main extends Application {
 		gridPane.add(button, 1, 0);
 
 		return gridPane;
+	}
+
+	private void setEnableCurrentButton(Button button) {
+		if (currentEnabled != null) currentEnabled.setStyle(NORMAL_BUTTON_STYLE);
+		currentEnabled = button;
+		button.setStyle(CLICKED_BUTTON_STYLE);
+		
 	}
 
 	private static GridPane createText(String actionType) {
