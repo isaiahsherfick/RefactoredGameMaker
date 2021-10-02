@@ -88,6 +88,7 @@ public class Main extends Application {
     	BUTTON_FORM_MAP.put("Sprites", FormLayouts.getSpriteFormLayout());
     	BUTTON_FORM_MAP.put("Shapes", FormLayouts.getShapeFormLayout());
     	BUTTON_FORM_MAP.put("Events", FormLayouts.getEventsFormLayout());
+    	BUTTON_FORM_MAP.put("Sounds", FormLayouts.getSoundsFormLayout());
 	}
 
 	public static void main(String[] args) {
