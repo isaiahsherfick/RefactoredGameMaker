@@ -15,6 +15,10 @@ public abstract class KeyBehavior implements Strategy {
 			sprite = o;
 		}
 		
+		public GameObject getSprite() {
+			return this.sprite;
+		}
+		
 		public void run() {
 		}
 		

@@ -15,6 +15,10 @@ public abstract class MoveBehavior implements Strategy {
 		sprite = o;
 	}
 	
+	public GameObject getSprite() {
+		return this.sprite;
+	}
+	
 	public void run() {
 		Point2D next = move();
 		sprite.setPosition((int)next.getX(), (int)next.getY());
