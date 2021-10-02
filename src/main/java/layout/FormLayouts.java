@@ -1,5 +1,9 @@
 package layout;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+
+import controller.EventsButtonController;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.HPos;
@@ -7,6 +11,7 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -16,12 +21,18 @@ import javafx.scene.layout.Priority;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Window;
+import view.EventMenuItem;
+import view.EventsButton;
 
 public class FormLayouts {
 	
 	public static GridPane getSpriteFormLayout() {
 		return createRegistrationFormPane();
 		
+	}
+	
+	public static GridPane getEventsFormLayout() {
+		return createRegistrationFormPane();
 	}
 	
 	private static GridPane createRegistrationFormPane() {
@@ -46,16 +57,43 @@ public class FormLayouts {
         ColumnConstraints columnOneConstraints = new ColumnConstraints(100, 100, Double.MAX_VALUE);
         columnOneConstraints.setHalignment(HPos.RIGHT);
 
-        // columnTwoConstraints will be applied to all the nodes placed in column two.
-        ColumnConstraints columnTwoConstrains = new ColumnConstraints(200,200, Double.MAX_VALUE);
-        columnTwoConstrains.setHgrow(Priority.ALWAYS);
+		// columnTwoConstraints will be applied to all the nodes placed in column two.
+		ColumnConstraints columnTwoConstrains = new ColumnConstraints(200, 200, Double.MAX_VALUE);
+		columnTwoConstrains.setHgrow(Priority.ALWAYS);
 
-        gridPane.getColumnConstraints().addAll(columnOneConstraints, columnTwoConstrains);
-        
-        addUIControls(gridPane);
+		gridPane.getColumnConstraints().addAll(columnOneConstraints, columnTwoConstrains);
 
-        return gridPane;
-    }
+		addUIForEvents(gridPane);
+
+		return gridPane;
+	}
+
+	private static void addUIForEvents(GridPane gridPane) {
+		ArrayList<CheckBox> menuItems = EventsButtonController.getAllEvents();
+
+		for (int i=0;i <= menuItems.size()-1; i++) {
+			gridPane.add(menuItems.get(i), 1, i);
+		}
+		
+		Button saveBtn = new Button("SAVE");
+		saveBtn.setPrefHeight(40);
+		saveBtn.setDefaultButton(true);
+		saveBtn.setPrefWidth(100);
+		gridPane.add(saveBtn, 0, 1, 2, 1);
+		GridPane.setHalignment(saveBtn, HPos.CENTER);
+		GridPane.setMargin(saveBtn, new Insets(20, 0, 20, 0));
+
+		saveBtn.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent event) {
+				Iterator<CheckBox> it = EventsButtonController.getAllSelectedEvents().iterator();
+				while (it.hasNext()) {
+					System.out.println(it.next());
+				}
+			}
+		});
+
+	}
     
     private static void addUIControls(GridPane gridPane) {
         // Add Header

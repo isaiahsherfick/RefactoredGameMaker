@@ -2,6 +2,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import controller.EventsButtonController;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -47,7 +48,10 @@ public class Main extends Application {
 	
 	@Override
     public void start(Stage primaryStage) throws Exception{
+		EventsButtonController eventsController = new EventsButtonController();
 		instantiateButtonFormMap();
+		
+	
 		
 		Rectangle2D primScreenBounds = Screen.getPrimary().getVisualBounds();
 		
@@ -82,6 +86,7 @@ public class Main extends Application {
 	
     private void instantiateButtonFormMap() {
     	BUTTON_FORM_MAP.put("Sprites", FormLayouts.getSpriteFormLayout());
+    	BUTTON_FORM_MAP.put("Events", FormLayouts.getEventsFormLayout());
 	}
 
 	public static void main(String[] args) {
