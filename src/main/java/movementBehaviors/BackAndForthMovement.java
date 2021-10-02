@@ -8,9 +8,18 @@ import javafx.scene.media.*;
 import sound.Sound;
 import view.GameObject;
 
-public class BackAndForthMovement extends TimedBehavior {
+public class BackAndForthMovement extends MoveBehavior {
 
-	public BackAndForthMovement(GameObject o, double interval) {
-		super(o, interval);
+	public BackAndForthMovement(GameObject o) {
+		super(o);
+	}
+	
+	public void flipDirection() {
+		
+	}
+	
+	@Override
+	public Point2D move() {
+		return null;
 	}
 }
