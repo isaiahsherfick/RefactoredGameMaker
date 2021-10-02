@@ -4,6 +4,7 @@ package collisionBehaviors;
 import java.util.ArrayList;
 
 import behaviors.CollisionBehavior;
+import sound.Sound;
 
 //Provides an interface to run multiple collision behaviors 
 public class MultipleCollisions implements CollisionBehavior{
@@ -22,6 +23,18 @@ public class MultipleCollisions implements CollisionBehavior{
 	
 	public void addBehavior(CollisionBehavior c) {
 		multipleBehaviors.add(c);
+	}
+
+	@Override
+	public void addSound(Sound s) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void playSound() {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

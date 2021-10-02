@@ -2,19 +2,18 @@
 package timedBehaviors;
 
 import behaviors.TimedBehavior;
+import view.GameObject;
 
-public class NoTime implements TimedBehavior{
-	
-	public NoTime() {
-		
-	}
-	
-	public void tick() {
-		//Does Nothing
-	}
+public class NoTime extends TimedBehavior{
 
-	public void adjustInterval(double interval) {
-		
+	public NoTime(GameObject o, double interval) {
+		super(o, interval);
 	}
+	
+	@Override
+	public void run() {
+		//nothing
+	}
+	
 
 }

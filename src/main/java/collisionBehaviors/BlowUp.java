@@ -4,23 +4,22 @@ import behaviors.CollisionBehavior;
 import javafx.geometry.Point2D;
 import javafx.scene.media.Media;
 import sound.Sound;
+import view.GameObject;
 
-public class BlowUp implements CollisionBehavior{
+public class BlowUp extends CollisionBehavior{
 
-	public void handleCollision(Object o) {
-		// TODO Auto-generated method stub
+	public BlowUp(GameObject o) {
+		super(o);
+	}
+	
+	@Override
+	public void run() {
+		super.playSound();
+		//Blow up the GameObject
 		
 	}
 
-	public void addSound(Sound s) {
-		// TODO Auto-generated method stub
-		
-	}
 
-	public void playSound() {
-		// TODO Auto-generated method stub
-		
-	}
 
 
 }
