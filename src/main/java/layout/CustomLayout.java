@@ -17,6 +17,7 @@ import javafx.scene.layout.GridPane;
 public class CustomLayout extends GridPane {
 	
 	private List<GridPane> gridPanes = new ArrayList<>();
+	private GridPane currentFormPane;
 	
 	public CustomLayout(int hGap, int vGap) {
 		super.setHgap(hGap);
@@ -30,6 +31,9 @@ public class CustomLayout extends GridPane {
 	}
 	
 	public boolean addNewChildPane(GridPane pane, int column, int row) {
+		gridPanes.remove(currentFormPane);
+		super.getChildren().remove(currentFormPane);
+		this.currentFormPane = pane;
 		super.add(pane, column, row);
 		super.setColumnSpan(pane, 6);
 		return gridPanes.add(pane);

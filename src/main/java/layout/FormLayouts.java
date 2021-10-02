@@ -21,8 +21,6 @@ import javafx.scene.layout.Priority;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Window;
-import view.EventMenuItem;
-import view.EventsButton;
 
 public class FormLayouts {
 	
