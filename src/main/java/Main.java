@@ -72,6 +72,7 @@ public class Main extends Application {
 	
     private void instantiateButtonFormMap() {
     	BUTTON_FORM_MAP.put("Sprites", FormLayouts.getSpriteFormLayout());
+    	BUTTON_FORM_MAP.put("Shapes", FormLayouts.getShapeFormLayout());
     	BUTTON_FORM_MAP.put("Events", FormLayouts.getEventsFormLayout());
 	}
 
