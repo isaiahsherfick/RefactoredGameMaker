@@ -3,26 +3,13 @@ package movementBehaviors;
 import behaviors.MoveBehavior;
 import javafx.geometry.Point2D;
 import sound.Sound;
+import view.GameObject;
 
-public class NoMove implements MoveBehavior {
+public class NoMove extends MoveBehavior {
 	private Object objectReference;
-	public NoMove(Object o) {
+	public NoMove(GameObject o) {
 		//Does nothing
-	}
-	
-	public Point2D move() {
-		//Should return object referenced location (no movement)
-		return null;
-	}
-
-	public void addSound(Sound s) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	public void playSound() {
-		// TODO Auto-generated method stub
-		
+		super(o);
 	}
 
 }

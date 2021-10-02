@@ -1,26 +1,17 @@
 //@Author Christian Dummer
 package movementBehaviors;
 
+import behaviors.KeyBehavior;
 import behaviors.MoveBehavior;
 import javafx.geometry.Point2D;
 import javafx.scene.media.*;
 import sound.Sound;
+import view.GameObject;
 
-public class MoveOnKeyPress implements MoveBehavior{
+public class MoveOnKeyPress extends KeyBehavior{
 
-	public Point2D move() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public void addSound(Sound s) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	public void playSound() {
-		// TODO Auto-generated method stub
-		
+	public MoveOnKeyPress(GameObject o) {
+		super(o);
 	}
 	
 }

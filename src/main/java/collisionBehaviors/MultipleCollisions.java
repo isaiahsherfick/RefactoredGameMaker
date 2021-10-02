@@ -5,36 +5,13 @@ import java.util.ArrayList;
 
 import behaviors.CollisionBehavior;
 import sound.Sound;
+import view.GameObject;
 
 //Provides an interface to run multiple collision behaviors 
-public class MultipleCollisions implements CollisionBehavior{
+public class MultipleCollisions extends CollisionBehavior{
 
-	private ArrayList<CollisionBehavior> multipleBehaviors;
-	
-	public MultipleCollisions() {
-		multipleBehaviors = new ArrayList<CollisionBehavior>();
-	}
-	
-	public void handleCollision(Object o) {
-		for(CollisionBehavior c: multipleBehaviors) {
-			c.handleCollision(o);
-		}
-	}
-	
-	public void addBehavior(CollisionBehavior c) {
-		multipleBehaviors.add(c);
-	}
-
-	@Override
-	public void addSound(Sound s) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void playSound() {
-		// TODO Auto-generated method stub
-		
+	public MultipleCollisions(GameObject o) {
+		super(o);
 	}
 
 }

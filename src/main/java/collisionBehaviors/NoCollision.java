@@ -3,24 +3,13 @@ package collisionBehaviors;
 
 import behaviors.CollisionBehavior;
 import sound.Sound;
+import view.GameObject;
 
-public class NoCollision implements CollisionBehavior {
+public class NoCollision extends CollisionBehavior {
 
-	public NoCollision() {
+	public NoCollision(GameObject o) {
 		//Does nothing
-	}
-	public void handleCollision(Object o) {
-		//Does nothing
-	}
-	@Override
-	public void addSound(Sound s) {
-		// TODO Auto-generated method stub
-		
-	}
-	@Override
-	public void playSound() {
-		// TODO Auto-generated method stub
-		
+		super(o);
 	}
 
 }
