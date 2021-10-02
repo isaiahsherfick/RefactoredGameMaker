@@ -26,17 +26,27 @@ import view.EventsButton;
 
 public class FormLayouts {
 	
+	
 	public static GridPane getSpriteFormLayout() {
 		return createRegistrationFormPane();
-		
 	}
 	
 	public static GridPane getEventsFormLayout() {
-		return createRegistrationFormPane();
+		return createEventFormPane();
 	}
+
 	
 	private static GridPane createRegistrationFormPane() {
-        // Instantiate a new Grid Pane
+		return addUIControls(getGridPane());
+
+	}
+	
+	private static GridPane createEventFormPane() {
+		return addUIForEvents(getGridPane());
+	}
+	
+	private static GridPane getGridPane() {
+		 // Instantiate a new Grid Pane
         GridPane gridPane = new GridPane();
 
         // Position the pane at the center of the screen, both vertically and horizontally
@@ -62,13 +72,10 @@ public class FormLayouts {
 		columnTwoConstrains.setHgrow(Priority.ALWAYS);
 
 		gridPane.getColumnConstraints().addAll(columnOneConstraints, columnTwoConstrains);
-
-		addUIForEvents(gridPane);
-
 		return gridPane;
 	}
 
-	private static void addUIForEvents(GridPane gridPane) {
+	private static GridPane addUIForEvents(GridPane gridPane) {
 		ArrayList<CheckBox> menuItems = EventsButtonController.getAllEvents();
 
 		for (int i=0;i <= menuItems.size()-1; i++) {
@@ -79,23 +86,26 @@ public class FormLayouts {
 		saveBtn.setPrefHeight(40);
 		saveBtn.setDefaultButton(true);
 		saveBtn.setPrefWidth(100);
-		gridPane.add(saveBtn, 0, 1, 2, 1);
+		gridPane.add(saveBtn, 0, 4, 2, 1);
 		GridPane.setHalignment(saveBtn, HPos.CENTER);
 		GridPane.setMargin(saveBtn, new Insets(20, 0, 20, 0));
 
 		saveBtn.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
+				// TODO: On Save Add the events to the GameObject
+				// For now just print the event
 				Iterator<CheckBox> it = EventsButtonController.getAllSelectedEvents().iterator();
 				while (it.hasNext()) {
+					
 					System.out.println(it.next());
 				}
 			}
 		});
-
+		return gridPane;
 	}
     
-    private static void addUIControls(GridPane gridPane) {
+    private static GridPane addUIControls(GridPane gridPane) {
         // Add Header
         Label headerLabel = new Label("Registration Form");
         headerLabel.setFont(Font.font("Arial", FontWeight.BOLD, 24));
@@ -159,6 +169,7 @@ public class FormLayouts {
                 showAlert(Alert.AlertType.CONFIRMATION, gridPane.getScene().getWindow(), "Registration Successful!", "Welcome " + nameField.getText());
             }
         });
+        return gridPane;
     }
     
     private static void showAlert(Alert.AlertType alertType, Window owner, String title, String message) {
