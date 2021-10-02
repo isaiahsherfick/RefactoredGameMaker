@@ -1,31 +1,23 @@
 package strategies;
 
+import behaviors.KeyBehavior;
 import javafx.geometry.Point2D;
 import sound.Sound;
+import view.GameObject;
 
-public class Fire implements Strategy {
+public class Fire extends KeyBehavior {
 	
+	public Fire(GameObject o) {
+		super(o);
+	}
+
 	private Sound sound;
 
 	@Override
-	public void run(Object gameObject) {
+	public void run() {
 		// Something like GameObject.fire()
+		//Alternatively, create a gameObject, and then assign it a new move up behavior and collision behavior to blow up
 		sound.playSound();
-	}
-
-	/*
-	 * Attach FireSound to this object.
-	 */
-	@Override
-	public void attachSound(Sound sound) {
-		// Attatching a sound to the fire event
-		this.sound = sound;
-	}
-
-	@Override
-	public Point2D runMoveBehavior(Object objectToMove, Point2D currentPosition, double direction) {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 }
