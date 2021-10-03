@@ -4,10 +4,10 @@ import java.util.ArrayList;
 
 import collisionUtility.ObjectCollider;
 import collisionUtility.ScreenCollider;
-import strategies.Strategy;
-
 import javafx.geometry.Point2D;
+import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
+import strategies.Strategy;
 
 //Handles only position, velocity, and movement information
 public class GameObject extends DrawObject implements ObjectCollider, ScreenCollider  {
@@ -34,6 +34,17 @@ public class GameObject extends DrawObject implements ObjectCollider, ScreenColl
 
 	public GameObject(String name, Drawable drawBehaviour, Color color, Point2D position, Point2D dimensions) {
 		super(drawBehaviour, color, position, dimensions);
+		this.setObjectName(name);
+		this.previousPosition = position;
+		this.size = dimensions;
+	    this.nextPosition = position;
+		this.velocity = new Point2D(0, 0);
+		moveDirection = new Point2D(0, 0);
+		behaviors = new ArrayList<Strategy>();
+	}
+	
+	public GameObject(String name, Drawable drawBehaviour, Color color, Point2D position, Point2D dimensions, Image image) {
+		super(drawBehaviour, color, position, dimensions, image);
 		this.setObjectName(name);
 		this.previousPosition = position;
 		this.size = dimensions;

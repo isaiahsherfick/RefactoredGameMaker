@@ -3,6 +3,7 @@ package controller;
 import java.util.HashMap;
 import java.util.Map;
 
+import game.engine.DrawImage;
 import game.engine.Drawable;
 import game.engine.GameObject;
 import javafx.geometry.Point2D;
@@ -37,13 +38,24 @@ public class MakerController {
 			currentlySelectedObject = gameObject;
 			gameModel.addNewGameObject(gameObject);
 			MainController.performDraw();
+		} else {
+			GameObject gameObject = new GameObject(objectName, getDrawableBehaviour(selectedShape),
+					Color.valueOf(color), new Point2D(40, 40), new Point2D(60, 80), imageView.getImage());
+			
+			currentlySelectedObject = gameObject;
+			gameModel.addNewGameObject(gameObject);
+			MainController.performDraw();
 		}
 	}
 
 	private Drawable getDrawableBehaviour(String selectedShape) {
 		if (CIRCLE.equals(selectedShape))
 			return new DrawCircle();
-		return new DrawSquare();
+		
+		if (SQUARE.equals(selectedShape) || RECTANGLE.equals(selectedShape))
+			return new DrawSquare();
+		
+		return new DrawImage();
 	}
 	
 	public GameModel getGameModel() {
