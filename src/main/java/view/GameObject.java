@@ -1,9 +1,12 @@
 package view;
 
+import java.util.ArrayList;
+
 import behaviours.ObjectCollider;
 import behaviours.ScreenCollider;
 import javafx.geometry.Point2D;
 import javafx.scene.paint.Color;
+import strategies.Strategy;
 
 // Sprite Object
 public abstract class GameObject implements ScreenCollider, ObjectCollider {
@@ -12,12 +15,14 @@ public abstract class GameObject implements ScreenCollider, ObjectCollider {
 	private Point2D nextPosition;
 	private Point2D previousPosition;
 	private Point2D size;
+	private ArrayList<Strategy> behaviors;
 
 	public GameObject() {
 		previousPosition = new Point2D(0, 0);
         position = new Point2D(0, 0);
         nextPosition = new Point2D(0, 0);
         size = new Point2D(0, 0);
+        behaviors = new ArrayList<Strategy>();
 	}
 	
 	public GameObject(int locationX, int locationY, int width, int height, Color color) {
@@ -25,6 +30,13 @@ public abstract class GameObject implements ScreenCollider, ObjectCollider {
 		this.size = new Point2D(width, height);
 		this.previousPosition = new Point2D(locationX, locationY);
 	    this.nextPosition = new Point2D(locationX, locationY);
+	}
+	
+	//Runs each strategy
+	public void run() {
+		for(Strategy s: behaviors) {
+			s.run();
+		}
 	}
 	
 	public Point2D getPosition() {
