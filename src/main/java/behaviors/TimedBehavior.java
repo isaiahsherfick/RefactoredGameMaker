@@ -66,6 +66,6 @@ public class TimedBehavior implements Strategy {
 	}
 	
 	public String getName() {
-		return "Time Behaviour";
+		return "Time Behavior";
 	}
 }

@@ -38,6 +38,7 @@ public class MoveBehavior implements Strategy {
 	public void run() {
 		Point2D next = move();
 		sprite.setPosition((int)next.getX(), (int)next.getY());
+		playSound();
 	}
 	
 	public Point2D move() {

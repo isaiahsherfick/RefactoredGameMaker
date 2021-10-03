@@ -69,6 +69,9 @@ public class EventsButtonController {
 //		this.gameObject = o;
 //	} 
 	
+	public void addSelectedEvent(Strategy s) {
+		selectedEvents.add(s);
+	}
 	
 	public static ArrayList<Strategy> getSelectedEvents() {
 		return selectedEvents;

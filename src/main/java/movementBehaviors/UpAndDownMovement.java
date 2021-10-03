@@ -12,6 +12,10 @@ public class UpAndDownMovement extends MoveBehavior{
 		setDirection(Direction.UP);
 	}
 	
+	public UpAndDownMovement() {
+		super();
+	}
+	
 	//Moves either up or down
 	@Override
 	public Point2D move() {

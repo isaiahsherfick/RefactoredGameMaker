@@ -11,6 +11,10 @@ public class VariableMovement extends MoveBehavior{
 		super(o);
 	}
 	
+	public VariableMovement() {
+		super();
+	}
+	
 	//Moves based on speed and direction
 	@Override
 	public Point2D move() {

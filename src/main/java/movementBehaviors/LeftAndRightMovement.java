@@ -14,6 +14,10 @@ public class LeftAndRightMovement extends MoveBehavior {
 		super(o);
 	}
 	
+	public LeftAndRightMovement() {
+		super();
+	}
+	
 	//Moves either left or right
 	@Override
 	public Point2D move() {
