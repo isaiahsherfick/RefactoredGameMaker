@@ -20,6 +20,7 @@ import javafx.stage.Stage;
 import layout.CustomLayout;
 import layout.FormLayouts;
 import model.GameModel;
+import game.engine.GameEngine;
 import game.engine.GameObject;
 
 public class MainController {
@@ -76,9 +77,10 @@ public class MainController {
 
 		// Build scene and give it root
 		Scene gameScene = new Scene(pane, primScreenBounds.getWidth(), primScreenBounds.getHeight());
-
+		GameEngine.sharedInstance.setGameScene(gameScene);
 		primaryStage.setScene(gameScene);
-		primaryStage.setTitle("Welcome to the Breakout game");
+		primaryStage.setTitle("Welcome");
+		GameEngine.sharedInstance.initiateGameLoop();
 		primaryStage.show();
 
 	}
