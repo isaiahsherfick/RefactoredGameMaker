@@ -2,8 +2,8 @@ package view;
 
 import java.util.ArrayList;
 
-import behaviours.ObjectCollider;
-import behaviours.ScreenCollider;
+import collisionUtility.ObjectCollider;
+import collisionUtility.ScreenCollider;
 import javafx.geometry.Point2D;
 import javafx.scene.paint.Color;
 import strategies.Strategy;
@@ -25,7 +25,7 @@ public abstract class GameObject implements ScreenCollider, ObjectCollider {
         behaviors = new ArrayList<Strategy>();
 	}
 	
-	public GameObject(int locationX, int locationY, int width, int height, Color color) {
+	public GameObject(int locationX, int locationY, int width, int height) {
 		this.position = new Point2D(locationX, locationY);
 		this.size = new Point2D(width, height);
 		this.previousPosition = new Point2D(locationX, locationY);
@@ -37,6 +37,10 @@ public abstract class GameObject implements ScreenCollider, ObjectCollider {
 		for(Strategy s: behaviors) {
 			s.run();
 		}
+	}
+	
+	public void setStrategies(ArrayList<Strategy> behaviors) {
+		this.behaviors = behaviors;
 	}
 	
 	public Point2D getPosition() {

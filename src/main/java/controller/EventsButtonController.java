@@ -2,8 +2,13 @@ package controller;
 
 import java.util.ArrayList;
 
+import behaviors.KeyBehavior;
+import behaviors.MoveBehavior;
+import behaviors.TimedBehavior;
 import javafx.scene.control.CheckBox;
-import view.EventMenuItem;
+import javafx.scene.paint.Color;
+import strategies.Strategy;
+import view.GameObject;
 
 /*
  * Requires a Game Object (Sprite) for which the events will be set.
@@ -11,75 +16,88 @@ import view.EventMenuItem;
 public class EventsButtonController {
 
 	CheckBox keyEvent;
-	CheckBox mouseEvent;
+	CheckBox moveEvent;
+	CheckBox clickEvent;
 	CheckBox timeEvent;
-	public static ArrayList<CheckBox> allEvents;
-	public static ArrayList<CheckBox> selectedEvents;
+
+	public static  ArrayList<CheckBox> allEvents;
+	
+	// selected events for the gameObject
+	public static ArrayList<Strategy> selectedEvents;
+	private GameObject gameObject;	
+	private KeyBehavior keyBehaviour;
+	private MoveBehavior moveBehaviour;
+	private TimedBehavior timeBehaviour;
 	
 	public EventsButtonController() {
+		//gameObject = new GameObject();
 		allEvents = new ArrayList<CheckBox>();
-		selectedEvents = new ArrayList<CheckBox>();
+		selectedEvents = new ArrayList<Strategy>();
+		//keyBehaviour = new KeyBehavior(gameObject);
+		//moveBehaviour = new MoveBehavior(gameObject);
+		//timeBehaviour = new TimedBehavior(gameObject);
 		
 		keyEvent = new CheckBox("Key Behaviour");
 		keyEvent.setOnAction(e -> handleKeyEvent());
 		
-		mouseEvent = new CheckBox("Mouse Behaviour");
-		mouseEvent.setOnAction(e -> handleMouseEvent());
+		moveEvent = new CheckBox("Move Behaviour");
+		moveEvent.setOnAction(e -> handleMoveEvent());
 		
-		timeEvent = new CheckBox("Time Behaviour");
-		timeEvent.setOnAction(e -> handleTimeEvent());
+		clickEvent = new CheckBox("Click Behaviour");
+		//clickEvent.setOnAction(e -> handleClickEvent());
+		
+		timeEvent = new CheckBox("Timed Behaviour");
+		//timeEvent.setOnAction(e -> handleTimeEvent());
 	
 		allEvents.add(keyEvent);
-		allEvents.add(mouseEvent);
+		allEvents.add(moveEvent);
+		allEvents.add(clickEvent);
 		allEvents.add(timeEvent);
 	}
 	
-	public static ArrayList<CheckBox> getSelectedEvents() {
+	public GameObject getGameObject() {
+		return gameObject;
+	}
+	
+//	public void setGameObject(GameObject o) {
+//		this.gameObject = o;
+//	} 
+	
+	
+	public static ArrayList<Strategy> getSelectedEvents() {
 		return selectedEvents;
 	}
 	
-	public static void remove(EventMenuItem e) {
-//		selectedEvents.remove(e);
-	}
-
-	public static void add(EventMenuItem e) {
-//		selectedEvents.add(e); 
-	}
-	
-	public void addEventsToObject() {
-		//add the events to the GameObject.
-	}
-	
 	private void handleKeyEvent() {
-		if(!selectedEvents.contains(keyEvent)) {
-			selectedEvents.add(keyEvent);
+		if(!selectedEvents.contains(keyBehaviour)) {
+			selectedEvents.add(keyBehaviour);
 		} else {
-			selectedEvents.remove(keyEvent);
+			selectedEvents.remove(keyBehaviour);
 		}
 	}
 	
-	private void handleMouseEvent() {
-		if(!selectedEvents.contains(mouseEvent)) {
-			selectedEvents.add(mouseEvent);
+	private void handleMoveEvent() {
+		if(!selectedEvents.contains(moveBehaviour)) {
+			selectedEvents.add(moveBehaviour);
 		} else {
-			selectedEvents.remove(mouseEvent);
+			selectedEvents.remove(moveBehaviour);
 		}
 	}
 	
 	private void handleTimeEvent() {
-		if(!selectedEvents.contains(timeEvent)) {
-			selectedEvents.add(timeEvent);
+		if(!selectedEvents.contains(timeBehaviour)) {
+			selectedEvents.add(timeBehaviour);
 		} else {
-			selectedEvents.remove(timeEvent);
+			selectedEvents.remove(timeBehaviour);
 		}
 	}
 	
-	public static ArrayList<CheckBox> getAllSelectedEvents() {
+	public ArrayList<Strategy> getAllSelectedEvents() {
 		return selectedEvents;
 	}
 
 	
-	public static ArrayList<CheckBox> getAllEvents() {
+	public  ArrayList<CheckBox> getAllEvents() {
 		return allEvents;
 	}
 

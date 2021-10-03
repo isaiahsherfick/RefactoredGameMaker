@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 import controller.EventsButtonController;
+import controller.MainController;
 import controller.SoundButtonController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -32,6 +33,7 @@ import javafx.stage.Stage;
 import javafx.stage.Window;
 import javafx.util.StringConverter;
 import sound.Sound;
+import strategies.Strategy;
 
 public class FormLayouts {
 	
@@ -202,7 +204,7 @@ public class FormLayouts {
 	}
 
 	private static GridPane addUIForEvents(GridPane gridPane) {
-		ArrayList<CheckBox> menuItems = EventsButtonController.getAllEvents();
+		ArrayList<CheckBox> menuItems = MainController.getEventsController().getAllEvents();
 
 		for (int i=0;i <= menuItems.size()-1; i++) {
 			gridPane.add(menuItems.get(i), 1, i);
@@ -219,13 +221,12 @@ public class FormLayouts {
 		saveBtn.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
-				// TODO: On Save Add the events to the GameObject
 				// For now just print the event
-				Iterator<CheckBox> it = EventsButtonController.getAllSelectedEvents().iterator();
-				while (it.hasNext()) {
-					
-					System.out.println(it.next());
-				}
+				MainController.getEventsController().getGameObject().setStrategies(MainController.getEventsController().getAllSelectedEvents());
+//				Iterator<Strategy> it = EventsButtonController.getAllSelectedEvents().iterator();
+//				while (it.hasNext()) {
+//					it.next().run();
+//				}
 			}
 		});
 		return gridPane;

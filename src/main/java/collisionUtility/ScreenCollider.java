@@ -1,4 +1,4 @@
-package behaviours;
+package collisionUtility;
 
 import javafx.geometry.Point2D;
 
