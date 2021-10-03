@@ -20,6 +20,7 @@ import javafx.stage.Stage;
 import layout.CustomLayout;
 import layout.FormLayouts;
 import model.GameModel;
+import view.GameObject;
 
 public class MainController {
 	
@@ -33,7 +34,8 @@ public class MainController {
 	
 	private static Stage primaryStage;
 	private static Canvas gameCanvas;
-
+	
+	private static EventsButtonController eventsController;
 	private static final List<Button> BUTTON_LIST = new ArrayList<>();
 	private static final String CLICKED_BUTTON_STYLE = "-fx-background-color: lightblue; -fx-font-size:17";
 	private static final String NORMAL_BUTTON_STYLE = "-fx-background-color: blue; -fx-font-size:17";
@@ -43,7 +45,7 @@ public class MainController {
     public static void start(Stage primaryStage) {
 
     	MainController.primaryStage = primaryStage;
-		EventsButtonController eventsController = new EventsButtonController();
+		eventsController = new EventsButtonController();
 		instantiateButtonFormMap();
 		
 		Rectangle2D primScreenBounds = Screen.getPrimary().getVisualBounds();
@@ -89,7 +91,11 @@ public class MainController {
     	});
 	}
 
-	private static void instantiateButtonFormMap() {
+    public static EventsButtonController getEventsController() {
+    	return eventsController;
+    }
+    
+    private static void instantiateButtonFormMap() {
     	BUTTON_FORM_MAP.put("Sprites", FormLayouts.getShapeFormLayout(getPrimaryStage()));
     	BUTTON_FORM_MAP.put("Events", FormLayouts.getEventsFormLayout());
     	BUTTON_FORM_MAP.put("Sounds", FormLayouts.getSoundsFormLayout());

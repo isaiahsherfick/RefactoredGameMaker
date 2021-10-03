@@ -1,16 +1,9 @@
 package input;
 
 import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.Set;
-
-import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
-import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseEvent;
-import view.EventMenuItem;
 
 public class ClickPolling {
 	

@@ -1,4 +1,4 @@
-package behaviours;
+package collisionUtility;
 
 public interface ObjectCollider {
 

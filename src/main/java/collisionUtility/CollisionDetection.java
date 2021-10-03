@@ -1,4 +1,4 @@
-package behaviours;
+package collisionUtility;
 
 import java.util.ArrayList;
 import java.util.HashMap;
