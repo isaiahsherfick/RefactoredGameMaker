@@ -9,23 +9,20 @@ import sound.Sound;
 import view.GameObject;
 
 public class LeftAndRightMovement extends MoveBehavior {
-
-	private boolean direction = false;
+	
 	public LeftAndRightMovement(GameObject o) {
 		super(o);
 	}
-	public void flipDirection() {
-		direction = !direction;
-	}
 	
+	//Moves either left or right
 	@Override
 	public Point2D move() {
 		Point2D currentPosition = getSprite().getPosition();
-		if(!direction) {
-			return new Point2D (currentPosition.getX() - 20, currentPosition.getY());
+		if(getDirection() == Direction.LEFT) {
+			return new Point2D (currentPosition.getX() - (1*getSpeed()), currentPosition.getY());
 		}
 		else {
-			return new Point2D (currentPosition.getX() + 20, currentPosition.getY());
+			return new Point2D (currentPosition.getX() + (1*getSpeed()), currentPosition.getY());
 		}
 	}
 }

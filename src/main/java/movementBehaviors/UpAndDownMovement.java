@@ -6,24 +6,21 @@ import javafx.geometry.Point2D;
 import view.GameObject;
 
 public class UpAndDownMovement extends MoveBehavior{
-	private boolean direction;
 	
 	public UpAndDownMovement(GameObject o) {
 		super(o);
+		setDirection(Direction.UP);
 	}
 	
-	public void flipDirection() {
-		direction = !direction;
-	}
-	
+	//Moves either up or down
 	@Override
 	public Point2D move() {
 		Point2D currentPosition = getSprite().getPosition();
-		if(!direction) {
-			return new Point2D (currentPosition.getX(), currentPosition.getY() - 20);
+		if(getDirection() == Direction.UP) {
+			return new Point2D (currentPosition.getX(), currentPosition.getY() - (1*getSpeed()));
 		}
 		else {
-			return new Point2D (currentPosition.getX(), currentPosition.getY() + 20);
+			return new Point2D (currentPosition.getX(), currentPosition.getY() + (1*getSpeed()));
 		}
 	}
 }
