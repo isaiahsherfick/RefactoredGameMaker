@@ -3,7 +3,7 @@ package movementBehaviors;
 import behaviors.MoveBehavior;
 import javafx.geometry.Point2D;
 import sound.Sound;
-import view.GameObject;
+import game.engine.GameObject;
 
 public class NoMove extends MoveBehavior {
 	private Object objectReference;

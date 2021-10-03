@@ -3,7 +3,7 @@ package strategies;
 import behaviors.KeyBehavior;
 import javafx.geometry.Point2D;
 import sound.Sound;
-import view.GameObject;
+import game.engine.GameObject;
 
 public class Fire extends KeyBehavior {
 	

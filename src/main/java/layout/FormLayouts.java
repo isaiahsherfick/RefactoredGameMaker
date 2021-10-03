@@ -374,8 +374,11 @@ public class FormLayouts {
 		saveBtn.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
-				// For now just print the event
-				MainController.getEventsController().getGameObject().setStrategies(MainController.getEventsController().getAllSelectedEvents());
+//				FormLayouts.makerController.getCurrentlySelectedObject().addBehavior(TimedComboBox.getSelectionModel().getSelectedItem());
+//				FormLayouts.makerController.getCurrentlySelectedObject().addBehavior(MoveComboBox.getSelectionModel().getSelectedItem());
+//				FormLayouts.makerController.getCurrentlySelectedObject().addBehavior(KeyComboBox.getSelectionModel().getSelectedItem());
+//				FormLayouts.makerController.getCurrentlySelectedObject().addBehavior(ClickComboBox.getSelectionModel().getSelectedItem());
+//				FormLayouts.makerController.getCurrentlySelectedObject().addBehavior(CollisionComboBox.getSelectionModel().getSelectedItem());
 			}
 		});
 		return gridPane;

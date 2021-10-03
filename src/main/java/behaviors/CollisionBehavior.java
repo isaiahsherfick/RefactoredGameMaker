@@ -4,7 +4,7 @@ package behaviors;
 import sound.NoSound;
 import sound.Sound;
 import strategies.Strategy;
-import view.GameObject;
+import game.engine.GameObject;
 
 public class CollisionBehavior implements Strategy {
 	//Sets default to no sound to avoid NPEs

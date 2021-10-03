@@ -1,7 +1,9 @@
 package collisionUtility;
 
+import game.engine.GameObject;
+
 public interface ObjectCollider {
 
-	public void handleObjectCollision(Object collider, String collisionDirection);
+	public void handleObjectCollision(GameObject collider, String collisionDirection);
 	
 }

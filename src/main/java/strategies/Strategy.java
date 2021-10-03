@@ -2,7 +2,7 @@
 package strategies;
 
 import sound.Sound;
-import view.GameObject;
+import game.engine.GameObject;
 
 public interface Strategy {
 

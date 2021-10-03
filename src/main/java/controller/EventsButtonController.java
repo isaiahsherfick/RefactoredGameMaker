@@ -8,7 +8,7 @@ import collisionBehaviors.FallDown;
 import javafx.scene.control.CheckBox;
 import movementBehaviors.*;
 import strategies.Strategy;
-import view.GameObject;
+import game.engine.GameObject;
 
 /*
  * Requires a Game Object (Sprite) for which the events will be set.

@@ -2,7 +2,9 @@ package game.engine;
 
 import java.util.ArrayList;
 
-import org.codehaus.plexus.classworlds.strategy.Strategy;
+import collisionUtility.ObjectCollider;
+import collisionUtility.ScreenCollider;
+import strategies.Strategy;
 
 import javafx.event.EventHandler;
 import javafx.geometry.Point2D;
@@ -11,7 +13,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 
 //Handles only position, velocity, and movement information
-public class GameObject extends DrawObject {
+public class GameObject extends DrawObject implements ObjectCollider, ScreenCollider  {
 	
 	private static double orgSceneX, orgSceneY;
 	private static double orgTranslateX, orgTranslateY;
@@ -22,12 +24,17 @@ public class GameObject extends DrawObject {
 	protected Point2D velocity;
 	protected Point2D moveDirection;
 	protected ArrayList<Strategy> behaviors;
+	private Point2D nextPosition;
+	private Point2D size;
+
 
 	public GameObject() {
 		super();
 		previousPosition = new Point2D(0, 0);
 		velocity = new Point2D(0, 0);
 		moveDirection = new Point2D(0, 0);
+        nextPosition = new Point2D(0, 0);
+        size = new Point2D(0, 0);
 		behaviors = new ArrayList<Strategy>();
 	}
 
@@ -35,6 +42,8 @@ public class GameObject extends DrawObject {
 		super(drawBehaviour, color, position, dimensions);
 		this.setObjectName(name);
 		this.previousPosition = position;
+		this.size = dimensions;
+	    this.nextPosition = position;
 		this.velocity = new Point2D(0, 0);
 		moveDirection = new Point2D(0, 0);
 		this.setOnMousePressed(buttonMousePressedEventHandler);
@@ -96,6 +105,13 @@ public class GameObject extends DrawObject {
 		
 	}
 	
+	//Runs each strategy
+	public void run() {
+		for(Strategy s: behaviors) {
+			s.run();
+		}
+	}
+	
 	public void addBehavior(Strategy s) {
 		behaviors.add(s);
 	}
@@ -110,6 +126,18 @@ public class GameObject extends DrawObject {
 
 	private void setObjectName(String objectName) {
 		this.objectName = objectName;
+	}
+	
+	public Point2D getNextPosition() {
+		return nextPosition;
+	}
+	
+	public void setSize(int width, int height) {
+		this.size = new Point2D(width, height);
+	}
+	
+	public Point2D getSize() {
+		return size;
 	}
 	
 	static EventHandler<MouseEvent> buttonMousePressedEventHandler = new EventHandler<MouseEvent>() {
@@ -139,4 +167,12 @@ public class GameObject extends DrawObject {
 	    }
 	};
 
+	@Override
+	public void handleObjectCollision(GameObject collider, String collisionDirection) {
+		behaviors.forEach(strategy -> {
+			if (strategy.getName() == "Collision Behaviour") {
+				strategy.run();
+			}
+		});
+	}
 }

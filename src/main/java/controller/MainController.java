@@ -20,7 +20,7 @@ import javafx.stage.Stage;
 import layout.CustomLayout;
 import layout.FormLayouts;
 import model.GameModel;
-import view.GameObject;
+import game.engine.GameObject;
 
 public class MainController {
 	

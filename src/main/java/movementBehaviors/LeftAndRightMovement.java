@@ -6,7 +6,7 @@ import behaviors.TimedBehavior;
 import javafx.geometry.Point2D;
 import javafx.scene.media.*;
 import sound.Sound;
-import view.GameObject;
+import game.engine.GameObject;
 
 public class LeftAndRightMovement extends MoveBehavior {
 	

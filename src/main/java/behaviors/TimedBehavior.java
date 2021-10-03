@@ -9,7 +9,7 @@ import javafx.util.Duration;
 import sound.NoSound;
 import sound.Sound;
 import strategies.Strategy;
-import view.GameObject;
+import game.engine.GameObject;
 
 public class TimedBehavior implements Strategy {
 	//Initializes nullObject to avoid NPEs

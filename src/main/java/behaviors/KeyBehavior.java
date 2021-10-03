@@ -5,7 +5,7 @@ package behaviors;
 import sound.NoSound;
 import sound.Sound;
 import strategies.Strategy;
-import view.GameObject;
+import game.engine.GameObject;
 
 public class KeyBehavior implements Strategy {
 	   //Initializes as null object to avoid npes

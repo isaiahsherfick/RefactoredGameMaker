@@ -5,7 +5,7 @@ import javafx.geometry.Point2D;
 import sound.NoSound;
 import sound.Sound;
 import strategies.Strategy;
-import view.GameObject;
+import game.engine.GameObject;
 
 public class MoveBehavior implements Strategy {
 	//Initializes as null object to avoid npes

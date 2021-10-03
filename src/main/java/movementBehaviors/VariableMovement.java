@@ -3,7 +3,7 @@ package movementBehaviors;
 import behaviors.MoveBehavior;
 import behaviors.MoveBehavior.Direction;
 import javafx.geometry.Point2D;
-import view.GameObject;
+import game.engine.GameObject;
 
 public class VariableMovement extends MoveBehavior{
 

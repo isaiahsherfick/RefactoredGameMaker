@@ -1,7 +1,7 @@
 package collisionBehaviors;
 
 import behaviors.CollisionBehavior;
-import view.GameObject;
+import game.engine.GameObject;
 
 public class FallDown extends CollisionBehavior{
 
