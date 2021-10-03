@@ -19,11 +19,14 @@ import javafx.stage.Screen;
 import javafx.stage.Stage;
 import layout.CustomLayout;
 import layout.FormLayouts;
+import model.GameModel;
 
 public class MainController {
 	
 	private static double orgSceneX, orgSceneY;
 	private static double orgTranslateX, orgTranslateY;
+	
+	private static GameModel gameModel = new GameModel();
 	
 	private static CustomLayout customLayout;
 	private static Button currentEnabled;
@@ -46,6 +49,7 @@ public class MainController {
 		Rectangle2D primScreenBounds = Screen.getPrimary().getVisualBounds();
 		
 		gameCanvas = new Canvas(primScreenBounds.getWidth()/2, primScreenBounds.getHeight());
+		drawGameObjects();
 
 		BorderPane pane = new BorderPane();
 		FlowPane gameFlow = new FlowPane();
@@ -75,7 +79,17 @@ public class MainController {
     
     }
     
-    private static void instantiateButtonFormMap() {
+    public static void performDraw() {
+    	drawGameObjects();
+    }
+    
+    private static void drawGameObjects() {
+    	FormLayouts.makerController.getGameModel().getGameObjects().forEach(gameObject -> {
+    		gameObject.performDraw(gameCanvas.getGraphicsContext2D());
+    	});
+	}
+
+	private static void instantiateButtonFormMap() {
     	BUTTON_FORM_MAP.put("Sprites", FormLayouts.getShapeFormLayout(getPrimaryStage()));
     	BUTTON_FORM_MAP.put("Events", FormLayouts.getEventsFormLayout());
     	BUTTON_FORM_MAP.put("Sounds", FormLayouts.getSoundsFormLayout());

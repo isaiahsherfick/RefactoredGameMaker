@@ -1,11 +1,12 @@
 package game.engine;
 
 import javafx.geometry.Point2D;
+import javafx.scene.Node;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 import pattern.Observer;
 
-public abstract class DrawObject implements Observer {
+public abstract class DrawObject extends Node implements Observer {
 	
     //protected CommandListener commandListener;
 	protected Drawable drawBehaviour;
@@ -21,6 +22,7 @@ public abstract class DrawObject implements Observer {
 	
     //Drawbehavior is a strategy object for drawing
 	public DrawObject(Drawable drawBehavior, Color color, Point2D position, Point2D dimensions) {
+		super();
 		this.drawBehaviour = drawBehavior;
 		this.position = position;
 		this.dimensions = dimensions;

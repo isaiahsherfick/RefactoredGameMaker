@@ -1,10 +1,18 @@
 package game.engine;
 
+import javafx.event.EventHandler;
 import javafx.geometry.Point2D;
+import javafx.scene.control.Button;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 
 //Handles only position, velocity, and movement information
 public class GameObject extends DrawObject {
+	
+	private static double orgSceneX, orgSceneY;
+	private static double orgTranslateX, orgTranslateY;
+	
+	private String objectName;
 
 	protected Point2D previousPosition;
 	protected Point2D velocity;
@@ -17,11 +25,14 @@ public class GameObject extends DrawObject {
 		moveDirection = new Point2D(0, 0);
 	}
 
-	public GameObject(Drawable drawBehaviour, Color color, Point2D position, Point2D dimensions) {
+	public GameObject(String name, Drawable drawBehaviour, Color color, Point2D position, Point2D dimensions) {
 		super(drawBehaviour, color, position, dimensions);
+		this.setObjectName(name);
 		this.previousPosition = position;
 		this.velocity = new Point2D(0, 0);
 		moveDirection = new Point2D(0, 0);
+		this.setOnMousePressed(buttonMousePressedEventHandler);
+        this.setOnMouseDragged(buttonOnMouseDraggedEventHandler);
 	}
 
 	public Point2D getPreviousPosition() {
@@ -77,5 +88,40 @@ public class GameObject extends DrawObject {
 		// TODO Auto-generated method stub
 		
 	}
+	
+	public String getObjectName() {
+		return objectName;
+	}
+
+	private void setObjectName(String objectName) {
+		this.objectName = objectName;
+	}
+	
+	static EventHandler<MouseEvent> buttonMousePressedEventHandler = new EventHandler<MouseEvent>() {
+
+	    @Override
+	    public void handle(MouseEvent t) {
+	        orgSceneX = t.getSceneX();
+	        orgSceneY = t.getSceneY();
+	        orgTranslateX = ((Button) (t.getSource())).getTranslateX();
+	        orgTranslateY = ((Button) (t.getSource())).getTranslateY();
+
+	        ((Button) (t.getSource())).toFront();
+	    }
+	};
+
+	static EventHandler<MouseEvent> buttonOnMouseDraggedEventHandler = new EventHandler<MouseEvent>() {
+
+	    @Override
+	    public void handle(MouseEvent t) {
+	        double offsetX = t.getSceneX() - orgSceneX;
+	        double offsetY = t.getSceneY() - orgSceneY;
+	        double newTranslateX = orgTranslateX + offsetX;
+	        double newTranslateY = orgTranslateY + offsetY;
+
+	        ((Button) (t.getSource())).setTranslateX(newTranslateX);
+	        ((Button) (t.getSource())).setTranslateY(newTranslateY);
+	    }
+	};
 
 }
