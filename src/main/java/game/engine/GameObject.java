@@ -1,5 +1,9 @@
 package game.engine;
 
+import java.util.ArrayList;
+
+import org.codehaus.plexus.classworlds.strategy.Strategy;
+
 import com.sun.javafx.geom.BaseBounds;
 import com.sun.javafx.geom.transform.BaseTransform;
 import com.sun.javafx.jmx.MXNodeAlgorithm;
@@ -23,12 +27,14 @@ public class GameObject extends DrawObject {
 	protected Point2D previousPosition;
 	protected Point2D velocity;
 	protected Point2D moveDirection;
+	protected ArrayList<Strategy> behaviors;
 
 	public GameObject() {
 		super();
 		previousPosition = new Point2D(0, 0);
 		velocity = new Point2D(0, 0);
 		moveDirection = new Point2D(0, 0);
+		behaviors = new ArrayList<Strategy>();
 	}
 
 	public GameObject(String name, Drawable drawBehaviour, Color color, Point2D position, Point2D dimensions) {
@@ -39,6 +45,7 @@ public class GameObject extends DrawObject {
 		moveDirection = new Point2D(0, 0);
 		this.setOnMousePressed(buttonMousePressedEventHandler);
         this.setOnMouseDragged(buttonOnMouseDraggedEventHandler);
+		behaviors = new ArrayList<Strategy>();
 	}
 
 	public Point2D getPreviousPosition() {
@@ -93,6 +100,14 @@ public class GameObject extends DrawObject {
 	public void update(double timeDelta) {
 		// TODO Auto-generated method stub
 		
+	}
+	
+	public void addBehavior(Strategy s) {
+		behaviors.add(s);
+	}
+	
+	public ArrayList<Strategy> getBehaviors() {
+		return behaviors;
 	}
 	
 	public String getObjectName() {

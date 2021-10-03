@@ -17,6 +17,7 @@ public class MakerController {
 	private static final String CIRCLE = "CIRCLE";
 	private static final String SQUARE = "SQUARE";
 	private static final String RECTANGLE = "RECTANGLE";
+	private static GameObject currentlySelectedObject;
 	private GameModel gameModel;
 	
 	private Map<String, Point2D> dimensionMap = new HashMap<>();
@@ -33,6 +34,7 @@ public class MakerController {
 			GameObject gameObject = new GameObject(objectName, getDrawableBehaviour(selectedShape),
 					Color.valueOf(color), new Point2D(10, 10), dimensionMap.get(selectedShape));
 			
+			currentlySelectedObject = gameObject;
 			gameModel.addNewGameObject(gameObject);
 			MainController.performDraw();
 		}
@@ -46,6 +48,14 @@ public class MakerController {
 	
 	public GameModel getGameModel() {
 		return gameModel;
+	}
+	
+	public GameObject getCurrentlySelectedObject() {
+		return this.currentlySelectedObject;
+	}
+	
+	public void setCurrentlySelectedObject(GameObject o) {
+		this.currentlySelectedObject = o;
 	}
 
 }

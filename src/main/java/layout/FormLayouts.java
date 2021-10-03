@@ -369,18 +369,16 @@ public class FormLayouts {
 
 		gridPane.add(timeLabel, 1, 8);
 		gridPane.add(TimedComboBox, 1, 9);
-
-		return gridPane;
 		
 		
-		/*saveBtn.setOnAction(new EventHandler<ActionEvent>() {
+		saveBtn.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
 				// For now just print the event
 				MainController.getEventsController().getGameObject().setStrategies(MainController.getEventsController().getAllSelectedEvents());
 			}
 		});
-		return gridPane;*/
+		return gridPane;
 	}
 
 	private static GridPane addUIForSounds(GridPane gridPane) {
@@ -391,10 +389,31 @@ public class FormLayouts {
 		GridPane.setHalignment(headerLabel, HPos.CENTER);
 		GridPane.setMargin(headerLabel, new Insets(20, 0, 20, 0));
 
-		// Add Name Label
-		Label nameLabel = new Label("Select Sound : ");
-		gridPane.add(nameLabel, 0, 1);
 
+		EventsButtonController eventBtnController = new EventsButtonController();
+		ComboBox<Strategy> eventComboBox = new ComboBox<>();
+		eventComboBox.itemsProperty().setValue(FXCollections.observableList(eventBtnController.getAllSelectedEvents()));
+		
+		eventComboBox.setConverter(new StringConverter<Strategy>() {
+			@Override
+			public String toString(Strategy s) {
+				if (s != null)
+					return s.getName();
+				else
+					return "";
+			}
+
+			@Override
+			public Strategy fromString(final String string) {
+				return eventComboBox.getItems().stream().filter(sound -> sound.getName().equals(string)).findFirst()
+						.orElse(null);
+			}
+		});
+
+		eventComboBox.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+			System.out.println("Strategy Name: " + newValue.getName());
+		});
+		
 		SoundButtonController soundBtnController = new SoundButtonController();
 		ComboBox<Sound> soundComboBox = new ComboBox<>();
 		ObservableList<Sound> soundList = FXCollections.observableList(soundBtnController.getAllSounds());
@@ -419,8 +438,13 @@ public class FormLayouts {
 		soundComboBox.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
 			System.out.println("Sound Name: " + newValue.getName());
 		});
-
-		gridPane.add(soundComboBox, 1, 1);
+		
+		Label eventsLabel = new Label("Selected Events");
+		Label soundsLabel = new Label("Sounds to attach");
+		gridPane.add(eventsLabel, 1, 1);
+		gridPane.add(eventComboBox, 1, 2);
+		gridPane.add(soundsLabel, 1, 3);
+		gridPane.add(soundComboBox, 1, 4);
 
 		return gridPane;
 	}
