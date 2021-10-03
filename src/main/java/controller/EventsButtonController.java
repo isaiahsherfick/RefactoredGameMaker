@@ -7,6 +7,7 @@ import collisionBehaviors.BlowUp;
 import collisionBehaviors.FallDown;
 import javafx.scene.control.CheckBox;
 import movementBehaviors.*;
+import strategies.Fire;
 import strategies.Strategy;
 import view.GameObject;
 
@@ -153,6 +154,18 @@ public class EventsButtonController {
 				events.add(e);
 			}
 		}
+		events.add(t);
+		return events;
+	}
+	
+	public ArrayList<Strategy> getTimeableEvents(){
+		ArrayList<Strategy> events = new ArrayList<Strategy>();
+		for(Strategy e: allEvents) {
+			if(e instanceof MoveBehavior) {
+				events.add(e);
+			}
+		}
+		events.add(new Fire(gameObject));
 		return events;
 	}
 	

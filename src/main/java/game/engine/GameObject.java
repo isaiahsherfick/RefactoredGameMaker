@@ -2,7 +2,7 @@ package game.engine;
 
 import java.util.ArrayList;
 
-import org.codehaus.plexus.classworlds.strategy.Strategy;
+import strategies.Strategy;
 
 import com.sun.javafx.geom.BaseBounds;
 import com.sun.javafx.geom.transform.BaseTransform;
@@ -106,6 +106,7 @@ public class GameObject extends DrawObject {
 		behaviors.add(s);
 	}
 	
+	
 	public ArrayList<Strategy> getBehaviors() {
 		return behaviors;
 	}
@@ -168,5 +169,6 @@ public class GameObject extends DrawObject {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
 
 }

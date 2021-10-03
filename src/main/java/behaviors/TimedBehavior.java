@@ -22,6 +22,10 @@ public class TimedBehavior implements Strategy {
 	public TimedBehavior() {
 		
 	}
+	
+	public TimedBehavior(double interval) {
+		this.tickInterval = interval;
+	}
 	public TimedBehavior(GameObject o, double interval, Strategy toRun) {
 		this.sprite = o;
 		this.tickInterval = interval;
@@ -51,6 +55,10 @@ public class TimedBehavior implements Strategy {
 	
 	public void addSound(Sound s) {
 		this.soundEffect = s;
+	}
+	
+	public void addStrategy(Strategy toRun) {
+		this.runOnInterval = toRun;
 	}
 	
 	public void playSound() {

@@ -8,6 +8,7 @@ import behaviors.ClickBehavior;
 import behaviors.CollisionBehavior;
 import behaviors.KeyBehavior;
 import behaviors.MoveBehavior;
+import behaviors.MoveBehavior.Direction;
 import behaviors.TimedBehavior;
 import controller.EventsButtonController;
 import controller.MainController;
@@ -32,7 +33,9 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.stage.FileChooser;
@@ -235,6 +238,7 @@ public class FormLayouts {
 
 	private static GridPane addUIForEvents(GridPane gridPane) {
 		Button saveBtn = new Button("SAVE");
+		VBox strategyDetails;
 		saveBtn.setPrefHeight(40);
 		saveBtn.setDefaultButton(true);
 		saveBtn.setPrefWidth(100);
@@ -272,6 +276,15 @@ public class FormLayouts {
 		ClickComboBox.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
 			System.out.println("Strategy Name: " + newValue.getName());
 		});
+		ClickComboBox.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent event) {
+				if(ClickComboBox.getSelectionModel().getSelectedItem() instanceof ClickBehavior) {
+					VBox strategyDetails = addUIForClickBehavior((ClickBehavior)ClickComboBox.getSelectionModel().getSelectedItem());
+					gridPane.add(strategyDetails, 5, 1);
+				}
+			}
+		});
 		
 		CollisionComboBox.setConverter(new StringConverter<Strategy>() {
 			@Override
@@ -291,6 +304,15 @@ public class FormLayouts {
 		CollisionComboBox.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
 			System.out.println("Strategy Name: " + newValue.getName());
 		});
+		CollisionComboBox.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent event) {
+				if(CollisionComboBox.getSelectionModel().getSelectedItem() instanceof CollisionBehavior) {
+					VBox strategyDetails = addUIForCollisionBehavior((CollisionBehavior)CollisionComboBox.getSelectionModel().getSelectedItem());
+					gridPane.add(strategyDetails, 5, 1);
+				}
+			}
+		});
 		
 		KeyComboBox.setConverter(new StringConverter<Strategy>() {
 			@Override
@@ -309,6 +331,15 @@ public class FormLayouts {
 		});
 		KeyComboBox.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
 			System.out.println("Strategy Name: " + newValue.getName());
+		});
+		KeyComboBox.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent event) {
+				if(KeyComboBox.getSelectionModel().getSelectedItem() instanceof KeyBehavior) {
+					VBox strategyDetails = addUIForKeyBehavior((KeyBehavior)KeyComboBox.getSelectionModel().getSelectedItem());
+					gridPane.add(strategyDetails, 5, 1);
+				}
+			}
 		});
 		
 		MoveComboBox.setConverter(new StringConverter<Strategy>() {
@@ -330,6 +361,16 @@ public class FormLayouts {
 			System.out.println("Strategy Name: " + newValue.getName());
 		});
 		
+		MoveComboBox.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent event) {
+				if(MoveComboBox.getSelectionModel().getSelectedItem() instanceof MoveBehavior) {
+					VBox strategyDetails = addUIForMoveBehavior((MoveBehavior)MoveComboBox.getSelectionModel().getSelectedItem());
+					gridPane.add(strategyDetails, 5, 1);
+				}
+			}
+		});
+		
 		TimedComboBox.setConverter(new StringConverter<Strategy>() {
 			@Override
 			public String toString(Strategy s) {
@@ -347,6 +388,16 @@ public class FormLayouts {
 		});
 		TimedComboBox.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
 			System.out.println("Strategy Name: " + newValue.getName());
+		});
+		
+		TimedComboBox.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent event) {
+				if(TimedComboBox.getSelectionModel().getSelectedItem() instanceof TimedBehavior) {
+					VBox strategyDetails = addUIForTimeBehavior((TimedBehavior)TimedComboBox.getSelectionModel().getSelectedItem());
+					gridPane.add(strategyDetails, 5, 1);
+				}
+			}
 		});
 		
 		Label clickLabel = new Label("Click Events");
@@ -380,7 +431,129 @@ public class FormLayouts {
 		});
 		return gridPane;
 	}
+	
+	private static VBox addUIForClickBehavior(ClickBehavior c) {
+		VBox clickBehaviorForm = new VBox();
+		
+		
+		return clickBehaviorForm;
+	}
 
+	private static VBox addUIForCollisionBehavior(CollisionBehavior c) {
+		VBox collisionBehaviorForm = new VBox();
+		
+		return collisionBehaviorForm;
+	}
+	
+	private static VBox addUIForKeyBehavior(KeyBehavior k) {
+		VBox keyBehaviorForm = new VBox();
+		
+		return keyBehaviorForm;
+	}
+	
+	private static VBox addUIForMoveBehavior(MoveBehavior m) {
+		VBox moveBehaviorForm = new VBox();
+		EventsButtonController btnController = new EventsButtonController();
+		Label moveLabel = new Label("Enter details for moveBehavior");
+		Label directionLabel = new Label("Enter direction of movement");
+		TextField directionField = new TextField();
+		Label speedLabel = new Label("Enter speed of movement (how many pixels it moves per tick)");
+		TextField speedField = new TextField();
+		Button saveButton = new Button("Save");
+		
+		saveButton.setOnAction(new EventHandler<ActionEvent>(){
+			@Override
+			public void handle(ActionEvent e) {
+				try {
+					MoveBehavior toAdd = m.getClass().newInstance();
+					toAdd.setSpeed(Double.parseDouble(speedField.getText()));
+					toAdd.setDirection(Direction.valueOf(directionField.getText()));
+					makerController.getCurrentlySelectedObject().addBehavior(toAdd);
+				}
+				catch(Exception ex) {
+					System.out.println("Conversion failed");
+				}
+			}
+		});
+		moveBehaviorForm.getChildren().addAll(moveLabel, directionLabel, directionField, speedLabel, speedField, saveButton);
+		
+		return moveBehaviorForm;
+	}
+	
+	private static VBox addUIForTimeBehavior(TimedBehavior t) {
+		VBox timeBehaviorForm = new VBox();
+		EventsButtonController btnController = new EventsButtonController();
+		Label timeLabel = new Label("Enter details for Timed Behavior");
+		Label intervalLabel = new Label("Enter seconds between running of event");
+		TextField intervalField = new TextField();
+		Button saveButton = new Button("Save");
+		
+		Label actionSelection = new Label("Select Behavior to run on each interval");
+		ComboBox<Strategy> optionsOnTimer = new ComboBox<Strategy>();
+		optionsOnTimer.itemsProperty().setValue(FXCollections.observableList(btnController.getTimeableEvents()));
+		optionsOnTimer.setConverter(new StringConverter<Strategy>() {
+			@Override
+			public String toString(Strategy s) {
+				if (s != null)
+					return s.getName();
+				else
+					return "";
+			}
+
+			@Override
+			public Strategy fromString(final String string) {
+				return optionsOnTimer.getItems().stream().filter(s -> s.getName().equals(string)).findFirst()
+						.orElse(null);
+			}
+		});
+		optionsOnTimer.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+			System.out.println("Strategy Name: " + newValue.getName());
+		});
+		
+
+		
+	
+		optionsOnTimer.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent e) {
+				Strategy selected = optionsOnTimer.getSelectionModel().getSelectedItem();
+				//Display movement behavior UI before creating the behavior
+				if(selected instanceof MoveBehavior) {
+					VBox movementUI = addUIForMoveBehavior((MoveBehavior)selected);
+					timeBehaviorForm.getChildren().add(movementUI);
+				}
+				else {
+					//Instantiates the right object type and assigns it to the TimedBehavior;
+					for(Strategy s: btnController.getTimeableEvents()) {
+						if(selected.getClass() == s.getClass()) {
+							try {
+								TimedBehavior behavior = new TimedBehavior(Double.parseDouble(intervalField.getText()));
+								selected = s.getClass().newInstance();
+								behavior.addStrategy(selected);
+							}
+							catch(Exception ex) {
+								System.out.println("Type Conversion Failed");
+							}
+						}
+					}
+				}
+			}
+		});
+		
+		saveButton.setOnAction(new EventHandler<ActionEvent>() {
+			@Override 
+			public void handle(ActionEvent e) {
+				//Adds the timed behavior to the current object
+					makerController.getCurrentlySelectedObject().addBehavior(behavior);
+					System.out.println("Successfully added behavior");
+			}
+		});
+		
+		timeBehaviorForm.getChildren().addAll(timeLabel, intervalLabel, intervalField, actionSelection, optionsOnTimer, saveButton);
+		return timeBehaviorForm;
+	}
+	
+	
 	private static GridPane addUIForSounds(GridPane gridPane) {
 		// Add Header
 		Label headerLabel = new Label("Sound Form");
