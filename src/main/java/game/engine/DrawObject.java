@@ -6,7 +6,7 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 import pattern.Observer;
 
-public abstract class DrawObject extends Node implements Observer {
+public abstract class DrawObject implements Observer {
 	
     //protected CommandListener commandListener;
 	protected Drawable drawBehaviour;

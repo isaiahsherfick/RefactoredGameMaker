@@ -6,17 +6,11 @@ import collisionUtility.ObjectCollider;
 import collisionUtility.ScreenCollider;
 import strategies.Strategy;
 
-import javafx.event.EventHandler;
 import javafx.geometry.Point2D;
-import javafx.scene.control.Button;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 
 //Handles only position, velocity, and movement information
 public class GameObject extends DrawObject implements ObjectCollider, ScreenCollider  {
-	
-	private static double orgSceneX, orgSceneY;
-	private static double orgTranslateX, orgTranslateY;
 	
 	private String objectName;
 
@@ -46,8 +40,6 @@ public class GameObject extends DrawObject implements ObjectCollider, ScreenColl
 	    this.nextPosition = position;
 		this.velocity = new Point2D(0, 0);
 		moveDirection = new Point2D(0, 0);
-		this.setOnMousePressed(buttonMousePressedEventHandler);
-        this.setOnMouseDragged(buttonOnMouseDraggedEventHandler);
 		behaviors = new ArrayList<Strategy>();
 	}
 
@@ -139,33 +131,6 @@ public class GameObject extends DrawObject implements ObjectCollider, ScreenColl
 	public Point2D getSize() {
 		return size;
 	}
-	
-	static EventHandler<MouseEvent> buttonMousePressedEventHandler = new EventHandler<MouseEvent>() {
-
-	    @Override
-	    public void handle(MouseEvent t) {
-	        orgSceneX = t.getSceneX();
-	        orgSceneY = t.getSceneY();
-	        orgTranslateX = ((Button) (t.getSource())).getTranslateX();
-	        orgTranslateY = ((Button) (t.getSource())).getTranslateY();
-
-	        ((Button) (t.getSource())).toFront();
-	    }
-	};
-
-	static EventHandler<MouseEvent> buttonOnMouseDraggedEventHandler = new EventHandler<MouseEvent>() {
-
-	    @Override
-	    public void handle(MouseEvent t) {
-	        double offsetX = t.getSceneX() - orgSceneX;
-	        double offsetY = t.getSceneY() - orgSceneY;
-	        double newTranslateX = orgTranslateX + offsetX;
-	        double newTranslateY = orgTranslateY + offsetY;
-
-	        ((Button) (t.getSource())).setTranslateX(newTranslateX);
-	        ((Button) (t.getSource())).setTranslateY(newTranslateY);
-	    }
-	};
 
 	@Override
 	public void handleObjectCollision(GameObject collider, String collisionDirection) {
@@ -174,5 +139,11 @@ public class GameObject extends DrawObject implements ObjectCollider, ScreenColl
 				strategy.run();
 			}
 		});
+	}
+
+	@Override
+	public void handleScreenCollision(Point2D newPosition) {
+		// TODO Auto-generated method stub
+		
 	}
 }
