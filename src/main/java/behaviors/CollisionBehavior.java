@@ -6,10 +6,13 @@ import sound.Sound;
 import strategies.Strategy;
 import view.GameObject;
 
-public abstract class CollisionBehavior implements Strategy {
+public class CollisionBehavior implements Strategy {
 	//Sets default to no sound to avoid NPEs
 	private Sound soundEffect = new NoSound();
 	private GameObject sprite;
+	public CollisionBehavior() {
+		
+	}
 	public CollisionBehavior(GameObject o) {
 		sprite = o;
 	}
@@ -30,4 +33,7 @@ public abstract class CollisionBehavior implements Strategy {
 		soundEffect.playSound();
 	}
 	
+	public String getName() {
+		return "Collision Behaviour";
+	}
 }

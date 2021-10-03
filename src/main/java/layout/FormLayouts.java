@@ -4,6 +4,11 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+import behaviors.ClickBehavior;
+import behaviors.CollisionBehavior;
+import behaviors.KeyBehavior;
+import behaviors.MoveBehavior;
+import behaviors.TimedBehavior;
 import controller.EventsButtonController;
 import controller.MainController;
 import controller.MakerController;
@@ -229,28 +234,153 @@ public class FormLayouts {
 	}
 
 	private static GridPane addUIForEvents(GridPane gridPane) {
-		ArrayList<CheckBox> menuItems = MainController.getEventsController().getAllEvents();
-
-		for (int i = 0; i <= menuItems.size() - 1; i++) {
-			gridPane.add(menuItems.get(i), 1, i);
-		}
-
 		Button saveBtn = new Button("SAVE");
 		saveBtn.setPrefHeight(40);
 		saveBtn.setDefaultButton(true);
 		saveBtn.setPrefWidth(100);
-		gridPane.add(saveBtn, 0, 4, 2, 1);
+		gridPane.add(saveBtn, 0, 10, 2, 1);
 		GridPane.setHalignment(saveBtn, HPos.CENTER);
 		GridPane.setMargin(saveBtn, new Insets(20, 0, 20, 0));
 
-		saveBtn.setOnAction(new EventHandler<ActionEvent>() {
+		EventsButtonController BtnController = new EventsButtonController();
+		ComboBox<Strategy> ClickComboBox = new ComboBox<>();
+		ComboBox<Strategy> CollisionComboBox = new ComboBox<>();
+		ComboBox<Strategy> KeyComboBox = new ComboBox<>();
+		ComboBox<Strategy> MoveComboBox = new ComboBox<>();
+		ComboBox<Strategy> TimedComboBox = new ComboBox<> ();
+		ClickComboBox.itemsProperty().setValue(FXCollections.observableList(BtnController.getEventType(new ClickBehavior())));
+		CollisionComboBox.itemsProperty().setValue(FXCollections.observableList(BtnController.getEventType(new CollisionBehavior())));
+		KeyComboBox.itemsProperty().setValue(FXCollections.observableList(BtnController.getEventType(new KeyBehavior())));
+		MoveComboBox.itemsProperty().setValue(FXCollections.observableList(BtnController.getEventType(new MoveBehavior())));
+		TimedComboBox.itemsProperty().setValue(FXCollections.observableList(BtnController.getEventType(new TimedBehavior())));
+	
+		ClickComboBox.setConverter(new StringConverter<Strategy>() {
+			@Override
+			public String toString(Strategy s) {
+				if (s != null)
+					return s.getName();
+				else
+					return "";
+			}
+
+			@Override
+			public Strategy fromString(final String string) {
+				return ClickComboBox.getItems().stream().filter(s -> s.getName().equals(string)).findFirst()
+						.orElse(null);
+			}
+		});
+		ClickComboBox.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+			System.out.println("Strategy Name: " + newValue.getName());
+		});
+		
+		CollisionComboBox.setConverter(new StringConverter<Strategy>() {
+			@Override
+			public String toString(Strategy s) {
+				if (s != null)
+					return s.getName();
+				else
+					return "";
+			}
+
+			@Override
+			public Strategy fromString(final String string) {
+				return ClickComboBox.getItems().stream().filter(s -> s.getName().equals(string)).findFirst()
+						.orElse(null);
+			}
+		});
+		CollisionComboBox.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+			System.out.println("Strategy Name: " + newValue.getName());
+		});
+		
+		KeyComboBox.setConverter(new StringConverter<Strategy>() {
+			@Override
+			public String toString(Strategy s) {
+				if (s != null)
+					return s.getName();
+				else
+					return "";
+			}
+
+			@Override
+			public Strategy fromString(final String string) {
+				return ClickComboBox.getItems().stream().filter(s -> s.getName().equals(string)).findFirst()
+						.orElse(null);
+			}
+		});
+		KeyComboBox.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+			System.out.println("Strategy Name: " + newValue.getName());
+		});
+		
+		MoveComboBox.setConverter(new StringConverter<Strategy>() {
+			@Override
+			public String toString(Strategy s) {
+				if (s != null)
+					return s.getName();
+				else
+					return "";
+			}
+
+			@Override
+			public Strategy fromString(final String string) {
+				return ClickComboBox.getItems().stream().filter(s -> s.getName().equals(string)).findFirst()
+						.orElse(null);
+			}
+		});
+		MoveComboBox.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+			System.out.println("Strategy Name: " + newValue.getName());
+		});
+		
+		TimedComboBox.setConverter(new StringConverter<Strategy>() {
+			@Override
+			public String toString(Strategy s) {
+				if (s != null)
+					return s.getName();
+				else
+					return "";
+			}
+
+			@Override
+			public Strategy fromString(final String string) {
+				return ClickComboBox.getItems().stream().filter(s -> s.getName().equals(string)).findFirst()
+						.orElse(null);
+			}
+		});
+		TimedComboBox.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+			System.out.println("Strategy Name: " + newValue.getName());
+		});
+		
+		Label clickLabel = new Label("Click Events");
+		Label collisionLabel = new Label("Collision Events");
+		Label keyLabel = new Label("Key Events");
+		Label moveLabel = new Label("Move Events");
+		Label timeLabel = new Label("Timed Events");
+
+		gridPane.add(clickLabel, 1, 0);
+		gridPane.add(ClickComboBox, 1, 1);
+		
+		gridPane.add(collisionLabel, 1, 2);
+		gridPane.add(CollisionComboBox, 1, 3);
+		
+		gridPane.add(keyLabel, 1, 4);
+		gridPane.add(KeyComboBox, 1, 5);
+
+		gridPane.add(moveLabel, 1, 6);
+		gridPane.add(MoveComboBox, 1, 7);
+
+		gridPane.add(timeLabel, 1, 8);
+		gridPane.add(TimedComboBox, 1, 9);
+
+		return gridPane;
+		
+		
+		/*saveBtn.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
 				// For now just print the event
 				MainController.getEventsController().getGameObject().setStrategies(MainController.getEventsController().getAllSelectedEvents());
 			}
 		});
-		return gridPane;
+		return gridPane;*/
 	}
 
 	private static GridPane addUIForSounds(GridPane gridPane) {

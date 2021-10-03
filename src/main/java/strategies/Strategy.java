@@ -11,4 +11,6 @@ public interface Strategy {
 	public void addSound(Sound s);
 	
 	public void playSound();
+
+	public String getName();
 }

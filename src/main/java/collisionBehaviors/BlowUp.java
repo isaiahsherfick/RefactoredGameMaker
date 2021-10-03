@@ -18,6 +18,11 @@ public class BlowUp extends CollisionBehavior{
 		//Blow up the GameObject
 		
 	}
+	
+	@Override
+	public String getName() {
+		return "Blow Up";
+	}
 
 
 

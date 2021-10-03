@@ -31,4 +31,8 @@ public class VariableMovement extends MoveBehavior{
 		return newPosition;
 	}
 
+	@Override
+	public String getName() {
+		return "Variable Movement";
+	}
 }

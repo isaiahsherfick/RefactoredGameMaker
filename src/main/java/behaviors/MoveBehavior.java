@@ -7,7 +7,7 @@ import sound.Sound;
 import strategies.Strategy;
 import view.GameObject;
 
-public abstract class MoveBehavior implements Strategy {
+public class MoveBehavior implements Strategy {
 	//Initializes as null object to avoid npes
 	private Sound soundEffect = new NoSound();
 	private GameObject sprite;
@@ -15,6 +15,9 @@ public abstract class MoveBehavior implements Strategy {
 	private Direction currentDirection = Direction.RIGHT;
 	public enum Direction {
 		UP, DOWN, LEFT, RIGHT, TOPLEFT, TOPRIGHT, BOTTOMLEFT, BOTTOMRIGHT
+	}
+	public MoveBehavior() {
+		
 	}
 	public MoveBehavior(GameObject o) {
 		sprite = o;
@@ -71,5 +74,9 @@ public abstract class MoveBehavior implements Strategy {
 	
 	public void playSound() {
 		soundEffect.playSound();
+	}
+	
+	public String getName() {
+		return "Move Behaviour";
 	}
 }

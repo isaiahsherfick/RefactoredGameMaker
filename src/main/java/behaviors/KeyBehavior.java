@@ -7,10 +7,13 @@ import sound.Sound;
 import strategies.Strategy;
 import view.GameObject;
 
-public abstract class KeyBehavior implements Strategy {
+public class KeyBehavior implements Strategy {
 	   //Initializes as null object to avoid npes
 		private Sound soundEffect = new NoSound();
 		private GameObject sprite;
+		public KeyBehavior() {
+			
+		}
 		public KeyBehavior(GameObject o) {
 			sprite = o;
 		}
@@ -28,5 +31,9 @@ public abstract class KeyBehavior implements Strategy {
 		
 		public void playSound() {
 			soundEffect.playSound();
+		}
+		
+		public String getName() {
+			return "Key Behaviour";
 		}
 }

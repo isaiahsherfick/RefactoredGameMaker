@@ -12,4 +12,9 @@ public class NoMove extends MoveBehavior {
 		super(o);
 	}
 
+	
+	@Override
+	public String getName() {
+		return "No Move Behavior";
+	}
 }

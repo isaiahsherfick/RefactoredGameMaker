@@ -2,11 +2,11 @@ package controller;
 
 import java.util.ArrayList;
 
-import behaviors.KeyBehavior;
-import behaviors.MoveBehavior;
-import behaviors.TimedBehavior;
+import behaviors.*;
+import collisionBehaviors.BlowUp;
+import collisionBehaviors.FallDown;
 import javafx.scene.control.CheckBox;
-import javafx.scene.paint.Color;
+import movementBehaviors.*;
 import strategies.Strategy;
 import view.GameObject;
 
@@ -20,8 +20,7 @@ public class EventsButtonController {
 	CheckBox clickEvent;
 	CheckBox timeEvent;
 
-	public static  ArrayList<CheckBox> allEvents;
-	
+	public static ArrayList<Strategy> allEvents;
 	// selected events for the gameObject
 	public static ArrayList<Strategy> selectedEvents;
 	private GameObject gameObject;	
@@ -31,7 +30,7 @@ public class EventsButtonController {
 	
 	public EventsButtonController() {
 		//gameObject = new GameObject();
-		allEvents = new ArrayList<CheckBox>();
+		allEvents = new ArrayList<Strategy>();
 		selectedEvents = new ArrayList<Strategy>();
 		//keyBehaviour = new KeyBehavior(gameObject);
 		//moveBehaviour = new MoveBehavior(gameObject);
@@ -48,11 +47,17 @@ public class EventsButtonController {
 		
 		timeEvent = new CheckBox("Timed Behaviour");
 		//timeEvent.setOnAction(e -> handleTimeEvent());
-	
+	/*
 		allEvents.add(keyEvent);
 		allEvents.add(moveEvent);
 		allEvents.add(clickEvent);
-		allEvents.add(timeEvent);
+		allEvents.add(timeEvent); */
+		allEvents.add(new BlowUp(gameObject));
+		allEvents.add(new FallDown(gameObject));
+		allEvents.add(new LeftAndRightMovement(gameObject));
+		allEvents.add(new UpAndDownMovement(gameObject));
+		allEvents.add(new VariableMovement(gameObject));
+		
 	}
 	
 	public GameObject getGameObject() {
@@ -97,8 +102,58 @@ public class EventsButtonController {
 	}
 
 	
-	public  ArrayList<CheckBox> getAllEvents() {
+	public ArrayList<Strategy> getAllEvents() {
 		return allEvents;
 	}
-
+	
+	public ArrayList<Strategy> getEventType(ClickBehavior c){
+		ArrayList<Strategy> events = new ArrayList<Strategy>();
+		for(Strategy e: allEvents) {
+			if(e instanceof ClickBehavior) {
+				events.add(e);
+			}
+		}
+		return events;
+	}
+	
+	public ArrayList<Strategy> getEventType(CollisionBehavior c){
+		ArrayList<Strategy> events = new ArrayList<Strategy>();
+		for(Strategy e: allEvents) {
+			if(e instanceof CollisionBehavior) {
+				events.add(e);
+			}
+		}
+		return events;
+	}
+	
+	public ArrayList<Strategy> getEventType(KeyBehavior k){
+		ArrayList<Strategy> events = new ArrayList<Strategy>();
+		for(Strategy e: allEvents) {
+			if(e instanceof KeyBehavior) {
+				events.add(e);
+			}
+		}
+		return events;
+	}
+	
+	public ArrayList<Strategy> getEventType(MoveBehavior m){
+		ArrayList<Strategy> events = new ArrayList<Strategy>();
+		for(Strategy e: allEvents) {
+			if(e instanceof MoveBehavior) {
+				events.add(e);
+			}
+		}
+		return events;
+	}
+	
+	public ArrayList<Strategy> getEventType(TimedBehavior t){
+		ArrayList<Strategy> events = new ArrayList<Strategy>();
+		for(Strategy e: allEvents) {
+			if(e instanceof TimedBehavior) {
+				events.add(e);
+			}
+		}
+		return events;
+	}
+	
 }

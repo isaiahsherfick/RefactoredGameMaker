@@ -7,10 +7,13 @@ import sound.Sound;
 import strategies.Strategy;
 import view.GameObject;
 
-public abstract class ClickBehavior implements Strategy {
+public class ClickBehavior implements Strategy {
 	//Initializes as null object to avoid npes
 		private Sound soundEffect = new NoSound();
 		private GameObject sprite;
+		public ClickBehavior() {
+			
+		}
 		public ClickBehavior(GameObject o) {
 			sprite = o;
 		}
@@ -28,6 +31,10 @@ public abstract class ClickBehavior implements Strategy {
 		
 		public void playSound() {
 			soundEffect.playSound();
+		}
+		
+		public String getName() {
+			return "Click Behaviour";
 		}
 
 }

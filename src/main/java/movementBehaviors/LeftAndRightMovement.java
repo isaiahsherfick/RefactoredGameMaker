@@ -25,4 +25,9 @@ public class LeftAndRightMovement extends MoveBehavior {
 			return new Point2D (currentPosition.getX() + (1*getSpeed()), currentPosition.getY());
 		}
 	}
+	
+	@Override
+	public String getName() {
+		return "Left and Right Movement";
+	}
 }

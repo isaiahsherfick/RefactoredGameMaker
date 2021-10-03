@@ -23,6 +23,11 @@ public class UpAndDownMovement extends MoveBehavior{
 			return new Point2D (currentPosition.getX(), currentPosition.getY() + (1*getSpeed()));
 		}
 	}
+	
+	@Override
+	public String getName() {
+		return "Up and Down Movement";
+	}
 }
 
 
