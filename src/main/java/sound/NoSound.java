@@ -12,4 +12,10 @@ public class NoSound implements Sound{
 		//Null Object class, does nothing
 	}
 
+	@Override
+	public String getName() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
