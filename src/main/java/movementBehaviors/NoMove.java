@@ -11,6 +11,10 @@ public class NoMove extends MoveBehavior {
 		//Does nothing
 		super(o);
 	}
+	
+	public NoMove() {
+		super();
+	}
 
 	
 	@Override

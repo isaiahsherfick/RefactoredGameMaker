@@ -63,11 +63,11 @@ public class MakerController {
 	}
 	
 	public GameObject getCurrentlySelectedObject() {
-		return this.currentlySelectedObject;
+		return currentlySelectedObject;
 	}
 	
 	public void setCurrentlySelectedObject(GameObject o) {
-		this.currentlySelectedObject = o;
+		currentlySelectedObject = o;
 	}
 
 }
