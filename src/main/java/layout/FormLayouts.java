@@ -51,8 +51,6 @@ public class FormLayouts {
 	public static GridPane getSoundsFormLayout() {
 		return createSoundFormPane();
 	}
-
-
 	
 	private static GridPane createSpriteFormPane() {
 		return addSpriteUI(getGridPane());
@@ -151,7 +149,7 @@ public class FormLayouts {
         GridPane.setMargin(headerLabel, new Insets(20, 0,20,0));
         
         // Add Name Label
-        Label nameLabel = new Label("Select Shape : ");
+        Label nameLabel = new Label("Select Shape :");
         gridPane.add(nameLabel, 0,1);
         
         //ChoiceDialog for the user to select the default shapes
@@ -173,6 +171,16 @@ public class FormLayouts {
         gridPane.add(orLabel, 2,1);
         
         gridPane.add(openButton, 3, 1);
+        
+        
+        // Add Name Label
+        Label name = new Label("Sprite Name : ");
+        gridPane.add(name, 0,2);
+        
+        // Add Name Text Field
+        TextField nameField = new TextField();
+        gridPane.add(nameField, 1,2);
+        
         
         // Add Submit Button
         Button submitButton = new Button("Save");
