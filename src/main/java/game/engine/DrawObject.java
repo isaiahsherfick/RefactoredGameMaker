@@ -3,10 +3,12 @@ package game.engine;
 import javafx.geometry.Point2D;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
+import javafx.scene.layout.FlowPane;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Shape;
 import pattern.Observer;
 
-public abstract class DrawObject implements Observer {
+public abstract class DrawObject extends Shape implements Observer {
 
 	// protected CommandListener commandListener;
 	protected Drawable drawBehaviour;
@@ -41,8 +43,8 @@ public abstract class DrawObject implements Observer {
 
 	// Use the drawBehavior strategy object to draw
 	// onto the graphics context
-	public void performDraw(GraphicsContext context) {
-		drawBehaviour.draw(this, context);
+	public void performDraw(FlowPane gameFlow) {
+		drawBehaviour.draw(this, gameFlow);
 	}
 
 	public Point2D getPosition() {

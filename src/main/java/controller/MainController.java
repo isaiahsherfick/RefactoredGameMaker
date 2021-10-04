@@ -4,7 +4,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-
+import game.engine.GameEngine;
+import game.engine.GameObject;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Rectangle2D;
@@ -22,15 +23,11 @@ import javafx.stage.Stage;
 import layout.CustomLayout;
 import layout.FormLayouts;
 import model.GameModel;
-import game.engine.GameEngine;
-import game.engine.GameObject;
 
 public class MainController {
 
 	private static double orgSceneX, orgSceneY;
 	private static double orgTranslateX, orgTranslateY;
-
-	private static GameModel gameModel = new GameModel();
 
 	private static CustomLayout customLayout;
 	private static Button currentEnabled;
@@ -41,6 +38,8 @@ public class MainController {
 	private static Button playBtn;
 	private static Button stopBtn;
 	
+	private static FlowPane gameFlow;
+
 	private static EventsButtonController eventsController;
 	private static final List<Button> BUTTON_LIST = new ArrayList<>();
 	private static final String CLICKED_BUTTON_STYLE = "-fx-background-color: lightblue; -fx-font-size:17";
@@ -58,13 +57,10 @@ public class MainController {
 
 		primScreenBounds = Screen.getPrimary().getVisualBounds();
 
-		gameCanvas = new Canvas(primScreenBounds.getWidth() / 2, primScreenBounds.getHeight());
-		gameCanvas.setOnMousePressed(buttonMousePressedEventHandler);
-		gameCanvas.setOnMouseDragged(buttonOnMouseDraggedEventHandler);
-		drawGameObjects();
+		//gameCanvas = new Canvas(primScreenBounds.getWidth() / 2, primScreenBounds.getHeight());
+		drawGameObjects(FormLayouts.makerController.getGameModel().getGameObjects());
 
 		BorderPane pane = new BorderPane();
-		FlowPane gameFlow = new FlowPane();
 		
 		GridPane playStopGridPane = new GridPane();
 		playBtn = new Button("Play");
@@ -80,6 +76,12 @@ public class MainController {
 		playStopGridPane.setHgap(10);
 		playStopGridPane.setVgap(10);
 
+		gameFlow = new FlowPane();
+		gameFlow.setStyle("-fx-background-color:black;");
+
+		gameFlow.setPrefWidth(primScreenBounds.getWidth() / 2);
+		gameFlow.setPrefHeight(primScreenBounds.getHeight());
+
 		customLayout = new CustomLayout(30, 10);
 		customLayout.addNewChild(createText("MAKER"), 3, 8);
 		customLayout.addNewChild(playStopGridPane, 3, 10);
@@ -89,9 +91,8 @@ public class MainController {
 		customLayout.addNewChild(createButton("Stages"), 5, 14);
 		customLayout.addNewChild(createButton("Save"), 6, 14);
 
-		gameFlow.getChildren().add(gameCanvas);
-		gameFlow.setStyle("-fx-background-color: black");
-
+		//gameFlow.getChildren().add(gameCanvas);
+	
 		pane.setLeft(customLayout);
 		pane.setRight(gameFlow);
 
@@ -115,24 +116,30 @@ public class MainController {
 		GameEngine.sharedInstance.stopGameLoop();
 	}
 
-	public static void performDraw() {
-		drawGameObjects();
+	public static void performDraw(List<GameObject> gameObjects) {
+		drawGameObjects(gameObjects);
 	}
 
-	private static void drawGameObjects() {
-		FormLayouts.makerController.getGameModel().getGameObjects().forEach(gameObject -> {
-			gameObject.performDraw(gameCanvas.getGraphicsContext2D());
+	private static void drawGameObjects(List<GameObject> gameObjects) {
+		gameObjects.forEach(gameObject -> {
+			gameObject.performDraw(gameFlow);
 		});
 	}
 	
 	public static void redrawAll() {
 		fillBackground();
-		drawGameObjects();
+		drawGameObjects(FormLayouts.makerController.getGameModel().getGameObjects());
 	}
 
 	public static void fillBackground(Color color) {
-		getGameCanvas().getGraphicsContext2D().setFill(color);
-		getGameCanvas().getGraphicsContext2D().fillRect(0, 0, primScreenBounds.getWidth() / 2, primScreenBounds.getHeight());
+		gameFlow.getChildren().clear();
+		
+//		getGameCanvas().getGraphicsContext2D().setFill(color);
+//		getGameCanvas().getGraphicsContext2D().fillRect(0, 0, primScreenBounds.getWidth() / 2, primScreenBounds.getHeight());
+	}
+
+	private static Canvas getGameCanvas() {
+		return gameCanvas;
 	}
 
 	public static void fillBackground() {
@@ -199,15 +206,10 @@ public class MainController {
 		public void handle(MouseEvent t) {
 			orgSceneX = t.getSceneX();
 			orgSceneY = t.getSceneY();
-			if (t.getSource() instanceof GameObject) {
-				orgTranslateX = ((GameObject) (t.getSource())).getPosition().getX();
-				orgTranslateY = ((GameObject) (t.getSource())).getPosition().getY();
-			} else {
-				orgTranslateX = ((Button) (t.getSource())).getTranslateX();
-				orgTranslateY = ((Button) (t.getSource())).getTranslateY();
+			orgTranslateX = ((Button) (t.getSource())).getTranslateX();
+			orgTranslateY = ((Button) (t.getSource())).getTranslateY();
 
-				((Button) (t.getSource())).toFront();
-			}
+			((Button) (t.getSource())).toFront();
 		}
 	};
 
@@ -220,18 +222,10 @@ public class MainController {
 			double newTranslateX = orgTranslateX + offsetX;
 			double newTranslateY = orgTranslateY + offsetY;
 
-			if (t.getSource() instanceof GameObject) {
-				((GameObject) (t.getSource())).setPosition((int) newTranslateX, (int) newTranslateX);
-			} else {
-				((Button) (t.getSource())).setTranslateX(newTranslateX);
-				((Button) (t.getSource())).setTranslateY(newTranslateY);
-			}
+			((Button) (t.getSource())).setTranslateX(newTranslateX);
+			((Button) (t.getSource())).setTranslateY(newTranslateY);
 		}
 	};
-
-	public static Canvas getGameCanvas() {
-		return gameCanvas;
-	}
 
 	public static Stage getPrimaryStage() {
 		return primaryStage;

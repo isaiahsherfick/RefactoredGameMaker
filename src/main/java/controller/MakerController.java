@@ -7,14 +7,20 @@ import game.engine.DrawImage;
 import game.engine.Drawable;
 import game.engine.GameEngine;
 import game.engine.GameObject;
+import javafx.event.EventHandler;
 import javafx.geometry.Point2D;
+import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import model.GameModel;
 import rendering.DrawCircle;
 import rendering.DrawSquare;
 
 public class MakerController {
+	
+	private static double orgSceneX, orgSceneY;
+	private static double orgTranslateX, orgTranslateY;
 
 	private static final String CIRCLE = "CIRCLE";
 	private static final String SQUARE = "SQUARE";
@@ -38,8 +44,10 @@ public class MakerController {
 			
 			currentlySelectedObject = gameObject;
 			GameEngine.sharedInstance.register(currentlySelectedObject);
+			gameObject.setOnMousePressed(buttonMousePressedEventHandler);
+			gameObject.setOnMouseDragged(buttonOnMouseDraggedEventHandler);
 			gameModel.addNewGameObject(gameObject);
-			MainController.performDraw();
+			MainController.performDraw(gameModel.getGameObjects());
 		} else {
 			GameObject gameObject = new GameObject(objectName, getDrawableBehaviour(selectedShape),
 					Color.valueOf(color), new Point2D(40, 40), new Point2D(60, 80), imageView.getImage());
@@ -47,7 +55,7 @@ public class MakerController {
 			currentlySelectedObject = gameObject;
 			GameEngine.sharedInstance.register(currentlySelectedObject);
 			gameModel.addNewGameObject(gameObject);
-			MainController.performDraw();
+			MainController.performDraw(gameModel.getGameObjects());
 		}
 		//gameModel.getGameObjects().forEach(obj -> GameEngine.sharedInstance.register(obj));
 	}
@@ -73,5 +81,32 @@ public class MakerController {
 	public void setCurrentlySelectedObject(GameObject o) {
 		currentlySelectedObject = o;
 	}
+	
+	static EventHandler<MouseEvent> buttonMousePressedEventHandler = new EventHandler<MouseEvent>() {
+
+		@Override
+		public void handle(MouseEvent t) {
+			orgSceneX = t.getSceneX();
+			orgSceneY = t.getSceneY();
+			orgTranslateX = ((Button) (t.getSource())).getTranslateX();
+			orgTranslateY = ((Button) (t.getSource())).getTranslateY();
+
+			((Button) (t.getSource())).toFront();
+		}
+	};
+
+	static EventHandler<MouseEvent> buttonOnMouseDraggedEventHandler = new EventHandler<MouseEvent>() {
+
+		@Override
+		public void handle(MouseEvent t) {
+			double offsetX = t.getSceneX() - orgSceneX;
+			double offsetY = t.getSceneY() - orgSceneY;
+			double newTranslateX = orgTranslateX + offsetX;
+			double newTranslateY = orgTranslateY + offsetY;
+
+			((Button) (t.getSource())).setTranslateX(newTranslateX);
+			((Button) (t.getSource())).setTranslateY(newTranslateY);
+		}
+	};
 
 }
