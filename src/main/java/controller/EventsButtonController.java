@@ -101,7 +101,7 @@ public class EventsButtonController {
 		}
 	}
 	
-	public ArrayList<Strategy> getAllSelectedEvents() {
+	public static ArrayList<Strategy> getAllSelectedEvents() {
 		return selectedEvents;
 	}
 
