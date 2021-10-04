@@ -1,7 +1,7 @@
 package rendering;
 
-import game.engine.DrawObject;
 import game.engine.Drawable;
+import game.engine.GameObject;
 import javafx.geometry.Point2D;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.shape.Rectangle;
@@ -15,7 +15,7 @@ public class DrawSquare extends Shape implements Drawable {
     private double orgTranslateY;
 
 	@Override
-	public void draw(DrawObject drawMe, FlowPane gameFlow) {
+	public void draw(GameObject drawMe, FlowPane gameFlow) {
 		Point2D objectPosition = drawMe.getPosition();
 		Point2D objectDimensions = drawMe.getDimensions();
 
@@ -46,6 +46,8 @@ public class DrawSquare extends Shape implements Drawable {
 
 			((Rectangle) (event.getSource())).setTranslateX(newTranslateX);
 			((Rectangle) (event.getSource())).setTranslateY(newTranslateY);
+			
+			drawMe.setPosition(new Point2D(newTranslateX, newTranslateY));
 			
         });
 		

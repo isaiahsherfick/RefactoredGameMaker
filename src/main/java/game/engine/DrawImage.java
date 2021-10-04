@@ -3,7 +3,6 @@ package game.engine;
 import javafx.geometry.Point2D;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
-import javafx.scene.shape.Circle;
 
 public class DrawImage implements Drawable {
 	
@@ -13,7 +12,7 @@ public class DrawImage implements Drawable {
     private double orgTranslateY;
 
 	@Override
-	public void draw(DrawObject drawMe, FlowPane gameFlow) {
+	public void draw(GameObject drawMe, FlowPane gameFlow) {
 		Point2D objectPosition = drawMe.getPosition();
 		Point2D objectDimensions = drawMe.getDimensions();
 
@@ -41,6 +40,8 @@ public class DrawImage implements Drawable {
 
 			((ImageView) (event.getSource())).setTranslateX(newTranslateX);
 			((ImageView) (event.getSource())).setTranslateY(newTranslateY);
+			
+			drawMe.setPosition(new Point2D(newTranslateX, newTranslateY));
         });
 		
 		gameFlow.getChildren().add(imageView);

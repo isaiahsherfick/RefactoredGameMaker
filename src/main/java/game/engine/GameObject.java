@@ -2,14 +2,14 @@ package game.engine;
 
 import java.util.ArrayList;
 
-import behaviors.*;
+import behaviors.CollisionBehavior;
+import behaviors.TimedBehavior;
 import collisionBehaviors.bounceOffScreen;
 import collisionUtility.ObjectCollider;
 import collisionUtility.ScreenCollider;
-import strategies.Strategy;
-import javafx.event.EventHandler;
 import javafx.geometry.Point2D;
 import javafx.scene.image.Image;
+import javafx.scene.layout.FlowPane;
 import javafx.scene.paint.Color;
 import strategies.Strategy;
 
@@ -119,6 +119,12 @@ public class GameObject extends DrawObject implements ObjectCollider, ScreenColl
 				s.run();
 			}
 		}
+	}
+	
+	// Use the drawBehavior strategy object to draw
+	// onto the graphics context
+	public void performDraw(FlowPane gameFlow) {
+		drawBehaviour.draw(this, gameFlow);
 	}
 	
 	public void disable() {

@@ -1,7 +1,7 @@
 package rendering;
 
-import game.engine.DrawObject;
 import game.engine.Drawable;
+import game.engine.GameObject;
 import javafx.geometry.Point2D;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.shape.Circle;
@@ -14,7 +14,7 @@ public class DrawCircle implements Drawable {
     private double orgTranslateY;
     
 	@Override
-	public void draw(DrawObject drawMe, FlowPane gameFlow) {
+	public void draw(GameObject drawMe, FlowPane gameFlow) {
 		Point2D objectPosition = drawMe.getPosition();
 		Point2D objectDimensions = drawMe.getDimensions();
 
@@ -41,6 +41,8 @@ public class DrawCircle implements Drawable {
 
 			((Circle) (event.getSource())).setTranslateX(newTranslateX);
 			((Circle) (event.getSource())).setTranslateY(newTranslateY);
+			
+			drawMe.setPosition(new Point2D(newTranslateX, newTranslateY));
         });
 
 		gameFlow.getChildren().add(circle);

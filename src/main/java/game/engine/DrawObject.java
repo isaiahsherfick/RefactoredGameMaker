@@ -41,12 +41,6 @@ public abstract class DrawObject extends Shape implements Observer {
 		this.image = image;
 	}
 
-	// Use the drawBehavior strategy object to draw
-	// onto the graphics context
-	public void performDraw(FlowPane gameFlow) {
-		drawBehaviour.draw(this, gameFlow);
-	}
-
 	public Point2D getPosition() {
 		return position;
 	}
