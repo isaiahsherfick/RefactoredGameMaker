@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Rectangle2D;
@@ -34,6 +35,7 @@ public class MainController {
 	private static CustomLayout customLayout;
 	private static Button currentEnabled;
 
+	private static Rectangle2D primScreenBounds;
 	private static Stage primaryStage;
 	private static Canvas gameCanvas;
 	private static Button playBtn;
@@ -54,7 +56,7 @@ public class MainController {
 		eventsController = new EventsButtonController();
 		instantiateButtonFormMap();
 
-		Rectangle2D primScreenBounds = Screen.getPrimary().getVisualBounds();
+		primScreenBounds = Screen.getPrimary().getVisualBounds();
 
 		gameCanvas = new Canvas(primScreenBounds.getWidth() / 2, primScreenBounds.getHeight());
 		gameCanvas.setOnMousePressed(buttonMousePressedEventHandler);
@@ -121,6 +123,20 @@ public class MainController {
 		FormLayouts.makerController.getGameModel().getGameObjects().forEach(gameObject -> {
 			gameObject.performDraw(gameCanvas.getGraphicsContext2D());
 		});
+	}
+	
+	public static void redrawAll() {
+		fillBackground();
+		drawGameObjects();
+	}
+
+	public static void fillBackground(Color color) {
+		getGameCanvas().getGraphicsContext2D().setFill(color);
+		getGameCanvas().getGraphicsContext2D().fillRect(0, 0, primScreenBounds.getWidth() / 2, primScreenBounds.getHeight());
+	}
+
+	public static void fillBackground() {
+		fillBackground(Color.BLACK);
 	}
 
 	public static EventsButtonController getEventsController() {

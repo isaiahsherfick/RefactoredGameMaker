@@ -2,6 +2,7 @@ package game.engine;
 
 import java.util.ArrayList;
 import collisionUtility.CollisionDetection;
+import controller.MainController;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
@@ -65,11 +66,11 @@ public class GameEngine implements Observable {
 	
 	@Override
 	public void tick() {
-		System.out.println("Tick" + timeDelta);
 		for (Observer observer : observers) {
 			observer.update(timeDelta);
 		}
 		//On each tick check for collision
+		MainController.redrawAll();
 		CollisionDetection.shared.checkForCollision();
 	}
 

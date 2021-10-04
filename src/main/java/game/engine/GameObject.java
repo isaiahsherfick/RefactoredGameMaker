@@ -108,7 +108,7 @@ public class GameObject extends DrawObject implements ObjectCollider, ScreenColl
 
 	@Override
 	public void update(double timeDelta) {
-		// TODO Auto-generated method stub
+		//ON TICK
 		run();
 	}
 	

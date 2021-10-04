@@ -5,6 +5,7 @@ import java.util.Map;
 
 import game.engine.DrawImage;
 import game.engine.Drawable;
+import game.engine.GameEngine;
 import game.engine.GameObject;
 import javafx.geometry.Point2D;
 import javafx.scene.image.ImageView;
@@ -36,6 +37,7 @@ public class MakerController {
 					Color.valueOf(color), new Point2D(10, 10), dimensionMap.get(selectedShape));
 			
 			currentlySelectedObject = gameObject;
+			GameEngine.sharedInstance.register(currentlySelectedObject);
 			gameModel.addNewGameObject(gameObject);
 			MainController.performDraw();
 		} else {
@@ -43,9 +45,11 @@ public class MakerController {
 					Color.valueOf(color), new Point2D(40, 40), new Point2D(60, 80), imageView.getImage());
 			
 			currentlySelectedObject = gameObject;
+			GameEngine.sharedInstance.register(currentlySelectedObject);
 			gameModel.addNewGameObject(gameObject);
 			MainController.performDraw();
 		}
+		//gameModel.getGameObjects().forEach(obj -> GameEngine.sharedInstance.register(obj));
 	}
 
 	private Drawable getDrawableBehaviour(String selectedShape) {
