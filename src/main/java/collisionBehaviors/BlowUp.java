@@ -1,3 +1,4 @@
+//@Author Christian Dummer
 package collisionBehaviors;
 
 import behaviors.CollisionBehavior;
@@ -14,9 +15,8 @@ public class BlowUp extends CollisionBehavior{
 	
 	@Override
 	public void run() {
+		super.getSprite().disable();
 		super.playSound();
-		//Blow up the GameObject
-		
 	}
 	
 	@Override

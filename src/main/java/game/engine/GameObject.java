@@ -2,6 +2,7 @@ package game.engine;
 
 import java.util.ArrayList;
 
+import behaviors.*;
 import collisionUtility.ObjectCollider;
 import collisionUtility.ScreenCollider;
 import strategies.Strategy;
@@ -107,14 +108,21 @@ public class GameObject extends DrawObject implements ObjectCollider, ScreenColl
 	@Override
 	public void update(double timeDelta) {
 		// TODO Auto-generated method stub
-		
+		run();
 	}
 	
 	//Runs each strategy
 	public void run() {
 		for(Strategy s: behaviors) {
-			s.run();
+			if(!(s instanceof CollisionBehavior) && !(s instanceof TimedBehavior)) {
+				s.run();
+			}
 		}
+	}
+	
+	public void disable() {
+		this.setPosition(new Point2D(-5, -5));
+		this.behaviors.clear();
 	}
 	
 	public void addBehavior(Strategy s) {
@@ -149,7 +157,7 @@ public class GameObject extends DrawObject implements ObjectCollider, ScreenColl
 	@Override
 	public void handleObjectCollision(GameObject collider, String collisionDirection) {
 		behaviors.forEach(strategy -> {
-			if (strategy.getName() == "Collision Behaviour") {
+			if (strategy instanceof CollisionBehavior) {
 				strategy.run();
 			}
 		});
