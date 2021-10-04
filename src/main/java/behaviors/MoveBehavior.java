@@ -78,6 +78,7 @@ public class MoveBehavior implements Strategy {
 	}
 	
 	public void playSound() {
+		
 		soundEffect.playSound();
 	}
 	

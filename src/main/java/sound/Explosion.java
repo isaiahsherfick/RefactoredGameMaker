@@ -10,15 +10,26 @@ public class Explosion implements Sound {
 	private static final ClassLoader CLASS_LOADER = Explosion.class.getClassLoader();
 	private File MUSIC_FILE = new File(CLASS_LOADER.getResource("short-explosion.wav").getFile());
 	private String name = "Explosion";
+	private AudioClip explosionSound = new AudioClip(MUSIC_FILE.toURI().toString());
 
 	public void playSound() {
-		
-		  AudioClip explosionSound = new AudioClip(MUSIC_FILE.toURI().toString());
-	      explosionSound.play();
+		try {
+			if(!explosionSound.isPlaying()) {
+		      explosionSound.play();
+			}
+		}
+		catch(Exception ex) {
+			
+		}
 	}
 
 	public void stopSound() {
-		
+		try {
+			explosionSound.stop();
+		}
+		catch(Exception ex) {
+			
+		}
 	}
 	
 	public String getName() {
