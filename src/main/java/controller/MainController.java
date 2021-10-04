@@ -46,6 +46,8 @@ public class MainController {
 	private static final String NORMAL_BUTTON_STYLE = "-fx-background-color: blue; -fx-font-size:17";
 	private static final String PLAY_BUTTON_STYLE = "-fx-font: 24 arial; -fx-base: #00FF00;";
 	private static final String STOP_BUTTON_STYLE = "-fx-font: 24 arial; -fx-base: #ee2211;";
+	
+	public static Color stageColor;
 
 	private static final HashMap<String, GridPane> BUTTON_FORM_MAP = new HashMap<>();
 
@@ -143,7 +145,7 @@ public class MainController {
 	}
 
 	public static void fillBackground() {
-		fillBackground(Color.BLACK);
+		fillBackground(stageColor);
 	}
 
 	public static EventsButtonController getEventsController() {
