@@ -39,6 +39,8 @@ public class MainController {
 	private static Button stopBtn;
 	
 	private static FlowPane gameFlow;
+	
+	public static Color stageColor;
 
 	private static EventsButtonController eventsController;
 	private static final List<Button> BUTTON_LIST = new ArrayList<>();
@@ -46,8 +48,6 @@ public class MainController {
 	private static final String NORMAL_BUTTON_STYLE = "-fx-background-color: blue; -fx-font-size:17";
 	private static final String PLAY_BUTTON_STYLE = "-fx-font: 24 arial; -fx-base: #00FF00;";
 	private static final String STOP_BUTTON_STYLE = "-fx-font: 24 arial; -fx-base: #ee2211;";
-	
-	public static Color stageColor;
 
 	private static final HashMap<String, GridPane> BUTTON_FORM_MAP = new HashMap<>();
 
@@ -112,7 +112,7 @@ public class MainController {
 		GameEngine.sharedInstance.initiateGameLoop();
 	}
 	
-	public void changeBackground(String color) {
+	public static void changeBackground(String color) {
 		gameFlow.setStyle("-fx-background-color:" + color.toLowerCase());
 	}
 	

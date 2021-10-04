@@ -11,6 +11,7 @@ public class Explosion implements Sound {
 	private File MUSIC_FILE = new File(CLASS_LOADER.getResource("short-explosion.wav").getFile());
 	private String name = "Explosion";
 	private AudioClip explosionSound = new AudioClip(MUSIC_FILE.toURI().toString());
+	//private AudioClip explosionSound = null;
 
 	public void playSound() {
 		try {

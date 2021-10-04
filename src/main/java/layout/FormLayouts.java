@@ -819,7 +819,7 @@ private static GridPane addUIForStage(GridPane gridPane) {
 			@Override
 			public void handle(ActionEvent event) {
 				// customisedInputDialog.get
-				MainController.stageColor = Color.valueOf(colorDialog.getSelectedItem());
+				MainController.changeBackground(colorDialog.getSelectedItem());
 			}
 		});
 		
