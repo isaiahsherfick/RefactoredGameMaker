@@ -128,7 +128,7 @@ public class GameObject extends DrawObject implements ObjectCollider, ScreenColl
 	}
 	
 	public void disable() {
-		this.setPosition(new Point2D(-5, -5));
+		this.setPosition(new Point2D(0, -2000));
 		this.behaviors.clear();
 	}
 	
@@ -171,13 +171,22 @@ public class GameObject extends DrawObject implements ObjectCollider, ScreenColl
 		});
 	}
 
-	@Override
-	public void handleScreenCollision(Point2D newPosition) {
-		for(Strategy s: behaviors) {
-			if(s instanceof BounceOffScreen) {
-				s.run();
+	
+	public void handleScreenCollision(Point2D oldPosition, Point2D newPosition) {
+		if(!(oldPosition.equals(newPosition))) {
+			for(Strategy s: behaviors) {
+				if(s instanceof BounceOffScreen) {
+					nextPosition = newPosition;
+					s.run();
+				}
 			}
 		}
+		
+	}
+
+	@Override
+	public void handleScreenCollision(Point2D newPosition) {
+		// TODO Auto-generated method stub
 		
 	}
 }

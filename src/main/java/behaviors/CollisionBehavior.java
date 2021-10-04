@@ -26,7 +26,11 @@ public class CollisionBehavior implements Strategy {
 	}
 	
 	public void run() {
-		
+		for(Strategy s: getSprite().getBehaviors()) {
+			if(s instanceof MoveBehavior) {
+				((MoveBehavior) s).flipDirection();
+			}
+		}
 	}
 	
 	public void addSound(Sound s) {

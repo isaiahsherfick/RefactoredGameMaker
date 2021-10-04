@@ -123,29 +123,30 @@ final public class CollisionDetection {
 		Point2D dimensions = object.getSize();
 		double positionX = nextPosition.getX();
 		double positionY = nextPosition.getY();
-		Point2D velocity = object.getSize();
+		double newPositionX = nextPosition.getX();
+		double newPositionY = nextPosition.getY();
 
 		// Horizontal Scene Check
 		// if moving left and beyond pixel 0 - dont move
-		if (velocity.getX() < 0 && nextPosition.getX() < 0) {
-			positionX = 0;
+		if (nextPosition.getX() < 0) {
+			newPositionX = 0;
 		}
 		// if moving right and beyond scene width - dont move
-		else if (velocity.getX() > 0 && (nextPosition.getX() + dimensions.getX()) >= scene.getWidth()) {
-			positionX = scene.getWidth() - dimensions.getX();
+		else if ((nextPosition.getX() + dimensions.getX()) > scene.getWidth()) {
+			newPositionX = scene.getWidth() - dimensions.getX();
 		}
 
 		// Vertical Scene Check
 		// if moving up and beyond pixel 0 - dont move
-		if (velocity.getY() < 0 && nextPosition.getY() < 0) {
-			positionY = 0;
+		if (nextPosition.getY() < 0) {
+			newPositionY = 0;
 		}
 		// if moving down and beyond scene height - dont move
-		else if (velocity.getY() > 0 && (nextPosition.getY() + dimensions.getY()) >= scene.getHeight()) {
-			positionY = scene.getHeight() - dimensions.getY();
+		else if ((nextPosition.getY() + dimensions.getY()) > scene.getHeight()) {
+			newPositionY = scene.getHeight() - dimensions.getY();
 		}
 
-		object.handleScreenCollision(new Point2D(positionX, positionY));
+		object.handleScreenCollision(new Point2D(positionX, positionY),new Point2D(newPositionX, newPositionY));
 	}
 
 }

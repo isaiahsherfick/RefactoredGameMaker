@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import behaviors.*;
 import collisionBehaviors.BlowUp;
+import collisionBehaviors.Bounce;
 import collisionBehaviors.BounceOffScreen;
 import collisionBehaviors.FallDown;
 import javafx.scene.control.CheckBox;
@@ -60,6 +61,7 @@ public class EventsButtonController {
 		allEvents.add(new UpAndDownMovement(gameObject));
 		allEvents.add(new VariableMovement(gameObject));
 		allEvents.add(new BounceOffScreen());
+		allEvents.add(new Bounce());
 		
 	}
 	

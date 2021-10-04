@@ -28,9 +28,9 @@ public class VariableMovement extends MoveBehavior{
 			case LEFT: newPosition = new Point2D(x - (1* getSpeed()), y); break;
 			case RIGHT: newPosition = new Point2D(x + (1* getSpeed()), y); break;
 			case TOPLEFT:  newPosition = new Point2D(x - (1*getSpeed()), y - (1*getSpeed())); break;
-			case TOPRIGHT: newPosition = new Point2D(x + (1*getSpeed()), y + (1*getSpeed())); break;
+			case TOPRIGHT: newPosition = new Point2D(x + (1*getSpeed()), y - (1*getSpeed())); break;
 			case BOTTOMLEFT: newPosition = new Point2D(x - (1*getSpeed()), y + (1*getSpeed())); break;
-			case BOTTOMRIGHT: newPosition = new Point2D(x + (1*getSpeed()), y - (1*getSpeed())); break;
+			case BOTTOMRIGHT: newPosition = new Point2D(x + (1*getSpeed()), y + (1*getSpeed())); break;
 		}
 		return newPosition;
 	}
