@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import javafx.event.EventHandler;
+import javafx.geometry.Insets;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
@@ -35,11 +36,15 @@ public class MainController {
 
 	private static Stage primaryStage;
 	private static Canvas gameCanvas;
-
+	private static Button playBtn;
+	private static Button stopBtn;
+	
 	private static EventsButtonController eventsController;
 	private static final List<Button> BUTTON_LIST = new ArrayList<>();
 	private static final String CLICKED_BUTTON_STYLE = "-fx-background-color: lightblue; -fx-font-size:17";
 	private static final String NORMAL_BUTTON_STYLE = "-fx-background-color: blue; -fx-font-size:17";
+	private static final String PLAY_BUTTON_STYLE = "-fx-font: 24 arial; -fx-base: #00FF00;";
+	private static final String STOP_BUTTON_STYLE = "-fx-font: 24 arial; -fx-base: #ee2211;";
 
 	private static final HashMap<String, GridPane> BUTTON_FORM_MAP = new HashMap<>();
 
@@ -58,9 +63,24 @@ public class MainController {
 
 		BorderPane pane = new BorderPane();
 		FlowPane gameFlow = new FlowPane();
+		
+		GridPane playStopGridPane = new GridPane();
+		playBtn = new Button("Play");
+		stopBtn = new Button("Stop");
+		playBtn.setStyle(PLAY_BUTTON_STYLE);
+		playBtn.setOnAction(e -> didTapPlayButton());
+		stopBtn.setStyle(STOP_BUTTON_STYLE);
+		stopBtn.setDisable(true);
+		stopBtn.setOnAction(e -> didTapStopButton());
+		playStopGridPane.add(playBtn, 0, 1);
+		playStopGridPane.add(stopBtn, 0, 2);
+		playStopGridPane.setPadding(new Insets(1, 1, 1, 1));
+		playStopGridPane.setHgap(10);
+		playStopGridPane.setVgap(10);
 
 		customLayout = new CustomLayout(30, 10);
 		customLayout.addNewChild(createText("Maker"), 3, 8);
+		customLayout.addNewChild(playStopGridPane, 3, 10);
 //		customLayout.addNewChild(createButton("Sprites"), 0, 14);
 		customLayout.addNewChild(createButton("Sprites"), 1, 14);
 		customLayout.addNewChild(createButton("Actions"), 2, 14);
@@ -80,9 +100,19 @@ public class MainController {
 		GameEngine.sharedInstance.setGameScene(gameScene);
 		primaryStage.setScene(gameScene);
 		primaryStage.setTitle("Welcome");
-		GameEngine.sharedInstance.initiateGameLoop();
 		primaryStage.show();
-
+	}
+	
+	private static void didTapPlayButton() {
+		playBtn.setDisable(true);
+		stopBtn.setDisable(false);
+		GameEngine.sharedInstance.initiateGameLoop();
+	}
+	
+	private static void didTapStopButton() {
+		playBtn.setDisable(false);
+		stopBtn.setDisable(true);
+		GameEngine.sharedInstance.stopGameLoop();
 	}
 
 	public static void performDraw() {

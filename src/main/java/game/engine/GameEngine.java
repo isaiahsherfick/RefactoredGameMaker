@@ -76,6 +76,14 @@ public class GameEngine implements Observable {
 	public void initiateGameLoop() {
 		gameLoop.play();
 	}
+	
+	public void stopGameLoop() {
+		gameLoop.stop();
+	}
+	
+	public void pauseGameLoop() {
+		gameLoop.pause();
+	}
 
 	public void setGameScene(Scene gameScene) {
 		GameEngine.gameScene = gameScene;
