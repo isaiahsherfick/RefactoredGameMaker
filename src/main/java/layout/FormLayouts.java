@@ -28,6 +28,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Priority;
@@ -486,12 +487,13 @@ public class FormLayouts {
 						if(s.getClass() == c.getClass()) {
 						CollisionBehavior toAdd = c.getClass().newInstance();
 						btnController.addSelectedEvent(toAdd);
+						toAdd.setSprite(makerController.getCurrentlySelectedObject());
 						makerController.getCurrentlySelectedObject().addBehavior(toAdd);
 						}
 					}
 				}
 				catch(Exception ex) {
-					System.out.println("Conversion failed");
+					System.out.println(ex);
 				}
 				
 			}
@@ -547,6 +549,7 @@ public class FormLayouts {
 						if(behavior.getClass() == s.getClass()) {
 							try {
 								behavior.addBehavior(currentlyEditedStrategy);
+								behavior.addKeyCode(KeyCode.getKeyCode(enterKeys.getText()));
 								btnController.addSelectedEvent(behavior);
 								makerController.getCurrentlySelectedObject().addBehavior(behavior);
 							}

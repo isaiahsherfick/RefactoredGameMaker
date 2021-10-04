@@ -24,7 +24,7 @@ public class EventsButtonController {
 
 	public static ArrayList<Strategy> allEvents;
 	// selected events for the gameObject
-	public static ArrayList<Strategy> selectedEvents;
+	public static ArrayList<Strategy> selectedEvents = new ArrayList<Strategy>();
 	private GameObject gameObject;	
 	private KeyBehavior keyBehaviour;
 	private MoveBehavior moveBehaviour;
@@ -33,7 +33,7 @@ public class EventsButtonController {
 	public EventsButtonController() {
 		//gameObject = new GameObject();
 		allEvents = new ArrayList<Strategy>();
-		selectedEvents = new ArrayList<Strategy>();
+		//selectedEvents = new ArrayList<Strategy>();
 		//keyBehaviour = new KeyBehavior(gameObject);
 		//moveBehaviour = new MoveBehavior(gameObject);
 		//timeBehaviour = new TimedBehavior(gameObject);

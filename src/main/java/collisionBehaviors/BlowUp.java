@@ -10,6 +10,10 @@ public class BlowUp extends CollisionBehavior{
 		super(o);
 	}
 	
+	public BlowUp() {
+		super();
+	}
+	
 	@Override
 	public void run() {
 		super.getSprite().disable();

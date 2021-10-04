@@ -7,6 +7,10 @@ import strategies.Strategy;
 
 public class BounceOffScreen extends CollisionBehavior{
 
+	
+	public BounceOffScreen() {
+		super();
+	}
 	@Override 
 	public void run() {
 		for(Strategy s: getSprite().getBehaviors()) {
