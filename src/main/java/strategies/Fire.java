@@ -10,6 +10,10 @@ public class Fire extends KeyBehavior {
 	public Fire(GameObject o) {
 		super(o);
 	}
+	
+	public Fire() {
+		
+	}
 
 	private Sound sound;
 
@@ -18,6 +22,11 @@ public class Fire extends KeyBehavior {
 		// Something like GameObject.fire()
 		//Alternatively, create a gameObject, and then assign it a new move up behavior and collision behavior to blow up
 		sound.playSound();
+	}
+	
+	@Override
+	public String getName() {
+		return "Fire";
 	}
 
 }

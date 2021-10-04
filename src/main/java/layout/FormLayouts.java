@@ -501,6 +501,7 @@ public class FormLayouts {
 		Label keySelection = new Label("Enter which key will execute behavior");
 		TextField enterKeys = new TextField();
 		Label actionSelection = new Label("Select Behavior to run on keyPress");
+		Button saveButton = new Button("Save");
 		
 		ComboBox<Strategy> optionsOnTimer = new ComboBox<Strategy>();
 		optionsOnTimer.itemsProperty().setValue(FXCollections.observableList(btnController.getKeyEvents()));
@@ -530,7 +531,12 @@ public class FormLayouts {
 					VBox movementUI = moveBehaviorSubUI((MoveBehavior)selected);
 					keyBehaviorForm.getChildren().add(movementUI);
 				}
-				else {
+			}
+		});
+		
+		saveButton.setOnAction(new EventHandler<ActionEvent>(){
+			@Override
+			public void handle(ActionEvent e) {
 					//Instantiates the right object type and assigns it to the TimedBehavior;
 					for(Strategy s: btnController.getTimeableEvents()) {
 						if(behavior.getClass() == s.getClass()) {
@@ -545,10 +551,9 @@ public class FormLayouts {
 						}
 					}
 				}
-			}
-		});
+			});
 		
-		
+		keyBehaviorForm.getChildren().addAll(keySelection, enterKeys, actionSelection, optionsOnTimer, saveButton);
 		return keyBehaviorForm;
 	}
 	

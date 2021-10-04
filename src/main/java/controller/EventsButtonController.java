@@ -127,6 +127,7 @@ public class EventsButtonController {
 				events.add(e);
 			}
 		}
+		events.add(new CollisionBehavior());
 		return events;
 	}
 	
@@ -137,6 +138,7 @@ public class EventsButtonController {
 				events.add(e);
 			}
 		}
+		events.add(new KeyBehavior());
 		return events;
 	}
 	

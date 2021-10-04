@@ -56,6 +56,6 @@ public class KeyBehavior implements Strategy {
 		}
 		
 		public String getName() {
-			return "Key Behaviour";
+			return "Key Behavior";
 		}
 }
