@@ -79,7 +79,7 @@ public class MainController {
 		playStopGridPane.setVgap(10);
 
 		customLayout = new CustomLayout(30, 10);
-		customLayout.addNewChild(createText("Maker"), 3, 8);
+		customLayout.addNewChild(createText("MAKER"), 3, 8);
 		customLayout.addNewChild(playStopGridPane, 3, 10);
 //		customLayout.addNewChild(createButton("Sprites"), 0, 14);
 		customLayout.addNewChild(createButton("Sprites"), 1, 14);
@@ -168,8 +168,9 @@ public class MainController {
 		GridPane gridPane = new GridPane();
 		Text text = new Text();
 		text.setText(actionType);
-		text.setStyle("-fx-font-size: 30");
-		gridPane.setStyle("-fx-background-color: orange");
+		text.setStyle("-fx-font-size: 24");
+		gridPane.setStyle("-fx-background-color: pink;-fx-padding: 10px;\n"
+				+ "-fx-background-radius: 10px;\n");
 
 		gridPane.add(text, 1, 0);
 
