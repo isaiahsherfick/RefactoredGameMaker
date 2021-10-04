@@ -682,6 +682,7 @@ public class FormLayouts {
 								behavior.adjustInterval(Double.parseDouble(intervalField.getText()));
 								behavior.addStrategy(currentlyEditedStrategy);
 								btnController.addSelectedEvent(behavior);
+								behavior.setSprite(makerController.getCurrentlySelectedObject());
 								makerController.getCurrentlySelectedObject().addBehavior(behavior);
 							}
 							catch(Exception ex) {

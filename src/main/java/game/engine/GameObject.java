@@ -3,7 +3,7 @@ package game.engine;
 import java.util.ArrayList;
 
 import behaviors.*;
-import collisionBehaviors.bounceOffScreen;
+import collisionBehaviors.BounceOffScreen;
 import collisionUtility.ObjectCollider;
 import collisionUtility.ScreenCollider;
 import strategies.Strategy;
@@ -167,7 +167,7 @@ public class GameObject extends DrawObject implements ObjectCollider, ScreenColl
 	@Override
 	public void handleScreenCollision(Point2D newPosition) {
 		for(Strategy s: behaviors) {
-			if(s instanceof bounceOffScreen) {
+			if(s instanceof BounceOffScreen) {
 				s.run();
 			}
 		}

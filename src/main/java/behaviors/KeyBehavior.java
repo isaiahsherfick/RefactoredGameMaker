@@ -29,6 +29,10 @@ public class KeyBehavior implements Strategy {
 			return this.sprite;
 		}
 		
+		public void setSprite(GameObject o) {
+			this.sprite = o;
+		}
+		
 		public void run() {
 			for(KeyCode key: keys) {
 				if(KeyPolling.shared.isDown(key)) {
