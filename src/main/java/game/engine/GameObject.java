@@ -4,6 +4,8 @@ import java.util.ArrayList;
 
 import collisionUtility.ObjectCollider;
 import collisionUtility.ScreenCollider;
+import strategies.Strategy;
+import javafx.event.EventHandler;
 import javafx.geometry.Point2D;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
@@ -118,6 +120,7 @@ public class GameObject extends DrawObject implements ObjectCollider, ScreenColl
 	public void addBehavior(Strategy s) {
 		behaviors.add(s);
 	}
+	
 	
 	public ArrayList<Strategy> getBehaviors() {
 		return behaviors;
