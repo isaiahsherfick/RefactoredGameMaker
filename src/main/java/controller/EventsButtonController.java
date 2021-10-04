@@ -71,6 +71,7 @@ public class EventsButtonController {
 	
 	public void addSelectedEvent(Strategy s) {
 		selectedEvents.add(s);
+		System.out.println("Event added to selected events");
 	}
 	
 	public static ArrayList<Strategy> getSelectedEvents() {

@@ -155,6 +155,7 @@ public class MainController {
 		Button button = new Button(actionType);
 		button.setOnAction(event -> {
 			setEnableCurrentButton(button);
+			BUTTON_FORM_MAP.put("Sounds", FormLayouts.getSoundsFormLayout());
 			customLayout.addNewChildPane(BUTTON_FORM_MAP.get(button.getText()), 0, 15);
 		});
 
