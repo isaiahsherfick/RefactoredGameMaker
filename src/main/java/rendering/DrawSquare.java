@@ -24,6 +24,9 @@ public class DrawSquare extends Shape implements Drawable {
 		
 		rectangle.setFill(drawMe.getColor());
 		
+		rectangle.setTranslateX(objectPosition.getX());
+		rectangle.setTranslateY(objectPosition.getY());
+		
 		rectangle.setOnMousePressed(event -> {
             anchorX = event.getSceneX();
             anchorY = event.getSceneY();
@@ -32,6 +35,7 @@ public class DrawSquare extends Shape implements Drawable {
 			orgTranslateY = ((Rectangle) (event.getSource())).getTranslateY();
 
 			((Rectangle) (event.getSource())).toFront();
+			
         });
 		
 		rectangle.setOnMouseDragged(event -> {

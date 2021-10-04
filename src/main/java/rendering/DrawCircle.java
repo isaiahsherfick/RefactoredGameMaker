@@ -20,6 +20,9 @@ public class DrawCircle implements Drawable {
 
 		Circle circle = new Circle(objectPosition.getX(), objectPosition.getY(), objectDimensions.getX(),
 				drawMe.getColor());
+		
+		circle.setTranslateX(objectPosition.getX());
+		circle.setTranslateY(objectPosition.getY());
 
 		circle.setOnMousePressed(event -> {
             anchorX = event.getSceneX();
