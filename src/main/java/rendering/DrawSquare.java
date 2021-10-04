@@ -33,6 +33,7 @@ public class DrawSquare extends Shape implements Drawable {
 
 			((Rectangle) (event.getSource())).toFront();
         });
+		
 		rectangle.setOnMouseDragged(event -> {
 			double offsetX = event.getSceneX() - anchorX;
 			double offsetY = event.getSceneY() - anchorY;
@@ -41,6 +42,11 @@ public class DrawSquare extends Shape implements Drawable {
 
 			((Rectangle) (event.getSource())).setTranslateX(newTranslateX);
 			((Rectangle) (event.getSource())).setTranslateY(newTranslateY);
+			
+        });
+		
+		rectangle.setOnDragDone(event -> {
+			gameFlow.getChildren().remove((Rectangle) (event.getSource()));
         });
 		
 		gameFlow.getChildren().add(rectangle);

@@ -123,6 +123,8 @@ public class MainController {
 	}
 
 	private static void drawGameObjects(List<GameObject> gameObjects) {
+		if (gameFlow != null && gameFlow.getChildren() != null) gameFlow.getChildren().clear();
+		
 		gameObjects.forEach(gameObject -> {
 			gameObject.performDraw(gameFlow);
 		});
@@ -136,8 +138,8 @@ public class MainController {
 	public static void fillBackground(Color color) {
 		gameFlow.getChildren().clear();
 		
-//		getGameCanvas().getGraphicsContext2D().setFill(color);
-//		getGameCanvas().getGraphicsContext2D().fillRect(0, 0, primScreenBounds.getWidth() / 2, primScreenBounds.getHeight());
+		getGameCanvas().getGraphicsContext2D().setFill(color);
+		getGameCanvas().getGraphicsContext2D().fillRect(0, 0, primScreenBounds.getWidth() / 2, primScreenBounds.getHeight());
 	}
 
 	private static Canvas getGameCanvas() {
