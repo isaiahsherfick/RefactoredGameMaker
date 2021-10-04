@@ -11,6 +11,7 @@ public class SoundButtonController {
 	public static ArrayList<Sound> allSounds = new ArrayList<Sound>();
 	
 	public SoundButtonController() {
+		allSounds.clear();
 		allSounds.add((Sound)new Explosion());
 		allSounds.add((Sound)new FireSound());
 	}

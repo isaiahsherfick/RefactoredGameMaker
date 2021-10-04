@@ -716,10 +716,9 @@ public class FormLayouts {
 		GridPane.setHalignment(headerLabel, HPos.CENTER);
 		GridPane.setMargin(headerLabel, new Insets(20, 0, 20, 0));
 
-
-		EventsButtonController eventBtnController = new EventsButtonController();
 		ComboBox<Strategy> eventComboBox = new ComboBox<>();
-		eventComboBox.itemsProperty().setValue(FXCollections.observableList(eventBtnController.getAllSelectedEvents()));
+		System.out.println("Events size:" +EventsButtonController.getAllSelectedEvents().size());
+		eventComboBox.itemsProperty().setValue(FXCollections.observableList(EventsButtonController.getAllSelectedEvents()));
 		
 		eventComboBox.setConverter(new StringConverter<Strategy>() {
 			@Override
@@ -743,8 +742,7 @@ public class FormLayouts {
 		
 		SoundButtonController soundBtnController = new SoundButtonController();
 		ComboBox<Sound> soundComboBox = new ComboBox<>();
-		ObservableList<Sound> soundList = FXCollections.observableList(soundBtnController.getAllSounds());
-		soundComboBox.itemsProperty().setValue(soundList);
+		soundComboBox.itemsProperty().setValue(FXCollections.observableList(soundBtnController.getAllSounds()));
 
 		soundComboBox.setConverter(new StringConverter<Sound>() {
 			@Override
@@ -783,6 +781,7 @@ public class FormLayouts {
 		gridPane.add(eventComboBox, 1, 2);
 		gridPane.add(soundsLabel, 1, 3);
 		gridPane.add(soundComboBox, 1, 4);
+		gridPane.add(saveButton, 1, 5);
 
 		return gridPane;
 	}
