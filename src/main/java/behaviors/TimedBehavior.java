@@ -36,6 +36,10 @@ public class TimedBehavior implements Strategy {
 		return this.sprite;
 	}
 	
+	public void setSprite(GameObject o) {
+		this.sprite = o;
+	}
+	
 	public void run() {
 		Timeline actionInterval = new Timeline(
                 new KeyFrame(Duration.seconds(tickInterval), 

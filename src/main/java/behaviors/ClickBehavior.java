@@ -22,6 +22,10 @@ public class ClickBehavior implements Strategy {
 			return this.sprite;
 		}
 		
+		public void setSprite(GameObject o) {
+			this.sprite = o;
+		}
+		
 		public void run() {
 		}
 		

@@ -5,7 +5,7 @@ import behaviors.CollisionBehavior;
 import behaviors.MoveBehavior;
 import strategies.Strategy;
 
-public class bounceOffScreen extends CollisionBehavior{
+public class BounceOffScreen extends CollisionBehavior{
 
 	@Override 
 	public void run() {
@@ -14,5 +14,10 @@ public class bounceOffScreen extends CollisionBehavior{
 				((MoveBehavior) s).flipDirection();
 			}
 		}
+	}
+	
+	@Override
+	public String getName() {
+		return("Bounce Off Screen");
 	}
 }

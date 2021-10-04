@@ -21,6 +21,10 @@ public class CollisionBehavior implements Strategy {
 		return this.sprite;
 	}
 	
+	public void setSprite(GameObject o) {
+		this.sprite = o;
+	}
+	
 	public void run() {
 		
 	}
