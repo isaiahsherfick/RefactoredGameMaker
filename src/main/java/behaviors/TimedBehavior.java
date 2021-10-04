@@ -14,7 +14,7 @@ import game.engine.GameObject;
 public class TimedBehavior implements Strategy {
 	//Initializes nullObject to avoid NPEs
 	private Sound soundEffect = new NoSound();
-	private double tickInterval = 0;
+	private double tickInterval = 1;
 	//Nested Strategy within the timedBehavior
 	private Strategy runOnInterval;
 	private GameObject sprite;

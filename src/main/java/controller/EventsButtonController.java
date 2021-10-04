@@ -172,4 +172,15 @@ public class EventsButtonController {
 		return events;
 	}
 	
+	public ArrayList<Strategy> getKeyEvents(){
+		ArrayList<Strategy> events = new ArrayList<Strategy>();
+		for(Strategy e: allEvents) {
+			if(e instanceof MoveBehavior) {
+				events.add(e);
+			}
+		}
+		events.add(new Fire(gameObject));
+		return events;
+	}
+	
 }

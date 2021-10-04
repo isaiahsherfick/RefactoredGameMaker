@@ -130,6 +130,7 @@ public class MainController {
 	private static void instantiateButtonFormMap() {
 		BUTTON_FORM_MAP.put("Sprites", FormLayouts.getShapeFormLayout(getPrimaryStage()));
 		BUTTON_FORM_MAP.put("Events", FormLayouts.getEventsFormLayout());
+		BUTTON_FORM_MAP.put("Stages", FormLayouts.getStagesFormLayout());
 		BUTTON_FORM_MAP.put("Sounds", FormLayouts.getSoundsFormLayout());
 	}
 
