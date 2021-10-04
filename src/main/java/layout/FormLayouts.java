@@ -32,6 +32,7 @@ import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.stage.FileChooser;
@@ -63,7 +64,7 @@ public class FormLayouts {
 	public static GridPane getSoundsFormLayout() {
 		return createSoundFormPane();
 	}
-
+	
 	private static GridPane createSpriteFormPane() {
 		return addSpriteUI(getGridPane());
 
@@ -83,6 +84,10 @@ public class FormLayouts {
 
 	private static GridPane createSoundFormPane() {
 		return addUIForSounds(getGridPane());
+	}
+	
+	private static GridPane createStageFormPane(GridPane gridPane) {
+		return addUIForStage(getGridPane());
 	}
 
 	private static GridPane getGridPane() {
@@ -786,11 +791,42 @@ public class FormLayouts {
 		return gridPane;
 	}
 	
-	private static GridPane createStageFormPane(GridPane gridPane) {
-		//TODO
+private static GridPane addUIForStage(GridPane gridPane) {
+		
+		Label headerLabel = new Label("Stage Form");
+		headerLabel.setFont(Font.font("Arial", FontWeight.BOLD, 24));
+		gridPane.add(headerLabel, 0, 0, 2, 1);
+		GridPane.setHalignment(headerLabel, HPos.CENTER);
+		GridPane.setMargin(headerLabel, new Insets(20, 0, 20, 0));
+
+		// Add Name Label
+		Label nameLabel = new Label("Select Stage :");
+		gridPane.add(nameLabel, 0, 1);
+		
+		ChoiceDialog<String> colorDialog = new ChoiceDialog<String>("WHITE", "RED", "YELLOW", "ORANGERED", "BLUE",
+				"LIGHTGREEN","BLACK");
+		gridPane.add((GridPane) colorDialog.getDialogPane().getContent(), 1, 2);
+		
+		Button submitButton = new Button("Save");
+		submitButton.setPrefHeight(40);
+		submitButton.setDefaultButton(true);
+		submitButton.setPrefWidth(100);
+		gridPane.add(submitButton, 0, 4, 2, 1);
+		GridPane.setHalignment(submitButton, HPos.CENTER);
+		GridPane.setMargin(submitButton, new Insets(20, 0, 20, 0));
+
+		submitButton.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent event) {
+				// customisedInputDialog.get
+				MainController.stageColor = Color.valueOf(colorDialog.getSelectedItem());
+			}
+		});
 		
 		return gridPane;
+		
 	}
+	
 
 	private static void showAlert(Alert.AlertType alertType, Window owner, String title, String message) {
 		Alert alert = new Alert(alertType);
