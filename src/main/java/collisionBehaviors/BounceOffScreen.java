@@ -13,6 +13,7 @@ public class BounceOffScreen extends CollisionBehavior{
 	}
 	@Override 
 	public void run() {
+		System.out.println("Direction flipped");
 		for(Strategy s: getSprite().getBehaviors()) {
 			if(s instanceof MoveBehavior) {
 				((MoveBehavior) s).flipDirection();

@@ -552,6 +552,7 @@ public class FormLayouts {
 								behavior.addKeyCode(KeyCode.getKeyCode(enterKeys.getText()));
 								btnController.addSelectedEvent(behavior);
 								makerController.getCurrentlySelectedObject().addBehavior(behavior);
+								btnController.addSelectedEvent(behavior);
 							}
 							catch(Exception ex) {
 								System.out.println("Type Conversion Failed");

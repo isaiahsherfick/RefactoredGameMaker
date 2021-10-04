@@ -10,9 +10,9 @@ import game.engine.GameObject;
 
 final public class CollisionDetection {
 
-	private List<GameObject> gameObjects = new ArrayList<>();
+	public static List<GameObject> gameObjects = new ArrayList<>();
 	public static CollisionDetection shared = new CollisionDetection();
-	private static Scene scene;
+	public static Scene scene;
 	// Hash map for storing the collided objects of type GameObjects.
 	private HashMap<GameObject, GameObject> collidedObjects = new HashMap<GameObject, GameObject>();
 

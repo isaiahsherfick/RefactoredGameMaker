@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import collisionUtility.CollisionDetection;
 import game.engine.GameEngine;
 import game.engine.GameObject;
 import javafx.event.EventHandler;
@@ -101,6 +102,7 @@ public class MainController {
 		// Build scene and give it root
 		Scene gameScene = new Scene(pane, primScreenBounds.getWidth(), primScreenBounds.getHeight());
 		GameEngine.sharedInstance.setGameScene(gameScene);
+		CollisionDetection.scene = gameScene;
 		primaryStage.setScene(gameScene);
 		primaryStage.setTitle("Welcome");
 		primaryStage.show();

@@ -165,6 +165,7 @@ public class GameObject extends DrawObject implements ObjectCollider, ScreenColl
 	public void handleObjectCollision(GameObject collider, String collisionDirection) {
 		behaviors.forEach(strategy -> {
 			if (strategy instanceof CollisionBehavior) {
+				System.out.println("Collision Behavior Running");
 				strategy.run();
 			}
 		});
