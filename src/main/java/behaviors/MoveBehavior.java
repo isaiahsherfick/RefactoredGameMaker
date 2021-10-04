@@ -27,6 +27,10 @@ public class MoveBehavior implements Strategy {
 		return this.sprite;
 	}
 	
+	public void setSprite(GameObject o) {
+		this.sprite = o;
+	}
+	
 	public Direction getDirection() {
 		return this.currentDirection;
 	}

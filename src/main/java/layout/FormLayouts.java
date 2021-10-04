@@ -574,6 +574,7 @@ public class FormLayouts {
 					for(Strategy s: btnController.getEventType(new MoveBehavior())) {
 						if(s.getClass() == m.getClass()) {
 						MoveBehavior toAdd = m.getClass().newInstance();
+						toAdd.setSprite(makerController.getCurrentlySelectedObject());
 						toAdd.setSpeed(Double.parseDouble(speedField.getText()));
 						toAdd.setDirection(Direction.valueOf(directionField.getText()));
 						currentlyEditedStrategy = toAdd;
@@ -607,6 +608,7 @@ public class FormLayouts {
 					for(Strategy s: btnController.getEventType(new MoveBehavior())) {
 						if(s.getClass() == m.getClass()) {
 						MoveBehavior toAdd = m.getClass().newInstance();
+						toAdd.setSprite(makerController.getCurrentlySelectedObject());
 						toAdd.setSpeed(Double.parseDouble(speedField.getText()));
 						toAdd.setDirection(Direction.valueOf(directionField.getText()));
 						btnController.addSelectedEvent(toAdd);
