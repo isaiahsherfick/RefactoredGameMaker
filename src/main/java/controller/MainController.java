@@ -81,9 +81,7 @@ public class MainController {
 		customLayout = new CustomLayout(30, 10);
 		customLayout.addNewChild(createText("MAKER"), 3, 8);
 		customLayout.addNewChild(playStopGridPane, 3, 10);
-//		customLayout.addNewChild(createButton("Sprites"), 0, 14);
 		customLayout.addNewChild(createButton("Sprites"), 1, 14);
-		customLayout.addNewChild(createButton("Actions"), 2, 14);
 		customLayout.addNewChild(createButton("Events"), 3, 14);
 		customLayout.addNewChild(createButton("Sounds"), 4, 14);
 		customLayout.addNewChild(createButton("Stages"), 5, 14);
