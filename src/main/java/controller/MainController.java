@@ -112,6 +112,10 @@ public class MainController {
 		GameEngine.sharedInstance.initiateGameLoop();
 	}
 	
+	public void changeBackground(String color) {
+		gameFlow.setStyle("-fx-background-color:" + color.toLowerCase());
+	}
+	
 	private static void didTapStopButton() {
 		playBtn.setDisable(false);
 		stopBtn.setDisable(true);
