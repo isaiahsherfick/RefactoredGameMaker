@@ -16,6 +16,11 @@ import game.engine.GameObject;
 /*
  * Requires a Game Object (Sprite) for which the events will be set.
  */
+
+
+//TODO
+//This "Controller" is a view, too.......
+//-Isaiah
 public class EventsButtonController {
 
 	CheckBox keyEvent;
@@ -186,6 +191,10 @@ public class EventsButtonController {
 				events.add(e);
 			}
 		}
+
+		//TODO
+		//Not sure what this is for, never saw it in the demo
+		//-Isaiah
 		events.add(new Fire(gameObject));
 		return events;
 	}

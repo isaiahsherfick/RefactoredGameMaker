@@ -52,6 +52,14 @@ public class MainController {
 
 	private static final HashMap<String, GridPane> BUTTON_FORM_MAP = new HashMap<>();
 
+	//TODO
+	//WHY DOES THE CONTROLLER HAVE ALL OF THIS JAVAFX STUFF?????
+	//-Isaiah
+	//This system isn't MVC; it's controller,controller,controller-with-a-view-in-it,ArrayList-being-called-a-model
+	//We have our work cut out for us 
+	
+	//literally nothing about this file is a controller, this is a view
+	//and a hideous one at that
 	public static void start(Stage primaryStage) {
 
 		MainController.primaryStage = primaryStage;
