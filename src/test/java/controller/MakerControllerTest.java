@@ -10,6 +10,10 @@ import javafx.scene.image.ImageView;
 public class MakerControllerTest {
 	
 	@Test
+
+    //TODO
+    //This is one trivial test case, needs a lot more
+    //-Isaiah
 	void currentlySelectedObjectTest() {
 		MakerController makerController = new MakerController();
 		makerController.addNewGameObject("Rectangle", new ImageView(), "Paddle", "RED");
