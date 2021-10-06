@@ -19,6 +19,9 @@ final public class CollisionDetection {
 	private CollisionDetection() {
 	}
 
+    //TODO
+    //Why in the world does the collision utility have a scene?
+    //isaiah
 	public void setScene(Scene scene) {
 		this.scene = scene;
 	}
@@ -57,6 +60,9 @@ final public class CollisionDetection {
 		gameObjects.clear();
 	}
 
+    //TODO
+    //This checkObjectCollision algorithm is O(n^2), it can be O(n)
+    //if we do it right
 	private void checkObjectCollision(GameObject object1, GameObject object2) {
 		// get the objects position
 

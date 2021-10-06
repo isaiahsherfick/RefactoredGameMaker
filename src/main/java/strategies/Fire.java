@@ -7,6 +7,9 @@ import sound.Sound;
 import game.engine.GameEngine;
 import game.engine.GameObject;
 
+//TODO
+//What even is this class?
+//-Isaiah
 public class Fire extends KeyBehavior {
 	
 	public Fire(GameObject o) {

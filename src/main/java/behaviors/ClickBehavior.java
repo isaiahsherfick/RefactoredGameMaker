@@ -7,6 +7,10 @@ import sound.Sound;
 import strategies.Strategy;
 import game.engine.GameObject;
 
+//TODO
+//Not sure why clickbehaviors contain sprites,
+//feels like it should be the other way around
+//-Isaiah
 public class ClickBehavior implements Strategy {
 	//Initializes as null object to avoid npes
 		private Sound soundEffect = new NoSound();
