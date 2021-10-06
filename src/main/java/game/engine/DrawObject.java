@@ -8,6 +8,12 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Shape;
 import pattern.Observer;
 
+//TODO
+//Why the hell are we extending the JavaFX Shape class? Seems like a lot of overhead
+//Also causing me to not be able to compile
+//I suggest we ditch the notion of a drawobject entirely and move to a strategy
+//Also none of this is saveable, we need a saveable interface and wrapper for all of this junk
+//-Isaiah
 public abstract class DrawObject extends Shape implements Observer {
 
 	// protected CommandListener commandListener;

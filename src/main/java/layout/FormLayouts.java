@@ -44,6 +44,12 @@ import sound.Sound;
 import strategies.Strategy;
 
 public class FormLayouts {
+	//TODO
+	//burn and raze this to the ground, start the view fresh.
+	//This is an absolute nightmare of a monolith
+	//and the end result is hideous anyway
+	//-Isaiah
+	
 
 	private static final String CHOOSE_SHAPE = "--Choose shape--";
 	public static MakerController makerController = new MakerController();

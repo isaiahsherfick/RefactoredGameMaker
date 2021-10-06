@@ -18,6 +18,9 @@ public class GameObject extends DrawObject implements ObjectCollider, ScreenColl
 	
 	private String objectName;
 
+	//TODO 
+	//Why the hell do we have so many Point2Ds?
+	//-Isaiah
 	protected Point2D previousPosition;
 	protected Point2D velocity;
 	protected Point2D moveDirection;
