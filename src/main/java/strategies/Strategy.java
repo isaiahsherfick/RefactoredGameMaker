@@ -4,6 +4,10 @@ package strategies;
 import sound.Sound;
 import game.engine.GameObject;
 
+//TODO
+//This interface is nonsensical and has nothing to do with 
+//the strategy pattern
+//-Isaiah
 public interface Strategy {
 
 	public void run();

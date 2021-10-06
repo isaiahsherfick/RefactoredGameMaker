@@ -2,6 +2,10 @@ package events;
 
 import strategies.Strategy;
 
+//TODO
+//These are not events...
+//-Isaiah
+
 public abstract class Event {
 
 	protected Strategy action;
