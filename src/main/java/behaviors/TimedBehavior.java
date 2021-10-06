@@ -11,6 +11,11 @@ import sound.Sound;
 import strategies.Strategy;
 import game.engine.GameObject;
 
+//TODO
+//Really this entire package needs refactored into 
+//an eventchain type thing like what my sprites from last week had
+//That's my plan for these parts
+//-Isaiah
 public class TimedBehavior implements Strategy {
 	//Initializes nullObject to avoid NPEs
 	private Sound soundEffect = new NoSound();

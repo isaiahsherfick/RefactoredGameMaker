@@ -9,6 +9,9 @@ import game.engine.GameObject;
 public class CollisionBehavior implements Strategy {
 	//Sets default to no sound to avoid NPEs
 	private Sound soundEffect = new NoSound();
+	
+	//TODO CollisionBehaviors should not contain sprites, they should be contained BY sprites
+	//-Isaiah
 	private GameObject sprite;
 	public CollisionBehavior() {
 		

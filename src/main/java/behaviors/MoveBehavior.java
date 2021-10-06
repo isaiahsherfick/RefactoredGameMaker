@@ -7,6 +7,9 @@ import sound.Sound;
 import strategies.Strategy;
 import game.engine.GameObject;
 
+//Once again, makes no sense for this to contain a sprite and not the other way around
+//TODO
+//-Isaiah
 public class MoveBehavior implements Strategy {
 	//Initializes as null object to avoid npes
 	private Sound soundEffect = new NoSound();
