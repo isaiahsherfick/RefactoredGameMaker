@@ -37,11 +37,4 @@ public class FireSound implements Sound {
 	public String getName() {
 		return this.name;
 	}
-
-
-//	public void attachSound() {
-//		// TODO Auto-generated method stub
-//		soundBtnController.addSound(this);
-//		
-//	}
 }

@@ -20,11 +20,23 @@ import javafx.util.Duration;
 public class GameEngine implements Observable {
 
 	private ArrayList<Observer> observers;
+	
+	//TODO
+	//The gameEngine should be part of the controller
+	//Shouldn't have any kind of JFX stuff ie a Scene -- that's for the view
+	//Isaiah
 	private static Scene gameScene;
+	
+	
 	private Timeline gameLoop;
 	private KeyFrame keyFrame;
 	public static GameEngine sharedInstance = new GameEngine();
 	// Attempt to achieve 60 FPS
+	
+	//TODO
+	//We could use a Constants.java static class for all magic numbers like this
+	//low priority
+	//Isaiah
 	private final static float framesPerSecond = 0.0165f;
 	private double totalTime = 0;
 	private double previousTotalTime = 0;

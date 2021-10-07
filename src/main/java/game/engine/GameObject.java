@@ -19,7 +19,8 @@ public class GameObject extends DrawObject implements ObjectCollider, ScreenColl
 	private String objectName;
 
 	//TODO 
-	//Why the hell do we have so many Point2Ds?
+	//Unsure if we need previousposition and nextposition
+	//if we just do movement commands right then we'll be able to restore those by simple undo/redo
 	//-Isaiah
 	protected Point2D previousPosition;
 	protected Point2D velocity;

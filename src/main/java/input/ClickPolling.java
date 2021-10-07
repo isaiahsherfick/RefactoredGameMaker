@@ -5,6 +5,10 @@ import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.input.MouseEvent;
 
+//TODO
+//I can't say I'm an expert in event listeners
+//but I think this is 99% useable
+//Isaiah
 public class ClickPolling {
 	
 	public static ClickPolling shared = new ClickPolling();

@@ -12,6 +12,8 @@ import game.engine.GameObject;
 import input.KeyPolling;
 import javafx.scene.input.KeyCode;
 
+
+//TODO
 //Same thing I said for the other behaviors
 //-Isaiah
 public class KeyBehavior implements Strategy {

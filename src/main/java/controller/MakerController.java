@@ -30,8 +30,10 @@ public class MakerController {
 	
 	private Map<String, Point2D> dimensionMap = new HashMap<>();
 
-	//Oh my fucking god all of these controllers are views
+	//TODO
+	//All of these controllers are views
 	//There is actually 0 MVC in this codebase
+	//Isaiah
 	public MakerController() {
 		gameModel = new GameModel();
 		dimensionMap.put(CIRCLE, new Point2D(20, 20));

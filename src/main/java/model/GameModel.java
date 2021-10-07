@@ -9,7 +9,8 @@ import game.engine.GameObject;
 public class GameModel {
 	
 	//TODO
-	//This is awful. This model doesn't do anything. It's literally just an arraylist
+	//This model doesn't do anything. It's literally just an arraylist
+	//At least it will be easy to build up a good model around it
 	//-Isaiah
 	private List<GameObject> gameObjects;
 	

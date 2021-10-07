@@ -14,6 +14,12 @@ public class DrawCircle implements Drawable {
     private double orgTranslateY;
     
 	@Override
+	//TODO
+	//I now understand the point of draw() having a gameobject get passed to it.
+	//We still need to move that behavior into the sprite and have the view call draw() - that will allow the argument to be removed
+	//draw() shouldn't update the position of the sprite like it's currently doing
+	//separation of concerns 
+	//Isaiah
 	public void draw(GameObject drawMe, FlowPane gameFlow) {
 		Point2D objectPosition = drawMe.getPosition();
 		Point2D objectDimensions = drawMe.getDimensions();

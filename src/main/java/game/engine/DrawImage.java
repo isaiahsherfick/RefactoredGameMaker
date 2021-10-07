@@ -16,6 +16,10 @@ public class DrawImage implements Drawable {
 		Point2D objectPosition = drawMe.getPosition();
 		Point2D objectDimensions = drawMe.getDimensions();
 
+		//TODO
+		//This is a null pointer hazard, we need to do a null image for all gameobjects
+		//Also the name "imageview" implies that this is a "view" which is not how I understand mvc to work
+		//isaiah
 		ImageView imageView = new ImageView(drawMe.getImage());
 		
 		imageView.setX(objectPosition.getX());

@@ -5,6 +5,9 @@ import java.util.Set;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
 
+//TODO
+//Pretty sure we can use most of this
+//Isaiah
 final public class KeyPolling {
 	
 	public static KeyPolling shared = new KeyPolling();

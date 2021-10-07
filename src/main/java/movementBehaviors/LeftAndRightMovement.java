@@ -10,6 +10,11 @@ import game.engine.GameObject;
 
 public class LeftAndRightMovement extends MoveBehavior {
 	
+	//TODO
+	//Same thing with the collision behaviors, the objects should contain movements, not the other way around
+	//The circular structure is cause for concern - I'm not sure if it has any actual consequences in terms of memory
+	//but it's definitely a code smell
+	//Isaiah
 	public LeftAndRightMovement(GameObject o) {
 		super(o);
 	}

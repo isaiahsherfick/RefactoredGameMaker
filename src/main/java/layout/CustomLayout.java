@@ -14,6 +14,10 @@ import java.util.List;
 import javafx.geometry.Insets;
 import javafx.scene.layout.GridPane;
 
+//TODO
+//Questioning if this is necessary at all
+//What does this give us that Jafafx doesn't?
+//Isaiah
 public class CustomLayout extends GridPane {
 	
 	private List<GridPane> gridPanes = new ArrayList<>();

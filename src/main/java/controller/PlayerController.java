@@ -14,6 +14,10 @@ public class PlayerController {
 	private static final String CIRCLE = "CIRCLE";
 	private GameModel gameModel;
 
+	//TODO
+	//Very confused about how each of these view/controller things create a new GameModel()
+	//in their constructors -- they should share one gamemodel
+	//isaiah
 	public PlayerController() {
 		gameModel = new GameModel();
 	}

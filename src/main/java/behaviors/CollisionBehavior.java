@@ -29,6 +29,10 @@ public class CollisionBehavior implements Strategy {
 	}
 	
 	public void run() {
+		//TODO
+		//So behaviors contain sprites which contain behaviors which contain sprites which....
+		//That definitely calls for something to change
+		//Similar to what Maazin talked about in one of his recent presentations; circular structure -> not good
 		for(Strategy s: getSprite().getBehaviors()) {
 			if(s instanceof MoveBehavior) {
 				((MoveBehavior) s).flipDirection();

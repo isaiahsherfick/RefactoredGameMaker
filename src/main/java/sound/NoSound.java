@@ -10,8 +10,10 @@ public class NoSound implements Sound{
 		//Null Object class, does nothing
 	}
 
+	//TODO this should probably return an empty string instead of null
+	//ironic npe danger from a nullobject
+	//isaiah
 	public String getName() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
