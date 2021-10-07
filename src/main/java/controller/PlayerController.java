@@ -18,6 +18,7 @@ public class PlayerController {
 	//Very confused about how each of these view/controller things create a new GameModel()
 	//in their constructors -- they should share one gamemodel
 	//isaiah
+	//The gameModel also isnt even a model so they all have independent ArrayLists
 	public PlayerController() {
 		gameModel = new GameModel();
 	}

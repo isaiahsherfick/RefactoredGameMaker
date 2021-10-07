@@ -14,6 +14,7 @@ public class DrawSquare extends Shape implements Drawable {
     private double orgTranslateX;
     private double orgTranslateY;
 
+    //TODO see DrawCircle - Christian
 	@Override
 	public void draw(GameObject drawMe, FlowPane gameFlow) {
 		Point2D objectPosition = drawMe.getPosition();

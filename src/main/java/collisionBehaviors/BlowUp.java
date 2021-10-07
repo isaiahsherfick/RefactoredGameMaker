@@ -4,6 +4,7 @@ package collisionBehaviors;
 import behaviors.CollisionBehavior;
 import game.engine.GameObject;
 
+
 public class BlowUp extends CollisionBehavior{
 
 	public BlowUp(GameObject o) {

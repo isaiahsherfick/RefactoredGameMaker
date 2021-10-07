@@ -5,6 +5,7 @@ import behaviors.CollisionBehavior;
 import behaviors.MoveBehavior;
 import strategies.Strategy;
 
+//TODO this needs to change to adapt to an overhaul of movement to not be stuck in 8 direction.
 public class BounceOffScreen extends CollisionBehavior{
 
 	

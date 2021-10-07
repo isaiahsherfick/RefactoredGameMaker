@@ -51,6 +51,8 @@ public class FormLayouts {
 	//-Isaiah
 	
 
+	//Pretty much everything about this needs to be entirely reworked to create an all new view. Terrible mess -Christian
+	//This is the result of resigning yourself to the bad codebase since there are only hours left.
 	private static final String CHOOSE_SHAPE = "--Choose shape--";
 	public static MakerController makerController = new MakerController();
 	public static VBox strategyDetails;

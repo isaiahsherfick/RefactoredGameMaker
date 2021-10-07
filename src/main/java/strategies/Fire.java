@@ -10,6 +10,8 @@ import game.engine.GameObject;
 //TODO
 //What even is this class?
 //-Isaiah
+//Idea behind this was to be able to shoot projectiles, never got finished and thus is useless, especially since 
+//it relies on the garbage "controllers". Needs to be a behavior on key or click event, and be cleaner -Christian
 public class Fire extends KeyBehavior {
 	
 	public Fire(GameObject o) {

@@ -9,6 +9,9 @@ import game.engine.GameObject;
 //the strategy pattern
 //-Isaiah
 
+//Comments from behaviors stand, this got too generalized to fit the codebase we had, that needs to NOT be the case, 
+//as there should be different strategies depending on the event.
+
 //Each of these things needs to have its own "___Strategy" interface; you can't generalize Strategy
 //To this degree without making it super bloated 
 public interface Strategy {

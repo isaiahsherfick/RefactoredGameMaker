@@ -5,6 +5,7 @@ import strategies.Strategy;
 //TODO
 //These are not events...
 //-Isaiah
+//Also not used anywhere, can likely be removed - Christian
 
 public abstract class Event {
 

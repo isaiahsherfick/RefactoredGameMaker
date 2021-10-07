@@ -25,6 +25,8 @@ public class GameEngine implements Observable {
 	//The gameEngine should be part of the controller
 	//Shouldn't have any kind of JFX stuff ie a Scene -- that's for the view
 	//Isaiah
+	//Most of this is fine as it just is a timeline producing a tick and updating observers, 
+	//However probably don't NEED observer here if its part of a controller communicating with model.
 	private static Scene gameScene;
 	
 	

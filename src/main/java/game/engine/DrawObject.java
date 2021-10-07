@@ -14,6 +14,8 @@ import pattern.Observer;
 //I suggest we ditch the notion of a drawobject entirely and move to a strategy
 //Also none of this is saveable, we need a saveable interface and wrapper for all of this junk
 //-Isaiah
+//Agree, this is a combination of dated code from past projects that has just gotten messier as a result, can be refactored
+//to do the same thing but cleaner - Christian
 public abstract class DrawObject extends Shape implements Observer {
 
 	// protected CommandListener commandListener;

@@ -13,6 +13,8 @@ public class MultipleCollisions extends CollisionBehavior{
     //as it stands, each of these collisions in the array
     //will all contain a reference to the sprite
     //-Isaiah
+	//This is redundant with how gameobjects were implement after this was made and doesnt need any references to sprites. 
+	//Sprites should just contain a behavior chain for each event rather than need this class. -Christian
 	private ArrayList<CollisionBehavior> collisions;
 	public MultipleCollisions(GameObject o) {
 		super(o);

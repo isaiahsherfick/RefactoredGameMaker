@@ -5,6 +5,7 @@ import behaviors.MoveBehavior.Direction;
 import javafx.geometry.Point2D;
 import game.engine.GameObject;
 
+//TODO likely can just keep direction as a variable outside of enum and make this class smaller.
 public class VariableMovement extends MoveBehavior{
 
 	public VariableMovement(GameObject o) {

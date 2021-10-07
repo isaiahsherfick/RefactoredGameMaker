@@ -12,6 +12,7 @@ public class GameModel {
 	//This model doesn't do anything. It's literally just an arraylist
 	//At least it will be easy to build up a good model around it
 	//-Isaiah
+	//Easy enough to just make a model out of this, since this isn't even a model - Christian
 	private List<GameObject> gameObjects;
 	
 	public GameModel() {

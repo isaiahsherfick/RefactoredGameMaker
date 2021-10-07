@@ -10,6 +10,7 @@ import game.engine.GameObject;
 //Once again, makes no sense for this to contain a sprite and not the other way around
 //TODO
 //-Isaiah
+//Also probably just make direction a variable rather than restricting it to an enum. Enum can work but limits movement possibilities. - Christian
 public class MoveBehavior implements Strategy {
 	//Initializes as null object to avoid npes
 	private Sound soundEffect = new NoSound();

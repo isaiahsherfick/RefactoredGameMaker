@@ -8,6 +8,7 @@ import javafx.scene.media.AudioClip;
 //TODO
 //I feel that having specific sound classes is unnecessary
 //we can just use one Sound class and the user can pick an explosion if that's what they want
+//How this runs sounds is fine, just can be more generalized to run any sound.
 public class Explosion implements Sound 
 {
 	

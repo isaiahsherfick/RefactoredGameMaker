@@ -22,6 +22,8 @@ public class GameObject extends DrawObject implements ObjectCollider, ScreenColl
 	//Unsure if we need previousposition and nextposition
 	//if we just do movement commands right then we'll be able to restore those by simple undo/redo
 	//-Isaiah
+	//Many of these fields can be either cleared or reworked, class also needs to have behaviors that are 
+	//not as generalized. -Christian
 	protected Point2D previousPosition;
 	protected Point2D velocity;
 	protected Point2D moveDirection;

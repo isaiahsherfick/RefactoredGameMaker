@@ -26,6 +26,7 @@ final public class CollisionDetection {
 		this.scene = scene;
 	}
 
+	//Dated from previous projects, has been done better since the early projects - Christian
 	public void checkForCollision() {
 		for (GameObject obj1 : gameObjects) {
 			for (GameObject obj2 : gameObjects) {

@@ -16,6 +16,7 @@ import game.engine.GameObject;
 //an eventchain type thing like what my sprites from last week had
 //That's my plan for these parts
 //-Isaiah
+//+1 - Christian
 public class TimedBehavior implements Strategy {
 	//Initializes nullObject to avoid NPEs
 	private Sound soundEffect = new NoSound();
