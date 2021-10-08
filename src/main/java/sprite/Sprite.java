@@ -33,13 +33,15 @@ public class Sprite extends DrawObject implements Drawable {
 	protected Point2D nextPosition;
 	protected Point2D size;
 	
+	//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Old stuff ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+	
 	
 
-	//unique int identifier - will be handled by 
+	//unique int identifier - will be handled by sprite manager
 	protected int spriteId;
 
 	//hitbox for collision handling, also contains x,y location
-	//protected HitBox hitBox;
+	protected HitBox hitBox;
 	
 	//appearance - either shape or image, sprite doesn't care which
 	//protected Appearance appearance;
@@ -62,6 +64,9 @@ public class Sprite extends DrawObject implements Drawable {
 		behaviors = new ArrayList<Strategy>();
 		//OLD STUFF ^^^^^^^^^//
 		spriteId = Constants.DEFAULT_SPRITE_ID;
+		
+		//initializes hitbox with default x,y,width,height found in Constants.java
+		hitBox = new HitBox();
 	}
 
 
@@ -223,5 +228,32 @@ public class Sprite extends DrawObject implements Drawable {
 		copySprite.setSpriteId(spriteId);
 		//TODO finish this
 		return copySprite;
+	}
+
+
+	public Point2D getLocation() 
+	{
+		return hitBox.getLocation();
+	}
+
+
+	public void setX(int x) 
+	{
+		hitBox.setX(x);
+	}
+
+
+	public void setY(int y) 
+	{
+		hitBox.setY(y);
+	}
+	
+	public void setWidth(int w)
+	{
+		hitBox.setWidth(w);
+	}
+	public void setHeight(int h)
+	{
+		hitBox.setHeight(h);
 	}
 }

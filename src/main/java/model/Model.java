@@ -78,6 +78,12 @@ public class Model {
 		spriteManager = new SpriteManager();
 	}
 	
+	//replace the save/load manager with a new one
+	public void resetSaveAndLoadManager()
+	{
+		saveAndLoadManager = new SaveAndLoadManager();
+	}
+	
 	//Save all sprites, write them to the file stored at saveFilePath
 	//Catch the exception in controller
 	public void save()
