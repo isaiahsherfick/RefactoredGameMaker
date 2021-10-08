@@ -1,0 +1,26 @@
+
+
+
+
+
+
+Initial tasks -- upload to Jira as soon as access is cleared
+
+Extend model - Isaiah
+Implement save/load - Isaiah
+Fix GameObject: GameObjectIDs - Isaiah
+Add GameObjectManager - Isaiah
+Add StrategyManager - Isaiah
+Unit test all of this - Isaiah
+
+Christian - Look into FXML, FXMLLoader
+Christian - Pick apart CustomLayout
+Saurabh - Pick apart CustomLayout
+Christian - Rip view out of "controllers" 
+Christian - Mock up UI
+
+Implement command interface - Ramya
+Implement undo / redo - Ramya
+Implement CommandInvoker (will go into model) - Ramya
+Implement CollisionManager (will go into controller) - Ramya
+Create controller - Ramya
