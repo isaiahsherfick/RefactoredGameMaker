@@ -77,6 +77,24 @@ class ModelTests {
 	}
 	
 	@Test
+	public void HitBoxTest()
+	{
+		HitBox hitBox = new HitBox();
+		
+		Point2D topRight = new Point2D(hitBox.getX() + Constants.DEFAULT_SPRITE_WIDTH, hitBox.getY());
+		assertEquals(topRight, hitBox.getTopRight());
+		
+		Point2D topLeft = hitBox.getLocation();
+		assertEquals(topLeft,hitBox.getTopLeft());
+		
+		Point2D bottomLeft = new Point2D(hitBox.getX(), hitBox.getY() + Constants.DEFAULT_SPRITE_HEIGHT);
+		assertEquals(bottomLeft, hitBox.getBottomLeft());
+		
+		Point2D bottomRight = new Point2D(hitBox.getX() + Constants.DEFAULT_SPRITE_WIDTH, hitBox.getY() + Constants.DEFAULT_SPRITE_HEIGHT);
+		assertEquals(bottomRight, hitBox.getBottomRight());
+	}
+	
+	@Test
 	public void HitBoxSaveAndLoadTest()
 	{
 		HitBox hitBox = new HitBox();

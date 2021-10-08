@@ -11,6 +11,8 @@ Initial tasks -- upload to Jira as soon as access is cleared
 
 ----------------------TODO-----------------------------------
 Add StrategyManager - Isaiah
+Add basic strategies for Sprites - Isaiah
+Unit test sprite strategies
 
 Christian - Start implementing FXML UI
 Christian - Pick apart FormLayouts
@@ -27,11 +29,16 @@ Unit test controller - Ramya
 
 -------------------IN PROGRESS-------------------------------
 Implement save/load - Isaiah
-Fix Sprite - Isaiah
+implement sprite copy() method - Isaiah
+unit tests for save/load
 Extend model - Isaiah 
 Model unit testing - Isaiah
 -------------------COMPLETED---------------------------------
+Implement hitbox for sprites - Isaiah
+Unit test hitbox for sprites - Isaiah
+Add SpriteIds to Sprites
 Add SpriteManager - Isaiah
+unit tests for spritemanager
 Christian - Look into FXML, FXMLLoader
 Christian - Mock up UI
 

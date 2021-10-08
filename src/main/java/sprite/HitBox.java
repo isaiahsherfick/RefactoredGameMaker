@@ -101,4 +101,40 @@ public class HitBox implements Saveable
 		}
 		return false;
 	}
+
+	public double getX() 
+	{
+		return location.getX();
+	}
+	public double getY() 
+	{
+		return location.getY();
+	}
+
+	public Point2D getTopRight() 
+	{
+		return new Point2D(getX() + getWidth(), getY());
+	}
+	public Point2D getTopLeft() 
+	{
+		return location;
+	}
+	public Point2D getBottomLeft() 
+	{
+		return new Point2D(getX(), getY() + getHeight());
+	}
+	private double getHeight() 
+	{
+		return size.getY();
+	}
+
+	public Point2D getBottomRight() 
+	{
+		return new Point2D(getX() + getWidth(), getY() + getHeight());
+	}
+
+	private double getWidth() 
+	{
+		return size.getX();
+	}
 }
