@@ -37,12 +37,14 @@ public class SpriteManager
 			currentHighestSpriteId = sprite.getSpriteId();
 		}
 		spriteMap.put(sprite.getSpriteId(), sprite);
+		size++;
 	}
 	
 	//Remove a sprite from the spritemanager by its spriteid
 	public void remove(int spriteId)
 	{
 		spriteMap.remove(spriteId);
+		size--;
 	}
 
 	//Get a copy of the sprite at spriteId
@@ -54,5 +56,10 @@ public class SpriteManager
 			sprite = new NullSprite();
 		}
 		return sprite.copy();
+	}
+	
+	public int getSize()
+	{
+		return size;
 	}
 }

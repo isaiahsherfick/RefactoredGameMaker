@@ -191,7 +191,8 @@ public class Sprite extends DrawObject implements Drawable {
 	}
 
 	@Override
-	public void draw(GraphicsContext g) {
+	public void draw(GraphicsContext g) 
+	{
 		// TODO Auto-generated method stub
 		
 	}
