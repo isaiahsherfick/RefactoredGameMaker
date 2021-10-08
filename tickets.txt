@@ -6,9 +6,10 @@
 
 Initial tasks -- upload to Jira as soon as access is cleared
 
-------------------Phase 1------------------------------------
+---------------------Phase 1---------------------------------
 
-Extend model - Isaiah
+
+----------------------TODO-----------------------------------
 Implement save/load - Isaiah
 Fix GameObject: GameObjectIDs - Isaiah
 Add GameObjectManager - Isaiah
@@ -27,6 +28,9 @@ Implement undo / redo - Ramya
 Implement CommandInvoker (will go into model) - Ramya
 Implement CollisionManager (will go into controller) - Ramya
 Create controller - Ramya
+
+-------------------IN PROGRESS-------------------------------
+Extend model - Isaiah
 
 -------------------Phase 2-----------------------------------
 
