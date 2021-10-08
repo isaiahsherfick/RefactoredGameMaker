@@ -14,7 +14,6 @@ Implement save/load - Isaiah
 Fix GameObject: GameObjectIDs - Isaiah
 Add GameObjectManager - Isaiah
 Add StrategyManager - Isaiah
-Unit test all of this - Isaiah
 
 Christian - Start implementing FXML UI
 Christian - Pick apart FormLayouts
@@ -31,7 +30,7 @@ Unit test controller - Ramya
 
 -------------------IN PROGRESS-------------------------------
 Extend model - Isaiah
-
+Model unit testing - Isaiah
 -------------------COMPLETED---------------------------------
 Christian - Look into FXML, FXMLLoader
 Christian - Mock up UI
