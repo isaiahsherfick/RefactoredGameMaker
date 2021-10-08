@@ -60,7 +60,7 @@ public class MainController {
 	
 	//literally nothing about this file is a controller, this is a view
 	//and a hideous one at that
-	public static void start(Stage primaryStage) {
+	public void start(Stage primaryStage) {
 
 		MainController.primaryStage = primaryStage;
 		eventsController = new EventsButtonController();
