@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ColorPicker?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+
+<AnchorPane prefHeight="900.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/17">
+   <children>
+      <TabPane prefHeight="900.0" prefWidth="601.0" tabClosingPolicy="UNAVAILABLE">
+        <tabs>
+          <Tab text="Sprite View">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Button fx:id="createNewSpriteButton" layoutX="53.0" layoutY="14.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="145.0" text="Create New Sprite" />
+                        <Button fx:id="dupllicateSpriteButton" layoutX="361.0" layoutY="14.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="190.0" text="Duplicate" />
+                        <Line endX="500.0" layoutX="101.0" layoutY="76.0" startX="-100.0" />
+                        <Text layoutX="4.0" layoutY="119.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Properties" wrappingWidth="242.765625">
+                           <font>
+                              <Font name="System Bold" size="40.0" />
+                           </font>
+                        </Text>
+                        <Text layoutX="35.0" layoutY="200.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sprite ID:" wrappingWidth="151.240234375">
+                           <font>
+                              <Font size="30.0" />
+                           </font>
+                        </Text>
+                        <Text layoutX="34.0" layoutY="250.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Position X:" wrappingWidth="153.240234375">
+                           <font>
+                              <Font size="30.0" />
+                           </font>
+                        </Text>
+                        <Text layoutX="225.0" layoutY="250.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Y:" wrappingWidth="87.240234375">
+                           <font>
+                              <Font size="30.0" />
+                           </font>
+                        </Text>
+                        <Text layoutX="34.0" layoutY="300.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Width:" wrappingWidth="153.240234375">
+                           <font>
+                              <Font size="30.0" />
+                           </font>
+                        </Text>
+                        <Text layoutX="34.0" layoutY="350.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Height: " wrappingWidth="153.240234375">
+                           <font>
+                              <Font size="30.0" />
+                           </font>
+                        </Text>
+                        <Text layoutX="34.0" layoutY="400.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Color: " wrappingWidth="153.240234375">
+                           <font>
+                              <Font size="30.0" />
+                           </font>
+                        </Text>
+                        <Text layoutX="35.0" layoutY="450.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Appearance:" wrappingWidth="167.240234375">
+                           <font>
+                              <Font size="30.0" />
+                           </font>
+                        </Text>
+                        <Label fx:id="spriteIdLabel" layoutX="186.0" layoutY="167.0" text="ID Label">
+                           <font>
+                              <Font size="30.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="spriteYLabel" layoutX="258.0" layoutY="217.0" text="Y ">
+                           <font>
+                              <Font size="30.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="spriteXLabel" layoutX="186.0" layoutY="217.0" text="X">
+                           <font>
+                              <Font size="30.0" />
+                           </font>
+                        </Label>
+                        <Slider fx:id="widthSlider" layoutX="134.0" layoutY="285.0" prefHeight="14.0" prefWidth="233.0" />
+                        <Slider fx:id="heightSlider" layoutX="135.0" layoutY="336.0" prefHeight="14.0" prefWidth="233.0" />
+                        <ColorPicker fx:id="spriteColorPicker" layoutX="124.0" layoutY="377.0" />
+                        <ComboBox fx:id="spriteShapeDropdown" layoutX="219.0" layoutY="427.0" prefHeight="25.0" prefWidth="116.0" />
+                        <Text layoutX="344.0" layoutY="446.0" strokeType="OUTSIDE" strokeWidth="0.0" text="or" wrappingWidth="33.240234375">
+                           <font>
+                              <Font size="30.0" />
+                           </font>
+                        </Text>
+                        <Button fx:id="chooseImageButton" layoutX="389.0" layoutY="427.0" mnemonicParsing="false" text="Choose Image" />
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+          <Tab text="Behaviors">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+            </content>
+          </Tab>
+            <Tab text="Collisions">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+              </content>
+            </Tab>
+            <Tab text="Game Properties">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+              </content>
+            </Tab>
+        </tabs>
+      </TabPane>
+   </children>
+</AnchorPane>
