@@ -6,7 +6,7 @@ import java.util.List;
 
 import collisionUtility.CollisionDetection;
 import game.engine.GameEngine;
-import game.engine.GameObject;
+import game.engine.Sprite;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Rectangle2D;
@@ -132,14 +132,14 @@ public class MainController {
 		GameEngine.sharedInstance.stopGameLoop();
 	}
 
-	public static void performDraw(List<GameObject> gameObjects) {
-		drawGameObjects(gameObjects);
+	public static void performDraw(List<Sprite> sprites) {
+		drawGameObjects(sprites);
 	}
 
-	private static void drawGameObjects(List<GameObject> gameObjects) {
+	private static void drawGameObjects(List<Sprite> sprites) {
 		if (gameFlow != null && gameFlow.getChildren() != null) gameFlow.getChildren().clear();
 		
-		gameObjects.forEach(gameObject -> {
+		sprites.forEach(gameObject -> {
 			gameObject.performDraw(gameFlow);
 		});
 	}

@@ -1,7 +1,7 @@
 package controller;
 
 import game.engine.Drawable;
-import game.engine.GameObject;
+import game.engine.Sprite;
 import javafx.geometry.Point2D;
 import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
@@ -25,10 +25,10 @@ public class PlayerController {
 
 	public void addNewGameObject(String selectedShape, ImageView imageView, String objectName, String color) {
 		if (imageView.getImage() == null) {
-			GameObject gameObject = new GameObject(objectName, getDrawableBehaviour(selectedShape),
+			Sprite sprite = new Sprite(objectName, getDrawableBehaviour(selectedShape),
 					Color.valueOf(color), new Point2D(10, 10), new Point2D(50, 25));
 			
-			gameModel.addNewGameObject(gameObject);
+			gameModel.addNewGameObject(sprite);
 		}
 	}
 

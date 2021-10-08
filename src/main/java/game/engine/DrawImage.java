@@ -12,7 +12,7 @@ public class DrawImage implements Drawable {
     private double orgTranslateY;
 
 	@Override
-	public void draw(GameObject drawMe, FlowPane gameFlow) {
+	public void draw(Sprite drawMe, FlowPane gameFlow) {
 		Point2D objectPosition = drawMe.getPosition();
 		Point2D objectDimensions = drawMe.getDimensions();
 

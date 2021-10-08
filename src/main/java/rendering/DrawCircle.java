@@ -1,7 +1,7 @@
 package rendering;
 
 import game.engine.Drawable;
-import game.engine.GameObject;
+import game.engine.Sprite;
 import javafx.geometry.Point2D;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.shape.Circle;
@@ -20,7 +20,7 @@ public class DrawCircle implements Drawable {
 	//draw() shouldn't update the position of the sprite like it's currently doing
 	//separation of concerns 
 	//Isaiah
-	public void draw(GameObject drawMe, FlowPane gameFlow) {
+	public void draw(Sprite drawMe, FlowPane gameFlow) {
 		Point2D objectPosition = drawMe.getPosition();
 		Point2D objectDimensions = drawMe.getDimensions();
 

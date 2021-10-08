@@ -6,15 +6,15 @@ import java.util.List;
 
 import javafx.geometry.Point2D;
 import javafx.scene.Scene;
-import game.engine.GameObject;
+import game.engine.Sprite;
 
 final public class CollisionDetection {
 
-	public static List<GameObject> gameObjects = new ArrayList<>();
+	public static List<Sprite> sprites = new ArrayList<>();
 	public static CollisionDetection shared = new CollisionDetection();
 	public static Scene scene;
 	// Hash map for storing the collided objects of type GameObjects.
-	private HashMap<GameObject, GameObject> collidedObjects = new HashMap<GameObject, GameObject>();
+	private HashMap<Sprite, Sprite> collidedObjects = new HashMap<Sprite, Sprite>();
 
 	private CollisionDetection() {
 	}
@@ -28,8 +28,8 @@ final public class CollisionDetection {
 
 	//Dated from previous projects, has been done better since the early projects - Christian
 	public void checkForCollision() {
-		for (GameObject obj1 : gameObjects) {
-			for (GameObject obj2 : gameObjects) {
+		for (Sprite obj1 : sprites) {
+			for (Sprite obj2 : sprites) {
 
 				// Skip same objects
 				if (obj1 == obj2) {
@@ -43,28 +43,28 @@ final public class CollisionDetection {
 		collidedObjects.clear();
 	}
 
-	public void addGameObject(GameObject object) {
-		if (!gameObjects.contains(object)) {
-			gameObjects.add(object);
+	public void addGameObject(Sprite object) {
+		if (!sprites.contains(object)) {
+			sprites.add(object);
 		}
 	}
 
-	public void removeGameObject(GameObject object) {
+	public void removeGameObject(Sprite object) {
 		// Ensure object is already in the gameObjects array list
-		int objectIndex = gameObjects.indexOf(object);
+		int objectIndex = sprites.indexOf(object);
 		if (objectIndex >= 0) {
-			gameObjects.remove(object);
+			sprites.remove(object);
 		}
 	}
 
 	public void clearGameObject() {
-		gameObjects.clear();
+		sprites.clear();
 	}
 
     //TODO
     //This checkObjectCollision algorithm is O(n^2), it can be O(n)
     //if we do it right
-	private void checkObjectCollision(GameObject object1, GameObject object2) {
+	private void checkObjectCollision(Sprite object1, Sprite object2) {
 		// get the objects position
 
 		// if bounds collide
@@ -80,7 +80,7 @@ final public class CollisionDetection {
 		}
 	}
 
-	private void handleCollision(GameObject object1, GameObject object2) {
+	private void handleCollision(Sprite object1, Sprite object2) {
 		// Break if we already dealt with this collision
 		// Due to the nature of the double loop it is possible to detect a collision
 		// twice in one tick()
@@ -95,7 +95,7 @@ final public class CollisionDetection {
 		}
 	}
 
-	private String determineCollisionDirection(GameObject object1, GameObject object2) {
+	private String determineCollisionDirection(Sprite object1, Sprite object2) {
 		Point2D object1PreviousPosition = object1.getPreviousPosition();
 		Point2D object1Position = object1.getNextPosition();
 		Point2D object1Dimensions = object1.getSize();
@@ -125,7 +125,7 @@ final public class CollisionDetection {
 		return "ERROR";
 	}
 
-	private void checkScreenBoundsCollision(GameObject object) {
+	private void checkScreenBoundsCollision(Sprite object) {
 		Point2D nextPosition = object.getNextPosition();
 		Point2D dimensions = object.getSize();
 		double positionX = nextPosition.getX();

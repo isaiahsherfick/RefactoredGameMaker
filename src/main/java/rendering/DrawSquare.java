@@ -1,7 +1,7 @@
 package rendering;
 
 import game.engine.Drawable;
-import game.engine.GameObject;
+import game.engine.Sprite;
 import javafx.geometry.Point2D;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.shape.Rectangle;
@@ -16,7 +16,7 @@ public class DrawSquare extends Shape implements Drawable {
 
     //TODO see DrawCircle - Christian
 	@Override
-	public void draw(GameObject drawMe, FlowPane gameFlow) {
+	public void draw(Sprite drawMe, FlowPane gameFlow) {
 		Point2D objectPosition = drawMe.getPosition();
 		Point2D objectDimensions = drawMe.getDimensions();
 

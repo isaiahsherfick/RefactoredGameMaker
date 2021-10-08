@@ -6,7 +6,7 @@ import behaviors.TimedBehavior;
 import javafx.geometry.Point2D;
 import javafx.scene.media.*;
 import sound.Sound;
-import game.engine.GameObject;
+import game.engine.Sprite;
 
 public class LeftAndRightMovement extends MoveBehavior {
 	
@@ -15,7 +15,7 @@ public class LeftAndRightMovement extends MoveBehavior {
 	//The circular structure is cause for concern - I'm not sure if it has any actual consequences in terms of memory
 	//but it's definitely a code smell
 	//Isaiah
-	public LeftAndRightMovement(GameObject o) {
+	public LeftAndRightMovement(Sprite o) {
 		super(o);
 	}
 	

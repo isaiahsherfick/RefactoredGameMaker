@@ -2,12 +2,12 @@
 package collisionBehaviors;
 
 import behaviors.CollisionBehavior;
-import game.engine.GameObject;
+import game.engine.Sprite;
 
 
 public class BlowUp extends CollisionBehavior{
 
-	public BlowUp(GameObject o) {
+	public BlowUp(Sprite o) {
 		super(o);
 	}
 	

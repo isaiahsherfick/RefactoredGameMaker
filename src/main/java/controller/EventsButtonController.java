@@ -11,7 +11,7 @@ import javafx.scene.control.CheckBox;
 import movementBehaviors.*;
 import strategies.Fire;
 import strategies.Strategy;
-import game.engine.GameObject;
+import game.engine.Sprite;
 
 /*
  * Requires a Game Object (Sprite) for which the events will be set.
@@ -31,7 +31,7 @@ public class EventsButtonController {
 	public static ArrayList<Strategy> allEvents;
 	// selected events for the gameObject
 	public static ArrayList<Strategy> selectedEvents = new ArrayList<Strategy>();
-	private GameObject gameObject;	
+	private Sprite sprite;	
 	private KeyBehavior keyBehaviour;
 	private MoveBehavior moveBehaviour;
 	private TimedBehavior timeBehaviour;
@@ -60,18 +60,18 @@ public class EventsButtonController {
 		allEvents.add(moveEvent);
 		allEvents.add(clickEvent);
 		allEvents.add(timeEvent); */
-		allEvents.add(new BlowUp(gameObject));
-		allEvents.add(new FallDown(gameObject));
-		allEvents.add(new LeftAndRightMovement(gameObject));
-		allEvents.add(new UpAndDownMovement(gameObject));
-		allEvents.add(new VariableMovement(gameObject));
+		allEvents.add(new BlowUp(sprite));
+		allEvents.add(new FallDown(sprite));
+		allEvents.add(new LeftAndRightMovement(sprite));
+		allEvents.add(new UpAndDownMovement(sprite));
+		allEvents.add(new VariableMovement(sprite));
 		allEvents.add(new BounceOffScreen());
 		allEvents.add(new Bounce());
 		
 	}
 	
-	public GameObject getGameObject() {
-		return gameObject;
+	public Sprite getGameObject() {
+		return sprite;
 	}
 	
 //	public void setGameObject(GameObject o) {
@@ -180,7 +180,7 @@ public class EventsButtonController {
 				events.add(e);
 			}
 		}
-		events.add(new Fire(gameObject));
+		events.add(new Fire(sprite));
 		return events;
 	}
 	
@@ -195,7 +195,7 @@ public class EventsButtonController {
 		//TODO
 		//Not sure what this is for, never saw it in the demo
 		//-Isaiah
-		events.add(new Fire(gameObject));
+		events.add(new Fire(sprite));
 		return events;
 	}
 	

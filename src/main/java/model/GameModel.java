@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import collisionUtility.CollisionDetection;
-import game.engine.GameObject;
+import game.engine.Sprite;
 
 public class GameModel {
 	
@@ -13,23 +13,23 @@ public class GameModel {
 	//At least it will be easy to build up a good model around it
 	//-Isaiah
 	//Easy enough to just make a model out of this, since this isn't even a model - Christian
-	private List<GameObject> gameObjects;
+	private List<Sprite> sprites;
 	
 	public GameModel() {
-		gameObjects = new ArrayList<>();
+		sprites = new ArrayList<>();
 	}
 	
-	public List<GameObject> getGameObjects() {
-		return gameObjects;
+	public List<Sprite> getGameObjects() {
+		return sprites;
 	}
 	
-	public void addNewGameObject(GameObject gameObject) {
-		gameObjects.add(gameObject);
-		CollisionDetection.gameObjects.add(gameObject);
+	public void addNewGameObject(Sprite sprite) {
+		sprites.add(sprite);
+		CollisionDetection.sprites.add(sprite);
 	}
 	
-	public void removeGameObject(GameObject gameObject) {
-		gameObjects.remove(gameObject);
-		CollisionDetection.gameObjects.remove(gameObject);
+	public void removeGameObject(Sprite sprite) {
+		sprites.remove(sprite);
+		CollisionDetection.sprites.remove(sprite);
 	}
 }

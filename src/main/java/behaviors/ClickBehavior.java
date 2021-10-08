@@ -5,7 +5,7 @@ import javafx.geometry.Point2D;
 import sound.NoSound;
 import sound.Sound;
 import strategies.Strategy;
-import game.engine.GameObject;
+import game.engine.Sprite;
 
 //TODO
 //Not sure why clickbehaviors contain sprites,
@@ -14,19 +14,19 @@ import game.engine.GameObject;
 public class ClickBehavior implements Strategy {
 	//Initializes as null object to avoid npes
 		private Sound soundEffect = new NoSound();
-		private GameObject sprite;
+		private Sprite sprite;
 		public ClickBehavior() {
 			
 		}
-		public ClickBehavior(GameObject o) {
+		public ClickBehavior(Sprite o) {
 			sprite = o;
 		}
 		
-		public GameObject getSprite() {
+		public Sprite getSprite() {
 			return this.sprite;
 		}
 		
-		public void setSprite(GameObject o) {
+		public void setSprite(Sprite o) {
 			this.sprite = o;
 		}
 		

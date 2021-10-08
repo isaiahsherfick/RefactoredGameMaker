@@ -8,7 +8,7 @@ import strategies.Strategy;
 
 import java.util.ArrayList;
 
-import game.engine.GameObject;
+import game.engine.Sprite;
 import input.KeyPolling;
 import javafx.scene.input.KeyCode;
 
@@ -20,20 +20,20 @@ public class KeyBehavior implements Strategy {
 	   //Initializes as null object to avoid npes
 		private Sound soundEffect = new NoSound();
 		private Strategy behaviorToExecute;
-		private GameObject sprite;
+		private Sprite sprite;
 		private ArrayList<KeyCode> keys;
 		public KeyBehavior() {
 			
 		}
-		public KeyBehavior(GameObject o) {
+		public KeyBehavior(Sprite o) {
 			sprite = o;
 		}
 		
-		public GameObject getSprite() {
+		public Sprite getSprite() {
 			return this.sprite;
 		}
 		
-		public void setSprite(GameObject o) {
+		public void setSprite(Sprite o) {
 			this.sprite = o;
 		}
 		

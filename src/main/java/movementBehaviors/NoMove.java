@@ -3,7 +3,7 @@ package movementBehaviors;
 import behaviors.MoveBehavior;
 import javafx.geometry.Point2D;
 import sound.Sound;
-import game.engine.GameObject;
+import game.engine.Sprite;
 
 //TODO
 //Admittedly good use of nullobject throughout the codebase
@@ -11,7 +11,7 @@ import game.engine.GameObject;
 //Isaiah
 public class NoMove extends MoveBehavior {
 	private Object objectReference;
-	public NoMove(GameObject o) {
+	public NoMove(Sprite o) {
 		//Does nothing
 		super(o);
 	}

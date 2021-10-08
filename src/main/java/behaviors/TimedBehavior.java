@@ -9,7 +9,7 @@ import javafx.util.Duration;
 import sound.NoSound;
 import sound.Sound;
 import strategies.Strategy;
-import game.engine.GameObject;
+import game.engine.Sprite;
 
 //TODO
 //Really this entire package needs refactored into 
@@ -23,7 +23,7 @@ public class TimedBehavior implements Strategy {
 	private double tickInterval = 1;
 	//Nested Strategy within the timedBehavior
 	private Strategy runOnInterval;
-	private GameObject sprite;
+	private Sprite sprite;
 	
 	public TimedBehavior() {
 		
@@ -32,17 +32,17 @@ public class TimedBehavior implements Strategy {
 	public TimedBehavior(double interval) {
 		this.tickInterval = interval;
 	}
-	public TimedBehavior(GameObject o, double interval, Strategy toRun) {
+	public TimedBehavior(Sprite o, double interval, Strategy toRun) {
 		this.sprite = o;
 		this.tickInterval = interval;
 		this.runOnInterval = toRun;
 	}
 	
-	public GameObject getSprite() {
+	public Sprite getSprite() {
 		return this.sprite;
 	}
 	
-	public void setSprite(GameObject o) {
+	public void setSprite(Sprite o) {
 		this.sprite = o;
 	}
 	

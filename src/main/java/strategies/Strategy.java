@@ -2,7 +2,7 @@
 package strategies;
 
 import sound.Sound;
-import game.engine.GameObject;
+import game.engine.Sprite;
 
 //TODO
 //This interface is nonsensical and has nothing to do with 

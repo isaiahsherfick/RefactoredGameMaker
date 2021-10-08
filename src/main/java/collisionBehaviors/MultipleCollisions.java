@@ -4,7 +4,7 @@ package collisionBehaviors;
 import java.util.ArrayList;
 
 import behaviors.CollisionBehavior;
-import game.engine.GameObject;
+import game.engine.Sprite;
 
 //Provides an interface to run multiple collision behaviors 
 public class MultipleCollisions extends CollisionBehavior{
@@ -16,7 +16,7 @@ public class MultipleCollisions extends CollisionBehavior{
 	//This is redundant with how gameobjects were implement after this was made and doesnt need any references to sprites. 
 	//Sprites should just contain a behavior chain for each event rather than need this class. -Christian
 	private ArrayList<CollisionBehavior> collisions;
-	public MultipleCollisions(GameObject o) {
+	public MultipleCollisions(Sprite o) {
 		super(o);
 		collisions = new ArrayList<CollisionBehavior>();
 	}

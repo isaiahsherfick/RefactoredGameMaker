@@ -3,11 +3,11 @@ package movementBehaviors;
 
 import behaviors.MoveBehavior;
 import javafx.geometry.Point2D;
-import game.engine.GameObject;
+import game.engine.Sprite;
 
 public class UpAndDownMovement extends MoveBehavior{
 	
-	public UpAndDownMovement(GameObject o) {
+	public UpAndDownMovement(Sprite o) {
 		super(o);
 		setDirection(Direction.UP);
 	}

@@ -11,5 +11,5 @@ public interface Drawable {
 	//draw(GraphicsContext2D g) {...}
 	//So that the call looks like "GameObject.draw()"
 	//Isaiah
-	public void draw(GameObject drawMe, FlowPane gameFlow);
+	public void draw(Sprite drawMe, FlowPane gameFlow);
 }

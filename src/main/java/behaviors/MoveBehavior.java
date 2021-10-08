@@ -5,7 +5,7 @@ import javafx.geometry.Point2D;
 import sound.NoSound;
 import sound.Sound;
 import strategies.Strategy;
-import game.engine.GameObject;
+import game.engine.Sprite;
 
 //Once again, makes no sense for this to contain a sprite and not the other way around
 //TODO
@@ -14,7 +14,7 @@ import game.engine.GameObject;
 public class MoveBehavior implements Strategy {
 	//Initializes as null object to avoid npes
 	private Sound soundEffect = new NoSound();
-	private GameObject sprite;
+	private Sprite sprite;
 	private double speed = 1.0;
 	private Direction currentDirection = Direction.RIGHT;
 	public enum Direction {
@@ -23,15 +23,15 @@ public class MoveBehavior implements Strategy {
 	public MoveBehavior() {
 		
 	}
-	public MoveBehavior(GameObject o) {
+	public MoveBehavior(Sprite o) {
 		sprite = o;
 	}
 	
-	public GameObject getSprite() {
+	public Sprite getSprite() {
 		return this.sprite;
 	}
 	
-	public void setSprite(GameObject o) {
+	public void setSprite(Sprite o) {
 		this.sprite = o;
 	}
 	

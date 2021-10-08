@@ -14,7 +14,7 @@ import javafx.scene.paint.Color;
 import strategies.Strategy;
 
 //Handles only position, velocity, and movement information
-public class GameObject extends DrawObject implements ObjectCollider, ScreenCollider  {
+public class Sprite extends DrawObject implements ObjectCollider, ScreenCollider  {
 	
 	private String objectName;
 
@@ -32,7 +32,7 @@ public class GameObject extends DrawObject implements ObjectCollider, ScreenColl
 	private Point2D size;
 
 
-	public GameObject() {
+	public Sprite() {
 		super();
 		previousPosition = new Point2D(0, 0);
 		velocity = new Point2D(0, 0);
@@ -42,7 +42,7 @@ public class GameObject extends DrawObject implements ObjectCollider, ScreenColl
 		behaviors = new ArrayList<Strategy>();
 	}
 
-	public GameObject(String name, Drawable drawBehaviour, Color color, Point2D position, Point2D dimensions) {
+	public Sprite(String name, Drawable drawBehaviour, Color color, Point2D position, Point2D dimensions) {
 		super(drawBehaviour, color, position, dimensions);
 		this.setObjectName(name);
 		this.previousPosition = position;
@@ -53,7 +53,7 @@ public class GameObject extends DrawObject implements ObjectCollider, ScreenColl
 		behaviors = new ArrayList<Strategy>();
 	}
 	
-	public GameObject(String name, Drawable drawBehaviour, Color color, Point2D position, Point2D dimensions, Image image) {
+	public Sprite(String name, Drawable drawBehaviour, Color color, Point2D position, Point2D dimensions, Image image) {
 		super(drawBehaviour, color, position, dimensions, image);
 		this.setObjectName(name);
 		this.previousPosition = position;
@@ -168,7 +168,7 @@ public class GameObject extends DrawObject implements ObjectCollider, ScreenColl
 	}
 
 	@Override
-	public void handleObjectCollision(GameObject collider, String collisionDirection) {
+	public void handleObjectCollision(Sprite collider, String collisionDirection) {
 		behaviors.forEach(strategy -> {
 			if (strategy instanceof CollisionBehavior) {
 				System.out.println("Collision Behavior Running");

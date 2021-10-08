@@ -5,7 +5,7 @@ import behaviors.MoveBehavior.Direction;
 import movementBehaviors.VariableMovement;
 import sound.Sound;
 import game.engine.GameEngine;
-import game.engine.GameObject;
+import game.engine.Sprite;
 
 //TODO
 //What even is this class?
@@ -14,7 +14,7 @@ import game.engine.GameObject;
 //it relies on the garbage "controllers". Needs to be a behavior on key or click event, and be cleaner -Christian
 public class Fire extends KeyBehavior {
 	
-	public Fire(GameObject o) {
+	public Fire(Sprite o) {
 		super(o);
 	}
 	
@@ -28,7 +28,7 @@ public class Fire extends KeyBehavior {
 	public void run() {
 		// Something like GameObject.fire()
 		//Alternatively, create a gameObject, and then assign it a new move up behavior and collision behavior to blow up'
-		GameObject newObject = new GameObject();
+		Sprite newObject = new Sprite();
 		newObject.setPosition(getSprite().getPosition());
 		VariableMovement fireBehavior = new VariableMovement();
 		fireBehavior.setDirection(Direction.UP);

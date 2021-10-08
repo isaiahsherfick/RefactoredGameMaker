@@ -1,7 +1,7 @@
 package collisionBehaviors;
 
 import behaviors.CollisionBehavior;
-import game.engine.GameObject;
+import game.engine.Sprite;
 
 //TODO
 //I'm guessing this is a gravity standin?
@@ -10,7 +10,7 @@ import game.engine.GameObject;
 //isaiah
 public class FallDown extends CollisionBehavior{
 
-	public FallDown(GameObject o) {
+	public FallDown(Sprite o) {
 		super(o);
 	}
 	
