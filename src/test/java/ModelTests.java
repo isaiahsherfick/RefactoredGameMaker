@@ -1,8 +1,10 @@
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 import org.json.simple.JSONObject;
+import org.json.simple.parser.ParseException;
 import org.junit.jupiter.api.Test;
 
 import constants.Constants;
@@ -153,14 +155,24 @@ class ModelTests {
 		m.addSprite(sprite4);
 		
 		//save them
-		m.save();
+		try {
+			m.save();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		//reset the saveandloadmanager and the spritemanager
 		m.resetSpriteManager();
 		m.resetSaveAndLoadManager();
 		
 		//load
-		m.load();
+		try {
+			m.load();
+		} catch (IOException | ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		assertNotEquals(0, m.getNumberOfSprites());
 		

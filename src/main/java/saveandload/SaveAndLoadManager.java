@@ -11,6 +11,7 @@ import java.util.ArrayList;
 
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 
 import sprite.Sprite;
 
@@ -43,6 +44,7 @@ public class SaveAndLoadManager {
 	public JSONObject save() {
 		JSONObject json = new JSONObject();
 		json.put("size", saveObjects.size());
+
 		for (int i = 0; i < saveObjects.size(); i++) {
 			json.put(i, saveObjects.get(i).save());
 		}
@@ -51,16 +53,18 @@ public class SaveAndLoadManager {
 
 	public void load(JSONObject json) {
 		saveObjects.clear();
-		int size = (int) json.get("size");
-		for (int i = 0; i < size; i++) {
-			JSONObject entry = (JSONObject) json.get(i);
+		int size = ((Long) json.get("size")).intValue();
+		for (Integer i = 0; i < size; i++) {
+			JSONObject entry = (JSONObject) json.get(i.toString());
 			String type = (String) entry.get("type");
 			switch (type) {
 			case "Sprite":
 				Sprite s = new Sprite();
 				s.load(entry);
 				saveObjects.add((Saveable) s);
+				break;
 			default:
+				System.out.println(type);
 				System.out.println("Tried to load something the save/load manager doesn't recognize");
 			}
 		}
@@ -81,15 +85,14 @@ public class SaveAndLoadManager {
 		fos.close();
 	}
 	
-	public void loadFile(String saveFilePath) throws IOException, ParseError
+	public void loadFile(String saveFilePath) throws IOException, ParseException
 	{
 		byte[] encoded = Files.readAllBytes(Paths.get(saveFilePath));
 		String jsonString = new String(encoded, Charset.defaultCharset());
 		
 		JSONParser parser = new JSONParser();  
 		JSONObject json = (JSONObject) parser.parse(jsonString); 	
-	
-		int size = (int)json.get("size");
+		load(json);
 	}
 		
 }

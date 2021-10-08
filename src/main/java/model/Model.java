@@ -1,9 +1,13 @@
 package model;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.json.simple.parser.ParseException;
+
 import collisionUtility.CollisionDetection;
+import constants.Constants;
 import saveandload.SaveAndLoadManager;
 import saveandload.Saveable;
 import sprite.Sprite;
@@ -41,6 +45,7 @@ public class Model {
 	{
 		spriteManager = new SpriteManager();
 		saveAndLoadManager = new SaveAndLoadManager();
+		saveFilePath = Constants.DEFAULT_SAVE_FILE_PATH;
 	}
 	
 	public void addSprite(Sprite sprite)
@@ -101,10 +106,15 @@ public class Model {
 	}
 	
 	//Load all sprites from the file at saveFilePath
-	//Catch the exception in controller
-	public void load()
+	//Catch the exceptions in controller
+	//IOExeption : file can't be found
+	//ParseException : JSON is bad
+	public void load() throws IOException, ParseException
 	{
-		//TODO
+		saveAndLoadManager.loadFile(saveFilePath);
+		ArrayList<Sprite> spriteList = saveAndLoadManager.getSprites();
+		resetSpriteManager();
+		spriteManager.addAll(spriteList);
 	}
 	
 	public String getSaveFilePath()

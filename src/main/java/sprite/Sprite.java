@@ -20,6 +20,9 @@ import game.engine.Drawable;
 //Handles only position, velocity, and movement information
 public class Sprite extends DrawObject implements Drawable, Saveable {
 	
+	//TODO
+	//New stuff is way down appended at the bottom of the file
+	
 	private String spriteName;
 
 	//TODO 
@@ -34,43 +37,6 @@ public class Sprite extends DrawObject implements Drawable, Saveable {
 	protected ArrayList<Strategy> behaviors;
 	protected Point2D nextPosition;
 	protected Point2D size;
-	
-	//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Old stuff ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-	
-	
-
-	//unique int identifier - will be handled by sprite manager
-	protected int spriteId;
-
-	//hitbox for collision handling, also contains x,y location
-	protected HitBox hitBox;
-	
-	//appearance - either shape or image, sprite doesn't care which
-	//protected Appearance appearance;
-	
-	//Chain of event behaviors
-	//protected EventBehaviorChain eventBehaviorChain;
-	
-	//map of spriteId : collisions against the corresponding sprite
-	//protected CollisionMap collisionMap;
-	
-
-
-	public Sprite() {
-		super();
-		previousPosition = new Point2D(0, 0);
-		velocity = new Point2D(0, 0);
-		moveDirection = new Point2D(0, 0);
-        nextPosition = new Point2D(0, 0);
-        size = new Point2D(0, 0);
-		behaviors = new ArrayList<Strategy>();
-		//OLD STUFF ^^^^^^^^^//
-		spriteId = Constants.DEFAULT_SPRITE_ID;
-		
-		//initializes hitbox with default x,y,width,height found in Constants.java
-		hitBox = new HitBox();
-	}
-
 
 	public Point2D getPreviousPosition() {
 		return previousPosition;
@@ -197,13 +163,6 @@ public class Sprite extends DrawObject implements Drawable, Saveable {
 		
 	}
 
-	@Override
-	public void draw(GraphicsContext g) 
-	{
-		// TODO Auto-generated method stub
-		
-	}
-
 
 	@Override
 	//DEPRECATED : delete after remove from Drawable interface
@@ -212,6 +171,59 @@ public class Sprite extends DrawObject implements Drawable, Saveable {
 		
 	}
 
+	/////////////////////////////////////////////////////////////////////////
+	/////////////////////////////////////////////////////////////////////////
+	/////////////////////////////////////////////////////////////////////////	^
+	//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Old stuff ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^	|
+	/////////////////////////////////////////////////////////////////////////
+	/////////////////////////////////////////////////////////////////////////
+	/////////////////////////////////////////////////////////////////////////
+	
+
+	//unique int identifier - will be handled by sprite manager
+	protected int spriteId;
+
+	//hitbox for collision handling, also contains x,y location
+	protected HitBox hitBox;
+	
+	//appearance - either shape or image, sprite doesn't care which
+	//protected Appearance appearance;
+	
+	//Chain of event behaviors
+	//protected EventBehaviorChain eventBehaviorChain;
+	
+	//map of spriteId : collisions against the corresponding sprite
+	//protected CollisionMap collisionMap;
+	
+
+
+	public Sprite() 
+	{
+		super();
+		previousPosition = new Point2D(0, 0);
+		velocity = new Point2D(0, 0);
+		moveDirection = new Point2D(0, 0);
+        nextPosition = new Point2D(0, 0);
+        size = new Point2D(0, 0);
+		behaviors = new ArrayList<Strategy>();
+		/////////////////////////////////////
+		///////////OLD STUFF/////////^^^/////
+		/////////////////////////////////////
+		
+		
+		spriteId = Constants.DEFAULT_SPRITE_ID;
+
+		//initializes hitbox with default x,y,width,height found in Constants.java
+		hitBox = new HitBox();
+	}
+
+
+	@Override
+	public void draw(GraphicsContext g) 
+	{
+		// TODO Auto-generated method stub
+		
+	}
 
 	public int getSpriteId() 
 	{
@@ -259,16 +271,26 @@ public class Sprite extends DrawObject implements Drawable, Saveable {
 		hitBox.setHeight(h);
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public JSONObject save() 
 	{
-		return null;
+		JSONObject json = new JSONObject();
+		json.put("type","Sprite");
+		json.put("spriteId",spriteId);
+		json.put("hitBox",hitBox.save());
+
+		//TODO keep this growing as more stuff is added to Sprite class
+		
+		return json;
 	}
 
 
 	@Override
 	public void load(JSONObject saveJSON) 
 	{
-
+		hitBox = new HitBox();
+		hitBox.load((JSONObject)saveJSON.get("hitBox"));
+		spriteId = ((Long)saveJSON.get("spriteId")).intValue();
 	}
 }
