@@ -4,8 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
 
-import game.engine.Sprite;
 import javafx.scene.image.ImageView;
+import sprite.Sprite;
 
 public class MakerControllerTest {
 	

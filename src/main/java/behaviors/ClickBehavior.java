@@ -4,8 +4,8 @@ package behaviors;
 import javafx.geometry.Point2D;
 import sound.NoSound;
 import sound.Sound;
+import sprite.Sprite;
 import strategies.Strategy;
-import game.engine.Sprite;
 
 //TODO
 //Not sure why clickbehaviors contain sprites,

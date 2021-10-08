@@ -3,7 +3,7 @@ package movementBehaviors;
 import behaviors.MoveBehavior;
 import javafx.geometry.Point2D;
 import sound.Sound;
-import game.engine.Sprite;
+import sprite.Sprite;
 
 //TODO
 //Admittedly good use of nullobject throughout the codebase

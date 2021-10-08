@@ -6,7 +6,6 @@ import java.util.List;
 
 import collisionUtility.CollisionDetection;
 import game.engine.GameEngine;
-import game.engine.Sprite;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Rectangle2D;
@@ -24,6 +23,7 @@ import javafx.stage.Stage;
 import layout.CustomLayout;
 import layout.FormLayouts;
 import model.GameModel;
+import sprite.Sprite;
 
 public class MainController {
 

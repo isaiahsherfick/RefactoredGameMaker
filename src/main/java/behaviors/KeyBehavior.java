@@ -4,11 +4,11 @@ package behaviors;
 
 import sound.NoSound;
 import sound.Sound;
+import sprite.Sprite;
 import strategies.Strategy;
 
 import java.util.ArrayList;
 
-import game.engine.Sprite;
 import input.KeyPolling;
 import javafx.scene.input.KeyCode;
 

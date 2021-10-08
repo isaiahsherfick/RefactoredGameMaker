@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.Test;
 
 import behaviors.ClickBehavior;
-import game.engine.Sprite;
+import sprite.Sprite;
 
 public class BlowUpTest {
 	

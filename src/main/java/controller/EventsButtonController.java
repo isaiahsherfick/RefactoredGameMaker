@@ -9,9 +9,9 @@ import collisionBehaviors.BounceOffScreen;
 import collisionBehaviors.FallDown;
 import javafx.scene.control.CheckBox;
 import movementBehaviors.*;
+import sprite.Sprite;
 import strategies.Fire;
 import strategies.Strategy;
-import game.engine.Sprite;
 
 /*
  * Requires a Game Object (Sprite) for which the events will be set.

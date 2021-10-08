@@ -1,13 +1,13 @@
 package controller;
 
 import game.engine.Drawable;
-import game.engine.Sprite;
 import javafx.geometry.Point2D;
 import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import model.GameModel;
 import rendering.DrawCircle;
 import rendering.DrawSquare;
+import sprite.Sprite;
 
 public class PlayerController {
 

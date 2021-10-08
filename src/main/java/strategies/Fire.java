@@ -4,8 +4,8 @@ import behaviors.KeyBehavior;
 import behaviors.MoveBehavior.Direction;
 import movementBehaviors.VariableMovement;
 import sound.Sound;
+import sprite.Sprite;
 import game.engine.GameEngine;
-import game.engine.Sprite;
 
 //TODO
 //What even is this class?

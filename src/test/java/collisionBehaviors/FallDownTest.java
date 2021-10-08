@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
 
-import game.engine.Sprite;
+import sprite.Sprite;
 
 public class FallDownTest {
 	

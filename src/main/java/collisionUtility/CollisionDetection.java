@@ -6,7 +6,7 @@ import java.util.List;
 
 import javafx.geometry.Point2D;
 import javafx.scene.Scene;
-import game.engine.Sprite;
+import sprite.Sprite;
 
 final public class CollisionDetection {
 

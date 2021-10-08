@@ -2,6 +2,7 @@ package game.engine;
 
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.layout.FlowPane;
+import sprite.Sprite;
 
 //Drawable interface
 public interface Drawable 

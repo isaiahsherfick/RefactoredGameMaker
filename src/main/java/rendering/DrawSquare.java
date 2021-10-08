@@ -1,12 +1,12 @@
 package rendering;
 
 import game.engine.Drawable;
-import game.engine.Sprite;
 import javafx.geometry.Point2D;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
+import sprite.Sprite;
 
 public class DrawSquare extends Shape implements Drawable {
 	

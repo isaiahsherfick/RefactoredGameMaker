@@ -1,7 +1,7 @@
 package collisionBehaviors;
 
 import behaviors.CollisionBehavior;
-import game.engine.Sprite;
+import sprite.Sprite;
 
 //TODO
 //I'm guessing this is a gravity standin?

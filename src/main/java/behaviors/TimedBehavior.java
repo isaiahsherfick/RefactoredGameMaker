@@ -8,8 +8,8 @@ import javafx.event.EventHandler;
 import javafx.util.Duration;
 import sound.NoSound;
 import sound.Sound;
+import sprite.Sprite;
 import strategies.Strategy;
-import game.engine.Sprite;
 
 //TODO
 //Really this entire package needs refactored into 

@@ -4,8 +4,8 @@ package behaviors;
 import javafx.geometry.Point2D;
 import sound.NoSound;
 import sound.Sound;
+import sprite.Sprite;
 import strategies.Strategy;
-import game.engine.Sprite;
 
 //Once again, makes no sense for this to contain a sprite and not the other way around
 //TODO

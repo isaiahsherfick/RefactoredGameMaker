@@ -3,7 +3,7 @@ package movementBehaviors;
 
 import behaviors.MoveBehavior;
 import javafx.geometry.Point2D;
-import game.engine.Sprite;
+import sprite.Sprite;
 
 public class UpAndDownMovement extends MoveBehavior{
 	

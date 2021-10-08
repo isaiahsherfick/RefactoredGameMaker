@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import collisionUtility.CollisionDetection;
-import game.engine.Sprite;
+import sprite.Sprite;
 
 public class GameModel {
 	

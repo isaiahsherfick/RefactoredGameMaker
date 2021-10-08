@@ -6,7 +6,6 @@ import java.util.Map;
 import game.engine.DrawImage;
 import game.engine.Drawable;
 import game.engine.GameEngine;
-import game.engine.Sprite;
 import javafx.event.EventHandler;
 import javafx.geometry.Point2D;
 import javafx.scene.control.Button;
@@ -16,6 +15,7 @@ import javafx.scene.paint.Color;
 import model.GameModel;
 import rendering.DrawCircle;
 import rendering.DrawSquare;
+import sprite.Sprite;
 
 public class MakerController {
 	

@@ -1,4 +1,4 @@
-package game.engine;
+package sprite;
 
 import java.util.ArrayList;
 
@@ -12,6 +12,8 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.paint.Color;
 import strategies.Strategy;
 import constants.Constants;
+import game.engine.DrawObject;
+import game.engine.Drawable;
 
 //Handles only position, velocity, and movement information
 public class Sprite extends DrawObject implements Drawable {
@@ -28,25 +30,25 @@ public class Sprite extends DrawObject implements Drawable {
 	protected Point2D velocity;
 	protected Point2D moveDirection;
 	protected ArrayList<Strategy> behaviors;
-	private Point2D nextPosition;
-	private Point2D size;
+	protected Point2D nextPosition;
+	protected Point2D size;
 	
 	
 
 	//unique int identifier - will be handled by 
-	private int spriteId;
+	protected int spriteId;
 
 	//hitbox for collision handling, also contains x,y location
-	//private HitBox hitBox;
+	//protected HitBox hitBox;
 	
 	//appearance - either shape or image, sprite doesn't care which
-	//private Appearance appearance;
+	//protected Appearance appearance;
 	
 	//Chain of event behaviors
-	//private EventBehaviorChain eventBehaviorChain;
+	//protected EventBehaviorChain eventBehaviorChain;
 	
 	//map of spriteId : collisions against the corresponding sprite
-	//private CollisionMap collisionMap;
+	//protected CollisionMap collisionMap;
 	
 
 
@@ -200,5 +202,25 @@ public class Sprite extends DrawObject implements Drawable {
 	public void draw(Sprite sprite, FlowPane gameFlow) {
 		// TODO Auto-generated method stub
 		
+	}
+
+
+	public int getSpriteId() 
+	{
+		return spriteId;
+	}
+
+
+	public void setSpriteId(int newId) 
+	{
+		spriteId = newId;
+	}
+	
+	public Sprite copy()
+	{
+		Sprite copySprite = new Sprite();
+		copySprite.setSpriteId(spriteId);
+		//TODO finish this
+		return copySprite;
 	}
 }

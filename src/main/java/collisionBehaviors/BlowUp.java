@@ -2,7 +2,7 @@
 package collisionBehaviors;
 
 import behaviors.CollisionBehavior;
-import game.engine.Sprite;
+import sprite.Sprite;
 
 
 public class BlowUp extends CollisionBehavior{
