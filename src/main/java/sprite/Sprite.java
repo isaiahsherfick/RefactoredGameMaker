@@ -2,6 +2,7 @@ package sprite;
 
 import java.util.ArrayList;
 
+import org.json.simple.JSONObject;
 
 import behaviors.*;
 import collisionBehaviors.BounceOffScreen;
@@ -10,13 +11,14 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.paint.Color;
+import saveandload.Saveable;
 import strategies.Strategy;
 import constants.Constants;
 import game.engine.DrawObject;
 import game.engine.Drawable;
 
 //Handles only position, velocity, and movement information
-public class Sprite extends DrawObject implements Drawable {
+public class Sprite extends DrawObject implements Drawable, Saveable {
 	
 	private String spriteName;
 
@@ -255,5 +257,18 @@ public class Sprite extends DrawObject implements Drawable {
 	public void setHeight(int h)
 	{
 		hitBox.setHeight(h);
+	}
+
+	@Override
+	public JSONObject save() 
+	{
+		return null;
+	}
+
+
+	@Override
+	public void load(JSONObject saveJSON) 
+	{
+
 	}
 }
