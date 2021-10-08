@@ -2,6 +2,7 @@ package sprite;
 
 import java.util.ArrayList;
 
+import org.json.simple.JSONObject;
 
 import behaviors.*;
 import collisionBehaviors.BounceOffScreen;
@@ -10,13 +11,17 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.paint.Color;
+import saveandload.Saveable;
 import strategies.Strategy;
 import constants.Constants;
 import game.engine.DrawObject;
 import game.engine.Drawable;
 
 //Handles only position, velocity, and movement information
-public class Sprite extends DrawObject implements Drawable {
+public class Sprite extends DrawObject implements Drawable, Saveable {
+	
+	//TODO
+	//New stuff is way down appended at the bottom of the file
 	
 	private String spriteName;
 
@@ -32,43 +37,6 @@ public class Sprite extends DrawObject implements Drawable {
 	protected ArrayList<Strategy> behaviors;
 	protected Point2D nextPosition;
 	protected Point2D size;
-	
-	//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Old stuff ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-	
-	
-
-	//unique int identifier - will be handled by sprite manager
-	protected int spriteId;
-
-	//hitbox for collision handling, also contains x,y location
-	protected HitBox hitBox;
-	
-	//appearance - either shape or image, sprite doesn't care which
-	//protected Appearance appearance;
-	
-	//Chain of event behaviors
-	//protected EventBehaviorChain eventBehaviorChain;
-	
-	//map of spriteId : collisions against the corresponding sprite
-	//protected CollisionMap collisionMap;
-	
-
-
-	public Sprite() {
-		super();
-		previousPosition = new Point2D(0, 0);
-		velocity = new Point2D(0, 0);
-		moveDirection = new Point2D(0, 0);
-        nextPosition = new Point2D(0, 0);
-        size = new Point2D(0, 0);
-		behaviors = new ArrayList<Strategy>();
-		//OLD STUFF ^^^^^^^^^//
-		spriteId = Constants.DEFAULT_SPRITE_ID;
-		
-		//initializes hitbox with default x,y,width,height found in Constants.java
-		hitBox = new HitBox();
-	}
-
 
 	public Point2D getPreviousPosition() {
 		return previousPosition;
@@ -195,13 +163,6 @@ public class Sprite extends DrawObject implements Drawable {
 		
 	}
 
-	@Override
-	public void draw(GraphicsContext g) 
-	{
-		// TODO Auto-generated method stub
-		
-	}
-
 
 	@Override
 	//DEPRECATED : delete after remove from Drawable interface
@@ -210,6 +171,59 @@ public class Sprite extends DrawObject implements Drawable {
 		
 	}
 
+	/////////////////////////////////////////////////////////////////////////
+	/////////////////////////////////////////////////////////////////////////
+	/////////////////////////////////////////////////////////////////////////	^
+	//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Old stuff ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^	|
+	/////////////////////////////////////////////////////////////////////////
+	/////////////////////////////////////////////////////////////////////////
+	/////////////////////////////////////////////////////////////////////////
+	
+
+	//unique int identifier - will be handled by sprite manager
+	protected int spriteId;
+
+	//hitbox for collision handling, also contains x,y location
+	protected HitBox hitBox;
+	
+	//appearance - either shape or image, sprite doesn't care which
+	//protected Appearance appearance;
+	
+	//Chain of event behaviors
+	//protected EventBehaviorChain eventBehaviorChain;
+	
+	//map of spriteId : collisions against the corresponding sprite
+	//protected CollisionMap collisionMap;
+	
+
+
+	public Sprite() 
+	{
+		super();
+		previousPosition = new Point2D(0, 0);
+		velocity = new Point2D(0, 0);
+		moveDirection = new Point2D(0, 0);
+        nextPosition = new Point2D(0, 0);
+        size = new Point2D(0, 0);
+		behaviors = new ArrayList<Strategy>();
+		/////////////////////////////////////
+		///////////OLD STUFF/////////^^^/////
+		/////////////////////////////////////
+		
+		
+		spriteId = Constants.DEFAULT_SPRITE_ID;
+
+		//initializes hitbox with default x,y,width,height found in Constants.java
+		hitBox = new HitBox();
+	}
+
+
+	@Override
+	public void draw(GraphicsContext g) 
+	{
+		// TODO Auto-generated method stub
+		
+	}
 
 	public int getSpriteId() 
 	{
@@ -226,10 +240,16 @@ public class Sprite extends DrawObject implements Drawable {
 	{
 		Sprite copySprite = new Sprite();
 		copySprite.setSpriteId(spriteId);
+		copySprite.setHitBox(hitBox);
 		//TODO finish this
 		return copySprite;
 	}
 
+
+	private void setHitBox(HitBox h) 
+	{
+		hitBox = h;
+	}
 
 	public Point2D getLocation() 
 	{
@@ -255,5 +275,28 @@ public class Sprite extends DrawObject implements Drawable {
 	public void setHeight(int h)
 	{
 		hitBox.setHeight(h);
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public JSONObject save() 
+	{
+		JSONObject json = new JSONObject();
+		json.put("type","Sprite");
+		json.put("spriteId",spriteId);
+		json.put("hitBox",hitBox.save());
+
+		//TODO keep this growing as more stuff is added to Sprite class
+		
+		return json;
+	}
+
+
+	@Override
+	public void load(JSONObject saveJSON) 
+	{
+		hitBox = new HitBox();
+		hitBox.load((JSONObject)saveJSON.get("hitBox"));
+		spriteId = ((Long)saveJSON.get("spriteId")).intValue();
 	}
 }

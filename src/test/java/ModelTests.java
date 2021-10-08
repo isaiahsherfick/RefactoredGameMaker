@@ -1,8 +1,10 @@
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 import org.json.simple.JSONObject;
+import org.json.simple.parser.ParseException;
 import org.junit.jupiter.api.Test;
 
 import constants.Constants;
@@ -119,6 +121,8 @@ class ModelTests {
 	
 	
 	@Test
+	//This is the big test that will ensure the model, spritemanager, saveandloadmanager, and all related systems work in tandem
+	//Needs updated as more stuff we want to save gets implemented
 	public void saveAndLoadTest()
 	{
 		//Make new model and a bunch of sprites
@@ -137,6 +141,12 @@ class ModelTests {
 		Point2D sprite3Size = sprite3.getSize();
 		sprite4.setHeight(20);
 		Point2D sprite4Size = sprite4.getSize();
+		
+		ArrayList<Point2D> expecteds = new ArrayList<>();
+		expecteds.add(sprite1Location);
+		expecteds.add(sprite2Location);
+		expecteds.add(sprite3Size);
+		expecteds.add(sprite4Size);
 
 		//add them to the model
 		m.addSprite(sprite1);
@@ -145,13 +155,35 @@ class ModelTests {
 		m.addSprite(sprite4);
 		
 		//save them
+		try {
+			m.save();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		//reset the saveandloadmanager and the spritemanager
+		m.resetSpriteManager();
+		m.resetSaveAndLoadManager();
 		
 		//load
+		try {
+			m.load();
+		} catch (IOException | ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
-		//assert that everything is the same 
+		assertNotEquals(0, m.getNumberOfSprites());
 		
-		
+		//assert that everything got preserved
+		for (int i = 0; i < 2; i++)
+		{
+			assertEquals(expecteds.get(i), m.getSprite(i).getLocation());
+		}
+		for (int i = 2; i < 4; i++)
+		{
+			assertEquals(expecteds.get(i), m.getSprite(i).getSize());
+		}
 	}
 }

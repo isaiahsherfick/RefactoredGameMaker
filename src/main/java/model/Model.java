@@ -1,10 +1,15 @@
 package model;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.json.simple.parser.ParseException;
+
 import collisionUtility.CollisionDetection;
+import constants.Constants;
 import saveandload.SaveAndLoadManager;
+import saveandload.Saveable;
 import sprite.Sprite;
 import sprite.SpriteManager;
 
@@ -39,6 +44,8 @@ public class Model {
 	public Model()
 	{
 		spriteManager = new SpriteManager();
+		saveAndLoadManager = new SaveAndLoadManager();
+		saveFilePath = Constants.DEFAULT_SAVE_FILE_PATH;
 	}
 	
 	public void addSprite(Sprite sprite)
@@ -86,16 +93,28 @@ public class Model {
 	
 	//Save all sprites, write them to the file stored at saveFilePath
 	//Catch the exception in controller
-	public void save()
+	public void save() throws IOException
 	{
-		//TODO
+		ArrayList<Sprite> spriteList = spriteManager.getSpriteList();
+		ArrayList<Saveable> saveableList = new ArrayList<>();
+		for (Sprite s : spriteList)
+		{
+			saveableList.add((Saveable)s);
+		}
+		saveAndLoadManager.addAll(saveableList);
+		saveAndLoadManager.saveFile(saveFilePath);
 	}
 	
 	//Load all sprites from the file at saveFilePath
-	//Catch the exception in controller
-	public void load()
+	//Catch the exceptions in controller
+	//IOExeption : file can't be found
+	//ParseException : JSON is bad
+	public void load() throws IOException, ParseException
 	{
-		//TODO
+		saveAndLoadManager.loadFile(saveFilePath);
+		ArrayList<Sprite> spriteList = saveAndLoadManager.getSprites();
+		resetSpriteManager();
+		spriteManager.addAll(spriteList);
 	}
 	
 	public String getSaveFilePath()

@@ -98,4 +98,12 @@ public class SpriteManager
 			spriteMap.put(sprite.getSpriteId(), sprite);
 		}
 	}
+
+	public void addAll(ArrayList<Sprite> spriteList) 
+	{
+		for (Sprite s : spriteList)
+		{
+			add(s);
+		}
+	}
 }
