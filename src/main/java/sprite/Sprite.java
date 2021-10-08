@@ -240,10 +240,16 @@ public class Sprite extends DrawObject implements Drawable, Saveable {
 	{
 		Sprite copySprite = new Sprite();
 		copySprite.setSpriteId(spriteId);
+		copySprite.setHitBox(hitBox);
 		//TODO finish this
 		return copySprite;
 	}
 
+
+	private void setHitBox(HitBox h) 
+	{
+		hitBox = h;
+	}
 
 	public Point2D getLocation() 
 	{
