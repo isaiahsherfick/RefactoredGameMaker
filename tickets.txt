@@ -10,8 +10,6 @@ Initial tasks -- upload to Jira as soon as access is cleared
 
 
 ----------------------TODO-----------------------------------
-Implement save/load - Isaiah
-Fix Sprite: SpriteIDs - Isaiah
 Add StrategyManager - Isaiah
 
 Christian - Start implementing FXML UI
@@ -28,6 +26,8 @@ Create controller - Ramya
 Unit test controller - Ramya
 
 -------------------IN PROGRESS-------------------------------
+Implement save/load - Isaiah
+Fix Sprite - Isaiah
 Extend model - Isaiah 
 Model unit testing - Isaiah
 -------------------COMPLETED---------------------------------
