@@ -12,6 +12,7 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
 import saveandload.Saveable;
 import saveandload.SaveableImage;
+import saveandload.SaveableRectangle;
 import saveandload.SaveableShape;
 
 //Author Isaiah Sherfick
@@ -35,7 +36,7 @@ public class Appearance implements Drawable, Saveable
 		
 
 		//Rectangle by default
-		shape = new SaveableShape();
+		shape = new SaveableRectangle();
 		
 		//shape by default
 		shapeOrImage = Constants.SHAPE;
@@ -107,15 +108,7 @@ public class Appearance implements Drawable, Saveable
 		saveObj.put("y",y);
 		saveObj.put("width",width);
 		saveObj.put("height",height);
-		
-		if (shapeOrImage == Constants.SHAPE)
-		{
-			//Save the shape
-		}
-		else 
-		{
-			//Save the image
-		}
+		saveObj.put("shape",shape.save());
 		
 		return saveObj;
 	}
@@ -133,10 +126,11 @@ public class Appearance implements Drawable, Saveable
 	}
 
 	@Override
+	//This is the one we will actually use
 	public void draw(GraphicsContext g) 
 	{
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	//DEPRECATED -- remove after interface changes
