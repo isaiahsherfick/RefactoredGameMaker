@@ -3,6 +3,7 @@ package rendering;
 import game.engine.Drawable;
 import game.engine.Sprite;
 import javafx.geometry.Point2D;
+import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
@@ -15,7 +16,6 @@ public class DrawSquare extends Shape implements Drawable {
     private double orgTranslateY;
 
     //TODO see DrawCircle - Christian
-	@Override
 	public void draw(Sprite drawMe, FlowPane gameFlow) {
 		Point2D objectPosition = drawMe.getPosition();
 		Point2D objectDimensions = drawMe.getDimensions();
@@ -57,5 +57,11 @@ public class DrawSquare extends Shape implements Drawable {
         });
 		
 		gameFlow.getChildren().add(rectangle);
+	}
+
+	@Override
+	public void draw(GraphicsContext g) {
+		// TODO Auto-generated method stub
+		
 	}
 }

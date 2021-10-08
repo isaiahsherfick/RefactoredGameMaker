@@ -1,6 +1,7 @@
 package game.engine;
 
 import javafx.geometry.Point2D;
+import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
 
@@ -11,7 +12,6 @@ public class DrawImage implements Drawable {
     private double orgTranslateX;
     private double orgTranslateY;
 
-	@Override
 	public void draw(Sprite drawMe, FlowPane gameFlow) {
 		Point2D objectPosition = drawMe.getPosition();
 		Point2D objectDimensions = drawMe.getDimensions();
@@ -49,5 +49,11 @@ public class DrawImage implements Drawable {
         });
 		
 		gameFlow.getChildren().add(imageView);
+	}
+
+	@Override
+	public void draw(GraphicsContext g) {
+		// TODO Auto-generated method stub
+		
 	}
 }

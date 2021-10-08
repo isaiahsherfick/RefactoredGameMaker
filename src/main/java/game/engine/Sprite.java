@@ -6,15 +6,16 @@ import java.util.ArrayList;
 import behaviors.*;
 import collisionBehaviors.BounceOffScreen;
 import javafx.geometry.Point2D;
+import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.paint.Color;
 import strategies.Strategy;
 
 //Handles only position, velocity, and movement information
-public class Sprite extends DrawObject {
+public class Sprite extends DrawObject implements Drawable {
 	
-	private String objectName;
+	private String spriteName;
 
 	//TODO 
 	//Unsure if we need previousposition and nextposition
@@ -28,6 +29,24 @@ public class Sprite extends DrawObject {
 	protected ArrayList<Strategy> behaviors;
 	private Point2D nextPosition;
 	private Point2D size;
+	
+	
+
+	//unique int identifier - will be handled by 
+	private int spriteId;
+
+	//hitbox for collision handling, also contains x,y location
+	//private HitBox hitBox;
+	
+	//appearance - either shape or image, sprite doesn't care which
+	//private Appearance appearance;
+	
+	//Chain of event behaviors
+	//private EventBehaviorChain eventBehaviorChain;
+	
+	//map of spriteId : collisions against the corresponding sprite
+	//private CollisionMap collisionMap;
+	
 
 
 	public Sprite() {
@@ -40,27 +59,6 @@ public class Sprite extends DrawObject {
 		behaviors = new ArrayList<Strategy>();
 	}
 
-	public Sprite(String name, Drawable drawBehaviour, Color color, Point2D position, Point2D dimensions) {
-		super(drawBehaviour, color, position, dimensions);
-		this.setObjectName(name);
-		this.previousPosition = position;
-		this.size = dimensions;
-	    this.nextPosition = position;
-		this.velocity = new Point2D(0, 0);
-		moveDirection = new Point2D(0, 0);
-		behaviors = new ArrayList<Strategy>();
-	}
-	
-	public Sprite(String name, Drawable drawBehaviour, Color color, Point2D position, Point2D dimensions, Image image) {
-		super(drawBehaviour, color, position, dimensions, image);
-		this.setObjectName(name);
-		this.previousPosition = position;
-		this.size = dimensions;
-	    this.nextPosition = position;
-		this.velocity = new Point2D(0, 0);
-		moveDirection = new Point2D(0, 0);
-		behaviors = new ArrayList<Strategy>();
-	}
 
 	public Point2D getPreviousPosition() {
 		return previousPosition;
@@ -146,11 +144,11 @@ public class Sprite extends DrawObject {
 	}
 	
 	public String getObjectName() {
-		return objectName;
+		return spriteName;
 	}
 
 	private void setObjectName(String objectName) {
-		this.objectName = objectName;
+		this.spriteName = objectName;
 	}
 	
 	public Point2D getNextPosition() {
@@ -184,6 +182,20 @@ public class Sprite extends DrawObject {
 				}
 			}
 		}
+		
+	}
+
+	@Override
+	public void draw(GraphicsContext g) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	//DEPRECATED : delete after remove from Drawable interface
+	public void draw(Sprite sprite, FlowPane gameFlow) {
+		// TODO Auto-generated method stub
 		
 	}
 }

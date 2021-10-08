@@ -3,6 +3,7 @@ package rendering;
 import game.engine.Drawable;
 import game.engine.Sprite;
 import javafx.geometry.Point2D;
+import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.shape.Circle;
 
@@ -13,7 +14,6 @@ public class DrawCircle implements Drawable {
     private double orgTranslateX;
     private double orgTranslateY;
     
-	@Override
 	//TODO
 	//I now understand the point of draw() having a gameobject get passed to it.
 	//We still need to move that behavior into the sprite and have the view call draw() - that will allow the argument to be removed
@@ -53,6 +53,12 @@ public class DrawCircle implements Drawable {
 
 		gameFlow.getChildren().add(circle);
 
+	}
+
+	@Override
+	public void draw(GraphicsContext g) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

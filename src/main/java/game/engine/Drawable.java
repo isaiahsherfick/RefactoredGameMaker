@@ -1,15 +1,14 @@
 package game.engine;
 
+import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.layout.FlowPane;
 
 //Drawable interface
-public interface Drawable {
-  //Method that will draw drawMe onto context
-	
-	//TODO
-	//I feel like it's probably better to simply have 
-	//draw(GraphicsContext2D g) {...}
-	//So that the call looks like "GameObject.draw()"
-	//Isaiah
-	public void draw(Sprite drawMe, FlowPane gameFlow);
+public interface Drawable 
+{
+	//Tell the drawable to draw itself on g
+	public void draw(GraphicsContext g);
+
+	//DEPRECATED - delete after sprite can get rid of it
+	public void draw(Sprite sprite, FlowPane gameFlow);
 }

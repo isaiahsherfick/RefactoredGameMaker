@@ -25,8 +25,7 @@ public class PlayerController {
 
 	public void addNewGameObject(String selectedShape, ImageView imageView, String objectName, String color) {
 		if (imageView.getImage() == null) {
-			Sprite sprite = new Sprite(objectName, getDrawableBehaviour(selectedShape),
-					Color.valueOf(color), new Point2D(10, 10), new Point2D(50, 25));
+			Sprite sprite = new Sprite();
 			
 			gameModel.addNewGameObject(sprite);
 		}

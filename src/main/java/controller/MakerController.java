@@ -43,8 +43,7 @@ public class MakerController {
 
 	public void addNewGameObject(String selectedShape, ImageView imageView, String objectName, String color) {
 		if (imageView.getImage() == null) {
-			Sprite sprite = new Sprite(objectName, getDrawableBehaviour(selectedShape),
-					Color.valueOf(color), new Point2D(10, 10), dimensionMap.get(selectedShape));
+			Sprite sprite = new Sprite();
 			
 			currentlySelectedObject = sprite;
 			GameEngine.sharedInstance.register(currentlySelectedObject);
@@ -53,8 +52,7 @@ public class MakerController {
 			gameModel.addNewGameObject(sprite);
 			MainController.performDraw(gameModel.getGameObjects());
 		} else {
-			Sprite sprite = new Sprite(objectName, getDrawableBehaviour(selectedShape),
-					Color.valueOf(color), new Point2D(40, 40), new Point2D(60, 80), imageView.getImage());
+			Sprite sprite = new Sprite();
 			
 			currentlySelectedObject = sprite;
 			GameEngine.sharedInstance.register(currentlySelectedObject);
