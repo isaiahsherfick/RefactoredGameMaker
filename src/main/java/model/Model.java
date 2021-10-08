@@ -32,7 +32,6 @@ public class Model {
 	
 	//OLD STUFF ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^////
 	
-	
 	private SpriteManager spriteManager;
 	private SaveAndLoadManager saveAndLoadManager;
 	private String saveFilePath;
@@ -47,31 +46,47 @@ public class Model {
 		spriteManager.add(sprite);
 	}
 	
+	//pass this method a sprite which has been changed by the user
+	//since the view never receives a direct reference to the sprite,
+	//we now need to overwrite the one which is in the spritemanager with the changed sprite
+	public void modifySprite(Sprite sprite)
+	{
+		spriteManager.modifySprite(sprite);
+	}
+	
+	//Returns a copy of the sprite stored at spriteId in the spritemanager
 	public Sprite getSprite(int spriteId)
 	{
 		return spriteManager.get(spriteId);
 	}
 	
+	//Removes the sprite if the manager contains an entry at its id
 	public void removeSprite(Sprite sprite)
 	{
 		spriteManager.remove(sprite.getSpriteId());
 	}
 	
+	//get an arraylist of all sprites in the manager
 	public ArrayList<Sprite> getSpriteList()
 	{
 		return spriteManager.getSpriteList();
 	}
 	
+	//replace the sprite manager with a new one
 	public void resetSpriteManager()
 	{
 		spriteManager = new SpriteManager();
 	}
 	
+	//Save all sprites, write them to the file stored at saveFilePath
+	//Catch the exception in controller
 	public void save()
 	{
 		//TODO
 	}
 	
+	//Load all sprites from the file at saveFilePath
+	//Catch the exception in controller
 	public void load()
 	{
 		//TODO
@@ -87,6 +102,7 @@ public class Model {
 		saveFilePath = path;
 	}
 
+	//Return the number of sprites in the system
 	public int getNumberOfSprites()
 	{
 		return spriteManager.getSize();

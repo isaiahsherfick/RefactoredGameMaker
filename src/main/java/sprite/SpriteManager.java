@@ -66,6 +66,11 @@ public class SpriteManager
 		return sprite.copy();
 	}
 	
+	public boolean containsSprite(int spriteId)
+	{
+		return spriteMap.containsKey(spriteId);
+	}
+	
 	//Get the size of the sprite master
 	public int getSize()
 	{
@@ -81,5 +86,16 @@ public class SpriteManager
 			spriteList.add(spriteMap.get(spriteId));
 		}
 		return spriteList;
+	}
+
+	//Overwrite a sprite already in the sprite manager
+	//takes in a sprite which has been modified by the controller
+	//since the frontend only ever receives copies of sprites
+	public void modifySprite(Sprite sprite) 
+	{
+		if (containsSprite(sprite.getSpriteId()))
+		{
+			spriteMap.put(sprite.getSpriteId(), sprite);
+		}
 	}
 }
