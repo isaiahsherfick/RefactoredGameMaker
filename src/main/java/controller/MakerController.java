@@ -12,7 +12,7 @@ import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
-import model.GameModel;
+import model.Model;
 import rendering.DrawCircle;
 import rendering.DrawSquare;
 import sprite.Sprite;
@@ -26,7 +26,7 @@ public class MakerController {
 	private static final String SQUARE = "SQUARE";
 	private static final String RECTANGLE = "RECTANGLE";
 	private static Sprite currentlySelectedObject;
-	private GameModel gameModel;
+	private Model model;
 	
 	private Map<String, Point2D> dimensionMap = new HashMap<>();
 
@@ -35,7 +35,7 @@ public class MakerController {
 	//There is actually 0 MVC in this codebase
 	//Isaiah
 	public MakerController() {
-		gameModel = new GameModel();
+		model = new Model();
 		dimensionMap.put(CIRCLE, new Point2D(20, 20));
 		dimensionMap.put(SQUARE, new Point2D(30, 30));
 		dimensionMap.put(RECTANGLE, new Point2D(50, 25));
@@ -49,15 +49,15 @@ public class MakerController {
 			GameEngine.sharedInstance.register(currentlySelectedObject);
 			sprite.setOnMousePressed(buttonMousePressedEventHandler);
 			sprite.setOnMouseDragged(buttonOnMouseDraggedEventHandler);
-			gameModel.addNewGameObject(sprite);
-			MainController.performDraw(gameModel.getGameObjects());
+			model.addNewGameObject(sprite);
+			MainController.performDraw(model.getGameObjects());
 		} else {
 			Sprite sprite = new Sprite();
 			
 			currentlySelectedObject = sprite;
 			GameEngine.sharedInstance.register(currentlySelectedObject);
-			gameModel.addNewGameObject(sprite);
-			MainController.performDraw(gameModel.getGameObjects());
+			model.addNewGameObject(sprite);
+			MainController.performDraw(model.getGameObjects());
 		}
 		//gameModel.getGameObjects().forEach(obj -> GameEngine.sharedInstance.register(obj));
 	}
@@ -72,8 +72,8 @@ public class MakerController {
 		return new DrawImage();
 	}
 	
-	public GameModel getGameModel() {
-		return gameModel;
+	public Model getGameModel() {
+		return model;
 	}
 	
 	public Sprite getCurrentlySelectedObject() {

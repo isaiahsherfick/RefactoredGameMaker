@@ -4,7 +4,7 @@ import game.engine.Drawable;
 import javafx.geometry.Point2D;
 import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
-import model.GameModel;
+import model.Model;
 import rendering.DrawCircle;
 import rendering.DrawSquare;
 import sprite.Sprite;
@@ -12,7 +12,7 @@ import sprite.Sprite;
 public class PlayerController {
 
 	private static final String CIRCLE = "CIRCLE";
-	private GameModel gameModel;
+	private Model model;
 
 	//TODO
 	//Very confused about how each of these view/controller things create a new GameModel()
@@ -20,14 +20,14 @@ public class PlayerController {
 	//isaiah
 	//The gameModel also isnt even a model so they all have independent ArrayLists
 	public PlayerController() {
-		gameModel = new GameModel();
+		model = new Model();
 	}
 
 	public void addNewGameObject(String selectedShape, ImageView imageView, String objectName, String color) {
 		if (imageView.getImage() == null) {
 			Sprite sprite = new Sprite();
 			
-			gameModel.addNewGameObject(sprite);
+			model.addNewGameObject(sprite);
 		}
 	}
 
@@ -37,8 +37,8 @@ public class PlayerController {
 		return new DrawSquare();
 	}
 	
-	public GameModel getGameModel() {
-		return gameModel;
+	public Model getGameModel() {
+		return model;
 	}
 
 }

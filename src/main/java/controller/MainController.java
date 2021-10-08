@@ -22,7 +22,7 @@ import javafx.stage.Screen;
 import javafx.stage.Stage;
 import layout.CustomLayout;
 import layout.FormLayouts;
-import model.GameModel;
+import model.Model;
 import sprite.Sprite;
 
 public class MainController {
