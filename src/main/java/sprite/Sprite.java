@@ -187,7 +187,7 @@ public class Sprite extends DrawObject implements Drawable, Saveable {
 	protected HitBox hitBox;
 	
 	//appearance - either shape or image, sprite doesn't care which
-	//protected Appearance appearance;
+	protected Appearance appearance;
 	
 	//Chain of event behaviors
 	//protected EventBehaviorChain eventBehaviorChain;
