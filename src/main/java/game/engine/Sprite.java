@@ -5,8 +5,6 @@ import java.util.ArrayList;
 
 import behaviors.*;
 import collisionBehaviors.BounceOffScreen;
-import collisionUtility.ObjectCollider;
-import collisionUtility.ScreenCollider;
 import javafx.geometry.Point2D;
 import javafx.scene.image.Image;
 import javafx.scene.layout.FlowPane;
@@ -14,7 +12,7 @@ import javafx.scene.paint.Color;
 import strategies.Strategy;
 
 //Handles only position, velocity, and movement information
-public class Sprite extends DrawObject implements ObjectCollider, ScreenCollider  {
+public class Sprite extends DrawObject {
 	
 	private String objectName;
 
@@ -167,7 +165,6 @@ public class Sprite extends DrawObject implements ObjectCollider, ScreenCollider
 		return size;
 	}
 
-	@Override
 	public void handleObjectCollision(Sprite collider, String collisionDirection) {
 		behaviors.forEach(strategy -> {
 			if (strategy instanceof CollisionBehavior) {
@@ -187,12 +184,6 @@ public class Sprite extends DrawObject implements ObjectCollider, ScreenCollider
 				}
 			}
 		}
-		
-	}
-
-	@Override
-	public void handleScreenCollision(Point2D newPosition) {
-		// TODO Auto-generated method stub
 		
 	}
 }
