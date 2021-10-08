@@ -11,6 +11,7 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.paint.Color;
 import strategies.Strategy;
+import constants.Constants;
 
 //Handles only position, velocity, and movement information
 public class Sprite extends DrawObject implements Drawable {
@@ -57,6 +58,8 @@ public class Sprite extends DrawObject implements Drawable {
         nextPosition = new Point2D(0, 0);
         size = new Point2D(0, 0);
 		behaviors = new ArrayList<Strategy>();
+		//OLD STUFF ^^^^^^^^^//
+		spriteId = Constants.DEFAULT_SPRITE_ID;
 	}
 
 
