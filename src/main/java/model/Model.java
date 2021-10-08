@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import collisionUtility.CollisionDetection;
+import saveandload.SaveAndLoadManager;
 import sprite.Sprite;
 import sprite.SpriteManager;
 
@@ -33,6 +34,7 @@ public class Model {
 	
 	
 	private SpriteManager spriteManager;
+	private SaveAndLoadManager saveAndLoadManager;
 	private String saveFilePath;
 
 	public Model()
@@ -79,8 +81,14 @@ public class Model {
 	{
 		return saveFilePath;
 	}
+	
 	public void setSaveFilePath(String path)
 	{
 		saveFilePath = path;
+	}
+
+	public int getNumberOfSprites()
+	{
+		return spriteManager.getSize();
 	}
 }
