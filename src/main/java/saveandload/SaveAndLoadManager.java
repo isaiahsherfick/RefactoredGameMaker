@@ -51,10 +51,12 @@ public class SaveAndLoadManager {
 		return json;
 	}
 
-	public void load(JSONObject json) {
+	public void load(JSONObject json) 
+	{
 		saveObjects.clear();
 		int size = ((Long) json.get("size")).intValue();
-		for (Integer i = 0; i < size; i++) {
+		for (Integer i = 0; i < size; i++) 
+		{
 			JSONObject entry = (JSONObject) json.get(i.toString());
 			String type = (String) entry.get("type");
 			switch (type) {
@@ -68,6 +70,11 @@ public class SaveAndLoadManager {
 				System.out.println("Tried to load something the save/load manager doesn't recognize");
 			}
 		}
+//		System.out.println("SaveObjects:");
+//		for (int i = 0; i < saveObjects.size(); i++)
+//		{
+//			System.out.println(saveObjects.get(i));
+//		}
 	}
 
 	public void saveFile(String saveFilePath) throws IOException

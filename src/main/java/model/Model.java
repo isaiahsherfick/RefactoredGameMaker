@@ -13,7 +13,8 @@ import saveandload.Saveable;
 import sprite.Sprite;
 import sprite.SpriteManager;
 
-public class Model {
+public class Model 
+{
 	
 	private List<Sprite> sprites;
 	
@@ -113,6 +114,10 @@ public class Model {
 	{
 		saveAndLoadManager.loadFile(saveFilePath);
 		ArrayList<Sprite> spriteList = saveAndLoadManager.getSprites();
+//		for (int i = 0; i<spriteList.size(); i++)
+//		{
+//			System.out.println(spriteList.get(i));
+//		}
 		resetSpriteManager();
 		spriteManager.addAll(spriteList);
 	}

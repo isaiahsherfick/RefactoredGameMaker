@@ -144,7 +144,6 @@ public class Sprite extends DrawObject implements Drawable, Saveable {
 	public void handleObjectCollision(Sprite collider, String collisionDirection) {
 		behaviors.forEach(strategy -> {
 			if (strategy instanceof CollisionBehavior) {
-				System.out.println("Collision Behavior Running");
 				strategy.run();
 			}
 		});
@@ -215,6 +214,7 @@ public class Sprite extends DrawObject implements Drawable, Saveable {
 
 		//initializes hitbox with default x,y,width,height found in Constants.java
 		hitBox = new HitBox();
+		appearance = new Appearance();
 	}
 
 
@@ -236,45 +236,40 @@ public class Sprite extends DrawObject implements Drawable, Saveable {
 		spriteId = newId;
 	}
 	
-	public Sprite copy()
-	{
-		Sprite copySprite = new Sprite();
-		copySprite.setSpriteId(spriteId);
-		copySprite.setHitBox(hitBox);
-		//TODO finish this
-		return copySprite;
-	}
 
+
+	private void setAppearance(Appearance appearance2) 
+	{
+		appearance = appearance2;
+	}
 
 	private void setHitBox(HitBox h) 
 	{
 		hitBox = h;
 	}
 
-	public Point2D getLocation() 
-	{
-		return hitBox.getLocation();
-	}
-
-
 	public void setX(int x) 
 	{
 		hitBox.setX(x);
+		appearance.setX(x);
 	}
 
 
 	public void setY(int y) 
 	{
 		hitBox.setY(y);
+		appearance.setY(y);
 	}
 	
 	public void setWidth(int w)
 	{
 		hitBox.setWidth(w);
+		appearance.setWidth(w);
 	}
 	public void setHeight(int h)
 	{
 		hitBox.setHeight(h);
+		appearance.setHeight(h);
 	}
 
 	@SuppressWarnings("unchecked")
@@ -285,18 +280,58 @@ public class Sprite extends DrawObject implements Drawable, Saveable {
 		json.put("type","Sprite");
 		json.put("spriteId",spriteId);
 		json.put("hitBox",hitBox.save());
+		json.put("appearance",appearance.save());
 
 		//TODO keep this growing as more stuff is added to Sprite class
 		
 		return json;
 	}
 
+	//TODO this needs updated as new fields are added to Sprite
+	public Sprite copy()
+	{
+		Sprite copySprite = new Sprite();
+		copySprite.setSpriteId(spriteId);
+		copySprite.setHitBox(hitBox);
+		copySprite.setAppearance(appearance);
+		return copySprite;
+	}
 
 	@Override
 	public void load(JSONObject saveJSON) 
 	{
 		hitBox = new HitBox();
 		hitBox.load((JSONObject)saveJSON.get("hitBox"));
+		appearance = new Appearance();
+		appearance.load((JSONObject)saveJSON.get("appearance"));
 		spriteId = ((Long)saveJSON.get("spriteId")).intValue();
 	}
+	
+	@Override
+	public boolean equals(Object o)
+	{
+		if (o instanceof Sprite)
+		{
+			Sprite s = (Sprite)o;
+			return (s.getSpriteId() == spriteId) && s.getHitBox().equals(hitBox) && s.getAppearance().equals(appearance);
+		}
+		return false;
+	}
+	
+	public String toString()
+	{
+		return String.format("Sprite#%d, hitbox: %s, appearance: %s",spriteId, hitBox.toString() ,appearance.toString());
+	}
+
+
+	public Appearance getAppearance() 
+	{
+		return appearance;
+	}
+
+	public HitBox getHitBox() 
+	{
+		return hitBox;
+	}
+
 }

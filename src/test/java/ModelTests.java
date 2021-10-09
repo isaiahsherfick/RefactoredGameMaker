@@ -11,6 +11,8 @@ import constants.Constants;
 import javafx.geometry.Point2D;
 import model.Model;
 import saveandload.SaveAndLoadManager;
+import saveandload.SaveableRectangle;
+import sprite.Appearance;
 import sprite.HitBox;
 import sprite.NullSprite;
 import sprite.Sprite;
@@ -97,6 +99,48 @@ class ModelTests {
 	}
 	
 	@Test
+	public void SaveableRectangleSaveTest()
+	{
+		SaveableRectangle rect = new SaveableRectangle();
+		rect.setX(1);
+		rect.setY(2);
+		rect.setWidth(3);
+		rect.setHeight(4);
+		
+		JSONObject json = rect.save();
+		
+		SaveableRectangle loader = new SaveableRectangle();
+		loader.load(json);
+		
+		
+		assertEquals(rect,loader);
+	}
+	
+	@Test
+	public void AppearanceSaveAndLoadTest()
+	{
+		Appearance appearance = new Appearance();
+		double x,y,width,height;
+		x = 1;
+		y = 2;
+		width = 3;
+		height = 4;
+		
+		appearance.setX(x);
+		appearance.setY(y);
+		appearance.setWidth(width);
+		appearance.setHeight(height);
+		
+		JSONObject result = appearance.save();
+		//System.out.println(result);
+		
+		Appearance loaded = new Appearance();
+		loaded.load(result);
+		
+		assertEquals(appearance,loaded);
+	}
+	
+	@Test
 	public void HitBoxSaveAndLoadTest()
 	{
 		HitBox hitBox = new HitBox();
@@ -132,27 +176,23 @@ class ModelTests {
 		Sprite sprite3 = new Sprite();
 		Sprite sprite4 = new Sprite();
 		
-		//change the sprites
-		sprite1.setX(5);
-		Point2D sprite1Location = sprite1.getLocation();
-		sprite2.setY(7);
-		Point2D sprite2Location = sprite2.getLocation();
-		sprite3.setWidth(-5);
-		Point2D sprite3Size = sprite3.getSize();
-		sprite4.setHeight(20);
-		Point2D sprite4Size = sprite4.getSize();
+		sprite1.setX(1);
+		sprite2.setY(2);
+		sprite3.setWidth(3);
+		sprite4.setHeight(4);
 		
-		ArrayList<Point2D> expecteds = new ArrayList<>();
-		expecteds.add(sprite1Location);
-		expecteds.add(sprite2Location);
-		expecteds.add(sprite3Size);
-		expecteds.add(sprite4Size);
-
+		
 		//add them to the model
 		m.addSprite(sprite1);
 		m.addSprite(sprite2);
 		m.addSprite(sprite3);
 		m.addSprite(sprite4);
+
+		ArrayList<Sprite> sprites = new ArrayList<>();
+		sprites.add(sprite1);
+		sprites.add(sprite2);
+		sprites.add(sprite3);
+		sprites.add(sprite4);
 		
 		//save them
 		try {
@@ -177,13 +217,11 @@ class ModelTests {
 		assertNotEquals(0, m.getNumberOfSprites());
 		
 		//assert that everything got preserved
-		for (int i = 0; i < 2; i++)
+		for (int i = 0; i < 4; i++)
 		{
-			assertEquals(expecteds.get(i), m.getSprite(i).getLocation());
-		}
-		for (int i = 2; i < 4; i++)
-		{
-			assertEquals(expecteds.get(i), m.getSprite(i).getSize());
+			Sprite expected = sprites.get(i);
+			Sprite actual = m.getSprite(i);
+			assertEquals(expected,actual);
 		}
 	}
 }
