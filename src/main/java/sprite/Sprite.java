@@ -215,6 +215,7 @@ public class Sprite extends DrawObject implements Drawable, Saveable {
 		//initializes hitbox with default x,y,width,height found in Constants.java
 		hitBox = new HitBox();
 		appearance = new Appearance();
+		eventBehaviorChain = new EventBehaviorChain();
 	}
 
 
@@ -272,6 +273,11 @@ public class Sprite extends DrawObject implements Drawable, Saveable {
 		appearance.setHeight(h);
 	}
 	
+	public void addEventBehavior(EventBehavior e)
+	{
+		eventBehaviorChain.add(e);
+	}
+	
 	//TODO how should we handle this discrepancy between appearance/hitbox? Should we just reconcile the two? Seems to violate single responsibilty
 	public double getX()
 	{
@@ -303,9 +309,15 @@ public class Sprite extends DrawObject implements Drawable, Saveable {
 	{
 		Sprite copySprite = new Sprite();
 		copySprite.setSpriteId(spriteId);
-		copySprite.setHitBox(hitBox);
-		copySprite.setAppearance(appearance);
+		copySprite.setHitBox(hitBox.copy());
+		copySprite.setAppearance(appearance.copy());
+		copySprite.setEventBehaviorChain(eventBehaviorChain.copy());
 		return copySprite;
+	}
+
+	public void setEventBehaviorChain(EventBehaviorChain e) 
+	{
+		eventBehaviorChain = e;
 	}
 
 	@Override

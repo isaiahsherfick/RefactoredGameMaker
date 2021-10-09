@@ -56,4 +56,10 @@ public class DoNothingBehavior implements EventBehavior
 	{
 		//Do nothing
 	}
+
+	@Override
+	public EventBehavior copy() 
+	{
+		return new DoNothingBehavior();
+	}
 }

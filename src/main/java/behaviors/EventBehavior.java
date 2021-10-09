@@ -17,4 +17,5 @@ public interface EventBehavior extends Saveable
 	public void onKeyPress(Sprite sprite);
 	public void onGameTick(Sprite sprite);
 	public void onLevelIncrease(Sprite sprite);
+	public EventBehavior copy();
 }

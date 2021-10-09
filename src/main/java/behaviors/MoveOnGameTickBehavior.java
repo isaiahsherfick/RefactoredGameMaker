@@ -83,4 +83,10 @@ public class MoveOnGameTickBehavior implements EventBehavior
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public EventBehavior copy() 
+	{
+		return new MoveOnGameTickBehavior(deltaX, deltaY);
+	}
 }

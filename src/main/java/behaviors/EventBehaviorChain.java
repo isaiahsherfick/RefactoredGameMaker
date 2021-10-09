@@ -127,4 +127,15 @@ public class EventBehaviorChain implements EventBehavior
 			e.onLevelIncrease(sprite);
 		}
 	}
+
+	@Override
+	public EventBehaviorChain copy() 
+	{
+		EventBehaviorChain copy = new EventBehaviorChain();
+		for (int i = 0; i<chain.size(); i++)
+		{
+			copy.add(chain.get(i).copy());
+		}
+		return copy;
+	}
 }

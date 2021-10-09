@@ -43,6 +43,15 @@ public class Appearance implements Drawable, Saveable
 		shapeOrImage = Constants.SHAPE;
 	}
 	
+	public Appearance(Point2D loc, Point2D siz, SaveableImage img, SaveableShape shp, int shpOrImg)
+	{
+		location = loc;
+		size = siz;
+		image = img;
+		shape = shp;
+		shapeOrImage = shpOrImg;
+	}
+	
 	public void setImage(String path)
 	{
 		shapeOrImage = Constants.IMAGE;
@@ -189,5 +198,10 @@ public class Appearance implements Drawable, Saveable
 	public String toString()
 	{
 		return String.format("Appearance: [x=%s,y=%s,width=%s,height=%s]",getX(),getY(),getWidth(),getHeight());
+	}
+
+	public Appearance copy() 
+	{
+		return new Appearance(location, size, image, shape, shapeOrImage);
 	}
 }

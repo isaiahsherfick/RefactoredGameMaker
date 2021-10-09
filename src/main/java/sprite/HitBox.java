@@ -22,6 +22,12 @@ public class HitBox implements Saveable
 		location = new Point2D(Constants.DEFAULT_SPRITE_X,Constants.DEFAULT_SPRITE_Y);
 		size = new Point2D(Constants.DEFAULT_SPRITE_WIDTH, Constants.DEFAULT_SPRITE_HEIGHT);
 	}
+	
+	public HitBox(Point2D loc, Point2D siz)
+	{
+		location = loc;
+		size = siz;
+	}
 
 	@SuppressWarnings("unchecked")
 	@Override
@@ -138,5 +144,10 @@ public class HitBox implements Saveable
 	private double getWidth() 
 	{
 		return size.getX();
+	}
+
+	public HitBox copy() 
+	{
+		return new HitBox(location, size);
 	}
 }
