@@ -43,10 +43,10 @@ public class SaveableRectangle implements SaveableShape, Drawable
 	@Override
 	public void load(JSONObject saveJSON) 
 	{
-		x = (double)saveJSON.get(x);
-		y = (double)saveJSON.get(y);
-		width = (double)saveJSON.get(width);
-		height = (double)saveJSON.get(height);
+		x = (double)saveJSON.get("x");
+		y = (double)saveJSON.get("y");
+		width = (double)saveJSON.get("width");
+		height = (double)saveJSON.get("height");
 		rect = new Rectangle(x,y,width,height);
 		color = Color.web((String)saveJSON.get("color"));
 	}

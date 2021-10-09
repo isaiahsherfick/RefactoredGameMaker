@@ -11,6 +11,8 @@ import constants.Constants;
 import javafx.geometry.Point2D;
 import model.Model;
 import saveandload.SaveAndLoadManager;
+import saveandload.SaveableRectangle;
+import sprite.Appearance;
 import sprite.HitBox;
 import sprite.NullSprite;
 import sprite.Sprite;
@@ -94,6 +96,48 @@ class ModelTests {
 		
 		Point2D bottomRight = new Point2D(hitBox.getX() + Constants.DEFAULT_SPRITE_WIDTH, hitBox.getY() + Constants.DEFAULT_SPRITE_HEIGHT);
 		assertEquals(bottomRight, hitBox.getBottomRight());
+	}
+	
+	@Test
+	public void SaveableRectangleSaveTest()
+	{
+		SaveableRectangle rect = new SaveableRectangle();
+		rect.setX(1);
+		rect.setY(2);
+		rect.setWidth(3);
+		rect.setHeight(4);
+		
+		JSONObject json = rect.save();
+		
+		SaveableRectangle loader = new SaveableRectangle();
+		loader.load(json);
+		
+		
+		assertEquals(rect,loader);
+	}
+	
+	@Test
+	public void AppearanceSaveAndLoadTest()
+	{
+		Appearance appearance = new Appearance();
+		double x,y,width,height;
+		x = 1;
+		y = 2;
+		width = 3;
+		height = 4;
+		
+		appearance.setX(x);
+		appearance.setY(y);
+		appearance.setWidth(width);
+		appearance.setHeight(height);
+		
+		JSONObject result = appearance.save();
+		//System.out.println(result);
+		
+		Appearance loaded = new Appearance();
+		loaded.load(result);
+		
+		assertEquals(appearance,loaded);
 	}
 	
 	@Test
