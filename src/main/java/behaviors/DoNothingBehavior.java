@@ -4,51 +4,54 @@ import org.json.simple.JSONObject;
 
 public class DoNothingBehavior implements EventBehavior
 {
+	@SuppressWarnings("unchecked")
 	@Override
-	public JSONObject save() {
-		// TODO Auto-generated method stub
-		return null;
+	public JSONObject save() 
+	{
+		JSONObject json = new JSONObject();
+		json.put("type","DoNothingBehavior");
+		return json;
 	}
 
 	@Override
-	public void load(JSONObject saveJSON) {
-		// TODO Auto-generated method stub
+	public void load(JSONObject saveJSON) 
+	{
 		
 	}
 
 	@Override
-	public void onMousePress() {
-		// TODO Auto-generated method stub
-		
+	public void onMousePress() 
+	{
+		//Do nothing
 	}
 
 	@Override
-	public void onGameStart() {
-		// TODO Auto-generated method stub
-		
+	public void onGameStart() 
+	{
+		//Do nothing
 	}
 
 	@Override
-	public void onMouseMove() {
-		// TODO Auto-generated method stub
-		
+	public void onMouseMove() 
+	{
+		//Do nothing
 	}
 
 	@Override
-	public void onKeyPress() {
-		// TODO Auto-generated method stub
-		
+	public void onKeyPress() 
+	{
+		//Do nothing
 	}
 
 	@Override
-	public void onGameTick() {
-		// TODO Auto-generated method stub
-		
+	public void onGameTick() 
+	{
+		//Do nothing
 	}
 
 	@Override
-	public void onLevelIncrease() {
-		// TODO Auto-generated method stub
-		
+	public void onLevelIncrease() 
+	{
+		//Do nothing
 	}
 }

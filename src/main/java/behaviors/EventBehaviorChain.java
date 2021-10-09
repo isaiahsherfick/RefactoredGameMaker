@@ -4,6 +4,7 @@ import java.util.LinkedList;
 
 import org.json.simple.JSONObject;
 
+import saveandload.EventBehaviorLoader;
 import saveandload.Saveable;
 
 public class EventBehaviorChain implements Saveable
@@ -67,7 +68,7 @@ public class EventBehaviorChain implements Saveable
 		int size = ((Long)saveJSON.get("size")).intValue();
 		for (int i=0; i<size; i++)
 		{
-			EventBehavior e = BehaviorLoader.loadBehavior((JSONObject)saveJSON.get(i));
+			EventBehavior e = EventBehaviorLoader.load((JSONObject)saveJSON.get(i));
 			add(e);
 		}
 	}

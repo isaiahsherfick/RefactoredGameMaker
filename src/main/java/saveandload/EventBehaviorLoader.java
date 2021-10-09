@@ -2,9 +2,10 @@ package saveandload;
 
 import org.json.simple.JSONObject;
 
+import behaviors.DoNothingBehavior;
 import behaviors.EventBehavior;
 
-public class BehaviorLoader 
+public class EventBehaviorLoader 
 {
 	public static EventBehavior load(JSONObject json)
 	{
@@ -17,7 +18,6 @@ public class BehaviorLoader
 			default:
 				System.out.println("BehaviorLoader was given something it doesn't have a case for: " + type);
 				return new DoNothingBehavior();
-		
 		}
 	}
 }
