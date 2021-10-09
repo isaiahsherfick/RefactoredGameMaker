@@ -126,7 +126,7 @@ public class Appearance implements Drawable, Saveable
 		saveObj.put("width",width);
 		saveObj.put("height",height);
 		saveObj.put("shape",shape.save());
-		//saveObj.put("image",image.save()); TODO
+		saveObj.put("image",image.save()); 
 		return saveObj;
 	}
 
@@ -141,8 +141,8 @@ public class Appearance implements Drawable, Saveable
 		location = new Point2D(x,y);
 		size = new Point2D(width,height);
 		shape = ShapeLoader.loadShape((JSONObject)saveJSON.get("shape"));
-//		image = new Image();
-//		image.load((JSONObject)saveJSON.get("image"));
+		image = new SaveableImage();
+		image.load((JSONObject)saveJSON.get("image"));
 	}
 
 	@Override
