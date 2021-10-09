@@ -189,7 +189,7 @@ public class Sprite extends DrawObject implements Drawable, Saveable {
 	protected Appearance appearance;
 	
 	//Chain of event behaviors
-	//protected EventBehaviorChain eventBehaviorChain;
+	protected EventBehaviorChain eventBehaviorChain;
 	
 	//map of spriteId : collisions against the corresponding sprite
 	//protected CollisionMap collisionMap;
