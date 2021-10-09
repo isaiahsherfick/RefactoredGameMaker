@@ -298,6 +298,7 @@ public class Sprite extends DrawObject implements Drawable, Saveable {
 		json.put("spriteId",spriteId);
 		json.put("hitBox",hitBox.save());
 		json.put("appearance",appearance.save());
+		json.put("eventBehaviorChain",eventBehaviorChain.save());
 
 		//TODO keep this growing as more stuff is added to Sprite class
 		
@@ -333,6 +334,8 @@ public class Sprite extends DrawObject implements Drawable, Saveable {
 		appearance = new Appearance();
 		appearance.load((JSONObject)saveJSON.get("appearance"));
 		spriteId = ((Long)saveJSON.get("spriteId")).intValue();
+		EventBehaviorChain ebc = new EventBehaviorChain();
+		ebc.load((JSONObject)saveJSON.get("eventBehaviorChain"));
 	}
 	
 	@Override
