@@ -13,7 +13,8 @@ import saveandload.Saveable;
 import sprite.Sprite;
 import sprite.SpriteManager;
 
-public class Model {
+public class Model 
+{
 	
 	private List<Sprite> sprites;
 	

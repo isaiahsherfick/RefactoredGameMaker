@@ -14,6 +14,7 @@ import saveandload.Saveable;
 import saveandload.SaveableImage;
 import saveandload.SaveableRectangle;
 import saveandload.SaveableShape;
+import saveandload.ShapeLoader;
 
 //Author Isaiah Sherfick
 //Will be responsible for representing sprites visually
@@ -58,6 +59,8 @@ public class Appearance implements Drawable, Saveable
 		double y = location.getY();
 		x += curX;
 		location = new Point2D(x,y);
+		shape.setX(x);
+		image.setX(x);
 	}
 
 	public void setY(double y)
@@ -66,6 +69,8 @@ public class Appearance implements Drawable, Saveable
 		double x = location.getX();
 		y += curY;
 		location = new Point2D(x,y);
+		shape.setY(y);
+		image.setY(y);
 	}
 
 	public void setWidth(double width)
@@ -74,6 +79,8 @@ public class Appearance implements Drawable, Saveable
 		double height = location.getY();
 		width += curWidth;
 		location = new Point2D(width,height);
+		shape.setWidth(width);
+		image.setWidth(width);
 	}
 
 	public void setHeight(double height)
@@ -82,6 +89,13 @@ public class Appearance implements Drawable, Saveable
 		double width = location.getX();
 		height += curHeight;
 		location = new Point2D(width,height);
+		shape.setHeight(height);
+		image.setHeight(height);
+	}
+
+	private SaveableShape getShape() 
+	{
+		return shape;
 	}
 	
 	public Point2D getSize()
@@ -109,7 +123,7 @@ public class Appearance implements Drawable, Saveable
 		saveObj.put("width",width);
 		saveObj.put("height",height);
 		saveObj.put("shape",shape.save());
-		
+		//saveObj.put("image",image.save()); TODO
 		return saveObj;
 	}
 
@@ -123,14 +137,33 @@ public class Appearance implements Drawable, Saveable
 		
 		location = new Point2D(x,y);
 		size = new Point2D(width,height);
+		shape = ShapeLoader.loadShape((JSONObject)saveJSON.get("shape"));
+//		image = new Image();
+//		image.load((JSONObject)saveJSON.get("image"));
 	}
 
 	@Override
 	//This is the one we will actually use
 	public void draw(GraphicsContext g) 
 	{
-		// TODO Auto-generated method stub
-
+		if (shapeOrImage == Constants.SHAPE)
+		{
+			
+		}
+		else
+		{
+			
+		}
+	}
+	
+	public boolean equals(Object o)
+	{
+		if (o instanceof Appearance)
+		{
+			Appearance a = (Appearance) o;
+			return location.equals(a.getLocation()) && size.equals(a.getSize()) && shape.equals(a.getShape()); //&&image.equals(a.getImage()); //TODO
+		}
+		return false;
 	}
 
 	//DEPRECATED -- remove after interface changes
@@ -140,6 +173,4 @@ public class Appearance implements Drawable, Saveable
 		// TODO Auto-generated method stub
 		
 	}
-	
-
 }

@@ -215,6 +215,7 @@ public class Sprite extends DrawObject implements Drawable, Saveable {
 
 		//initializes hitbox with default x,y,width,height found in Constants.java
 		hitBox = new HitBox();
+		appearance = new Appearance();
 	}
 
 
