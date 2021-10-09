@@ -176,27 +176,23 @@ class ModelTests {
 		Sprite sprite3 = new Sprite();
 		Sprite sprite4 = new Sprite();
 		
-		//change the sprites
-		sprite1.setX(5);
-		Point2D sprite1Location = sprite1.getLocation();
-		sprite2.setY(7);
-		Point2D sprite2Location = sprite2.getLocation();
-		sprite3.setWidth(-5);
-		Point2D sprite3Size = sprite3.getSize();
-		sprite4.setHeight(20);
-		Point2D sprite4Size = sprite4.getSize();
+		sprite1.setX(1);
+		sprite2.setY(2);
+		sprite3.setWidth(3);
+		sprite4.setHeight(4);
 		
-		ArrayList<Point2D> expecteds = new ArrayList<>();
-		expecteds.add(sprite1Location);
-		expecteds.add(sprite2Location);
-		expecteds.add(sprite3Size);
-		expecteds.add(sprite4Size);
-
+		
 		//add them to the model
 		m.addSprite(sprite1);
 		m.addSprite(sprite2);
 		m.addSprite(sprite3);
 		m.addSprite(sprite4);
+
+		ArrayList<Sprite> sprites = new ArrayList<>();
+		sprites.add(sprite1);
+		sprites.add(sprite2);
+		sprites.add(sprite3);
+		sprites.add(sprite4);
 		
 		//save them
 		try {
@@ -221,13 +217,11 @@ class ModelTests {
 		assertNotEquals(0, m.getNumberOfSprites());
 		
 		//assert that everything got preserved
-		for (int i = 0; i < 2; i++)
+		for (int i = 0; i < 4; i++)
 		{
-			assertEquals(expecteds.get(i), m.getSprite(i).getLocation());
-		}
-		for (int i = 2; i < 4; i++)
-		{
-			assertEquals(expecteds.get(i), m.getSprite(i).getSize());
+			Sprite expected = sprites.get(i);
+			Sprite actual = m.getSprite(i);
+			assertEquals(expected,actual);
 		}
 	}
 }

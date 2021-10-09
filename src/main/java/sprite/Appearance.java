@@ -55,9 +55,7 @@ public class Appearance implements Drawable, Saveable
 
 	public void setX(double x)
 	{
-		double curX = location.getX();
 		double y = location.getY();
-		x += curX;
 		location = new Point2D(x,y);
 		shape.setX(x);
 		image.setX(x);
@@ -65,9 +63,7 @@ public class Appearance implements Drawable, Saveable
 
 	public void setY(double y)
 	{
-		double curY = location.getY();
 		double x = location.getX();
-		y += curY;
 		location = new Point2D(x,y);
 		shape.setY(y);
 		image.setY(y);
@@ -75,20 +71,16 @@ public class Appearance implements Drawable, Saveable
 
 	public void setWidth(double width)
 	{
-		double curWidth = location.getX();
-		double height = location.getY();
-		width += curWidth;
-		location = new Point2D(width,height);
+		double height = size.getY();
+		size = new Point2D(width,height);
 		shape.setWidth(width);
 		image.setWidth(width);
 	}
 
 	public void setHeight(double height)
 	{
-		double curHeight = location.getY();
-		double width = location.getX();
-		height += curHeight;
-		location = new Point2D(width,height);
+		double width = size.getX();
+		size = new Point2D(width,height);
 		shape.setHeight(height);
 		image.setHeight(height);
 	}
@@ -156,6 +148,7 @@ public class Appearance implements Drawable, Saveable
 		}
 	}
 	
+	@Override
 	public boolean equals(Object o)
 	{
 		if (o instanceof Appearance)
@@ -165,6 +158,23 @@ public class Appearance implements Drawable, Saveable
 		}
 		return false;
 	}
+	
+	public double getX()
+	{
+		return location.getX();
+	}
+	public double getY()
+	{
+		return location.getY();
+	}
+	public double getWidth()
+	{
+		return size.getX();
+	}
+	public double getHeight()
+	{
+		return size.getY();
+	}
 
 	//DEPRECATED -- remove after interface changes
 	@Override
@@ -172,5 +182,10 @@ public class Appearance implements Drawable, Saveable
 	{
 		// TODO Auto-generated method stub
 		
+	}
+	
+	public String toString()
+	{
+		return String.format("Appearance: [x=%s,y=%s,width=%s,height=%s]",getX(),getY(),getWidth(),getHeight());
 	}
 }

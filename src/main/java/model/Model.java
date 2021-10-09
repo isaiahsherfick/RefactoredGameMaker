@@ -114,6 +114,10 @@ public class Model
 	{
 		saveAndLoadManager.loadFile(saveFilePath);
 		ArrayList<Sprite> spriteList = saveAndLoadManager.getSprites();
+//		for (int i = 0; i<spriteList.size(); i++)
+//		{
+//			System.out.println(spriteList.get(i));
+//		}
 		resetSpriteManager();
 		spriteManager.addAll(spriteList);
 	}
