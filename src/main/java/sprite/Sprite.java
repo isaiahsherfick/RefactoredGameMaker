@@ -248,28 +248,39 @@ public class Sprite extends DrawObject implements Drawable, Saveable {
 		hitBox = h;
 	}
 
-	public void setX(int x) 
+	public void setX(double x) 
 	{
 		hitBox.setX(x);
 		appearance.setX(x);
 	}
 
 
-	public void setY(int y) 
+	public void setY(double y) 
 	{
 		hitBox.setY(y);
 		appearance.setY(y);
 	}
 	
-	public void setWidth(int w)
+	public void setWidth(double w)
 	{
 		hitBox.setWidth(w);
 		appearance.setWidth(w);
 	}
-	public void setHeight(int h)
+	public void setHeight(double h)
 	{
 		hitBox.setHeight(h);
 		appearance.setHeight(h);
+	}
+	
+	//TODO how should we handle this discrepancy between appearance/hitbox? Should we just reconcile the two? Seems to violate single responsibilty
+	public double getX()
+	{
+		return hitBox.getX();
+	}
+	
+	public double getY()
+	{
+		return hitBox.getY();
 	}
 
 	@SuppressWarnings("unchecked")

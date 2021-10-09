@@ -1,13 +1,20 @@
 package behaviors;
 
 import saveandload.Saveable;
+import sprite.Sprite;
 
 public interface EventBehavior extends Saveable
 {
-	public void onMousePress();
-	public void onGameStart();
-	public void onMouseMove();
-	public void onKeyPress();
-	public void onGameTick();
-	public void onLevelIncrease();
+	//These will be called from within the Sprite class like so:
+	
+	//this.eventBehavior.onKeyPress(this);
+	
+	//That way EventBehaviors will be able to modify the relevant fields within the sprite without storing a circular reference to it
+	
+	public void onMousePress(Sprite sprite);
+	public void onGameStart(Sprite sprite);
+	public void onMouseMove(Sprite sprite);
+	public void onKeyPress(Sprite sprite);
+	public void onGameTick(Sprite sprite);
+	public void onLevelIncrease(Sprite sprite);
 }

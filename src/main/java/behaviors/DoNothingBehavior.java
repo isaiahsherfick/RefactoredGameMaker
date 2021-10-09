@@ -2,6 +2,8 @@ package behaviors;
 
 import org.json.simple.JSONObject;
 
+import sprite.Sprite;
+
 public class DoNothingBehavior implements EventBehavior
 {
 	@SuppressWarnings("unchecked")
@@ -20,37 +22,37 @@ public class DoNothingBehavior implements EventBehavior
 	}
 
 	@Override
-	public void onMousePress() 
+	public void onMousePress(Sprite sprite) 
 	{
 		//Do nothing
 	}
 
 	@Override
-	public void onGameStart() 
+	public void onGameStart(Sprite sprite) 
 	{
 		//Do nothing
 	}
 
 	@Override
-	public void onMouseMove() 
+	public void onMouseMove(Sprite sprite) 
 	{
 		//Do nothing
 	}
 
 	@Override
-	public void onKeyPress() 
+	public void onKeyPress(Sprite sprite) 
 	{
 		//Do nothing
 	}
 
 	@Override
-	public void onGameTick() 
+	public void onGameTick(Sprite sprite) 
 	{
 		//Do nothing
 	}
 
 	@Override
-	public void onLevelIncrease() 
+	public void onLevelIncrease(Sprite sprite) 
 	{
 		//Do nothing
 	}

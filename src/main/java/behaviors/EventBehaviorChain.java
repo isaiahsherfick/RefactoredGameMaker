@@ -6,8 +6,9 @@ import org.json.simple.JSONObject;
 
 import saveandload.EventBehaviorLoader;
 import saveandload.Saveable;
+import sprite.Sprite;
 
-public class EventBehaviorChain implements Saveable
+public class EventBehaviorChain implements EventBehavior
 {
 	private LinkedList<EventBehavior> chain;
 	
@@ -72,7 +73,58 @@ public class EventBehaviorChain implements Saveable
 			add(e);
 		}
 	}
-	
-	
 
+	@Override
+	public void onMousePress(Sprite sprite) 
+	{
+		for (EventBehavior e : chain)
+		{
+			e.onMousePress(sprite);
+		}
+	}
+
+	@Override
+	public void onGameStart(Sprite sprite) 
+	{
+		for (EventBehavior e : chain)
+		{
+			e.onGameStart(sprite);
+		}
+	}
+
+	@Override
+	public void onMouseMove(Sprite sprite) 
+	{
+		for (EventBehavior e : chain)
+		{
+			e.onMouseMove(sprite);
+		}
+	}
+
+	@Override
+	public void onKeyPress(Sprite sprite) 
+	{
+		for (EventBehavior e : chain)
+		{
+			e.onKeyPress(sprite);
+		}
+	}
+
+	@Override
+	public void onGameTick(Sprite sprite) 
+	{
+		for (EventBehavior e : chain)
+		{
+			e.onGameTick(sprite);
+		}
+	}
+
+	@Override
+	public void onLevelIncrease(Sprite sprite) 
+	{
+		for (EventBehavior e : chain)
+		{
+			e.onLevelIncrease(sprite);
+		}
+	}
 }

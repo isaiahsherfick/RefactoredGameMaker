@@ -12,4 +12,6 @@ public class Constants
 	public static final String DEFAULT_SAVE_FILE_PATH = "save.json";
 	public static final int SHAPE = 1;
 	public static final int IMAGE = 0;
+	public static final double DEFAULT_SPRITE_VELOCITY_X = 5;
+	public static final double DEFAULT_SPRITE_VELOCITY_Y = 5;
 }

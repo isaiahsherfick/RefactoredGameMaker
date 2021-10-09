@@ -4,6 +4,7 @@ import org.json.simple.JSONObject;
 
 import behaviors.DoNothingBehavior;
 import behaviors.EventBehavior;
+import behaviors.MoveOnGameTickBehavior;
 
 public class EventBehaviorLoader 
 {
@@ -15,6 +16,10 @@ public class EventBehaviorLoader
 		{
 			case "DoNothingBehavior":
 				return new DoNothingBehavior();
+			case "MoveOnGameTickBehavior":
+				MoveOnGameTickBehavior moveOnGameTickBehavior = new MoveOnGameTickBehavior();
+				moveOnGameTickBehavior.load(json);
+				return moveOnGameTickBehavior;
 			default:
 				System.out.println("BehaviorLoader was given something it doesn't have a case for: " + type);
 				return new DoNothingBehavior();
