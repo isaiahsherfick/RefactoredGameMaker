@@ -7,6 +7,8 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.ParseException;
 import org.junit.jupiter.api.Test;
 
+import behaviors.DoNothingBehavior;
+import behaviors.MoveOnGameTickBehavior;
 import constants.Constants;
 import javafx.geometry.Point2D;
 import model.Model;
@@ -176,12 +178,17 @@ class ModelTests {
 		Sprite sprite3 = new Sprite();
 		Sprite sprite4 = new Sprite();
 		Sprite sprite5 = new Sprite();
+		Sprite sprite6 = new Sprite();
 		
 		sprite1.setX(1);
 		sprite2.setY(2);
 		sprite3.setWidth(3);
 		sprite4.setHeight(4);
 		sprite5.setImage("donkey_kong.jpeg");
+		sprite6.addEventBehavior(new MoveOnGameTickBehavior());
+		assertEquals(1,sprite6.getEventBehaviorChainSize());
+		sprite6.addEventBehavior(new DoNothingBehavior());
+		assertEquals(2,sprite6.getEventBehaviorChainSize());
 		
 		
 		//add them to the model
@@ -190,6 +197,7 @@ class ModelTests {
 		m.addSprite(sprite3);
 		m.addSprite(sprite4);
 		m.addSprite(sprite5);
+		m.addSprite(sprite6);
 
 		ArrayList<Sprite> sprites = new ArrayList<>();
 		sprites.add(sprite1);
@@ -197,6 +205,7 @@ class ModelTests {
 		sprites.add(sprite3);
 		sprites.add(sprite4);
 		sprites.add(sprite5);
+		sprites.add(sprite6);
 		
 		//save them
 		try {

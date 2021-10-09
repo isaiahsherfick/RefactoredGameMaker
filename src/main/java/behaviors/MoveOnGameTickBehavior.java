@@ -89,4 +89,24 @@ public class MoveOnGameTickBehavior implements EventBehavior
 	{
 		return new MoveOnGameTickBehavior(deltaX, deltaY);
 	}
+	
+	public boolean equals(Object o)
+	{
+		if (o instanceof MoveOnGameTickBehavior)
+		{
+			MoveOnGameTickBehavior m = (MoveOnGameTickBehavior)o;
+			return deltaX == m.getDeltaX() && deltaY == m.getDeltaY();
+		}
+		return false;
+	}
+
+	private double getDeltaY() 
+	{
+		return deltaY;
+	}
+
+	private double getDeltaX() 
+	{
+		return deltaX;
+	}
 }

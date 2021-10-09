@@ -138,4 +138,25 @@ public class EventBehaviorChain implements EventBehavior
 		}
 		return copy;
 	}
+	
+	public boolean equals(Object o)
+	{
+		if (o instanceof EventBehaviorChain)
+		{
+			EventBehaviorChain e = (EventBehaviorChain)o;
+			if (e.size() != size())
+			{
+				return false;
+			}
+			for (int i=0; i<size(); i++)
+			{
+				if (!get(i).equals(e.get(i)))
+				{
+					return false;
+				}
+			}
+			return true;
+		}
+		return false;
+	}
 }

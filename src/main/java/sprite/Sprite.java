@@ -319,6 +319,11 @@ public class Sprite extends DrawObject implements Drawable, Saveable {
 	{
 		eventBehaviorChain = e;
 	}
+	
+	public int getEventBehaviorChainSize()
+	{
+		return eventBehaviorChain.size();
+	}
 
 	@Override
 	public void load(JSONObject saveJSON) 
@@ -336,11 +341,16 @@ public class Sprite extends DrawObject implements Drawable, Saveable {
 		if (o instanceof Sprite)
 		{
 			Sprite s = (Sprite)o;
-			return (s.getSpriteId() == spriteId) && s.getHitBox().equals(hitBox) && s.getAppearance().equals(appearance);
+			return (s.getSpriteId() == spriteId) && s.getHitBox().equals(hitBox) && s.getAppearance().equals(appearance) && s.getEventBehaviorChain().equals(eventBehaviorChain);
 		}
 		return false;
 	}
 	
+	private Object getEventBehaviorChain() 
+	{
+		return eventBehaviorChain;
+	}
+
 	public String toString()
 	{
 		return String.format("Sprite#%d, hitbox: %s, appearance: %s",spriteId, hitBox.toString() ,appearance.toString());

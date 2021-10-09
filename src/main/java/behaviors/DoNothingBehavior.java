@@ -62,4 +62,9 @@ public class DoNothingBehavior implements EventBehavior
 	{
 		return new DoNothingBehavior();
 	}
+	
+	public boolean equals(Object o)
+	{
+		return o instanceof DoNothingBehavior;
+	}
 }
