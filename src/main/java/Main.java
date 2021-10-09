@@ -9,4 +9,7 @@ public class Main extends Application {
 		MakerView.start(primaryStage);
 	}
 
+	public static void main(String[] args) {
+        launch(args);
+    }
 }

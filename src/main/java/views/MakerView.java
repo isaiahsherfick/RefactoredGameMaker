@@ -23,7 +23,7 @@ public class MakerView {
 			makerStage.show();
 		}
 		catch(IOException ex) {
-			
+			System.out.println(ex);
 		}
 		
 	}
