@@ -6,6 +6,9 @@ import constants.Constants;
 import javafx.geometry.Point2D;
 import saveandload.Saveable;
 
+//Author Isaiah Sherfick
+//Responsible for knowing a sprite's bounds for collision and returning relevant values
+//last edited by Isaiah Sherfick
 public class HitBox implements Saveable
 {
 	//Top left x,y value
@@ -40,7 +43,6 @@ public class HitBox implements Saveable
 	@Override
 	public void load(JSONObject saveJSON) 
 	{
-		//Fairly certain that these will be interpreted as longs when we load from a file
 		double x = (double)saveJSON.get("x");
 		double y = (double)saveJSON.get("y");
 		double width = (double)saveJSON.get("width");
