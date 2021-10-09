@@ -175,11 +175,13 @@ class ModelTests {
 		Sprite sprite2 = new Sprite();
 		Sprite sprite3 = new Sprite();
 		Sprite sprite4 = new Sprite();
+		Sprite sprite5 = new Sprite();
 		
 		sprite1.setX(1);
 		sprite2.setY(2);
 		sprite3.setWidth(3);
 		sprite4.setHeight(4);
+		sprite5.setImage("donkey_kong.jpeg");
 		
 		
 		//add them to the model
@@ -187,12 +189,14 @@ class ModelTests {
 		m.addSprite(sprite2);
 		m.addSprite(sprite3);
 		m.addSprite(sprite4);
+		m.addSprite(sprite5);
 
 		ArrayList<Sprite> sprites = new ArrayList<>();
 		sprites.add(sprite1);
 		sprites.add(sprite2);
 		sprites.add(sprite3);
 		sprites.add(sprite4);
+		sprites.add(sprite5);
 		
 		//save them
 		try {

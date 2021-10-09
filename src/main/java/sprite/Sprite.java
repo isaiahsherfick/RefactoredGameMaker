@@ -334,4 +334,9 @@ public class Sprite extends DrawObject implements Drawable, Saveable {
 		return hitBox;
 	}
 
+	public void setImage(String path) 
+	{
+		appearance.setImage(path);
+	}
+
 }
