@@ -237,4 +237,18 @@ class ModelTests {
 			assertEquals(expected,actual);
 		}
 	}
+	
+	@Test
+	public void CustomCollisionMapTest()
+	{
+//		CustomCollisionMap customCollisionMap = new CustomCollisionMap();
+//		customCollisionMap.setDefaultCollision(new BounceCollisionBehavior());
+//		customCollisionMap.addCustomCollision(1, new DoNothingCollisionBehavior());
+//		customCollisionMap.addCustomCollision(2, new DestroyCollisionBehavior());
+//		JSONObject json = customCollisionMap.save();
+//		
+//		CustomCollisionMap loader = new CustomCollisionMap();
+//		loader.load(json);
+//		assertEquals(customCollisionMap,loader);
+	}
 }
