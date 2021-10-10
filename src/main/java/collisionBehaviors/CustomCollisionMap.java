@@ -45,6 +45,7 @@ public class CustomCollisionMap implements Saveable
 		return result;
 	}
 
+	@SuppressWarnings("unchecked")
 	public JSONObject save() 
 	{
 		JSONObject json = new JSONObject();
@@ -52,7 +53,7 @@ public class CustomCollisionMap implements Saveable
 		json.put("size", size());
 		
 		int i  = 0;
-		for (Entry e : collisionMap.entrySet())
+		for (Entry<Integer, CollisionBehavior> e : collisionMap.entrySet())
 		{
 			CustomCollisionPair currentPair = new CustomCollisionPair(e.getKey(), e.getValue());
 			json.put(i++, currentPair.save());
@@ -63,7 +64,14 @@ public class CustomCollisionMap implements Saveable
 
 	public void load(JSONObject saveJSON) 
 	{
-		// TODO Auto-generated method stub
+		collisionMap.clear();
+		int size = ((Long)saveJSON.get("size")).intValue();
+		for (Integer i = 0; i  < size; i++)
+		{
+			CustomCollisionPair currentPair = new CustomCollisionPair();
+			currentPair.load((JSONObject)saveJSON.get(i.toString()));
+			collisionMap.put(currentPair.getSpriteId(), currentPair.getCollisionBehavior());
+		}
 	}
 
 	//Will be the method actually called by Sprite on a collision
@@ -79,5 +87,22 @@ public class CustomCollisionMap implements Saveable
 				collisionMap.get(key).collide(collidee,colliderId);
 			}
 		}
+	}
+	
+	public boolean equals(Object o)
+	{
+		if (o instanceof CustomCollisionMap)
+		{
+			CustomCollisionMap other = (CustomCollisionMap)o;
+			for (Integer spriteId : collisionMap.keySet())
+			{
+				if (!(get(spriteId).equals(other.get(spriteId))))
+				{
+					return false;
+				}
+			}
+			return true;
+		}
+		return false;
 	}
 }

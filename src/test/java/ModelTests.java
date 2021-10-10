@@ -9,6 +9,7 @@ import org.junit.jupiter.api.Test;
 
 import behaviors.DoNothingBehavior;
 import behaviors.MoveOnGameTickBehavior;
+import collisionBehaviors.CustomCollisionMap;
 import constants.Constants;
 import javafx.geometry.Point2D;
 import model.Model;

@@ -26,5 +26,10 @@ public class DoNothingCollisionBehavior implements CollisionBehavior
 	{
 		//do nothing
 	}
+	
+	public boolean equals(Object o)
+	{
+		return o instanceof DoNothingCollisionBehavior;
+	}
 
 }
