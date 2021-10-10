@@ -50,8 +50,15 @@ public class CustomCollisionMap implements Saveable
 		JSONObject json = new JSONObject();
 		json.put("type", "CustomCollisionMap");
 		json.put("size", size());
-		//TODO
-		return json
+		
+		int i  = 0;
+		for (Entry e : collisionMap.entrySet())
+		{
+			CustomCollisionPair currentPair = new CustomCollisionPair(e.getKey(), e.getValue());
+			json.put(i++, currentPair.save());
+		}
+		
+		return json;
 	}
 
 	public void load(JSONObject saveJSON) 
