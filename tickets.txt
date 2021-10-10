@@ -14,7 +14,6 @@ end-to-end testing - unassigned
 
 Unit test sprite strategies - Isaiah
 
-
 Christian - Start implementing FXML UI
 Christian - Pick apart FormLayouts
 Saurabh - Pick apart FormLayouts
@@ -29,13 +28,13 @@ Create controller - Ramya
 Unit test controller - Ramya
 
 -------------------IN PROGRESS-------------------------------
-Add custom collisions to Sprites - Isaiah
-Create CustomCollisionMap - Isaiah
-Unit test custom collision map - Isaiah
 Add basic strategies for Sprites - Isaiah
 Extend model - Isaiah 
 Model unit testing - Isaiah
 -------------------COMPLETED---------------------------------
+Add custom collisions to Sprites - Isaiah
+Create CustomCollisionMap - Isaiah
+Unit test custom collision map - Isaiah
 unit tests for save/load - Isaiah
 Implement save/load - Isaiah
 implement sprite copy() method - Isaiah
