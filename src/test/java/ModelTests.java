@@ -183,6 +183,8 @@ class ModelTests {
 		Sprite sprite4 = new Sprite();
 		Sprite sprite5 = new Sprite();
 		Sprite sprite6 = new Sprite();
+		Sprite sprite7 = new Sprite();
+		Sprite sprite8 = new Sprite();
 		
 		sprite1.setX(1);
 		sprite2.setY(2);
@@ -193,6 +195,9 @@ class ModelTests {
 		assertEquals(1,sprite6.getEventBehaviorChainSize());
 		sprite6.addEventBehavior(new DoNothingBehavior());
 		assertEquals(2,sprite6.getEventBehaviorChainSize());
+		sprite7.addCustomCollision(3, new DestroyCollisionBehavior());
+		sprite8.addCustomCollision(6, new BounceCollisionBehavior());
+		sprite8.setDefaultCollisionBehavior(new DestroyCollisionBehavior());
 		
 		
 		//add them to the model
@@ -202,6 +207,8 @@ class ModelTests {
 		m.addSprite(sprite4);
 		m.addSprite(sprite5);
 		m.addSprite(sprite6);
+		m.addSprite(sprite7);
+		m.addSprite(sprite8);
 
 		ArrayList<Sprite> sprites = new ArrayList<>();
 		sprites.add(sprite1);
@@ -210,6 +217,8 @@ class ModelTests {
 		sprites.add(sprite4);
 		sprites.add(sprite5);
 		sprites.add(sprite6);
+		sprites.add(sprite7);
+		sprites.add(sprite8);
 		
 		//save them
 		try {

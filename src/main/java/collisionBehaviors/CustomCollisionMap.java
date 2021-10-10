@@ -53,11 +53,12 @@ public class CustomCollisionMap implements Saveable
 		json.put("size", size());
 		json.put("defaultCollisionBehavior", defaultCollisionBehavior.save());
 		
-		int i  = 0;
+		Integer i  = 0;
 		for (Entry<Integer, CollisionBehavior> e : collisionMap.entrySet())
 		{
 			CustomCollisionPair currentPair = new CustomCollisionPair(e.getKey(), e.getValue());
-			json.put(i++, currentPair.save());
+			json.put(i.toString(), currentPair.save());
+			i++;
 		}
 		
 		return json;
@@ -67,19 +68,20 @@ public class CustomCollisionMap implements Saveable
 	{
 		collisionMap.clear();
 		int size = 0;
-		try {
-		size = ((Long)saveJSON.get("size")).intValue();
-		}catch(ClassCastException e)
+		try 
+		{
+			size = ((Long)saveJSON.get("size")).intValue();
+		}
+		catch(ClassCastException e)
 		{
 			size = (Integer)saveJSON.get("size");
 		}
-		
 		defaultCollisionBehavior = CollisionBehaviorLoader.load((JSONObject)saveJSON.get("defaultCollisionBehavior"));
 
 		for (Integer i = 0; i  < size; i++)
 		{
 			CustomCollisionPair currentPair = new CustomCollisionPair();
-			currentPair.load((JSONObject)saveJSON.get(i));
+			currentPair.load((JSONObject)saveJSON.get(i.toString()));
 			collisionMap.put(currentPair.getSpriteId(), currentPair.getCollisionBehavior());
 		}
 	}
@@ -112,9 +114,6 @@ public class CustomCollisionMap implements Saveable
 			{
 				if (!(get(spriteId).equals(other.get(spriteId))))
 				{
-					System.out.println(String.format("Collisions for sprite %d don't match",spriteId ));
-					System.out.println(get(spriteId));
-					System.out.println(other.get(spriteId));
 					return false;
 				}
 			}
@@ -126,5 +125,15 @@ public class CustomCollisionMap implements Saveable
 	private CollisionBehavior getDefaultCollisionBehavior() 
 	{
 		return defaultCollisionBehavior;
+	}
+
+	public CustomCollisionMap copy() 
+	{
+		CustomCollisionMap copy = new CustomCollisionMap();
+		for (Entry<Integer, CollisionBehavior> e : collisionMap.entrySet())
+		{
+			copy.put(e.getKey(), e.getValue());
+		}
+		return copy;
 	}
 }

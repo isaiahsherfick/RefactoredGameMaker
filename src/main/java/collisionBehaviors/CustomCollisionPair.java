@@ -44,7 +44,14 @@ public class CustomCollisionPair implements Saveable
 
 	public void load(JSONObject json)
 	{
-		spriteId = (Integer)json.get("spriteId");
+		try
+		{
+			spriteId = ((Long)json.get("spriteId")).intValue();
+		}
+		catch (ClassCastException e)
+		{
+			spriteId = (Integer)json.get("spriteId");
+		}
 		collisionBehavior = CollisionBehaviorLoader.load((JSONObject)json.get("collisionBehavior"));
 	}
 }
