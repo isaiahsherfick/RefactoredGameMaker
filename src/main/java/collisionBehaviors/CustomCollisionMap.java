@@ -51,6 +51,7 @@ public class CustomCollisionMap implements Saveable
 		JSONObject json = new JSONObject();
 		json.put("type", "CustomCollisionMap");
 		json.put("size", size());
+		json.put("defaultCollisionBehavior", defaultCollisionBehavior.save());
 		
 		int i  = 0;
 		for (Entry<Integer, CollisionBehavior> e : collisionMap.entrySet())
@@ -65,11 +66,20 @@ public class CustomCollisionMap implements Saveable
 	public void load(JSONObject saveJSON) 
 	{
 		collisionMap.clear();
-		int size = ((Long)saveJSON.get("size")).intValue();
+		int size = 0;
+		try {
+		size = ((Long)saveJSON.get("size")).intValue();
+		}catch(ClassCastException e)
+		{
+			size = (Integer)saveJSON.get("size");
+		}
+		
+		defaultCollisionBehavior = CollisionBehaviorLoader.load((JSONObject)saveJSON.get("defaultCollisionBehavior"));
+
 		for (Integer i = 0; i  < size; i++)
 		{
 			CustomCollisionPair currentPair = new CustomCollisionPair();
-			currentPair.load((JSONObject)saveJSON.get(i.toString()));
+			currentPair.load((JSONObject)saveJSON.get(i));
 			collisionMap.put(currentPair.getSpriteId(), currentPair.getCollisionBehavior());
 		}
 	}
@@ -94,15 +104,27 @@ public class CustomCollisionMap implements Saveable
 		if (o instanceof CustomCollisionMap)
 		{
 			CustomCollisionMap other = (CustomCollisionMap)o;
+			if (!(defaultCollisionBehavior.equals(other.getDefaultCollisionBehavior())))
+			{
+				return false;
+			}
 			for (Integer spriteId : collisionMap.keySet())
 			{
 				if (!(get(spriteId).equals(other.get(spriteId))))
 				{
+					System.out.println(String.format("Collisions for sprite %d don't match",spriteId ));
+					System.out.println(get(spriteId));
+					System.out.println(other.get(spriteId));
 					return false;
 				}
 			}
 			return true;
 		}
 		return false;
+	}
+
+	private CollisionBehavior getDefaultCollisionBehavior() 
+	{
+		return defaultCollisionBehavior;
 	}
 }

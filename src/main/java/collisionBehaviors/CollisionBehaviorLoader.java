@@ -11,6 +11,13 @@ public class CollisionBehaviorLoader
 		{
 			case "DoNothingCollisionBehavior":
 				return new DoNothingCollisionBehavior();
+				
+			case "BounceCollisionBehavior":
+				return new BounceCollisionBehavior();
+				
+			case "DestroyCollisionBehavior":
+				return new DestroyCollisionBehavior();
+
 			default:
 				System.out.println("CollisionBehaviorLoader was given something it doesn't know how to load : " + type);
 				return new DoNothingCollisionBehavior();

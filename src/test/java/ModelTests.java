@@ -9,7 +9,10 @@ import org.junit.jupiter.api.Test;
 
 import behaviors.DoNothingBehavior;
 import behaviors.MoveOnGameTickBehavior;
+import collisionBehaviors.BounceCollisionBehavior;
 import collisionBehaviors.CustomCollisionMap;
+import collisionBehaviors.DestroyCollisionBehavior;
+import collisionBehaviors.DoNothingCollisionBehavior;
 import constants.Constants;
 import javafx.geometry.Point2D;
 import model.Model;
@@ -243,9 +246,9 @@ class ModelTests {
 	public void CustomCollisionMapTest()
 	{
 		CustomCollisionMap customCollisionMap = new CustomCollisionMap();
-		customCollisionMap.setDefaultCollision(new BounceCollisionBehavior());
-		customCollisionMap.addCustomCollision(1, new DoNothingCollisionBehavior());
-		customCollisionMap.addCustomCollision(2, new DestroyCollisionBehavior());
+		customCollisionMap.setDefaultCollisionBehavior(new BounceCollisionBehavior());
+		customCollisionMap.put(1, new DoNothingCollisionBehavior());
+		customCollisionMap.put(2, new DestroyCollisionBehavior());
 		JSONObject json = customCollisionMap.save();
 		
 		CustomCollisionMap loader = new CustomCollisionMap();

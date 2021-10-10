@@ -375,4 +375,10 @@ public class Sprite extends DrawObject implements Drawable, Saveable {
 		appearance.setImage(path);
 	}
 
+	public void destroy() 
+	{
+		//TODO
+		//probably just set visible to false and play any explosions etc
+	}
+
 }
