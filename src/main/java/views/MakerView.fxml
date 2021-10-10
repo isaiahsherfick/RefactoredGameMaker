@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.ColorPicker?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
@@ -12,7 +13,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="makerPane" prefHeight="900.0" prefWidth="600.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
+<AnchorPane fx:id="makerPane" prefHeight="900.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <TabPane prefHeight="900.0" prefWidth="601.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>
@@ -22,7 +23,7 @@
                      <children>
                         <Button fx:id="createNewSpriteButton" layoutX="53.0" layoutY="14.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="145.0" text="Create New Sprite" />
                         <Button fx:id="dupllicateSpriteButton" layoutX="361.0" layoutY="14.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="190.0" text="Duplicate" />
-                        <Line endX="500.0" layoutX="101.0" layoutY="76.0" startX="-100.0" />
+                        <Line endX="500.0" layoutX="100.0" layoutY="76.0" startX="-100.0" />
                         <Text layoutX="4.0" layoutY="119.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Properties" wrappingWidth="242.765625">
                            <font>
                               <Font name="System Bold" size="40.0" />
@@ -63,7 +64,7 @@
                               <Font size="30.0" />
                            </font>
                         </Text>
-                        <Label fx:id="spriteIdLabel" layoutX="186.0" layoutY="167.0" text="ID Label">
+                        <Label fx:id="propertiesSpriteIdLabel" layoutX="186.0" layoutY="167.0" text="ID Label">
                            <font>
                               <Font size="30.0" />
                            </font>
@@ -94,17 +95,86 @@
           </Tab>
           <Tab text="Behaviors">
             <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Button fx:id="addBehaviorButton" layoutX="228.0" layoutY="14.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="145.0" text="Add Behavior" />
+                        <Line endX="500.0" layoutX="100.0" layoutY="76.0" startX="-100.0" />
+                        <Text layoutX="4.0" layoutY="119.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Behaviors" wrappingWidth="372.765625">
+                           <font>
+                              <Font name="System Bold" size="40.0" />
+                           </font>
+                        </Text>
+                        <Text layoutX="35.0" layoutY="200.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sprite ID:" wrappingWidth="151.240234375">
+                           <font>
+                              <Font size="30.0" />
+                           </font>
+                        </Text>
+                        <Label fx:id="behaviorsSpriteIdLabel" layoutX="186.0" layoutY="167.0" text="ID Label">
+                           <font>
+                              <Font size="30.0" />
+                           </font>
+                        </Label>
+                     </children></AnchorPane>
             </content>
           </Tab>
             <Tab text="Collisions">
               <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Button fx:id="addCollisionBehaviorButton1" layoutX="228.0" layoutY="14.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="145.0" text="Add Collision Behavior" />
+                        <Line endX="500.0" layoutX="100.0" layoutY="76.0" startX="-100.0" />
+                        <Text layoutX="4.0" layoutY="119.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Collisions" wrappingWidth="372.765625">
+                           <font>
+                              <Font name="System Bold" size="40.0" />
+                           </font>
+                        </Text>
+                        <Text layoutX="35.0" layoutY="200.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sprite ID:" wrappingWidth="151.240234375">
+                           <font>
+                              <Font size="30.0" />
+                           </font>
+                        </Text>
+                        <Label fx:id="collisionsSpriteIdLabel" layoutX="186.0" layoutY="167.0" text="ID Label">
+                           <font>
+                              <Font size="30.0" />
+                           </font>
+                        </Label>
+                     </children></AnchorPane>
               </content>
             </Tab>
             <Tab text="Game Properties">
               <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Button fx:id="addGamePropertyButton" layoutX="53.0" layoutY="14.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="145.0" text="Add" />
+                        <Button fx:id="removeGamePropertyButton" layoutX="361.0" layoutY="14.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="145.0" text="Remove" />
+                        <Line endX="500.0" layoutX="100.0" layoutY="76.0" startX="-100.0" />
+                        <Text layoutX="12.0" layoutY="119.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Game Properties" wrappingWidth="372.765625">
+                           <font>
+                              <Font name="System Bold" size="40.0" />
+                           </font>
+                        </Text>
+                        <CheckBox layoutX="10.0" layoutY="150.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="255.0" text="Uses Levels">
+                           <font>
+                              <Font size="30.0" />
+                           </font>
+                        </CheckBox>
+                        <CheckBox layoutX="10.0" layoutY="200.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="255.0" text="Uses Walls">
+                           <font>
+                              <Font size="30.0" />
+                           </font>
+                        </CheckBox>
+                        <CheckBox layoutX="10.0" layoutY="300.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="342.0" text="Color Background">
+                           <font>
+                              <Font size="30.0" />
+                           </font>
+                        </CheckBox>
+                        <CheckBox layoutX="10.0" layoutY="350.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="342.0" text="Image Background">
+                           <font>
+                              <Font size="30.0" />
+                           </font>
+                        </CheckBox>
+                        <Text layoutX="147.0" layoutY="355.0" strokeType="OUTSIDE" strokeWidth="0.0" text="or" />
+                     </children></AnchorPane>
               </content>
             </Tab>
         </tabs>
