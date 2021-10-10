@@ -4,8 +4,12 @@ import java.util.ArrayList;
 
 import org.json.simple.JSONObject;
 
-import behaviors.*;
+import behaviors.EventBehavior;
+import behaviors.EventBehaviorChain;
+import behaviors.TimedBehavior;
 import collisionBehaviors.BounceOffScreen;
+import collisionBehaviors.CollisionBehavior;
+import collisionBehaviors.CustomCollisionMap;
 import javafx.geometry.Point2D;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
@@ -192,7 +196,7 @@ public class Sprite extends DrawObject implements Drawable, Saveable {
 	protected EventBehaviorChain eventBehaviorChain;
 	
 	//map of spriteId : collisions against the corresponding sprite
-	//protected CollisionMap collisionMap;
+	CustomCollisionMap customCollisionMap;
 	
 
 
@@ -216,6 +220,7 @@ public class Sprite extends DrawObject implements Drawable, Saveable {
 		hitBox = new HitBox();
 		appearance = new Appearance();
 		eventBehaviorChain = new EventBehaviorChain();
+		customCollisionMap = new CustomCollisionMap();
 	}
 
 
@@ -278,6 +283,11 @@ public class Sprite extends DrawObject implements Drawable, Saveable {
 		eventBehaviorChain.add(e);
 	}
 	
+	public void addCustomCollision(int colliderSpriteId, CollisionBehavior collisionBehavior)
+	{
+		customCollisionMap.put(colliderSpriteId, collisionBehavior);
+	}
+	
 	//TODO how should we handle this discrepancy between appearance/hitbox? Should we just reconcile the two? Seems to violate single responsibilty
 	public double getX()
 	{
@@ -299,6 +309,7 @@ public class Sprite extends DrawObject implements Drawable, Saveable {
 		json.put("hitBox",hitBox.save());
 		json.put("appearance",appearance.save());
 		json.put("eventBehaviorChain",eventBehaviorChain.save());
+		json.put("customCollisionMap",customCollisionMap.save());
 
 		//TODO keep this growing as more stuff is added to Sprite class
 		
@@ -313,7 +324,13 @@ public class Sprite extends DrawObject implements Drawable, Saveable {
 		copySprite.setHitBox(hitBox.copy());
 		copySprite.setAppearance(appearance.copy());
 		copySprite.setEventBehaviorChain(eventBehaviorChain.copy());
+		copySprite.setCustomCollisionMap(customCollisionMap.copy());
 		return copySprite;
+	}
+
+	private void setCustomCollisionMap(CustomCollisionMap ccm) 
+	{
+		customCollisionMap = ccm;
 	}
 
 	public void setEventBehaviorChain(EventBehaviorChain e) 
@@ -336,6 +353,8 @@ public class Sprite extends DrawObject implements Drawable, Saveable {
 		spriteId = ((Long)saveJSON.get("spriteId")).intValue();
 		EventBehaviorChain ebc = new EventBehaviorChain();
 		ebc.load((JSONObject)saveJSON.get("eventBehaviorChain"));
+		CustomCollisionMap ccm = new CustomCollisionMap();
+		ccm.load((JSONObject)saveJSON.get("customCollisionMap"));
 	}
 	
 	@Override
@@ -344,11 +363,16 @@ public class Sprite extends DrawObject implements Drawable, Saveable {
 		if (o instanceof Sprite)
 		{
 			Sprite s = (Sprite)o;
-			return (s.getSpriteId() == spriteId) && s.getHitBox().equals(hitBox) && s.getAppearance().equals(appearance) && s.getEventBehaviorChain().equals(eventBehaviorChain);
+			return (s.getSpriteId() == spriteId) && s.getHitBox().equals(hitBox) && s.getAppearance().equals(appearance) && s.getEventBehaviorChain().equals(eventBehaviorChain) && s.getCustomCollisionMap().equals(customCollisionMap);
 		}
 		return false;
 	}
 	
+	private Object getCustomCollisionMap() 
+	{
+		return customCollisionMap;
+	}
+
 	private Object getEventBehaviorChain() 
 	{
 		return eventBehaviorChain;
@@ -375,4 +399,14 @@ public class Sprite extends DrawObject implements Drawable, Saveable {
 		appearance.setImage(path);
 	}
 
+	public void destroy() 
+	{
+		//TODO
+		//probably just set visible to false and play any explosions etc
+	}
+	
+	public void setDefaultCollisionBehavior(CollisionBehavior c)
+	{
+		customCollisionMap.setDefaultCollisionBehavior(c);
+	}
 }
