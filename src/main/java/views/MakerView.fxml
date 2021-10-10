@@ -221,7 +221,39 @@
             </Tab>
             <Tab text="Game Properties">
               <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                      <children>
+                         <Button fx:id="addGamePropertyButton" layoutX="53.0" layoutY="14.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="145.0" text="Add" />
+                         <Button fx:id="removeGamePropertyButton" layoutX="361.0" layoutY="14.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="145.0" text="Remove" />
+                         <Line endX="500.0" layoutX="100.0" layoutY="76.0" startX="-100.0" />
+                         <Text layoutX="12.0" layoutY="119.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Game Properties" wrappingWidth="372.765625">
+                            <font>
+                               <Font name="System Bold" size="40.0" />
+                            </font>
+                         </Text>
+                         <CheckBox layoutX="10.0" layoutY="150.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="255.0" text="Uses Levels">
+                            <font>
+                               <Font size="30.0" />
+                            </font>
+                         </CheckBox>
+                         <CheckBox layoutX="10.0" layoutY="200.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="255.0" text="Uses Walls">
+                            <font>
+                               <Font size="30.0" />
+                            </font>
+                         </CheckBox>
+                         <CheckBox layoutX="10.0" layoutY="300.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="342.0" text="Color Background">
+                            <font>
+                               <Font size="30.0" />
+                            </font>
+                         </CheckBox>
+                         <CheckBox layoutX="10.0" layoutY="350.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="342.0" text="Image Background">
+                            <font>
+                               <Font size="30.0" />
+                            </font>
+                         </CheckBox>
+                         <Text layoutX="147.0" layoutY="355.0" strokeType="OUTSIDE" strokeWidth="0.0" text="or" />
+                      </children>
+              	</AnchorPane>
               </content>
             </Tab>
         </tabs>
