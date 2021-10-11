@@ -9,6 +9,10 @@ import org.junit.jupiter.api.Test;
 
 import behaviors.DoNothingBehavior;
 import behaviors.MoveOnGameTickBehavior;
+import collisionBehaviors.BounceCollisionBehavior;
+import collisionBehaviors.CustomCollisionMap;
+import collisionBehaviors.DestroyCollisionBehavior;
+import collisionBehaviors.DoNothingCollisionBehavior;
 import constants.Constants;
 import javafx.geometry.Point2D;
 import model.Model;
@@ -179,6 +183,8 @@ class ModelTests {
 		Sprite sprite4 = new Sprite();
 		Sprite sprite5 = new Sprite();
 		Sprite sprite6 = new Sprite();
+		Sprite sprite7 = new Sprite();
+		Sprite sprite8 = new Sprite();
 		
 		sprite1.setX(1);
 		sprite2.setY(2);
@@ -189,6 +195,9 @@ class ModelTests {
 		assertEquals(1,sprite6.getEventBehaviorChainSize());
 		sprite6.addEventBehavior(new DoNothingBehavior());
 		assertEquals(2,sprite6.getEventBehaviorChainSize());
+		sprite7.addCustomCollision(3, new DestroyCollisionBehavior());
+		sprite8.addCustomCollision(6, new BounceCollisionBehavior());
+		sprite8.setDefaultCollisionBehavior(new DestroyCollisionBehavior());
 		
 		
 		//add them to the model
@@ -198,6 +207,8 @@ class ModelTests {
 		m.addSprite(sprite4);
 		m.addSprite(sprite5);
 		m.addSprite(sprite6);
+		m.addSprite(sprite7);
+		m.addSprite(sprite8);
 
 		ArrayList<Sprite> sprites = new ArrayList<>();
 		sprites.add(sprite1);
@@ -206,6 +217,8 @@ class ModelTests {
 		sprites.add(sprite4);
 		sprites.add(sprite5);
 		sprites.add(sprite6);
+		sprites.add(sprite7);
+		sprites.add(sprite8);
 		
 		//save them
 		try {
@@ -230,11 +243,25 @@ class ModelTests {
 		assertNotEquals(0, m.getNumberOfSprites());
 		
 		//assert that everything got preserved
-		for (int i = 0; i < 4; i++)
+		for (int i = 0; i < 8; i++)
 		{
 			Sprite expected = sprites.get(i);
 			Sprite actual = m.getSprite(i);
 			assertEquals(expected,actual);
 		}
+	}
+	
+	@Test
+	public void CustomCollisionMapTest()
+	{
+		CustomCollisionMap customCollisionMap = new CustomCollisionMap();
+		customCollisionMap.setDefaultCollisionBehavior(new BounceCollisionBehavior());
+		customCollisionMap.put(1, new DoNothingCollisionBehavior());
+		customCollisionMap.put(2, new DestroyCollisionBehavior());
+		JSONObject json = customCollisionMap.save();
+		
+		CustomCollisionMap loader = new CustomCollisionMap();
+		loader.load(json);
+		assertEquals(customCollisionMap,loader);
 	}
 }
