@@ -34,6 +34,8 @@ public class View {
 				playerStage.setX(900);
 				playerStage.setY(50);
 				playerStage.show();
+				
+				
 
 				
 			}
