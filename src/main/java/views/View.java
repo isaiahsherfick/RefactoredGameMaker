@@ -33,14 +33,10 @@ public class View {
 				playerStage.setScene(playerScene);
 				playerStage.setX(905);
 				playerStage.setY(50);
-				playerStage.show();
-				
-				
-
-				
+				playerStage.show();	
 			}
 			catch(IOException ex) {
-				System.out.println(ex);
+				System.out.println("At line 39 in View.java: " + ex);
 			}
 			
 		}
