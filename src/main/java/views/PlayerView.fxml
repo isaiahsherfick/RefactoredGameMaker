@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Line?>
+
+
+<AnchorPane prefHeight="900.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml" xmlns="http://javafx.com/javafx">
+   <children>
+      <Line endX="500.0" layoutX="101.0" layoutY="76.0" startX="-100.0" />
+      <Button fx:id="playButton" layoutX="10.0" layoutY="14.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="108.0" text="Play" />
+      <Button fx:id="undoButton" layoutX="130.0" layoutY="14.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="108.0" text="Undo" />
+      <Button fx:id="redoButton" layoutX="250.0" layoutY="14.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="108.0" text="Redo" />
+      <Button fx:id="saveButton" layoutX="370.0" layoutY="14.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="108.0" text="Save" />
+      <Button fx:id="loadButton" layoutX="490.0" layoutY="14.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="108.0" text="Load" />
+   </children>
+</AnchorPane>
