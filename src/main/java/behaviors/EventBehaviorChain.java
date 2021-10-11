@@ -74,7 +74,7 @@ public class EventBehaviorChain implements EventBehavior
 		for (Integer i=0; i<size; i++)
 		{
 			EventBehavior e = EventBehaviorLoader.load((JSONObject)saveJSON.get(i.toString()));
-			System.out.println(e);
+			//System.out.println(e);
 			add(e);
 		}
 	}
