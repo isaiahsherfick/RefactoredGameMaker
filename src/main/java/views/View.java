@@ -31,7 +31,7 @@ public class View {
 				AnchorPane playerLayout = (AnchorPane)playerWindowLoader.load();
 				Scene playerScene = new Scene(playerLayout);
 				playerStage.setScene(playerScene);
-				playerStage.setX(900);
+				playerStage.setX(905);
 				playerStage.setY(50);
 				playerStage.show();
 				
