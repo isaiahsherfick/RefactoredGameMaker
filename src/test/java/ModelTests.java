@@ -243,7 +243,7 @@ class ModelTests {
 		assertNotEquals(0, m.getNumberOfSprites());
 		
 		//assert that everything got preserved
-		for (int i = 0; i < 4; i++)
+		for (int i = 0; i < 8; i++)
 		{
 			Sprite expected = sprites.get(i);
 			Sprite actual = m.getSprite(i);
