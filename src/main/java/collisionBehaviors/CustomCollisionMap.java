@@ -135,6 +135,7 @@ public class CustomCollisionMap implements Saveable
 	public CustomCollisionMap copy() 
 	{
 		CustomCollisionMap copy = new CustomCollisionMap();
+		copy.setDefaultCollisionBehavior(defaultCollisionBehavior);
 		for (Entry<Integer, CollisionBehavior> e : collisionMap.entrySet())
 		{
 			copy.put(e.getKey(), e.getValue());
