@@ -9,7 +9,7 @@ public class PlayCommand implements Command {
 	}
 
 	@Override
-	public void unExecute() {
+	public void unexecute() {
 		// TODO Auto-generated method stub
 
 	}

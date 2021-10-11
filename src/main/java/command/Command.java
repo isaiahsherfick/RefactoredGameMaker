@@ -1,9 +1,14 @@
 package command;
-
+/**
+ * 
+ * @author ramya
+ *
+ *
+ */
 public interface Command 
 {
 	void execute();
-	void unExecute();
+	void unexecute();
 }
 
 
