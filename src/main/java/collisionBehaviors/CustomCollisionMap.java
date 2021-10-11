@@ -108,12 +108,14 @@ public class CustomCollisionMap implements Saveable
 			CustomCollisionMap other = (CustomCollisionMap)o;
 			if (!(defaultCollisionBehavior.equals(other.getDefaultCollisionBehavior())))
 			{
+				//System.out.println("Defaults aren't equal.");
 				return false;
 			}
 			for (Integer spriteId : collisionMap.keySet())
 			{
 				if (!(get(spriteId).equals(other.get(spriteId))))
 				{
+					//System.out.println(String.format("Collision for spriteId%d doesn't match",spriteId));
 					return false;
 				}
 			}

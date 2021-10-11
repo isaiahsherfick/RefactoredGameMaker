@@ -74,6 +74,7 @@ public class EventBehaviorChain implements EventBehavior
 		for (Integer i=0; i<size; i++)
 		{
 			EventBehavior e = EventBehaviorLoader.load((JSONObject)saveJSON.get(i.toString()));
+			System.out.println(e);
 			add(e);
 		}
 	}
@@ -150,12 +151,14 @@ public class EventBehaviorChain implements EventBehavior
 			EventBehaviorChain e = (EventBehaviorChain)o;
 			if (e.size() != size())
 			{
+				//System.out.println("Sizes aren't equal");
 				return false;
 			}
 			for (int i=0; i<size(); i++)
 			{
-				if (!get(i).equals(e.get(i)))
+				if (!(get(i).equals(e.get(i))))
 				{
+					//System.out.println(get(i) + " does not equal " + e.get(i));
 					return false;
 				}
 			}

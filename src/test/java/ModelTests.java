@@ -247,6 +247,10 @@ class ModelTests {
 		{
 			Sprite expected = sprites.get(i);
 			Sprite actual = m.getSprite(i);
+			if (!(expected.equals(actual)))
+			{
+				System.out.println(expected + " doesn't equal " + actual);
+			}
 			assertEquals(expected,actual);
 		}
 	}
