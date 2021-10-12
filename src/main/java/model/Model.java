@@ -41,6 +41,7 @@ public class Model
 	private SpriteManager spriteManager;
 	private SaveAndLoadManager saveAndLoadManager;
 	private String saveFilePath;
+	private Sprite sprite;
 
 	public Model()
 	{
@@ -48,6 +49,16 @@ public class Model
 		saveAndLoadManager = new SaveAndLoadManager();
 		saveFilePath = Constants.DEFAULT_SAVE_FILE_PATH;
 	}
+	
+	//@author:Ramya
+	// Should this method be within the model or sprite manager ?
+	public Sprite createSprite()
+	{
+		sprite=new Sprite();
+		return sprite;
+		
+	}
+	
 	
 	public void addSprite(Sprite sprite)
 	{

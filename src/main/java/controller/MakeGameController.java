@@ -1,42 +1,34 @@
 package controller;
 
-import java.io.IOException;
-
+import command.Command;
+import command.CommandInvoker;
 import command.CreateSpriteCommand;
-import javafx.event.ActionEvent;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-//import javafx.scene.Scene;
+import model.Model;
+/**
+ * @author ramya
+ * The following class is responsible for making call to the Command Invoker,
+ * for every event that happens in the Maker View(screen/window)
+ *
+ */
 
 public class MakeGameController {
+	
+	 private  CommandInvoker invoker ;
 
-	    private Parent makerview; //the view
-	    public static final String FILE_PATH = "makerview.fxml";
-
-
-	    /**
-	     * 
-	     * @param scene this should contain a VBox with ID vboxPreview so that
-	     *              the buttons ribbon/container can be added there.
-	     */
-	    
-	    public MakeGameController()
-	    {
-	        try
-	        {
-	            //1. Create the game maker view
-	            makerview = FXMLLoader.load(getClass().getClassLoader().getResource(FILE_PATH));
-	           // TODO 
-	        }
-	        catch (IOException e) {
-	            System.out.println("Failed to load in " + FILE_PATH);
-	            e.printStackTrace();
-	        }
-	    }  
-	    
-	    	public void onClickCreateSprite(ActionEvent event)
-	    	{
-	    	}
-
+	 
+	 //constructor
+	 public MakeGameController()
+	 {
+	     invoker=new CommandInvoker();  
+			
+	 }  
+	 
+	 // It creates the "create sprite" command and passes it to the commandInvoker 
+	 public void createSprite()
+	 {
+		 Command createSprite=new CreateSpriteCommand();
+		 invoker.receiveCommand(createSprite); 
+	 }
+	    	   
 
 }

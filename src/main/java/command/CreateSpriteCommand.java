@@ -1,5 +1,8 @@
 package command;
 
+
+import main.GameMaker;
+import model.Model;
 import sprite.Sprite;
 import sprite.SpriteManager;
 
@@ -10,30 +13,27 @@ import sprite.SpriteManager;
  */
 
 public class CreateSpriteCommand implements Command {
-	
-	private SpriteManager spritemanager;
+
 	private Sprite sprite;
-	private int spriteNumber;
+	private Model model;
+
 	
-	
-	// Constructor
-	// Receives the spritemanager reference and sprite object references to be able to add and remove the sprite from the sprite manager 
-	public CreateSpriteCommand(SpriteManager spritemanager,Sprite sprite, int spriteNumber)
+	//constructor 1 : Empty Constructor 
+	public CreateSpriteCommand()
 	{
-		this.sprite=sprite;
-		this.spritemanager=spritemanager;
-		this.spriteNumber=spriteNumber;
+		model=GameMaker.getModel();
 	}
 	
 	@Override
 	public void execute() {
-		spritemanager.add(sprite);
+		sprite=model.createSprite();
+		model.addSprite(sprite);
 
 	}
 
 	@Override
 	public void unexecute() {
-		spritemanager.remove(spriteNumber);
+		model.removeSprite(sprite);
 
 	}
 

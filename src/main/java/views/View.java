@@ -3,6 +3,8 @@ package views;
 
 import java.io.IOException;
 
+import controller.MakeGameController;
+import game.engine.GameEngine;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -10,6 +12,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import main.GameMaker;
+import sprite.Sprite;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ColorPicker;
@@ -22,6 +26,15 @@ import javafx.scene.layout.Pane;
 import javafx.scene.text.Text; 
 
 public class View {
+		
+		private MakeGameController controller;
+		
+		//constructor
+		public View()
+		{
+			controller=GameMaker.getMakeGameController();
+		}
+
 	
 		//Displays both views, called by Main.java when program is launched.
 		public static void start(Stage makerStage) {
@@ -207,8 +220,14 @@ public class View {
 
 	    }
 
+	    
 	    @FXML
-	    void createSpriteButtonClicked(ActionEvent event) {
+	    //@author Ramya 
+	    // Requests the controller to add new sprite 
+	    void createSpriteButtonClicked(ActionEvent event) 
+	    {
+	 
+	    	 controller.createSprite();
 
 	    }
 
