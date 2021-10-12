@@ -5,6 +5,7 @@ import org.json.simple.JSONObject;
 import behaviors.DoNothingBehavior;
 import behaviors.EventBehavior;
 import behaviors.MoveOnGameTickBehavior;
+import collisionBehaviors.DestroyCollisionBehavior;
 
 public class EventBehaviorLoader 
 {
@@ -20,7 +21,6 @@ public class EventBehaviorLoader
 				MoveOnGameTickBehavior moveOnGameTickBehavior = new MoveOnGameTickBehavior();
 				moveOnGameTickBehavior.load(json);
 				return moveOnGameTickBehavior;
-				//TODO destroybehavior
 			default:
 				System.out.println("BehaviorLoader was given something it doesn't have a case for: " + type);
 				return new DoNothingBehavior();
