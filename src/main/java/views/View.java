@@ -9,7 +9,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 public class View {
-		//Displays both views
+		//Displays both views, called by Main.java when program is launched.
 		public static void start(Stage makerStage) {
 			try {
 				//Loads and shows the makerView
