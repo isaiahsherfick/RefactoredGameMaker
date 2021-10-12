@@ -26,12 +26,12 @@ public class SpriteManager
 	}
 	
 	//Add a new sprite to the spritemanager
-	public void add(Sprite sprite)
+	public int add(Sprite sprite)
 	{
 		//We don't want to insert null sprites
 		if (sprite.getSpriteId() == Constants.NULL_SPRITE_ID)
 		{
-			return;
+			return Constants.NULL_SPRITE_ID;
 		}
 		
 		if (sprite.getSpriteId() < currentHighestSpriteId)
@@ -45,6 +45,7 @@ public class SpriteManager
 		}
 		spriteMap.put(sprite.getSpriteId(), sprite);
 		size++;
+		return sprite.getSpriteId();
 	}
 	
 	//Remove a sprite from the spritemanager by its spriteid

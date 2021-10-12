@@ -3,7 +3,7 @@ package views;
 
 import java.io.IOException;
 
-import controller.MakeGameController;
+import controller.Controller;
 import game.engine.GameEngine;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -27,7 +27,7 @@ import javafx.scene.text.Text;
 
 public class View {
 		
-		private MakeGameController controller;
+		private Controller controller;
 		
 		//constructor
 		public View()

@@ -1,5 +1,5 @@
 package main;
-import controller.MakeGameController;
+import controller.Controller;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import model.Model;
@@ -8,7 +8,7 @@ import views.View;
 public class GameMaker extends Application {
 	
 	private static Model model; // model
-	private static MakeGameController controller; //controller
+	private static Controller controller; //controller
 	private static View view; //view
 	
 	
@@ -17,7 +17,7 @@ public class GameMaker extends Application {
 		return model;
 	}
 	
-	public static MakeGameController getMakeGameController()
+	public static Controller getMakeGameController()
 	{
 		return controller;
 	}
@@ -33,7 +33,7 @@ public class GameMaker extends Application {
     public void start(Stage primaryStage) throws Exception
 	{
 		model=new Model();  
-		controller=new MakeGameController();
+		controller=new Controller();
 		View.start(primaryStage);
 	}
 
