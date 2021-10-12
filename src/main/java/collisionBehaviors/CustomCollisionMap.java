@@ -77,7 +77,6 @@ public class CustomCollisionMap implements Saveable
 			size = (Integer)saveJSON.get("size");
 		}
 		defaultCollisionBehavior = CollisionBehaviorLoader.load((JSONObject)saveJSON.get("defaultCollisionBehavior"));
-		System.out.println("default: " + defaultCollisionBehavior);
 
 		for (Integer i = 0; i  < size; i++)
 		{
