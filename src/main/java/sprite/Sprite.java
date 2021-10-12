@@ -196,7 +196,7 @@ public class Sprite extends DrawObject implements Drawable, Saveable {
 	protected EventBehaviorChain eventBehaviorChain;
 	
 	//map of spriteId : collisions against the corresponding sprite
-	CustomCollisionMap customCollisionMap;
+	protected CustomCollisionMap customCollisionMap;
 	
 
 
@@ -353,8 +353,10 @@ public class Sprite extends DrawObject implements Drawable, Saveable {
 		spriteId = ((Long)saveJSON.get("spriteId")).intValue();
 		EventBehaviorChain ebc = new EventBehaviorChain();
 		ebc.load((JSONObject)saveJSON.get("eventBehaviorChain"));
+		eventBehaviorChain = ebc;
 		CustomCollisionMap ccm = new CustomCollisionMap();
 		ccm.load((JSONObject)saveJSON.get("customCollisionMap"));
+		customCollisionMap = ccm;
 	}
 	
 	@Override
@@ -363,17 +365,45 @@ public class Sprite extends DrawObject implements Drawable, Saveable {
 		if (o instanceof Sprite)
 		{
 			Sprite s = (Sprite)o;
-			return (s.getSpriteId() == spriteId) && s.getHitBox().equals(hitBox) && s.getAppearance().equals(appearance) && s.getEventBehaviorChain().equals(eventBehaviorChain) && s.getCustomCollisionMap().equals(customCollisionMap);
+			boolean spriteIdEquals = s.getSpriteId() == spriteId;
+			if (!spriteIdEquals)
+			{
+				System.out.println("Sprite Ids aren't equal");
+			}
+			boolean hitBoxEquals = s.getHitBox().equals(hitBox);
+			if (!hitBoxEquals)
+			{
+				System.out.println("Hit boxes aren't equal");
+			}
+			boolean appearanceEquals = s.getAppearance().equals(appearance);
+			if (!appearanceEquals)
+			{
+				System.out.println("appearances aren't equal");
+			}
+			boolean eventBehaviorChainEquals = s.getEventBehaviorChain().equals(eventBehaviorChain);
+			if (!eventBehaviorChainEquals)
+			{
+				System.out.println("event behavior chains aren't equal");
+				//System.out.println(eventBehaviorChain.size());
+				//System.out.println(s.getEventBehaviorChain().size());
+			}
+			boolean customCollisionMapEquals = s.getCustomCollisionMap().equals(customCollisionMap);
+			if (!customCollisionMapEquals)
+			{
+				System.out.println("custom collision maps aren't equal");
+			}
+			
+			return spriteIdEquals && hitBoxEquals && appearanceEquals && eventBehaviorChainEquals && customCollisionMapEquals;
 		}
 		return false;
 	}
 	
-	private Object getCustomCollisionMap() 
+	private CustomCollisionMap getCustomCollisionMap() 
 	{
 		return customCollisionMap;
 	}
 
-	private Object getEventBehaviorChain() 
+	private EventBehaviorChain getEventBehaviorChain() 
 	{
 		return eventBehaviorChain;
 	}
