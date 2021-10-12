@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.ColorPicker?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane fx:id="makerPane" prefHeight="900.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="views.View">
+   <children>
+      <TabPane prefHeight="900.0" prefWidth="601.0" tabClosingPolicy="UNAVAILABLE">
+        <tabs>
+          <Tab text="Sprite View">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Button fx:id="createNewSpriteButton" layoutX="53.0" layoutY="14.0" mnemonicParsing="false" onAction="#createSpriteButtonClicked" prefHeight="47.0" prefWidth="190.0" text="Create New Sprite" AnchorPane.bottomAnchor="807.5" AnchorPane.leftAnchor="53.0" AnchorPane.rightAnchor="358.0" AnchorPane.topAnchor="14.0" />
+                        <Button fx:id="duplicateSpriteButton" layoutX="361.0" layoutY="14.0" mnemonicParsing="false" onAction="#duplicateSpriteButtonClicked" prefHeight="47.0" prefWidth="190.0" text="Duplicate" />
+                        <Line endX="500.0" layoutX="101.0" layoutY="76.0" startX="-100.0" />
+                        <Text layoutX="25.0" layoutY="139.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sprite Properties" wrappingWidth="500.0">
+                           <font>
+                              <Font name="System Bold" size="36.0" />
+                           </font>
+                        </Text>
+                        <Text layoutX="35.0" layoutY="200.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sprite ID:" wrappingWidth="151.240234375">
+                           <font>
+                              <Font size="30.0" />
+                           </font>
+                        </Text>
+                        <Text layoutX="34.0" layoutY="250.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Position X:" wrappingWidth="153.240234375" AnchorPane.bottomAnchor="612.171875" AnchorPane.leftAnchor="34.0" AnchorPane.rightAnchor="413.759765625" AnchorPane.topAnchor="221.0">
+                           <font>
+                              <Font size="30.0" />
+                           </font>
+                        </Text>
+                        <Text layoutX="225.0" layoutY="250.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Y:" wrappingWidth="87.240234375" AnchorPane.bottomAnchor="612.16796875" AnchorPane.rightAnchor="288.759765625" AnchorPane.topAnchor="221.0">
+                           <font>
+                              <Font size="30.0" />
+                           </font>
+                        </Text>
+                        <Text layoutX="34.0" layoutY="300.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Width:" wrappingWidth="153.240234375">
+                           <font>
+                              <Font size="30.0" />
+                           </font>
+                        </Text>
+                        <Text layoutX="34.0" layoutY="350.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Height: " wrappingWidth="153.240234375">
+                           <font>
+                              <Font size="30.0" />
+                           </font>
+                        </Text>
+                        <Text layoutX="34.0" layoutY="400.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Color: " wrappingWidth="153.240234375">
+                           <font>
+                              <Font size="30.0" />
+                           </font>
+                        </Text>
+                        <Text layoutX="35.0" layoutY="450.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Appearance:" wrappingWidth="167.240234375">
+                           <font>
+                              <Font size="30.0" />
+                           </font>
+                        </Text>
+                        <Label fx:id="spriteIdLabel" layoutX="171.0" layoutY="165.0" text="ID Label">
+                           <font>
+                              <Font size="30.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="spriteYLabel" layoutX="259.0" layoutY="221.0" text="Y " AnchorPane.bottomAnchor="612.171875" AnchorPane.topAnchor="221.0">
+                           <font>
+                              <Font size="30.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="spriteXLabel" layoutX="177.0" layoutY="221.0" text="X" AnchorPane.bottomAnchor="612.171875" AnchorPane.leftAnchor="177.0" AnchorPane.rightAnchor="404.5" AnchorPane.topAnchor="221.0">
+                           <font>
+                              <Font size="30.0" />
+                           </font>
+                        </Label>
+                        <Slider fx:id="spriteWidthSlider" layoutX="134.0" layoutY="285.0" onDragDone="#widthSliderChanged" prefHeight="14.0" prefWidth="233.0" />
+                        <Slider fx:id="spriteHeightSlider" layoutX="135.0" layoutY="336.0" onDragDone="#heightSliderChanged" prefHeight="14.0" prefWidth="233.0" />
+                        <ColorPicker fx:id="spriteColorPicker" layoutX="124.0" layoutY="377.0" onAction="#spriteColorSelected" />
+                        <ComboBox fx:id="spriteShapeDropdown" layoutX="210.0" layoutY="427.0" onAction="#spriteAppearanceSelected" prefHeight="25.0" prefWidth="116.0" />
+                        <Text layoutX="344.0" layoutY="446.0" strokeType="OUTSIDE" strokeWidth="0.0" text="or" wrappingWidth="33.240234375">
+                           <font>
+                              <Font size="30.0" />
+                           </font>
+                        </Text>
+                        <Button fx:id="spriteChooseImageButton" layoutX="388.0" layoutY="427.0" mnemonicParsing="false" onAction="#spriteAppearanceSelected" prefHeight="25.0" prefWidth="116.0" text="Choose Image" />
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+          <Tab text="Behaviors">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Button fx:id="newBehaviorButton" layoutX="101.0" layoutY="25.0" mnemonicParsing="false" onAction="#addBehaviorButtonClicked" prefHeight="47.0" prefWidth="400.0" text="Add new Behavior" AnchorPane.bottomAnchor="797.0" AnchorPane.leftAnchor="101.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="25.0" />
+                        <Line endX="500.0" layoutX="92.0" layoutY="101.0" startX="-100.0" />
+                        <SplitPane dividerPositions="0.5" layoutY="111.0" prefHeight="478.0" prefWidth="601.0">
+                           <items>
+                              <ScrollPane fx:id="spriteBehaviorList" prefHeight="335.0" prefWidth="287.0" />
+                              <AnchorPane fx:id="spriteBehaviorEditPane" prefHeight="200.0" prefWidth="294.0">
+                                 <children>
+                                    <Text layoutX="48.0" layoutY="80.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Select Behavior Type" textAlignment="CENTER" wrappingWidth="200.0">
+                                       <font>
+                                          <Font size="15.0" />
+                                       </font>
+                                    </Text>
+                                    <ChoiceBox fx:id="spriteBehaviorType" layoutX="73.0" layoutY="86.0" prefWidth="150.0" />
+                                    <Text layoutX="14.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Behavior Properties" wrappingWidth="200.0">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                    </Text>
+                                    <VBox layoutX="12.0" layoutY="127.0" prefHeight="300.0" prefWidth="273.0">
+                                       <children>
+                                          <Pane fx:id="timeBehaviorPane" prefHeight="100.0" prefWidth="273.0">
+                                             <children>
+                                                <Text layoutX="14.0" layoutY="29.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Enter time interval:" wrappingWidth="120.0">
+                                                   <font>
+                                                      <Font size="12.0" />
+                                                   </font>
+                                                </Text>
+                                                <Text fx:id="timeBehaviorIntervalInput" layoutX="88.0" layoutY="29.0" strokeType="OUTSIDE" strokeWidth="0.0" text="XX" textAlignment="RIGHT" wrappingWidth="40.0">
+                                                   <font>
+                                                      <Font size="12.0" />
+                                                   </font>
+                                                </Text>
+                                                <Text layoutX="133.0" layoutY="29.0" strokeType="OUTSIDE" strokeWidth="0.0" text="secs" wrappingWidth="40.0">
+                                                   <font>
+                                                      <Font size="12.0" />
+                                                   </font>
+                                                </Text>
+                                                <CheckBox fx:id="timeBehaviorContinousCheck" layoutX="179.0" layoutY="15.0" mnemonicParsing="false" text="Continous?" />
+                                                <Text layoutX="14.0" layoutY="67.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Select Action:" wrappingWidth="120.0">
+                                                   <font>
+                                                      <Font size="12.0" />
+                                                   </font>
+                                                </Text>
+                                                <ChoiceBox fx:id="timeBehaviorAction" layoutX="100.0" layoutY="50.0" prefWidth="150.0" />
+                                             </children>
+                                          </Pane>
+                                          <Pane fx:id="keyPressedBehaviorPane" prefHeight="100.0" prefWidth="273.0">
+                                             <children>
+                                                <Text layoutX="14.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Enter key:" wrappingWidth="120.0">
+                                                   <font>
+                                                      <Font size="12.0" />
+                                                   </font>
+                                                </Text>
+                                                <Text layoutX="14.0" layoutY="67.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Select Action:" wrappingWidth="120.0">
+                                                   <font>
+                                                      <Font size="12.0" />
+                                                   </font>
+                                                </Text>
+                                                <ChoiceBox fx:id="keyBehaviorAction" layoutX="92.0" layoutY="50.0" prefWidth="150.0" />
+                                                <Text fx:id="keyBehaviorKeyInput" layoutX="79.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="X" textAlignment="CENTER" wrappingWidth="40.0">
+                                                   <font>
+                                                      <Font size="12.0" />
+                                                   </font>
+                                                </Text>
+                                             </children>
+                                          </Pane>
+                                          <Pane fx:id="mouseEventBehaviorPane" prefHeight="100.0" prefWidth="273.0" />
+                                       </children>
+                                    </VBox>
+                                 </children>
+                              </AnchorPane>
+                           </items>
+                        </SplitPane>
+                     </children></AnchorPane>
+            </content>
+          </Tab>
+            <Tab text="Collisions">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Button fx:id="newCollisionBehaviorButton" layoutX="101.0" layoutY="25.0" mnemonicParsing="false" onAction="#addCollisionBehaviorButtonClicked" prefHeight="47.0" prefWidth="400.0" text="Add new Collision Behavior" AnchorPane.bottomAnchor="792.0" AnchorPane.leftAnchor="101.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="30.0" />
+                        <Line endX="500.0" layoutY="115.0" startX="-100.0" />
+                        <SplitPane dividerPositions="0.5" layoutY="115.0" prefHeight="478.0" prefWidth="601.0">
+                           <items>
+                              <ScrollPane fx:id="spriteBehaviorList1" prefHeight="335.0" prefWidth="287.0" />
+                              <AnchorPane fx:id="spriteBehaviorEditPane1" prefHeight="200.0" prefWidth="294.0">
+                                 <children>
+                                    <Text layoutX="48.0" layoutY="80.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Select Collision Type" textAlignment="CENTER" wrappingWidth="200.0">
+                                       <font>
+                                          <Font size="15.0" />
+                                       </font>
+                                    </Text>
+                                    <ChoiceBox fx:id="spriteCollisionType" layoutX="73.0" layoutY="86.0" prefWidth="150.0" />
+                                    <Text layoutX="14.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Collision Properties" wrappingWidth="200.0">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                    </Text>
+                                    <Text layoutX="48.0" layoutY="150.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Select Object Type" textAlignment="CENTER" wrappingWidth="200.0">
+                                       <font>
+                                          <Font size="15.0" />
+                                       </font>
+                                    </Text>
+                                    <ChoiceBox fx:id="collisionObjectType" layoutX="73.0" layoutY="153.0" prefWidth="150.0" />
+                                    <Text layoutX="48.0" layoutY="215.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Select Action" textAlignment="CENTER" wrappingWidth="200.0">
+                                       <font>
+                                          <Font size="15.0" />
+                                       </font>
+                                    </Text>
+                                    <ChoiceBox fx:id="collisionAction" layoutX="73.0" layoutY="218.0" prefWidth="150.0" />
+                                 </children>
+                              </AnchorPane>
+                           </items>
+                        </SplitPane>
+                     </children></AnchorPane>
+              </content>
+            </Tab>
+            <Tab text="Game Properties">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                      <children>
+                         <Button fx:id="addGamePropertyButton" layoutX="53.0" layoutY="14.0" mnemonicParsing="false" onAction="#addGamePropertyButtonClicked" prefHeight="47.0" prefWidth="145.0" text="Add" />
+                         <Button fx:id="removeGamePropertyButton" layoutX="361.0" layoutY="14.0" mnemonicParsing="false" onAction="#removeGamePropertyButtonClicked" prefHeight="47.0" prefWidth="145.0" text="Remove" />
+                         <Line endX="500.0" layoutX="100.0" layoutY="76.0" startX="-100.0" />
+                         <Text layoutX="12.0" layoutY="119.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Game Properties" wrappingWidth="372.765625">
+                            <font>
+                               <Font name="System Bold" size="40.0" />
+                            </font>
+                         </Text>
+                         <CheckBox layoutX="10.0" layoutY="150.0" mnemonicParsing="false" onAction="#usesLevelsSelected" prefHeight="45.0" prefWidth="255.0" text="Uses Levels">
+                            <font>
+                               <Font size="30.0" />
+                            </font>
+                         </CheckBox>
+                         <CheckBox layoutX="10.0" layoutY="200.0" mnemonicParsing="false" onAction="#usesWallsSelected" prefHeight="45.0" prefWidth="255.0" text="Uses Walls">
+                            <font>
+                               <Font size="30.0" />
+                            </font>
+                         </CheckBox>
+                         <CheckBox layoutX="10.0" layoutY="300.0" mnemonicParsing="false" onAction="#backgroundOptionSelected" prefHeight="45.0" prefWidth="342.0" text="Color Background">
+                            <font>
+                               <Font size="30.0" />
+                            </font>
+                         </CheckBox>
+                         <CheckBox layoutX="10.0" layoutY="350.0" mnemonicParsing="false" onAction="#backgroundOptionSelected" prefHeight="45.0" prefWidth="342.0" text="Image Background">
+                            <font>
+                               <Font size="30.0" />
+                            </font>
+                         </CheckBox>
+                         <Text layoutX="147.0" layoutY="355.0" strokeType="OUTSIDE" strokeWidth="0.0" text="or" />
+                      </children>
+              	</AnchorPane>
+              </content>
+            </Tab>
+        </tabs>
+      </TabPane>
+   </children>
+   </AnchorPane>
