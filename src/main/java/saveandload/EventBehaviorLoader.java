@@ -5,6 +5,7 @@ import org.json.simple.JSONObject;
 import behaviors.DoNothingBehavior;
 import behaviors.EventBehavior;
 import behaviors.MoveOnGameTickBehavior;
+import collisionBehaviors.DestroyCollisionBehavior;
 
 public class EventBehaviorLoader 
 {
