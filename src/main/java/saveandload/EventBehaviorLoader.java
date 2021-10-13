@@ -2,7 +2,7 @@ package saveandload;
 
 import org.json.simple.JSONObject;
 
-import collisionBehaviors.DestroyCollisionBehavior;
+import behaviors.collision.DestroyCollisionBehavior;
 import eventBehaviors.DoNothingBehavior;
 import eventBehaviors.EventBehavior;
 import eventBehaviors.MoveOnGameTickBehavior;

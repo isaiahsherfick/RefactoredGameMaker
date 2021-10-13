@@ -1,4 +1,4 @@
-package collisionBehaviors;
+package behaviors.collision;
 
 import org.json.simple.JSONObject;
 

@@ -3,8 +3,8 @@ package sprite;
 
 import org.json.simple.JSONObject;
 
-import collisionBehaviors.CollisionBehavior;
-import collisionBehaviors.CustomCollisionMap;
+import behaviors.collision.CollisionBehavior;
+import behaviors.collision.CustomCollisionMap;
 import javafx.scene.canvas.GraphicsContext;
 import saveandload.Saveable;
 import constants.Constants;

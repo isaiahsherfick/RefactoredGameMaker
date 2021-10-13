@@ -1,4 +1,4 @@
-package collisionBehaviors;
+package behaviors.collision;
 
 import java.util.HashMap;
 import java.util.Map.Entry;

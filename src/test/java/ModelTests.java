@@ -7,10 +7,10 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.ParseException;
 import org.junit.jupiter.api.Test;
 
-import collisionBehaviors.BounceCollisionBehavior;
-import collisionBehaviors.CustomCollisionMap;
-import collisionBehaviors.DestroyCollisionBehavior;
-import collisionBehaviors.DoNothingCollisionBehavior;
+import behaviors.collision.BounceCollisionBehavior;
+import behaviors.collision.CustomCollisionMap;
+import behaviors.collision.DestroyCollisionBehavior;
+import behaviors.collision.DoNothingCollisionBehavior;
 import constants.Constants;
 import eventBehaviors.DoNothingBehavior;
 import eventBehaviors.MoveOnGameTickBehavior;
