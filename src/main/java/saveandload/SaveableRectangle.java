@@ -117,14 +117,6 @@ public class SaveableRectangle implements SaveableShape, Drawable
 		rect.setX(y);
 	}
 
-	//Deprecated, remove after drawable interface is changed
-	@Override
-	public void draw(Sprite sprite, FlowPane gameFlow) 
-	{
-		// TODO Auto-generated method stub
-		
-	}
-	
 	public boolean equals(Object o)
 	{
 		if (o instanceof SaveableRectangle)
