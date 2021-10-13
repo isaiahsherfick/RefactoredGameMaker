@@ -3,11 +3,11 @@ package saveandload;
 import org.json.simple.JSONObject;
 
 import constants.Constants;
-import game.engine.Drawable;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import sprite.Drawable;
 import sprite.Sprite;
 
 public class SaveableRectangle implements SaveableShape, Drawable

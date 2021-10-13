@@ -10,7 +10,6 @@ import behaviors.event.EventBehaviorChain;
 import javafx.scene.canvas.GraphicsContext;
 import saveandload.Saveable;
 import constants.Constants;
-import game.engine.Drawable;
 
 public class Sprite implements Drawable, Saveable 
 {

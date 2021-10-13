@@ -2,10 +2,10 @@ package saveandload;
 
 import org.json.simple.JSONObject;
 
-import game.engine.Drawable;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.layout.FlowPane;
+import sprite.Drawable;
 import sprite.Sprite;
 
 public class SaveableImage implements Saveable, Drawable
