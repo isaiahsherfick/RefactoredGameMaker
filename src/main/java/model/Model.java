@@ -7,6 +7,8 @@ import java.util.List;
 import org.json.simple.parser.ParseException;
 
 import collisionUtility.CollisionDetection;
+import command.Command;
+import command.CommandInvoker;
 import constants.Constants;
 import saveandload.SaveAndLoadManager;
 import saveandload.Saveable;
@@ -41,17 +43,25 @@ public class Model
 	private SpriteManager spriteManager;
 	private SaveAndLoadManager saveAndLoadManager;
 	private String saveFilePath;
+	private CommandInvoker commandInvoker;
 
 	public Model()
 	{
 		spriteManager = new SpriteManager();
 		saveAndLoadManager = new SaveAndLoadManager();
 		saveFilePath = Constants.DEFAULT_SAVE_FILE_PATH;
+		commandInvoker = new CommandInvoker();
 	}
 	
-	public void addSprite(Sprite sprite)
+	//Adds a sprite to the sprite manager, returns its assigned spriteId
+	public int addSprite(Sprite sprite)
 	{
-		spriteManager.add(sprite);
+		return spriteManager.add(sprite);
+	}
+	
+	public void receiveCommand(Command c)
+	{
+		commandInvoker.receiveCommand(c);
 	}
 	
 	//pass this method a sprite which has been changed by the user
@@ -69,9 +79,9 @@ public class Model
 	}
 	
 	//Removes the sprite if the manager contains an entry at its id
-	public void removeSprite(Sprite sprite)
+	public void removeSprite(int spriteId)
 	{
-		spriteManager.remove(sprite.getSpriteId());
+		spriteManager.remove(spriteId);
 	}
 	
 	//get an arraylist of all sprites in the manager
@@ -136,5 +146,11 @@ public class Model
 	public int getNumberOfSprites()
 	{
 		return spriteManager.getSize();
+	}
+	
+	public void undo()
+	{
+		//undo the previous command in the commandInvoker
+		commandInvoker.undo();
 	}
 }

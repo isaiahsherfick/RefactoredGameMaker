@@ -15,12 +15,6 @@
             <artifactId>javafx-controls</artifactId>
             <version>13.0.2</version>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/com.googlecode.json-simple/json-simple -->
-		<dependency>
-			<groupId>com.googlecode.json-simple</groupId>
-			<artifactId>json-simple</artifactId>
-			<version>1.1.1</version>
-		</dependency>
         
         <dependency>
             <groupId>org.openjfx</groupId>
@@ -31,7 +25,15 @@
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-fxml</artifactId>
             <version>13.0.2</version>
+            
         </dependency>
+        
+        <!-- https://mvnrepository.com/artifact/com.googlecode.json-simple/json-simple -->
+		<dependency>
+			<groupId>com.googlecode.json-simple</groupId>
+			<artifactId>json-simple</artifactId>
+			<version>1.1.1</version>
+		</dependency>
 
         <dependency>
             <groupId>org.junit.jupiter</groupId>
@@ -50,9 +52,16 @@
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-compiler-plugin</artifactId>
             <version>3.8.1</version>
+            <exclusions> 
+                <exclusion>    
+                     <groupId>org.slf4j</groupId>   
+                     <artifactId>slf4j-simple-1.7.5</artifactId>  
+                 </exclusion>
+            </exclusions>
         </dependency>
         
     </dependencies>
+   
 
     <build>
         <plugins>
@@ -74,7 +83,7 @@
                         <!-- Default configuration for running with: mvn clean javafx:run -->
                         <id>default-cli</id>
                         <configuration>
-                            <mainClass>com.example.breakout/com.example.breakout.HelloApplication</mainClass>
+                            <mainClass>com.</mainClass>
                         </configuration>
                     </execution>
                 </executions>

@@ -60,33 +60,25 @@ public class HitBox implements Saveable
 	
 	public void setX(double x)
 	{
-		double curX = location.getX();
 		double y = location.getY();
-		x += curX;
 		location = new Point2D(x,y);
 	}
 
 	public void setY(double y)
 	{
-		double curY = location.getY();
 		double x = location.getX();
-		y += curY;
 		location = new Point2D(x,y);
 	}
 
 	public void setWidth(double width)
 	{
-		double curWidth = location.getX();
 		double height = location.getY();
-		width += curWidth;
 		location = new Point2D(width,height);
 	}
 
 	public void setHeight(double height)
 	{
-		double curHeight = location.getY();
 		double width = location.getX();
-		height += curHeight;
 		location = new Point2D(width,height);
 	}
 	

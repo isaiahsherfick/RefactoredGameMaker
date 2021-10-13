@@ -368,29 +368,29 @@ public class Sprite extends DrawObject implements Drawable, Saveable {
 			boolean spriteIdEquals = s.getSpriteId() == spriteId;
 			if (!spriteIdEquals)
 			{
-				System.out.println("Sprite Ids aren't equal");
+				//System.out.println("Sprite Ids aren't equal");
 			}
 			boolean hitBoxEquals = s.getHitBox().equals(hitBox);
 			if (!hitBoxEquals)
 			{
-				System.out.println("Hit boxes aren't equal");
+				//System.out.println("Hit boxes aren't equal");
 			}
 			boolean appearanceEquals = s.getAppearance().equals(appearance);
 			if (!appearanceEquals)
 			{
-				System.out.println("appearances aren't equal");
+				//System.out.println("appearances aren't equal");
 			}
 			boolean eventBehaviorChainEquals = s.getEventBehaviorChain().equals(eventBehaviorChain);
 			if (!eventBehaviorChainEquals)
 			{
-				System.out.println("event behavior chains aren't equal");
+				//System.out.println("event behavior chains aren't equal");
 				//System.out.println(eventBehaviorChain.size());
 				//System.out.println(s.getEventBehaviorChain().size());
 			}
 			boolean customCollisionMapEquals = s.getCustomCollisionMap().equals(customCollisionMap);
 			if (!customCollisionMapEquals)
 			{
-				System.out.println("custom collision maps aren't equal");
+				//System.out.println("custom collision maps aren't equal");
 			}
 			
 			return spriteIdEquals && hitBoxEquals && appearanceEquals && eventBehaviorChainEquals && customCollisionMapEquals;
