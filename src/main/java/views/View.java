@@ -23,35 +23,65 @@ import javafx.scene.text.Text;
 
 public class View {
 	
+		private Scene makerScene;
+		private Stage makerStage;
+		private Scene playerScene;
+		private Stage playerStage;
+		//private Controller controller;
+
 		//Displays both views, called by Main.java when program is launched.
-		public static void start(Stage makerStage) {
+		public View(Stage primaryStage) {
 			try {
 				//Loads and shows the makerView
+				makerStage = primaryStage;
 				makerStage.setTitle("Maker View");
 				FXMLLoader windowLoader = new FXMLLoader();
 				windowLoader.setLocation(View.class.getResource("MakerView.fxml"));
+				windowLoader.setController(this);
 				AnchorPane makerLayout = (AnchorPane)windowLoader.load();
-				Scene makerScene = new Scene(makerLayout);
+				makerScene = new Scene(makerLayout);
 				makerStage.setScene(makerScene);
 				makerStage.setX(300);
 				makerStage.setY(50);
 				makerStage.show();
 				
 				//Loads and shows the playerView
-				Stage playerStage = new Stage();
+				playerStage = new Stage();
 				playerStage.setTitle("Player View");
 				FXMLLoader playerWindowLoader = new FXMLLoader();
 				playerWindowLoader.setLocation(View.class.getResource("PlayerView.fxml"));
+				playerWindowLoader.setController(this);
 				AnchorPane playerLayout = (AnchorPane)playerWindowLoader.load();
-				Scene playerScene = new Scene(playerLayout);
+				playerScene = new Scene(playerLayout);
 				playerStage.setScene(playerScene);
 				playerStage.setX(905);
 				playerStage.setY(50);
 				playerStage.show();	
 			}
 			catch(IOException ex) {
-				System.out.println("In View.java start(): " + ex);
+				System.out.println("In View.java constructor: " + ex);
 			}
+		}
+		
+	/*	public void setController(Controller c) {
+			this.controller = c;
+		}
+	*/
+		
+		public Scene getPlayerScene() {
+			return this.playerScene;
+		}
+		
+		public Scene getMakerScene() {
+			return this.makerScene;
+		}
+		
+		public Stage getPlayerStage() {
+			return this.playerStage;
+		}
+		
+		public Stage getMakerStage() {
+			return this.makerStage;
 		}
 		
 		//Controls for elements in PlayerView.fxml
