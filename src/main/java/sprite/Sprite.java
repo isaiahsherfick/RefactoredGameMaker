@@ -3,13 +3,13 @@ package sprite;
 
 import org.json.simple.JSONObject;
 
-import behaviors.EventBehavior;
-import behaviors.EventBehaviorChain;
 import collisionBehaviors.CollisionBehavior;
 import collisionBehaviors.CustomCollisionMap;
 import javafx.scene.canvas.GraphicsContext;
 import saveandload.Saveable;
 import constants.Constants;
+import eventBehaviors.EventBehavior;
+import eventBehaviors.EventBehaviorChain;
 import game.engine.Drawable;
 
 public class Sprite implements Drawable, Saveable 

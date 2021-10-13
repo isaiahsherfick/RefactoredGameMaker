@@ -1,4 +1,4 @@
-package behaviors;
+package eventBehaviors;
 
 import java.util.LinkedList;
 

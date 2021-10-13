@@ -1,4 +1,4 @@
-package behaviors;
+package eventBehaviors;
 
 import saveandload.Saveable;
 import sprite.Sprite;
