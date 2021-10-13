@@ -3,9 +3,9 @@ package saveandload;
 import org.json.simple.JSONObject;
 
 import behaviors.collision.DestroyCollisionBehavior;
-import eventBehaviors.DoNothingBehavior;
-import eventBehaviors.EventBehavior;
-import eventBehaviors.MoveOnGameTickBehavior;
+import behaviors.event.DoNothingBehavior;
+import behaviors.event.EventBehavior;
+import behaviors.event.MoveOnGameTickBehavior;
 
 public class EventBehaviorLoader 
 {

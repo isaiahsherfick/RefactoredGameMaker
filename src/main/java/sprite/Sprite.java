@@ -5,11 +5,11 @@ import org.json.simple.JSONObject;
 
 import behaviors.collision.CollisionBehavior;
 import behaviors.collision.CustomCollisionMap;
+import behaviors.event.EventBehavior;
+import behaviors.event.EventBehaviorChain;
 import javafx.scene.canvas.GraphicsContext;
 import saveandload.Saveable;
 import constants.Constants;
-import eventBehaviors.EventBehavior;
-import eventBehaviors.EventBehaviorChain;
 import game.engine.Drawable;
 
 public class Sprite implements Drawable, Saveable 
