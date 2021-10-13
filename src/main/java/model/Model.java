@@ -147,4 +147,10 @@ public class Model
 	{
 		return spriteManager.getSize();
 	}
+	
+	public void undo()
+	{
+		//undo the previous command in the commandInvoker
+		commandInvoker.undo();
+	}
 }

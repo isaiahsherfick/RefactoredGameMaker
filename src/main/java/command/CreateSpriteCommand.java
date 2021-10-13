@@ -27,6 +27,7 @@ public class CreateSpriteCommand implements Command
 		spriteId = Constants.DEFAULT_SPRITE_ID;
 	}
 	
+	
 	@Override
 	public void execute() 
 	{

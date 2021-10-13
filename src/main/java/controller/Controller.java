@@ -1,11 +1,15 @@
 package controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
+
+import org.json.simple.parser.ParseException;
 
 import command.Command;
 import command.CommandInvoker;
 import command.CreateSpriteCommand;
 import command.ModifySpriteCommand;
+import constants.Constants;
 import model.Model;
 import sprite.Sprite;
 import views.View;
@@ -29,7 +33,12 @@ public class Controller
 			view = v;
 	 }  
 	 
-	 // It creates the "create sprite" command and passes it to the commandInvoker 
+	 public Controller() 
+	 {
+		// TODO Auto-generated constructor stub
+	 } 
+
+	// It creates the "create sprite" command and passes it to the commandInvoker 
 	 public void createSprite()
 	 {
 		 Command createSprite=new CreateSpriteCommand(model);
@@ -49,6 +58,11 @@ public class Controller
 			 return false;
 		 }
 		 return true;
+	 }
+	 
+	 public ArrayList<Sprite> getSpriteList()
+	 {
+		 return model.getSpriteList();
 	 }
 	 
 	 public void play()
@@ -73,6 +87,43 @@ public class Controller
 		 ModifySpriteCommand modifyCommand = new ModifySpriteCommand(model, modifiedSprite);
 		 model.receiveCommand(modifyCommand);
 	 }
+	 
+	 public void undo()
+	 {
+		 model.undo();
+	 }
+
+	public void setModel(Model m) 
+	{
+		model = m;
+	}
+
+	public Sprite getSprite(int spriteId) 
+	{
+		return model.getSprite(spriteId);
+	}
+
+	//Returns constants depending on success
+	// 0 for success
+	// 1 for IOError (bad filepath)
+	// 2 for ParseError (corrupted JSON)
+	public int load() 
+	{
+		try
+		{
+			model.load();
+			return Constants.LOAD_SUCCESS;
+		}
+		catch(IOException e)
+		{
+			return Constants.LOAD_BADFILE;
+		}
+		catch(ParseException e)
+		{
+			return Constants.LOAD_BADJSON;
+		}
+
+	}
 	    	   
 
 }

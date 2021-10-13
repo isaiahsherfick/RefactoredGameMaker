@@ -1,6 +1,9 @@
 package command;
 
+import java.util.EmptyStackException;
 import java.util.Stack;
+
+import command.Command;
 
 public class CommandInvoker 
 {
@@ -21,17 +24,27 @@ public class CommandInvoker
 	
 	public void undo()
 	{
+		try {
 		Command toUndo = commandStack.pop();
 		toUndo.unexecute();
 		undoneCommands.push(toUndo);
+		} catch(EmptyStackException e)
+		{
+			
+		}
 	}
 	
 	
 	public void redo()
 	{
+		try {
 		Command toRedo = undoneCommands.pop();
 		toRedo.execute();
 		commandStack.push(toRedo);
+		} catch(EmptyStackException e)
+		{
+			
+		}
 	}
 	
 }

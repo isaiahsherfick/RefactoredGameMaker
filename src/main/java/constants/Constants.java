@@ -14,4 +14,7 @@ public class Constants
 	public static final int IMAGE = 0;
 	public static final double DEFAULT_SPRITE_VELOCITY_X = 5;
 	public static final double DEFAULT_SPRITE_VELOCITY_Y = 5;
+	public static final int LOAD_SUCCESS = 0;
+	public static final int LOAD_BADFILE = 1;
+	public static final int LOAD_BADJSON = 2;
 }

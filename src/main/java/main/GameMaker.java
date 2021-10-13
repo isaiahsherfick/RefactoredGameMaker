@@ -7,10 +7,9 @@ import views.View;
 
 public class GameMaker extends Application {
 	
-	private static Model model; // model
-	private static Controller controller; //controller
-	private static View view; //view
-	
+	private static Model model = new Model(); // model
+	private static Controller controller = new Controller(); //controller
+	private static View view = new View(); //view
 	
 	public static Model getModel()
 	{

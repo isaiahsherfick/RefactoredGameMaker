@@ -34,6 +34,11 @@ public class View {
 		{
 			controller=GameMaker.getMakeGameController();
 		}
+		
+		public void setController(Controller c)
+		{
+			controller = c;
+		}
 
 	
 		//Displays both views, called by Main.java when program is launched.
