@@ -105,14 +105,4 @@ public class SaveableImage implements Saveable, Drawable
 	{
 		//Create image, draw
 	}
-
-	//DEPRECATED - delete after drawable interface changes
-	@Override
-	public void draw(Sprite sprite, FlowPane gameFlow) {
-		// TODO Auto-generated method stub
-		
-	}
-	
-	
-
 }
