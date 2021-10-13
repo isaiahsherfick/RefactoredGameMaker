@@ -186,14 +186,6 @@ public class Appearance implements Drawable, Saveable
 	{
 		return size.getY();
 	}
-
-	//DEPRECATED -- remove after interface changes
-	@Override
-	public void draw(Sprite sprite, FlowPane gameFlow) 
-	{
-		// TODO Auto-generated method stub
-		
-	}
 	
 	public String toString()
 	{
