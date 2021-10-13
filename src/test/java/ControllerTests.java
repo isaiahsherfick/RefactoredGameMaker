@@ -14,6 +14,7 @@ import sprite.Sprite;
 class ControllerTests 
 { 
 	@Test
+	//Ensure that we can create and un-create a sprite using commands from the controller
 	void createSpriteCommandTest() 
 	{
 		Model m = new Model();
@@ -23,10 +24,11 @@ class ControllerTests
 		assertEquals(m.getNumberOfSprites(), 1);
 		m.undo();
 		assertEquals(m.getNumberOfSprites(),0);
-		m.undo();
+		m.undo(); // make sure undo handles an empty stack gracefully
 	}
 	
 	@Test
+	//Ensure that we can properly modify a sprite in the model using commands from the controller
 	void ModifySpriteCommandTest()
 	{
 		Model m = new Model();
@@ -47,8 +49,7 @@ class ControllerTests
 	}
 	
 	@Test
-	//This is the big test that will ensure the model, spritemanager, saveandloadmanager, and all related systems work in tandem
-	//Needs updated as more stuff we want to save gets implemented
+	//Test saving and loading when the controller is pulling the strings
 	public void saveAndLoadTest()
 	{
 		//Make new model and a bunch of sprites
