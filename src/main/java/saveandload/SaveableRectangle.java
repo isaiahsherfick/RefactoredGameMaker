@@ -23,7 +23,7 @@ public class SaveableRectangle implements SaveableShape, Drawable
 		width = Constants.DEFAULT_SPRITE_WIDTH;
 		height = Constants.DEFAULT_SPRITE_HEIGHT;
 		rect = new Rectangle();
-		color = Color.web("#FFFFFF");
+		color = Color.web("#FF0000");
 	}
 
 	@SuppressWarnings("unchecked")

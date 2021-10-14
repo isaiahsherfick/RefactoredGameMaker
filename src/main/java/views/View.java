@@ -34,7 +34,6 @@ public class View implements Observer
 		private Scene playerScene;
 		private Stage playerStage;
 		private Controller controller;
-		private Canvas gameCanvas;
 
 		//Displays both views, called by Main.java when program is launched.
 		public View(Stage primaryStage) {
@@ -62,8 +61,8 @@ public class View implements Observer
 				playerStage.setScene(playerScene);
 				playerStage.setX(905);
 				playerStage.setY(50);
-				gameCanvas = new Canvas(600,824);
-				playerLayout.getChildren().add(gameCanvas);
+				//gameCanvas = new Canvas(600,824);
+				//playerLayout.getChildren().add(gameCanvas);
 			}
 			catch(IOException ex) {
 				System.out.println("In View.java constructor: " + ex);
@@ -124,6 +123,8 @@ public class View implements Observer
 		private Button saveButton;
 		@FXML
 		private Button loadButton;
+		@FXML 
+		private Canvas gameCanvas;
 
 		// Event Listener on Button[#playStopButton].onAction
 		@FXML
@@ -153,7 +154,6 @@ public class View implements Observer
 		}
 		
 		//Controls for elements in MakerView.fxml
-
 	    @FXML
 	    private Button addGamePropertyButton;
 
@@ -329,7 +329,6 @@ public class View implements Observer
 		public void update() 
 		{
 			drawAll();
-			System.out.println("HI moom");
 		}
 
 	
