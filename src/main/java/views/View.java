@@ -23,6 +23,7 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Slider;
 import javafx.scene.input.DragEvent;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Text; 
 
 public class View implements Observer
@@ -318,6 +319,8 @@ public class View implements Observer
 	    
 	    public void drawAll()
 	    {
+	    	gameCanvas.getGraphicsContext2D().setFill(Color.WHITE);
+	    	gameCanvas.getGraphicsContext2D().fillRect(0, 0, gameCanvas.getWidth(), gameCanvas.getHeight());
 	    	ArrayList<Sprite> allSprites = controller.getSpriteList();
 	    	for (Sprite s : allSprites)
 	    	{
