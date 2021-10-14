@@ -60,8 +60,8 @@ public class SaveableRectangle implements SaveableShape, Drawable
 	@Override
 	public void draw(GraphicsContext g) 
 	{
-		// TODO Auto-generated method stub
-		
+		g.setFill(color);
+		g.fillRect(x,y,width,height);
 	}
 
 	@Override

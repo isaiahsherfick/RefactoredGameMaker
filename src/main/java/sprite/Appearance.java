@@ -150,11 +150,11 @@ public class Appearance implements Drawable, Saveable
 	{
 		if (shapeOrImage == Constants.SHAPE)
 		{
-			
+			shape.draw(g);
 		}
 		else
 		{
-			
+			image.draw(g);
 		}
 	}
 	

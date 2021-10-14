@@ -35,8 +35,10 @@ public class GameMaker extends Application {
 		controller=new Controller();
 		controller.setModel(model);
 		view = new View(primaryStage);
+		view.showStages();
 		view.setController(controller);
 		controller.setView(view);
+		model.registerObserver(view);
 	}
 
 	public static void main(String[] args) {

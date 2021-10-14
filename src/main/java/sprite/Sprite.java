@@ -45,8 +45,7 @@ public class Sprite implements Drawable, Saveable
 	@Override
 	public void draw(GraphicsContext g) 
 	{
-		// TODO Auto-generated method stub
-		
+		appearance.draw(g);
 	}
 
 	public int getSpriteId() 

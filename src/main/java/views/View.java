@@ -2,15 +2,18 @@
 package views;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import controller.Controller;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.canvas.Canvas;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import sprite.Sprite;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ColorPicker;
@@ -22,7 +25,8 @@ import javafx.scene.input.DragEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text; 
 
-public class View {
+public class View implements Observer
+{
 
 	
 		private Scene makerScene;
@@ -30,6 +34,7 @@ public class View {
 		private Scene playerScene;
 		private Stage playerStage;
 		private Controller controller;
+		private Canvas gameCanvas;
 
 		//Displays both views, called by Main.java when program is launched.
 		public View(Stage primaryStage) {
@@ -45,7 +50,6 @@ public class View {
 				makerStage.setScene(makerScene);
 				makerStage.setX(300);
 				makerStage.setY(50);
-				makerStage.show();
 				
 				//Loads and shows the playerView
 				playerStage = new Stage();
@@ -58,11 +62,34 @@ public class View {
 				playerStage.setScene(playerScene);
 				playerStage.setX(905);
 				playerStage.setY(50);
-				playerStage.show();	
+				gameCanvas = new Canvas(600,824);
+				playerLayout.getChildren().add(gameCanvas);
 			}
 			catch(IOException ex) {
 				System.out.println("In View.java constructor: " + ex);
 			}
+		}
+		
+		//Just for unit tests
+		public View()
+		{
+			gameCanvas = new Canvas();
+		}
+		
+		public void showMaker()
+		{
+			makerStage.show();
+		}
+		
+		public void showPlayer()
+		{
+			playerStage.show();
+		}
+		
+		public void showStages()
+		{
+			showMaker();
+			showPlayer();
 		}
 		
 		public void setController(Controller c) {
@@ -105,8 +132,9 @@ public class View {
 		}
 		// Event Listener on Button[#undoPauseButton].onAction
 		@FXML
-		public void undoPauseButtonClicked(ActionEvent event) {
-			// TODO 
+		public void undoPauseButtonClicked(ActionEvent event) 
+		{
+			controller.undo();
 		}
 		// Event Listener on Button[#redoRestartButton].onAction
 		@FXML
@@ -220,22 +248,22 @@ public class View {
 	    private Pane timeBehaviorPane;
 
 	    @FXML
-	    void addBehaviorButtonClicked(ActionEvent event) {
+	    public void addBehaviorButtonClicked(ActionEvent event) {
 
 	    }
 
 	    @FXML
-	    void addCollisionBehaviorButtonClicked(ActionEvent event) {
+	    public void addCollisionBehaviorButtonClicked(ActionEvent event) {
 
 	    }
 
 	    @FXML
-	    void addGamePropertyButtonClicked(ActionEvent event) {
+	    public void addGamePropertyButtonClicked(ActionEvent event) {
 
 	    }
 
 	    @FXML
-	    void backgroundOptionSelected(ActionEvent event) {
+	    public void backgroundOptionSelected(ActionEvent event) {
 
 	    }
 
@@ -243,52 +271,69 @@ public class View {
 	    @FXML
 	    //@author Ramya 
 	    // Requests the controller to add new sprite 
-	    void createSpriteButtonClicked(ActionEvent event) 
+	    public void createSpriteButtonClicked(ActionEvent event) 
 	    {
 	    	 controller.createSprite();
 	    }
 
 	    @FXML
-	    void duplicateSpriteButtonClicked(ActionEvent event) {
+	    public void duplicateSpriteButtonClicked(ActionEvent event) {
 
 	    }
 
 	    @FXML
-	    void heightSliderChanged(DragEvent event) {
+	    public void heightSliderChanged(DragEvent event) {
 
 	    }
 
 	    @FXML
-	    void removeGamePropertyButtonClicked(ActionEvent event) {
+	    public void removeGamePropertyButtonClicked(ActionEvent event) {
 
 	    }
 
 	    @FXML
-	    void spriteAppearanceSelected(ActionEvent event) {
+	    public void spriteAppearanceSelected(ActionEvent event) {
 
 	    }
 
 	    @FXML
-	    void spriteColorSelected(ActionEvent event) {
+	    public void spriteColorSelected(ActionEvent event) {
 
 	    }
 
 	    @FXML
-	    void usesLevelsSelected(ActionEvent event) {
+	    public void usesLevelsSelected(ActionEvent event) {
 	    	
 	    }
 
 	    @FXML
-	    void usesWallsSelected(ActionEvent event) {
+	    public void usesWallsSelected(ActionEvent event) {
 
 	    }
 
 	    @FXML
-	    void widthSliderChanged(DragEvent event) {
+	    public void widthSliderChanged(DragEvent event) {
 
 	    }
+	    
+	    public void drawAll()
+	    {
+	    	ArrayList<Sprite> allSprites = controller.getSpriteList();
+	    	for (Sprite s : allSprites)
+	    	{
+	    		s.draw(gameCanvas.getGraphicsContext2D());
+	    	}
+	    }
+
+		@Override
+		public void update() 
+		{
+			drawAll();
+			System.out.println("HI moom");
+		}
 
 	
 
 		
 }
+

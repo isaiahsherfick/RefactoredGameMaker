@@ -8,6 +8,8 @@ import org.json.simple.parser.ParseException;
 import command.Command;
 import command.CommandInvoker;
 import constants.Constants;
+import controller.Controller;
+import views.Observer;
 import saveandload.SaveAndLoadManager;
 import saveandload.Saveable;
 import sprite.Sprite;
@@ -19,6 +21,7 @@ public class Model
 	private SaveAndLoadManager saveAndLoadManager;
 	private String saveFilePath;
 	private CommandInvoker commandInvoker;
+	private ArrayList<Observer> observers;
 
 	public Model()
 	{
@@ -26,12 +29,14 @@ public class Model
 		saveAndLoadManager = new SaveAndLoadManager();
 		saveFilePath = Constants.DEFAULT_SAVE_FILE_PATH;
 		commandInvoker = new CommandInvoker();
+		observers = new ArrayList<>();
 	}
-	
 	//Adds a sprite to the sprite manager, returns its assigned spriteId
 	public int addSprite(Sprite sprite)
 	{
-		return spriteManager.add(sprite);
+		int returnVal =  spriteManager.add(sprite);
+		notifyObservers();
+		return returnVal;
 	}
 	
 	public void receiveCommand(Command c)
@@ -45,6 +50,7 @@ public class Model
 	public void modifySprite(Sprite sprite)
 	{
 		spriteManager.modifySprite(sprite);
+		notifyObservers();
 	}
 	
 	//Returns a copy of the sprite stored at spriteId in the spritemanager
@@ -57,6 +63,7 @@ public class Model
 	public void removeSprite(int spriteId)
 	{
 		spriteManager.remove(spriteId);
+		notifyObservers();
 	}
 	
 	//get an arraylist of all sprites in the manager
@@ -69,12 +76,14 @@ public class Model
 	public void resetSpriteManager()
 	{
 		spriteManager = new SpriteManager();
+		notifyObservers();
 	}
 	
 	//replace the save/load manager with a new one
 	public void resetSaveAndLoadManager()
 	{
 		saveAndLoadManager = new SaveAndLoadManager();
+		notifyObservers();
 	}
 	
 	//Save all sprites, write them to the file stored at saveFilePath
@@ -115,6 +124,7 @@ public class Model
 	public void setSaveFilePath(String path)
 	{
 		saveFilePath = path;
+		notifyObservers();
 	}
 
 	//Return the number of sprites in the system
@@ -127,5 +137,19 @@ public class Model
 	{
 		//undo the previous command in the commandInvoker
 		commandInvoker.undo();
+		notifyObservers();
+	}
+
+	public void registerObserver(Observer observer) 
+	{
+		observers.add(observer);
+	}
+	
+	public void notifyObservers()
+	{
+		for (Observer o : observers)
+		{
+			o.update();
+		}
 	}
 }
