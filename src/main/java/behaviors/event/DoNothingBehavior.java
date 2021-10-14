@@ -1,4 +1,4 @@
-package behaviors;
+package behaviors.event;
 
 import org.json.simple.JSONObject;
 

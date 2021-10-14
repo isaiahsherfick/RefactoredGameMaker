@@ -3,11 +3,11 @@ package saveandload;
 import org.json.simple.JSONObject;
 
 import constants.Constants;
-import game.engine.Drawable;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import sprite.Drawable;
 import sprite.Sprite;
 
 public class SaveableRectangle implements SaveableShape, Drawable
@@ -117,14 +117,6 @@ public class SaveableRectangle implements SaveableShape, Drawable
 		rect.setX(y);
 	}
 
-	//Deprecated, remove after drawable interface is changed
-	@Override
-	public void draw(Sprite sprite, FlowPane gameFlow) 
-	{
-		// TODO Auto-generated method stub
-		
-	}
-	
 	public boolean equals(Object o)
 	{
 		if (o instanceof SaveableRectangle)

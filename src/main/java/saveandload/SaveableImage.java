@@ -2,10 +2,10 @@ package saveandload;
 
 import org.json.simple.JSONObject;
 
-import game.engine.Drawable;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.layout.FlowPane;
+import sprite.Drawable;
 import sprite.Sprite;
 
 public class SaveableImage implements Saveable, Drawable
@@ -105,14 +105,4 @@ public class SaveableImage implements Saveable, Drawable
 	{
 		//Create image, draw
 	}
-
-	//DEPRECATED - delete after drawable interface changes
-	@Override
-	public void draw(Sprite sprite, FlowPane gameFlow) {
-		// TODO Auto-generated method stub
-		
-	}
-	
-	
-
 }

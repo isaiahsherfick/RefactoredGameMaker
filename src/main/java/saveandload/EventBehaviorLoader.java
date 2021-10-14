@@ -2,10 +2,10 @@ package saveandload;
 
 import org.json.simple.JSONObject;
 
-import behaviors.DoNothingBehavior;
-import behaviors.EventBehavior;
-import behaviors.MoveOnGameTickBehavior;
-import collisionBehaviors.DestroyCollisionBehavior;
+import behaviors.collision.DestroyCollisionBehavior;
+import behaviors.event.DoNothingBehavior;
+import behaviors.event.EventBehavior;
+import behaviors.event.MoveOnGameTickBehavior;
 
 public class EventBehaviorLoader 
 {

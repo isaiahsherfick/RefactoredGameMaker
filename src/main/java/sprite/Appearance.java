@@ -3,7 +3,6 @@ package sprite;
 import org.json.simple.JSONObject;
 
 import constants.Constants;
-import game.engine.Drawable;
 import javafx.geometry.Point2D;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
@@ -185,14 +184,6 @@ public class Appearance implements Drawable, Saveable
 	public double getHeight()
 	{
 		return size.getY();
-	}
-
-	//DEPRECATED -- remove after interface changes
-	@Override
-	public void draw(Sprite sprite, FlowPane gameFlow) 
-	{
-		// TODO Auto-generated method stub
-		
 	}
 	
 	public String toString()

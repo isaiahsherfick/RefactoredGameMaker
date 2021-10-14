@@ -2,11 +2,9 @@ package model;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
 
 import org.json.simple.parser.ParseException;
 
-import collisionUtility.CollisionDetection;
 import command.Command;
 import command.CommandInvoker;
 import constants.Constants;
@@ -17,29 +15,6 @@ import sprite.SpriteManager;
 
 public class Model 
 {
-	
-	private List<Sprite> sprites;
-	
-//	public Model() {
-//		sprites = new ArrayList<>();
-//	}
-	
-	public List<Sprite> getGameObjects() {
-		return sprites;
-	}
-	
-	public void addNewGameObject(Sprite sprite) {
-		sprites.add(sprite);
-		CollisionDetection.sprites.add(sprite);
-	}
-	
-	public void removeGameObject(Sprite sprite) {
-		sprites.remove(sprite);
-		CollisionDetection.sprites.remove(sprite);
-	}
-	
-	//OLD STUFF ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^////
-	
 	private SpriteManager spriteManager;
 	private SaveAndLoadManager saveAndLoadManager;
 	private String saveFilePath;

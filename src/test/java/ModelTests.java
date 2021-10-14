@@ -7,12 +7,12 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.ParseException;
 import org.junit.jupiter.api.Test;
 
-import behaviors.DoNothingBehavior;
-import behaviors.MoveOnGameTickBehavior;
-import collisionBehaviors.BounceCollisionBehavior;
-import collisionBehaviors.CustomCollisionMap;
-import collisionBehaviors.DestroyCollisionBehavior;
-import collisionBehaviors.DoNothingCollisionBehavior;
+import behaviors.collision.BounceCollisionBehavior;
+import behaviors.collision.CustomCollisionMap;
+import behaviors.collision.DestroyCollisionBehavior;
+import behaviors.collision.DoNothingCollisionBehavior;
+import behaviors.event.DoNothingBehavior;
+import behaviors.event.MoveOnGameTickBehavior;
 import constants.Constants;
 import javafx.geometry.Point2D;
 import model.Model;

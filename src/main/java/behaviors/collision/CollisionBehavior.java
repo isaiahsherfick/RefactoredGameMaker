@@ -1,4 +1,4 @@
-package collisionBehaviors;
+package behaviors.collision;
 
 import saveandload.Saveable;
 import sprite.Sprite;

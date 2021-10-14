@@ -1,17 +1,18 @@
-package collisionBehaviors;
+package behaviors.collision;
 
 import org.json.simple.JSONObject;
 
 import sprite.Sprite;
 
-public class DoNothingCollisionBehavior implements CollisionBehavior 
+public class DestroyCollisionBehavior implements CollisionBehavior 
 {
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public JSONObject save() 
 	{
 		JSONObject json = new JSONObject();
-		json.put("type","DoNothingCollisionBehavior");
+		json.put("type","DestroyCollisionBehavior");
 		return json;
 	}
 
@@ -24,12 +25,11 @@ public class DoNothingCollisionBehavior implements CollisionBehavior
 	@Override
 	public void collide(Sprite collidee, int colliderId) 
 	{
-		//do nothing
-	}
-	
-	public boolean equals(Object o)
-	{
-		return o instanceof DoNothingCollisionBehavior;
+		collidee.destroy();
 	}
 
+	public boolean equals(Object o)
+	{
+		return (o instanceof DestroyCollisionBehavior);
+	}
 }
