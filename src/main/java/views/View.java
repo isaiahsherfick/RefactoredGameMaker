@@ -245,9 +245,7 @@ public class View {
 	    // Requests the controller to add new sprite 
 	    void createSpriteButtonClicked(ActionEvent event) 
 	    {
-	 
 	    	 controller.createSprite();
-
 	    }
 
 	    @FXML
@@ -277,7 +275,7 @@ public class View {
 
 	    @FXML
 	    void usesLevelsSelected(ActionEvent event) {
-
+	    	
 	    }
 
 	    @FXML

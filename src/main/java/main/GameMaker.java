@@ -36,6 +36,7 @@ public class GameMaker extends Application {
 		controller.setModel(model);
 		view = new View(primaryStage);
 		view.setController(controller);
+		controller.setView(view);
 	}
 
 	public static void main(String[] args) {

@@ -37,6 +37,7 @@ public class Controller
 	 {
 		// TODO Auto-generated constructor stub
 	 } 
+	 
 
 	// It creates the "create sprite" command and passes it to the commandInvoker 
 	 public void createSprite()
@@ -97,6 +98,11 @@ public class Controller
 	{
 		model = m;
 	}
+	
+
+	 public void setView(View view) {
+		 this.view = view;
+	 }
 
 	public Sprite getSprite(int spriteId) 
 	{
