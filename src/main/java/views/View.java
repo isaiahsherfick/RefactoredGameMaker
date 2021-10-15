@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import controller.Controller;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -15,12 +16,15 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import saveandload.SaveableRectangle;
+import saveandload.SaveableShape;
 import sprite.Sprite;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ColorPicker;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Slider;
 import javafx.scene.input.MouseEvent;
@@ -65,23 +69,6 @@ public class View implements Observer
 				playerStage.setScene(playerScene);
 				playerStage.setX(905);
 				playerStage.setY(50);
-				
-				//Initializes slider layouts since there is no ChangeListener in fxml
-				spriteWidthSlider.valueProperty().addListener(new ChangeListener<Object>() {
-					@Override
-					public void changed(ObservableValue<?> observable, Object oldValue, Object newValue) {
-						widthSliderChanged();
-					}
-				});
-				spriteHeightSlider.valueProperty().addListener(new ChangeListener<Object>() {
-
-					@Override
-					public void changed(ObservableValue<?> observable, Object oldValue, Object newValue) {
-						heightSliderChanged();
-						
-					}
-					
-				});
 			}
 			catch(IOException ex) {
 				System.out.println("In View.java constructor: " + ex);
@@ -94,9 +81,33 @@ public class View implements Observer
 			gameCanvas = new Canvas();
 		}
 		
+		public void initializeUIElements() {
+			
+			//Initializes slider layouts since there is no ChangeListener in fxml
+			spriteWidthSlider.valueProperty().addListener(new ChangeListener<Object>() {
+				@Override
+				public void changed(ObservableValue<?> observable, Object oldValue, Object newValue) {
+					widthSliderChanged();
+				}
+			});
+			spriteHeightSlider.valueProperty().addListener(new ChangeListener<Object>() {
+
+				@Override
+				public void changed(ObservableValue<?> observable, Object oldValue, Object newValue) {
+					heightSliderChanged();
+					
+				}
+				
+			});
+			
+			//Adds items to the possible shapes dropdown
+			spriteShapeDropdown.getItems().add(new SaveableRectangle());
+		}
+		
 		public void showMaker()
 		{
 			makerStage.show();
+			initializeUIElements();
 		}
 		
 		public void showPlayer()
@@ -277,7 +288,7 @@ public class View implements Observer
 	    private Label spriteIdLabel;
 
 	    @FXML
-	    private ComboBox<?> spriteShapeDropdown;
+	    private ComboBox<SaveableShape> spriteShapeDropdown;
 
 	    @FXML
 	    private Slider spriteWidthSlider;
@@ -333,17 +344,18 @@ public class View implements Observer
 
 	    @FXML
 	    public void duplicateSpriteButtonClicked(ActionEvent event) {
-	    	
+	    	//TODO
 	    }
 
 	    @FXML
 	    public void removeGamePropertyButtonClicked(ActionEvent event) {
-
+	    	//TODO
 	    }
 
 	    @FXML
 	    public void spriteAppearanceSelected(ActionEvent event) {
-
+	    	currentlySelectedSprite.getAppearance().setShape(spriteShapeDropdown.getValue());
+	    	modifySpriteCommand();
 	    }
 
 	    @FXML
