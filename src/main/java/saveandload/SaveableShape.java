@@ -8,6 +8,7 @@ import javafx.scene.paint.Color;
 public interface SaveableShape extends Saveable
 {
 	public Color getColor();
+	public void setColor(Color c);
 	public void draw(GraphicsContext g);
 	public double getX();
 	public double getY();

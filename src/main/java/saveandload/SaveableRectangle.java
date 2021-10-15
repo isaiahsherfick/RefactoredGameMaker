@@ -56,6 +56,11 @@ public class SaveableRectangle implements SaveableShape, Drawable
 	{
 		return color;
 	}
+	
+	public void setColor(Color c) {
+		color = c;
+	}
+	
 
 	@Override
 	public void draw(GraphicsContext g) 
@@ -126,6 +131,6 @@ public class SaveableRectangle implements SaveableShape, Drawable
 		}
 		return false;
 	}
-	
+
 	
 }

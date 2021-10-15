@@ -5,6 +5,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import controller.Controller;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -21,7 +23,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Slider;
-import javafx.scene.input.DragEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text; 
@@ -35,6 +37,7 @@ public class View implements Observer
 		private Scene playerScene;
 		private Stage playerStage;
 		private Controller controller;
+		private Sprite currentlySelectedSprite;
 
 		//Displays both views, called by Main.java when program is launched.
 		public View(Stage primaryStage) {
@@ -62,8 +65,23 @@ public class View implements Observer
 				playerStage.setScene(playerScene);
 				playerStage.setX(905);
 				playerStage.setY(50);
-				//gameCanvas = new Canvas(600,824);
-				//playerLayout.getChildren().add(gameCanvas);
+				
+				//Initializes slider layouts since there is no ChangeListener in fxml
+				spriteWidthSlider.valueProperty().addListener(new ChangeListener<Object>() {
+					@Override
+					public void changed(ObservableValue<?> observable, Object oldValue, Object newValue) {
+						widthSliderChanged();
+					}
+				});
+				spriteHeightSlider.valueProperty().addListener(new ChangeListener<Object>() {
+
+					@Override
+					public void changed(ObservableValue<?> observable, Object oldValue, Object newValue) {
+						heightSliderChanged();
+						
+					}
+					
+				});
 			}
 			catch(IOException ex) {
 				System.out.println("In View.java constructor: " + ex);
@@ -152,6 +170,40 @@ public class View implements Observer
 		@FXML
 		public void loadButtonClicked(ActionEvent event) {
 			// TODO 
+		}
+		
+		//On the canvas clicked, check to see if the click intersects with a sprite's hitbox, and if so make it the currently
+		//selected Sprite.
+		@FXML
+		public void canvasClicked(MouseEvent event) {
+			double clickedX = event.getX();
+			double clickedY = event.getY();
+			for(Sprite s: controller.getSpriteList()) {
+				if(clickedX >= s.getHitBox().getTopLeft().getX() && clickedY>= s.getHitBox().getTopLeft().getY()) {
+					if(clickedX <= s.getHitBox().getBottomRight().getX() && clickedY <= s.getHitBox().getBottomRight().getY()) {
+						//If click is within the hitbox, then make it currently selected sprite and adjust the properties pane;
+						currentlySelectedSprite = s;
+						setSpritePropertiesPane();
+					}
+				}
+			}
+		}
+		
+		//Sets the Sprite Properties pane values to the values of CurrentlySelectedSprite
+		public void setSpritePropertiesPane() {
+			//Set all labels to corresponding value of the sprite
+			spriteIdLabel.setText("" + currentlySelectedSprite.getSpriteId());
+			spriteXLabel.setText("" + currentlySelectedSprite.getX());
+			spriteYLabel.setText("" + currentlySelectedSprite.getY());
+			
+			//Set the color selector
+			spriteColorPicker.setValue(currentlySelectedSprite.getAppearance().getColor());
+			
+			//Set width and height slider values
+			spriteWidthSlider.setValue(currentlySelectedSprite.getAppearance().getWidth());
+			spriteHeightSlider.setValue(currentlySelectedSprite.getAppearance().getHeight());
+			
+			
 		}
 		
 		//Controls for elements in MakerView.fxml
@@ -275,16 +327,13 @@ public class View implements Observer
 	    public void createSpriteButtonClicked(ActionEvent event) 
 	    {
 	    	 controller.createSprite();
+	    	 currentlySelectedSprite = controller.getSpriteList().get(controller.getSpriteList().size() - 1);
+	    	 setSpritePropertiesPane();
 	    }
 
 	    @FXML
 	    public void duplicateSpriteButtonClicked(ActionEvent event) {
-
-	    }
-
-	    @FXML
-	    public void heightSliderChanged(DragEvent event) {
-
+	    	
 	    }
 
 	    @FXML
@@ -299,7 +348,8 @@ public class View implements Observer
 
 	    @FXML
 	    public void spriteColorSelected(ActionEvent event) {
-
+	    	currentlySelectedSprite.getAppearance().setColor(spriteColorPicker.getValue());
+	    	modifySpriteCommand();
 	    }
 
 	    @FXML
@@ -312,9 +362,15 @@ public class View implements Observer
 
 	    }
 
-	    @FXML
-	    public void widthSliderChanged(DragEvent event) {
-
+	    
+	    public void heightSliderChanged() {
+	    	currentlySelectedSprite.setHeight(spriteHeightSlider.getValue());
+	    	modifySpriteCommand();
+	    }
+	    
+	    public void widthSliderChanged() {
+	    	currentlySelectedSprite.setWidth(spriteWidthSlider.getValue());
+	    	modifySpriteCommand();
 	    }
 	    
 	    public void drawAll()
@@ -326,6 +382,10 @@ public class View implements Observer
 	    	{
 	    		s.draw(gameCanvas.getGraphicsContext2D());
 	    	}
+	    }
+	    
+	    public void modifySpriteCommand() {
+	    	controller.modifySprite(currentlySelectedSprite);
 	    }
 
 		@Override

@@ -7,6 +7,7 @@ import javafx.geometry.Point2D;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.layout.FlowPane;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
 import saveandload.Saveable;
@@ -98,6 +99,14 @@ public class Appearance implements Drawable, Saveable
 	private SaveableShape getShape() 
 	{
 		return shape;
+	}
+	
+	public Color getColor() {
+		return shape.getColor();
+	}
+	
+	public void setColor(Color c) {
+		shape.setColor(c);
 	}
 	
 	public Point2D getSize()
