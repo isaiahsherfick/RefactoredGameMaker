@@ -2,6 +2,7 @@ package behaviors.event;
 
 import org.json.simple.JSONObject;
 
+import constants.Constants;
 import javafx.scene.input.KeyCode;
 
 import sprite.Sprite;
@@ -56,25 +57,25 @@ public class PacManStartegy implements EventBehavior {
 		  if (this.keyCode.equals(KeyCode.UP))
 	      {
 			  currentYVelocity=movement.getYVelocity();
-			  movement.setYVelocity(currentYVelocity-1); //add  to constants file
+			  movement.setYVelocity(currentYVelocity-Constants.MOVE_UP); //add  to constants file
 	           
 	      }
 		  else if (this.keyCode.equals(KeyCode.DOWN)) //add  to constants file
 	      {
 			  currentYVelocity=movement.getYVelocity();
-			  movement.setYVelocity(currentYVelocity+1);//add  to constants file
+			  movement.setYVelocity(currentYVelocity+Constants.MOVE_DOWN);//add  to constants file
 	           
 	      }
 		  else if (this.keyCode.equals(KeyCode.RIGHT))
 	      {
 			  currentYVelocity=movement.getXVelocity();
-			  movement.setYVelocity(currentXVelocity+1);//add  to constants file
+			  movement.setYVelocity(currentXVelocity+Constants.MOVE_RIGHT);//add  to constants file
 	           
 	      }
 		  else if (this.keyCode.equals(KeyCode.LEFT))
 	      {
 			  currentYVelocity=movement.getXVelocity();
-			  movement.setYVelocity(currentXVelocity-1);  //add  to constants file
+			  movement.setYVelocity(currentXVelocity-Constants.MOVE_LEFT);  //add  to constants file
 	      }
 		  
 	        
