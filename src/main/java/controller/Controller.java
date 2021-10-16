@@ -25,12 +25,14 @@ public class Controller
 {
 	private Model model;
 	private View view;
+	private GameClock gameClock;
 	 
 	 //constructor
 	 public Controller(Model m, View v)
 	 {
 			model = m;
 			view = v;
+			gameClock = new GameClock();
 	 }  
 	 
 	 public Controller() 
@@ -129,6 +131,11 @@ public class Controller
 			return Constants.LOAD_BADJSON;
 		}
 
+	}
+
+	public GameClock getClock() 
+	{
+		return gameClock;
 	}
 	    	   
 
