@@ -123,7 +123,7 @@ public class HitBox implements Saveable
 	{
 		return new Point2D(getX(), getY() + getHeight());
 	}
-	private double getHeight() 
+	public double getHeight() 
 	{
 		return size.getY();
 	}
@@ -133,7 +133,7 @@ public class HitBox implements Saveable
 		return new Point2D(getX() + getWidth(), getY() + getHeight());
 	}
 
-	private double getWidth() 
+	public double getWidth() 
 	{
 		return size.getX();
 	}

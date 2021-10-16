@@ -30,6 +30,7 @@ import javafx.stage.Stage;
 import saveandload.SaveableEllipse;
 import saveandload.SaveableRectangle;
 import saveandload.SaveableShape;
+import sprite.HitboxView;
 import sprite.NullSprite;
 import sprite.Sprite;
 import javafx.scene.control.CheckBox;
@@ -115,6 +116,19 @@ public class View implements Observer
 				}
 				
 			});
+			hitboxWidthSlider.valueProperty().addListener(new ChangeListener<Object>() {
+				@Override
+				public void changed(ObservableValue<?> observable, Object oldValue, Object newValue) {
+					hitboxWidthSliderChanged();
+				}
+			});
+			hitboxHeightSlider.valueProperty().addListener(new ChangeListener<Object>() {
+				@Override
+				public void changed(ObservableValue<?> observable, Object oldValue, Object newValue) {
+					hitboxHeightSliderChanged();
+				}
+			});
+			
 			
 			//Populate dropdown menus
 			spriteShapeDropdown.getItems().add(new SaveableRectangle());
@@ -298,6 +312,8 @@ public class View implements Observer
 			//Set width and height slider values
 			spriteWidthSlider.setValue(currentlySelectedSprite.getAppearance().getWidth());
 			spriteHeightSlider.setValue(currentlySelectedSprite.getAppearance().getHeight());
+			hitboxWidthSlider.setValue(currentlySelectedSprite.getHitBox().getWidth());
+			hitboxHeightSlider.setValue(currentlySelectedSprite.getHitBox().getHeight());
 			
 			
 			setCollisionBehaviorsPane();
@@ -334,6 +350,12 @@ public class View implements Observer
 
 	    @FXML
 	    private Slider spriteHeightSlider;
+	    
+	    @FXML
+	    private Slider hitboxHeightSlider;
+	    
+	    @FXML
+	    private Slider hitboxWidthSlider;
 
 	    @FXML
 	    private Label spriteIdLabel;
@@ -587,6 +609,27 @@ public class View implements Observer
 	    	modifySpriteCommand();
 	    }
 	    
+	    public void hitboxWidthSliderChanged() {
+	    	currentlySelectedSprite.getHitBox().setWidth(hitboxWidthSlider.getValue());
+	    	modifySpriteCommand();
+	    	showHitbox();
+	    }
+	    
+	    public void hitboxHeightSliderChanged() {
+	    	currentlySelectedSprite.getHitBox().setHeight(hitboxHeightSlider.getValue());
+	    	modifySpriteCommand();
+	    	showHitbox();
+	    }
+	    
+	    public void showHitbox() {
+	    	 HitboxView tempHitboxSprite = new HitboxView();
+	    	tempHitboxSprite.setWidth(currentlySelectedSprite.getHitBox().getWidth());
+	    	tempHitboxSprite.setHeight(currentlySelectedSprite.getHitBox().getHeight());
+	    	tempHitboxSprite.setX(currentlySelectedSprite.getHitBox().getX());
+	    	tempHitboxSprite.setY(currentlySelectedSprite.getHitBox().getY());
+	    	tempHitboxSprite.draw(gameCanvas.getGraphicsContext2D());
+	    }
+	    
 	    public void drawAll()
 	    {
 	    	gameCanvas.getGraphicsContext2D().setFill(Color.WHITE);
@@ -600,7 +643,7 @@ public class View implements Observer
 	    
 	    public void modifySpriteCommand() {
 	    	controller.modifySprite(currentlySelectedSprite);
-	    	setPanesForCurrentlySelectedSprite();
+	    	//setPanesForCurrentlySelectedSprite();
 	    }
 
 		@Override
