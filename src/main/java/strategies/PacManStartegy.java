@@ -1,7 +1,10 @@
-package behaviors.event;
+package strategies;
 
 import org.json.simple.JSONObject;
 
+import behaviors.event.EventBehavior;
+import behaviors.event.MoveOnGameTickBehavior;
+import behaviors.event.MovementEventBehavior;
 import constants.Constants;
 import javafx.scene.input.KeyCode;
 
