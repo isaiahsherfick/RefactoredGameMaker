@@ -11,7 +11,6 @@ import behaviors.collision.BounceCollisionBehaviorY;
 import behaviors.collision.CollisionBehavior;
 import behaviors.collision.DestroyCollisionBehavior;
 import behaviors.event.EventBehavior;
-import behaviors.event.EventBehaviorChain;
 import behaviors.event.MoveOnGameTickBehavior;
 import controller.Controller;
 import javafx.beans.value.ChangeListener;
@@ -25,6 +24,7 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import saveandload.SaveableEllipse;
 import saveandload.SaveableRectangle;
 import saveandload.SaveableShape;
 import sprite.NullSprite;
@@ -115,6 +115,7 @@ public class View implements Observer
 			
 			//Populate dropdown menus
 			spriteShapeDropdown.getItems().add(new SaveableRectangle());
+			spriteShapeDropdown.getItems().add(new SaveableEllipse());
 			
 			spriteBehaviorTypeDropdown.getItems().add("On Click Behavior");
 			spriteBehaviorTypeDropdown.getItems().add("On Key Press Behavior");
