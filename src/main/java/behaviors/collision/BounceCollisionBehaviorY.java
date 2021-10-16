@@ -33,5 +33,9 @@ public class BounceCollisionBehaviorY implements CollisionBehavior
 	{
 		return (o instanceof BounceCollisionBehaviorY);
 	}
+	
+	public String toString() {
+		return "Bounce Vertically";
+	}
 
 }

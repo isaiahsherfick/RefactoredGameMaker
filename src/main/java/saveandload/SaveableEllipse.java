@@ -9,6 +9,8 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Ellipse;
 import sprite.Drawable;
 import sprite.Sprite;
+
+import java.awt.Graphics2D;
 import java.awt.geom.Ellipse2D;
 
 public class SaveableEllipse implements SaveableShape, Drawable

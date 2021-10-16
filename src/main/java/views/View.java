@@ -9,6 +9,8 @@ import behaviors.collision.BounceCollisionBehaviorX;
 import behaviors.collision.BounceCollisionBehaviorXY;
 import behaviors.collision.BounceCollisionBehaviorY;
 import behaviors.collision.CollisionBehavior;
+import behaviors.collision.CustomCollisionMap;
+import behaviors.collision.DestroyCollisionBehavior;
 import behaviors.event.EventBehavior;
 import behaviors.event.EventBehaviorChain;
 import behaviors.event.MoveOnGameTickBehavior;
@@ -123,6 +125,7 @@ public class View implements Observer
 			collisionBehaviorAction.getItems().add(new BounceCollisionBehaviorX());
 			collisionBehaviorAction.getItems().add(new BounceCollisionBehaviorXY());
 			collisionBehaviorAction.getItems().add(new BounceCollisionBehaviorY());
+			collisionBehaviorAction.getItems().add(new DestroyCollisionBehavior());
 		}
 		
 		public void showMaker()
@@ -462,12 +465,20 @@ public class View implements Observer
 	    		int spriteId = Integer.parseInt(spriteIdInput.getText());
 	    		CollisionBehavior toAdd = collisionBehaviorAction.getValue();
 	    		currentlySelectedSprite.addCustomCollision(spriteId, toAdd);
+	    		setCollisionsList();
 	    	}
 	    	catch(Exception ex) {
 	    		
 	    	}
 	    }
-
+	    
+	    //Populate collisions list with all sprite's collisions
+	    public void setCollisionsList() {
+	    	//collisionBehaviorList
+	    	CustomCollisionMap spriteCollisions = currentlySelectedSprite.getCustomCollisionMap();
+	    	
+	    }
+	    
 	    @FXML
 	    public void addGamePropertyButtonClicked(ActionEvent event) {
 
@@ -542,6 +553,7 @@ public class View implements Observer
 
 	    @FXML
 	    public void usesLevelsSelected(ActionEvent event) {
+	    	//TODO uses levels
 	    	
 	    }
 
