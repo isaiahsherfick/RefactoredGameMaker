@@ -5,11 +5,14 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import behaviors.collision.BounceCollisionBehaviorX;
+import behaviors.collision.BounceCollisionBehaviorXY;
+import behaviors.collision.BounceCollisionBehaviorY;
+import behaviors.collision.CollisionBehavior;
 import behaviors.event.EventBehavior;
+import behaviors.event.EventBehaviorChain;
 import behaviors.event.MoveOnGameTickBehavior;
-import behaviors.event.MovementEventBehavior;
 import controller.Controller;
-import input.KeyPolling;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
@@ -30,11 +33,9 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ColorPicker;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
-import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text; 
@@ -110,14 +111,18 @@ public class View implements Observer
 				
 			});
 			
-			//Adds items to the possible shapes dropdown
+			//Populate dropdown menus
 			spriteShapeDropdown.getItems().add(new SaveableRectangle());
 			
 			spriteBehaviorTypeDropdown.getItems().add("On Click Behavior");
 			spriteBehaviorTypeDropdown.getItems().add("On Key Press Behavior");
 			spriteBehaviorTypeDropdown.getItems().add("Timed Behavior");
 			
-			timeBehaviorAction.getItems().add(new MoveOnGameTickBehavior());
+	     	timeBehaviorActions.getItems().add(new MoveOnGameTickBehavior());
+			
+			collisionBehaviorAction.getItems().add(new BounceCollisionBehaviorX());
+			collisionBehaviorAction.getItems().add(new BounceCollisionBehaviorXY());
+			collisionBehaviorAction.getItems().add(new BounceCollisionBehaviorY());
 		}
 		
 		public void showMaker()
@@ -249,7 +254,7 @@ public class View implements Observer
 			double clickedX = event.getX();
 			double clickedY = event.getY();
 			for(Sprite s: controller.getSpriteList()) {
-				if(clickedX >= s.getHitBox().getTopLeft().getX() && clickedY>= s.getHitBox().getTopLeft().getY()) {
+				if(clickedX >= s.getHitBox().getTopLeft().getX() && clickedY >= s.getHitBox().getTopLeft().getY()) {
 					if(clickedX <= s.getHitBox().getBottomRight().getX() && clickedY <= s.getHitBox().getBottomRight().getY()) {
 						//If click is within the hitbox, then make it currently selected sprite and adjust the properties pane;
 						currentlySelectedSprite = s;
@@ -286,6 +291,17 @@ public class View implements Observer
 			//Set width and height slider values
 			spriteWidthSlider.setValue(currentlySelectedSprite.getAppearance().getWidth());
 			spriteHeightSlider.setValue(currentlySelectedSprite.getAppearance().getHeight());
+			
+			
+			//Set the behavior lists 
+			spriteBehaviorList = new ScrollPane();
+			EventBehaviorChain behaviorsForSprite = currentlySelectedSprite.getEventBehaviorChain();
+			for(EventBehavior e: behaviorsForSprite.getChain()) {
+				//System.out.println("adding event behavior to the list");
+				//Label text = new Label();
+				//text.setText(e.toString());
+				//spriteBehaviorList.getChildrenUnmodifiable().add(text);
+			}
 			
 			
 		}
@@ -354,7 +370,7 @@ public class View implements Observer
 	    private CheckBox continuousInterval;
 	    
 	    @FXML
-	    private ComboBox<EventBehavior> timeBehaviorAction;
+	    private ComboBox<EventBehavior> timeBehaviorActions;
 
 	    @FXML
 	    private CheckBox timeBehaviorContinousCheck;
@@ -387,19 +403,16 @@ public class View implements Observer
 	    
 	    @FXML
 	    private Button addKeyBehaviorButton;
-
-	    @FXML
-	    private ListView keyList;
 	    
 	    //Fields for the collision behavior tab
 	    @FXML
 	    private Button newCollisionBehaviorButton;
 	   
 	    @FXML
-	    private ChoiceBox<?> collisionAction;
-
-	    @FXML
-	    private ChoiceBox<?> collisionObjectType;
+	    private ComboBox<CollisionBehavior> collisionBehaviorAction;
+	    
+	    @FXML 
+	    private TextField spriteIdInput;
 	    
 	    //Fields for the Game Properties tab
 
@@ -407,13 +420,12 @@ public class View implements Observer
 	    private Button addGamePropertyButton;
 	    @FXML
 	    private Button removeGamePropertyButton;
-
-
-
 	    @FXML
-	    public void addKeyButtonClicked(ActionEvent event) {
-	    	
-	    }
+	    private CheckBox usesLevelsCheckbox;
+	    @FXML 
+	    private ScrollPane collisionBehaviorList;
+	    
+	    
 	    
 	    //if time behavior continuous checkbox is selected, disable the interval field
 	    @FXML 
@@ -438,15 +450,22 @@ public class View implements Observer
 	    	}
 	    	else if(event.getSource().equals(addTimedBehaviorButton)) {
 	    		//TODO
-	    		System.out.println("Timed behavior clicked");
-	    		currentlySelectedSprite.addEventBehavior(timeBehaviorAction.getValue());
+	    		currentlySelectedSprite.addEventBehavior(timeBehaviorActions.getValue());
+	    		setSpritePropertiesPane();
 	    	}
 
 	    }
 
 	    @FXML
 	    public void addCollisionBehaviorButtonClicked(ActionEvent event) {
-
+	    	try {
+	    		int spriteId = Integer.parseInt(spriteIdInput.getText());
+	    		CollisionBehavior toAdd = collisionBehaviorAction.getValue();
+	    		currentlySelectedSprite.addCustomCollision(spriteId, toAdd);
+	    	}
+	    	catch(Exception ex) {
+	    		
+	    	}
 	    }
 
 	    @FXML

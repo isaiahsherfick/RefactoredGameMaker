@@ -136,9 +136,9 @@
                                                 <Font size="15.0" />
                                              </font>
                                           </Text>
-                                          <ChoiceBox fx:id="collisionAction11" layoutX="73.0" layoutY="255.0" prefWidth="150.0" />
+                                          <ChoiceBox fx:id="keyBehaviorAction" layoutX="73.0" layoutY="255.0" prefWidth="150.0" />
                                           <Button fx:id="addKeyBehaviorButton" layoutX="125.0" layoutY="500.0" mnemonicParsing="false" onAction="#addBehaviorButtonClicked" text="Add Behavior" />
-                                          <ListView layoutX="53.0" layoutY="45.0" prefHeight="189.0" prefWidth="192.0" />
+                                          <ListView fx:id="keyList" layoutX="53.0" layoutY="45.0" prefHeight="189.0" prefWidth="192.0" />
                                           <Text layoutX="43.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Keys" wrappingWidth="106.134765625" />
                                           <Button fx:id="addKeyButton" layoutX="175.0" layoutY="15.0" mnemonicParsing="false" text="Add Key" />
                                        </children>
@@ -160,11 +160,11 @@
                                                 <Font size="15.0" />
                                              </font>
                                           </Text>
+                                          <ComboBox fx:id="timeBehaviorActions" layoutX="73.0" layoutY="218.0" prefWidth="150.0" />
                                           <Button fx:id="addTimedBehaviorButton" layoutX="125.0" layoutY="500.0" mnemonicParsing="false" onAction="#addBehaviorButtonClicked" text="Add Behavior" />
                                           <TextField fx:id="intervalField" layoutX="73.0" layoutY="153.0" />
                                           <CheckBox fx:id="continuousInterval" layoutX="100.0" layoutY="100.0" mnemonicParsing="false" onAction="#continuousIntervalSelected" text="Continuous?" />
                                           <Text layoutX="125.0" layoutY="125.0" strokeType="OUTSIDE" strokeWidth="0.0" text="or" />
-                                          <ComboBox fx:id="timeBehaviorAction" layoutX="73.0" layoutY="218.0" prefWidth="150.0" />
                                        </children>
                                     </AnchorPane>
                                  </children>
@@ -184,11 +184,10 @@
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <Button fx:id="newCollisionBehaviorButton" layoutX="101.0" layoutY="25.0" mnemonicParsing="false" onAction="#addCollisionBehaviorButtonClicked" prefHeight="47.0" prefWidth="400.0" text="Add new Collision Behavior" AnchorPane.bottomAnchor="792.0" AnchorPane.leftAnchor="101.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="30.0" />
-                        <Line endX="500.0" layoutY="115.0" startX="-100.0" />
+                        <Line endX="500.0" layoutX="99.0" layoutY="115.0" startX="-100.0" />
                         <SplitPane dividerPositions="0.5" layoutY="115.0" prefHeight="478.0" prefWidth="601.0">
                            <items>
-                              <ScrollPane fx:id="spriteBehaviorList1" prefHeight="335.0" prefWidth="287.0" />
+                              <ScrollPane fx:id="collisionBehaviorList" prefHeight="335.0" prefWidth="287.0" />
                               <AnchorPane fx:id="spriteBehaviorEditPane1" prefHeight="200.0" prefWidth="294.0">
                                  <children>
                                     <Text layoutX="48.0" layoutY="80.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Select Collision Type" textAlignment="CENTER" wrappingWidth="200.0">
@@ -202,18 +201,15 @@
                                           <Font size="18.0" />
                                        </font>
                                     </Text>
-                                    <Text layoutX="48.0" layoutY="150.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Select Object Type" textAlignment="CENTER" wrappingWidth="200.0">
+                                    <Text layoutX="48.0" layoutY="159.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Select Action" textAlignment="CENTER" wrappingWidth="200.0">
                                        <font>
                                           <Font size="15.0" />
                                        </font>
                                     </Text>
-                                    <ChoiceBox fx:id="collisionObjectType" layoutX="73.0" layoutY="153.0" prefWidth="150.0" />
-                                    <Text layoutX="48.0" layoutY="215.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Select Action" textAlignment="CENTER" wrappingWidth="200.0">
-                                       <font>
-                                          <Font size="15.0" />
-                                       </font>
-                                    </Text>
-                                    <ChoiceBox fx:id="collisionAction" layoutX="73.0" layoutY="218.0" prefWidth="150.0" />
+                                    <Button fx:id="newCollisionBehaviorButton" layoutX="65.0" layoutY="316.0" mnemonicParsing="false" onAction="#addCollisionBehaviorButtonClicked" prefHeight="25.0" prefWidth="166.0" text="Add new Collision Behavior" AnchorPane.bottomAnchor="506.0" AnchorPane.leftAnchor="65.0" AnchorPane.rightAnchor="65.0" AnchorPane.topAnchor="316.0" />
+                                    <Label layoutX="14.0" layoutY="245.0" prefHeight="17.0" prefWidth="160.0" text="Sprite ID to Collide Width:" />
+                                    <TextField fx:id="spriteIdInput" layoutX="157.0" layoutY="241.0" prefHeight="25.0" prefWidth="130.0" />
+                                    <ComboBox fx:id="collisionBehaviorAction" layoutX="73.0" layoutY="170.0" prefWidth="150.0" />
                                  </children>
                               </AnchorPane>
                            </items>
@@ -233,7 +229,7 @@
                                <Font name="System Bold" size="40.0" />
                             </font>
                          </Text>
-                         <CheckBox layoutX="10.0" layoutY="150.0" mnemonicParsing="false" onAction="#usesLevelsSelected" prefHeight="45.0" prefWidth="255.0" text="Uses Levels">
+                         <CheckBox fx:id="usesLevelsCheckbox" layoutX="10.0" layoutY="150.0" mnemonicParsing="false" onAction="#usesLevelsSelected" prefHeight="45.0" prefWidth="255.0" text="Uses Levels">
                             <font>
                                <Font size="30.0" />
                             </font>

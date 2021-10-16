@@ -225,7 +225,7 @@ public class Sprite implements Drawable, Saveable
 		return customCollisionMap;
 	}
 
-	private EventBehaviorChain getEventBehaviorChain() 
+	public EventBehaviorChain getEventBehaviorChain() 
 	{
 		return eventBehaviorChain;
 	}
