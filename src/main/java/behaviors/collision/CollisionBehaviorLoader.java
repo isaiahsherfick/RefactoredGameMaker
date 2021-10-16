@@ -13,7 +13,7 @@ public class CollisionBehaviorLoader
 				return new DoNothingCollisionBehavior();
 				
 			case "BounceCollisionBehavior":
-				return new BounceCollisionBehavior();
+				return new BounceCollisionBehaviorX();
 				
 			case "DestroyCollisionBehavior":
 				return new DestroyCollisionBehavior();

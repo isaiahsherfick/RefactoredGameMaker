@@ -7,7 +7,7 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.ParseException;
 import org.junit.jupiter.api.Test;
 
-import behaviors.collision.BounceCollisionBehavior;
+import behaviors.collision.BounceCollisionBehaviorX;
 import behaviors.collision.CustomCollisionMap;
 import behaviors.collision.DestroyCollisionBehavior;
 import behaviors.collision.DoNothingCollisionBehavior;
@@ -196,7 +196,7 @@ class ModelTests {
 		sprite6.addEventBehavior(new DoNothingBehavior());
 		assertEquals(2,sprite6.getEventBehaviorChainSize());
 		sprite7.addCustomCollision(3, new DestroyCollisionBehavior());
-		sprite8.addCustomCollision(6, new BounceCollisionBehavior());
+		sprite8.addCustomCollision(6, new BounceCollisionBehaviorX());
 		sprite8.setDefaultCollisionBehavior(new DestroyCollisionBehavior());
 		
 		
@@ -259,7 +259,7 @@ class ModelTests {
 	public void CustomCollisionMapTest()
 	{
 		CustomCollisionMap customCollisionMap = new CustomCollisionMap();
-		customCollisionMap.setDefaultCollisionBehavior(new BounceCollisionBehavior());
+		customCollisionMap.setDefaultCollisionBehavior(new BounceCollisionBehaviorX());
 		customCollisionMap.put(1, new DoNothingCollisionBehavior());
 		customCollisionMap.put(2, new DestroyCollisionBehavior());
 		JSONObject json = customCollisionMap.save();

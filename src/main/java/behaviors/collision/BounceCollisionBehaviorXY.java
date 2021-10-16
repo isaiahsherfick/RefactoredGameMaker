@@ -2,34 +2,36 @@ package behaviors.collision;
 
 import org.json.simple.JSONObject;
 
+import constants.Constants;
 import sprite.Sprite;
 
-public class DoNothingCollisionBehavior implements CollisionBehavior 
+public class BounceCollisionBehaviorXY implements CollisionBehavior
 {
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public JSONObject save() 
 	{
 		JSONObject json = new JSONObject();
-		json.put("type","DoNothingCollisionBehavior");
+		json.put("type","BounceCollisionBehavior");
 		return json;
 	}
 
 	@Override
 	public void load(JSONObject saveJSON) 
 	{
-
+		
 	}
 
 	@Override
 	public void collide(Sprite collidee, int colliderId) 
 	{
-		//do nothing
+		collidee.flipBothVelocities();
 	}
 	
 	public boolean equals(Object o)
 	{
-		return o instanceof DoNothingCollisionBehavior;
+		return (o instanceof BounceCollisionBehaviorY);
 	}
 
 }

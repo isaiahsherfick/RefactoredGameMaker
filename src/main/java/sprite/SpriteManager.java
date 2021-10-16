@@ -8,7 +8,6 @@ package sprite;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashMap.EntrySet;
 import java.util.Set;
 
 import constants.Constants;

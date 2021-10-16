@@ -20,13 +20,13 @@ public class Constants
 	public static final int SCREEN_WIDTH = 600;
 	public static final int SCREEN_HEIGHT = 900;
 	public static final int CANVAS_HEIGHT = 826;
-	public static final int TOP_CENTER = 0;
-	public static final int TOP_LEFT = 1;
-	public static final int TOP_RIGHT = 2;
-	public static final int CENTER_LEFT = 3;
-	public static final int CENTER_RIGHT = 4;
-	public static final int BOTTOM_LEFT = 5;
-	public static final int BOTTOM_CENTER = 6;
-	public static final int BOTTOM_RIGHT = 7;
+//	public static final int TOP_CENTER = 0;
+//	public static final int TOP_LEFT = 1;
+//	public static final int TOP_RIGHT = 2;
+//	public static final int CENTER_LEFT = 3;
+//	public static final int CENTER_RIGHT = 4;
+//	public static final int BOTTOM_LEFT = 5;
+//	public static final int BOTTOM_CENTER = 6;
+//	public static final int BOTTOM_RIGHT = 7;
 	public static final double MS_BETWEEN_TICKS = 0.166666666667;
 }

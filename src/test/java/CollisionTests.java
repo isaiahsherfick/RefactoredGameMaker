@@ -2,7 +2,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
-import behaviors.collision.BounceCollisionBehavior;
+import behaviors.collision.BounceCollisionBehaviorX;
 import behaviors.event.MoveOnGameTickBehavior;
 import constants.Constants;
 import controller.Controller;
@@ -42,7 +42,7 @@ class CollisionTests {
 		
 		Sprite s0 = c.getSprite(0);
 		s0.setX(20);
-		s0.addCustomCollision(1, new BounceCollisionBehavior()); //make the sprite bounce off s1
+		s0.addCustomCollision(1, new BounceCollisionBehaviorX()); //make the sprite bounce off s1
 		s0.addEventBehavior(new MoveOnGameTickBehavior(-1,0)); //make the sprite move left so it collides with s1
 		c.modifySprite(s0);
 		GameClock g = c.getClock(); 
