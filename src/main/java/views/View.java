@@ -9,7 +9,6 @@ import behaviors.collision.BounceCollisionBehaviorX;
 import behaviors.collision.BounceCollisionBehaviorXY;
 import behaviors.collision.BounceCollisionBehaviorY;
 import behaviors.collision.CollisionBehavior;
-import behaviors.collision.CustomCollisionMap;
 import behaviors.collision.DestroyCollisionBehavior;
 import behaviors.event.EventBehavior;
 import behaviors.event.EventBehaviorChain;
@@ -37,6 +36,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Slider;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
@@ -296,15 +296,6 @@ public class View implements Observer
 			spriteHeightSlider.setValue(currentlySelectedSprite.getAppearance().getHeight());
 			
 			
-			//Set the behavior lists 
-			spriteBehaviorList = new ScrollPane();
-			EventBehaviorChain behaviorsForSprite = currentlySelectedSprite.getEventBehaviorChain();
-			for(EventBehavior e: behaviorsForSprite.getChain()) {
-				//System.out.println("adding event behavior to the list");
-				//Label text = new Label();
-				//text.setText(e.toString());
-				//spriteBehaviorList.getChildrenUnmodifiable().add(text);
-			}
 			
 			
 		}
@@ -442,19 +433,24 @@ public class View implements Observer
 	    }
 	    @FXML
 	    public void addBehaviorButtonClicked(ActionEvent event) {
-	    	if(event.getSource().equals(addClickBehaviorButton)) {
-	    		//TODO
-	    		System.out.println("Click behavior clicked");
-	    	}
-	    	else if(event.getSource().equals(addKeyBehaviorButton)) {
-	    		//TODO
-
-	    		System.out.println("Key behavior clicked");
-	    	}
-	    	else if(event.getSource().equals(addTimedBehaviorButton)) {
-	    		//TODO
-	    		currentlySelectedSprite.addEventBehavior(timeBehaviorActions.getValue());
-	    		setSpritePropertiesPane();
+	    	try {
+		    	if(event.getSource().equals(addClickBehaviorButton)) {
+		    		//TODO
+		    		System.out.println("Click behavior clicked");
+		    	}
+		    	else if(event.getSource().equals(addKeyBehaviorButton)) {
+		    		//TODO
+	
+		    		System.out.println("Key behavior clicked");
+		    	}
+		    	else if(event.getSource().equals(addTimedBehaviorButton)) {
+		    		//TODO
+		    		currentlySelectedSprite.addEventBehavior(timeBehaviorActions.getValue());
+		    		setSpritePropertiesPane();
+		    	}
+		    }
+	    	catch(Exception ex) {
+	    		
 	    	}
 
 	    }
@@ -465,19 +461,19 @@ public class View implements Observer
 	    		int spriteId = Integer.parseInt(spriteIdInput.getText());
 	    		CollisionBehavior toAdd = collisionBehaviorAction.getValue();
 	    		currentlySelectedSprite.addCustomCollision(spriteId, toAdd);
-	    		setCollisionsList();
+	    		Text collisionText = new Text();
+	    		collisionText.setText(collisionBehaviorAction.getValue().toString() + " Colliding with Sprite: " + spriteId);
+	    		collisionBehaviorList.setContent(collisionText);
 	    	}
 	    	catch(Exception ex) {
-	    		
+	    		System.out.println(ex);
 	    	}
 	    }
 	    
-	    //Populate collisions list with all sprite's collisions
-	    public void setCollisionsList() {
-	    	//collisionBehaviorList
-	    	CustomCollisionMap spriteCollisions = currentlySelectedSprite.getCustomCollisionMap();
-	    	
+	    private void setCollisionBehaviorsPane() {
+	    	TextArea collisions = new TextArea();
 	    }
+	  
 	    
 	    @FXML
 	    public void addGamePropertyButtonClicked(ActionEvent event) {

@@ -138,5 +138,8 @@ public class SaveableEllipse implements SaveableShape, Drawable
 		return false;
 	}
 
+	public String toString() {
+		return "Ellipse";
+	}
 	
 }
