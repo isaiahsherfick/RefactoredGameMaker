@@ -360,6 +360,9 @@ public class View implements Observer
 	    @FXML
 	    public void duplicateSpriteButtonClicked(ActionEvent event) {
 	    	//TODO
+	    	controller.duplicateSprite(currentlySelectedSprite.copy());
+	    	currentlySelectedSprite = controller.getSpriteList().get(controller.getSpriteList().size() - 1);
+	    	setSpritePropertiesPane();
 	    }
 
 	    @FXML
