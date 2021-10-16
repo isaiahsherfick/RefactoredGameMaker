@@ -16,9 +16,9 @@ public class ShapeLoader
 				rect.load(json);
 				return rect;
 			case "SaveableEllipse":
-//				SaveableEllipse ellipse = new SaveableEllipse();
-//				ellipse.load(json);
-//				return ellipse;
+				SaveableEllipse ellipse = new SaveableEllipse();
+				ellipse.load(json);
+				return ellipse;
 				
 			default:
 				System.out.println("ShapeLoader was given a shape it doesn't know how to load: " + type);

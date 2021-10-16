@@ -10,9 +10,6 @@ import javafx.scene.shape.Ellipse;
 import sprite.Drawable;
 import sprite.Sprite;
 
-import java.awt.Graphics2D;
-import java.awt.geom.Ellipse2D;
-
 public class SaveableEllipse implements SaveableShape, Drawable
 {
 	private Ellipse ellipse;
@@ -66,13 +63,10 @@ public class SaveableEllipse implements SaveableShape, Drawable
 	
 
 	@Override
-	//Ellipses will have a weird draw method, since they are the exception to the rule of drawing from the top left corner in jfx
-	//to offset this for the user experience, we will draw the ellipse at x + .5w, y+ .5h
 	public void draw(GraphicsContext g) 
 	{
-		Graphics2D g2 = (Graphics2D)g;
-		g2.setFill(color);
-		g2.fill(new Ellipse2D.Double(x,y,width,height));
+		g.setFill(color);
+		g.fillOval(x, y, width, height);
 	}
 
 	@Override
