@@ -3,6 +3,7 @@ package behaviors.event;
 import org.json.simple.JSONObject;
 
 import constants.Constants;
+import javafx.scene.input.KeyCode;
 import sprite.Sprite;
 
 public class MoveOnGameTickBehavior implements MovementEventBehavior
@@ -70,7 +71,7 @@ public class MoveOnGameTickBehavior implements MovementEventBehavior
 	}
 
 	@Override
-	public void onKeyPress(Sprite sprite) 
+	public void onKeyPress(Sprite sprite, KeyCode keyCode) 
 	{
 		// TODO Auto-generated method stub
 		

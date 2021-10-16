@@ -2,6 +2,7 @@ package behaviors.event;
 
 import org.json.simple.JSONObject;
 
+import javafx.scene.input.KeyCode;
 import sprite.Sprite;
 
 public class DoNothingBehavior implements EventBehavior
@@ -40,7 +41,7 @@ public class DoNothingBehavior implements EventBehavior
 	}
 
 	@Override
-	public void onKeyPress(Sprite sprite) 
+	public void onKeyPress(Sprite sprite, KeyCode keyCode) 
 	{
 		//Do nothing
 	}

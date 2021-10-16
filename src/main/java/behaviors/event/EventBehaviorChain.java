@@ -4,6 +4,7 @@ import java.util.LinkedList;
 
 import org.json.simple.JSONObject;
 
+import javafx.scene.input.KeyCode;
 import saveandload.EventBehaviorLoader;
 import sprite.Sprite;
 
@@ -106,11 +107,11 @@ public class EventBehaviorChain implements EventBehavior
 	}
 
 	@Override
-	public void onKeyPress(Sprite sprite) 
+	public void onKeyPress(Sprite sprite, KeyCode keyCode) 
 	{
 		for (EventBehavior e : chain)
 		{
-			e.onKeyPress(sprite);
+			e.onKeyPress(sprite,keyCode);
 		}
 	}
 
