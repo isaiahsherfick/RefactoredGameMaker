@@ -20,6 +20,7 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import saveandload.SaveableRectangle;
 import saveandload.SaveableShape;
+import sprite.NullSprite;
 import sprite.Sprite;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ChoiceBox;
@@ -72,6 +73,9 @@ public class View implements Observer
 				playerStage.setScene(playerScene);
 				playerStage.setX(905);
 				playerStage.setY(50);
+				
+				//By default a null sprite
+				currentlySelectedSprite = new NullSprite();
 			}
 			catch(IOException ex) {
 				System.out.println("In View.java constructor: " + ex);
