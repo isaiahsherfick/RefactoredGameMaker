@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import controller.Controller;
+import input.KeyPolling;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
@@ -25,9 +26,11 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ColorPicker;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text; 
@@ -372,6 +375,8 @@ public class View implements Observer
 	    @FXML
 	    private Button addKeyBehaviorButton;
 
+	    @FXML
+	    private ListView keyList;
 	    
 	    //Fields for the collision behavior tab
 	    @FXML
@@ -392,6 +397,10 @@ public class View implements Observer
 
 
 
+	    @FXML
+	    public void addKeyButtonClicked(ActionEvent event) {
+	    	
+	    }
 	    
 	    //if time behavior continuous checkbox is selected, disable the interval field
 	    @FXML 
