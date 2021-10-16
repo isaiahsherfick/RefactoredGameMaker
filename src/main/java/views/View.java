@@ -29,7 +29,6 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text; 
 
@@ -164,28 +163,67 @@ public class View implements Observer
 		// Event Listener on Button[#playStopButton].onAction
 		@FXML
 		public void playStopButtonClicked(ActionEvent event) {
-			// TODO 
+			if(playStopButton.getText().equals("Play")) {
+				//If play is pressed, switch buttons to Play Context
+				playStopButton.setText("Stop");
+				undoPauseButton.setText("Pause");
+				redoRestartButton.setText("Restart");
+				saveButton.setVisible(false);
+				saveButton.setDisable(true);
+				loadButton.setVisible(false);
+				loadButton.setDisable(true);
+			}
+			else if(playStopButton.getText().equals("Stop")) {
+				//If Stop is pressed, switch buttons back to maker context
+				playStopButton.setText("Play");
+				undoPauseButton.setText("Undo");
+				redoRestartButton.setText("Redo");
+				saveButton.setVisible(true);
+				saveButton.setDisable(false);
+				loadButton.setVisible(true);
+				loadButton.setDisable(false);
+			}
 		}
+		
+		
+		
 		// Event Listener on Button[#undoPauseButton].onAction
 		@FXML
 		public void undoPauseButtonClicked(ActionEvent event) 
 		{
-			controller.undo();
+			if(undoPauseButton.getText().equals("Undo")) {
+				controller.undo();
+			}
+			else if(undoPauseButton.getText().equals("Pause")) {
+				controller.pause();
+				undoPauseButton.setText("Resume");
+			}
+			else if(undoPauseButton.getText().equals("Resume")) {
+				controller.resume();
+				undoPauseButton.setText("Pause");
+			}
+			
 		}
 		// Event Listener on Button[#redoRestartButton].onAction
 		@FXML
 		public void redoRestartButtonClicked(ActionEvent event) {
-			// TODO
+			if(redoRestartButton.getText().equals("Redo")) {
+				//TODO redo is a stretch goal
+			}
+			else if(redoRestartButton.getText().equals("Restart")) {
+				//TODO restart
+			}
 		}
 		// Event Listener on Button[#saveButton].onAction
 		@FXML
 		public void saveButtonClicked(ActionEvent event) {
-			// TODO 
+			controller.save();
 		}
 		// Event Listener on Button[#loadButton].onAction
 		@FXML
 		public void loadButtonClicked(ActionEvent event) {
-			// TODO 
+			controller.load();
+			currentlySelectedSprite  = controller.getSpriteList().get(controller.getSpriteList().size() - 1);
 		}
 		
 		//On the canvas clicked, check to see if the click intersects with a sprite's hitbox, and if so make it the currently

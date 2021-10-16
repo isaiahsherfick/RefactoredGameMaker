@@ -114,6 +114,7 @@ public class Model
 //		}
 		resetSpriteManager();
 		spriteManager.addAll(spriteList);
+		notifyObservers();
 	}
 	
 	public String getSaveFilePath()
