@@ -1,5 +1,6 @@
 package behaviors.event;
 
+import javafx.scene.input.KeyCode;
 import saveandload.Saveable;
 import sprite.Sprite;
 
@@ -14,8 +15,9 @@ public interface EventBehavior extends Saveable
 	public void onMousePress(Sprite sprite);
 	public void onGameStart(Sprite sprite);
 	public void onMouseMove(Sprite sprite);
-	public void onKeyPress(Sprite sprite);
+	public void onKeyPress(Sprite sprite,KeyCode keyCode);
 	public void onGameTick(Sprite sprite);
 	public void onLevelIncrease(Sprite sprite);
 	public EventBehavior copy();
+
 }
