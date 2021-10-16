@@ -237,39 +237,11 @@ public class View implements Observer
 		}
 		
 		//Controls for elements in MakerView.fxml
-	    @FXML
-	    private Button addGamePropertyButton;
-
-	    @FXML
-	    private ChoiceBox<?> collisionAction;
-
-	    @FXML
-	    private ChoiceBox<?> collisionObjectType;
-
-	    @FXML
-	    private Button createNewSpriteButton;
-
-	    @FXML
-	    private Button duplicateSpriteButton;
-
-	    @FXML
-	    private ChoiceBox<?> keyBehaviorAction;
-
-	    @FXML
-	    private Text keyBehaviorKeyInput;
-
-
+		//Root Anchor Pane
 	    @FXML
 	    private AnchorPane makerPane;
-
-	    @FXML
-	    private Button newBehaviorButton;
-
-	    @FXML
-	    private Button newCollisionBehaviorButton;
-
-	    @FXML
-	    private Button removeGamePropertyButton;
+	 
+	    //Sprite Behavior tab fields
 
 	    @FXML
 	    private AnchorPane spriteBehaviorEditPane;
@@ -309,22 +281,13 @@ public class View implements Observer
 
 	    @FXML
 	    private Label spriteYLabel;
+	  
+	    @FXML
+	    private Button createNewSpriteButton;
 
 	    @FXML
-	    private ChoiceBox<?> timeBehaviorAction;
+	    private Button duplicateSpriteButton;
 
-	    @FXML
-	    private CheckBox timeBehaviorContinousCheck;
-
-	    @FXML
-	    private Text timeBehaviorIntervalInput;
-
-	 
-	    @FXML
-	    private AnchorPane keyBehaviorPane;
-	    
-	    @FXML
-	    private AnchorPane mouseBehaviorPane;
 	    
 	    //Fields for the timed behavior pane
 	    @FXML
@@ -335,6 +298,61 @@ public class View implements Observer
 	    
 	    @FXML 
 	    private CheckBox continuousInterval;
+	    
+	    @FXML
+	    private ChoiceBox<?> timeBehaviorAction;
+
+	    @FXML
+	    private CheckBox timeBehaviorContinousCheck;
+
+	    @FXML
+	    private Text timeBehaviorIntervalInput;
+	    
+	    @FXML
+	    private Button addTimedBehaviorButton;
+	    
+	    //Fields for the mouse behavior pane
+	    @FXML
+	    private AnchorPane mouseBehaviorPane;
+	    
+	    @FXML
+	    private ChoiceBox<?> clickBehaviorAction;
+	    
+	    @FXML
+	    private Button addClickBehaviorButton;
+	    
+	    //Fields for the key behavior pane
+	    @FXML
+	    private AnchorPane keyBehaviorPane;
+	    
+	    @FXML
+	    private ChoiceBox<?> keyBehaviorAction;
+
+	    @FXML
+	    private Text keyBehaviorKeyInput;
+	    
+	    @FXML
+	    private Button addKeyBehaviorButton;
+
+	    
+	    //Fields for the collision behavior tab
+	    @FXML
+	    private Button newCollisionBehaviorButton;
+	   
+	    @FXML
+	    private ChoiceBox<?> collisionAction;
+
+	    @FXML
+	    private ChoiceBox<?> collisionObjectType;
+	    
+	    //Fields for the Game Properties tab
+
+	    @FXML
+	    private Button addGamePropertyButton;
+	    @FXML
+	    private Button removeGamePropertyButton;
+
+
 
 	    
 	    //if time behavior continuous checkbox is selected, disable the interval field
@@ -349,6 +367,19 @@ public class View implements Observer
 	    }
 	    @FXML
 	    public void addBehaviorButtonClicked(ActionEvent event) {
+	    	if(event.getSource().equals(addClickBehaviorButton)) {
+	    		//TODO
+	    		System.out.println("Click behavior clicked");
+	    	}
+	    	else if(event.getSource().equals(addKeyBehaviorButton)) {
+	    		//TODO
+
+	    		System.out.println("Key behavior clicked");
+	    	}
+	    	else if(event.getSource().equals(addTimedBehaviorButton)) {
+	    		//TODO
+	    		System.out.println("Timed behavior clicked");
+	    	}
 
 	    }
 
