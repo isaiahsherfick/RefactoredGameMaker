@@ -27,6 +27,8 @@ class CollisionTests {
 		assertEquals(Constants.DEFAULT_SPRITE_VELOCITY_X, s.getXVelocity());
 		assertEquals(Constants.DEFAULT_SPRITE_VELOCITY_Y, s.getYVelocity());
 	}
+	
+	
 
 	@Test
 	void collisionTest() 

@@ -5,7 +5,6 @@ import java.util.LinkedList;
 import org.json.simple.JSONObject;
 
 import saveandload.EventBehaviorLoader;
-import saveandload.Saveable;
 import sprite.Sprite;
 
 public class EventBehaviorChain implements EventBehavior

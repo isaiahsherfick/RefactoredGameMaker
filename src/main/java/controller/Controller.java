@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import org.json.simple.parser.ParseException;
 
 import command.Command;
-import command.CommandInvoker;
 import command.CreateSpriteCommand;
 import command.ModifySpriteCommand;
 import constants.Constants;
