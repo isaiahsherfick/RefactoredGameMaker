@@ -1,10 +1,13 @@
 package sprite;
 
 
+import java.util.ArrayList;
+
 import org.json.simple.JSONObject;
 
 import behaviors.collision.CollisionBehavior;
 import behaviors.collision.CustomCollisionMap;
+import behaviors.collision.CustomCollisionPair;
 import behaviors.event.EventBehavior;
 import behaviors.event.EventBehaviorChain;
 import javafx.scene.canvas.GraphicsContext;
@@ -292,5 +295,10 @@ public class Sprite implements Drawable, Saveable
 	public void onGameTick() 
 	{
 		eventBehaviorChain.onGameTick(this);
+	}
+	
+	public ArrayList<CustomCollisionPair> getCustomCollisionPairs()
+	{
+		return customCollisionMap.getCustomCollisionPairs();
 	}
 }

@@ -1,5 +1,6 @@
 package behaviors.collision;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map.Entry;
 
@@ -146,5 +147,16 @@ public class CustomCollisionMap implements Saveable
 			copy.put(e.getKey(), e.getValue());
 		}
 		return copy;
+	}
+
+	public ArrayList<CustomCollisionPair> getCustomCollisionPairs() 
+	{
+		ArrayList<CustomCollisionPair> customCollisionPairs = new ArrayList<>();
+		for (Entry<Integer, CollisionBehavior> e : collisionMap.entrySet())
+		{
+			CustomCollisionPair currentPair = new CustomCollisionPair(e.getKey(), e.getValue());
+			customCollisionPairs.add(currentPair);
+		}
+		return customCollisionPairs;
 	}
 }
