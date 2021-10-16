@@ -2,6 +2,7 @@ package behaviors.collision;
 
 import org.json.simple.JSONObject;
 
+import constants.Constants;
 import sprite.Sprite;
 
 public class BounceCollisionBehavior implements CollisionBehavior
@@ -23,10 +24,38 @@ public class BounceCollisionBehavior implements CollisionBehavior
 	}
 
 	@Override
-	public void collide(Sprite collidee, int colliderId) 
+	//collidee 
+	public void collide(Sprite collidee, int colliderId, int directionId) 
 	{
-		//TODO
-		//Some kind of switch statement here to determine if we're dealing with top left, top center, top right, bottom left, etc so we can properly flip velocities
+		switch(directionId)
+		{
+			case Constants.TOP_CENTER:
+				collidee.flipYVelocity();
+				break;
+			case Constants.TOP_LEFT:
+				collidee.flipBothVelocities();
+				break;
+			case Constants.TOP_RIGHT:
+				collidee.flipBothVelocities();
+				break;
+			case Constants.CENTER_LEFT:
+				collidee.flipXVelocity();
+				break;
+			case Constants.CENTER_RIGHT:
+				collidee.flipXVelocity();
+				break;
+			case Constants.BOTTOM_LEFT:
+				collidee.flipBothVelocities();
+				break;
+			case Constants.BOTTOM_CENTER:
+				collidee.flipYVelocity();
+				break;
+			case Constants.BOTTOM_RIGHT:
+				collidee.flipBothVelocities();
+				break;
+			default:
+				System.out.println(String.format("DirectionId problem in BounceCollisionBehavior for sprite #%d colliding with sprite #%d",collidee.getSpriteId(), colliderId));
+		}
 	}
 	
 	public boolean equals(Object o)

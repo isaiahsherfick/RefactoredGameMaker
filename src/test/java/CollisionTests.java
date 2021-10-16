@@ -4,12 +4,29 @@ import org.junit.jupiter.api.Test;
 
 import behaviors.collision.BounceCollisionBehavior;
 import behaviors.event.MoveOnGameTickBehavior;
+import constants.Constants;
 import controller.Controller;
 import controller.GameClock;
 import model.Model;
 import sprite.Sprite;
 
 class CollisionTests {
+	
+	@Test
+	void flipVelocityTest()
+	{
+		Sprite s = new Sprite();
+		s.addEventBehavior(new MoveOnGameTickBehavior());
+		assertEquals(Constants.DEFAULT_SPRITE_VELOCITY_X, s.getXVelocity());
+		assertEquals(Constants.DEFAULT_SPRITE_VELOCITY_Y, s.getYVelocity());
+		s.flipXVelocity();
+		assertEquals(Constants.DEFAULT_SPRITE_VELOCITY_X * -1, s.getXVelocity());
+		s.flipYVelocity();
+		assertEquals(Constants.DEFAULT_SPRITE_VELOCITY_Y * -1, s.getYVelocity());
+		s.flipBothVelocities();
+		assertEquals(Constants.DEFAULT_SPRITE_VELOCITY_X, s.getXVelocity());
+		assertEquals(Constants.DEFAULT_SPRITE_VELOCITY_Y, s.getYVelocity());
+	}
 
 	@Test
 	void collisionTest() 
