@@ -4,6 +4,7 @@ import java.util.LinkedList;
 
 import org.json.simple.JSONObject;
 
+import javafx.scene.input.KeyCode;
 import saveandload.EventBehaviorLoader;
 import sprite.Sprite;
 
@@ -105,12 +106,12 @@ public class EventBehaviorChain implements EventBehavior
 		}
 	}
 
-	@Override
+
 	public void onKeyPress(Sprite sprite) 
 	{
 		for (EventBehavior e : chain)
 		{
-			e.onKeyPress(sprite);
+			e.onKeyPress(sprite, null);
 		}
 	}
 
@@ -242,5 +243,11 @@ public class EventBehaviorChain implements EventBehavior
 			}
 		}
 		return maxYVelocity;
+	}
+
+	@Override
+	public void onKeyPress(Sprite sprite, KeyCode keyCode) {
+		// TODO Auto-generated method stub
+		
 	}
 }
