@@ -3,6 +3,7 @@ package model;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import org.json.simple.JSONObject;
 import org.json.simple.parser.ParseException;
 
 import command.Command;
@@ -98,6 +99,29 @@ public class Model
 		}
 		saveAndLoadManager.addAll(saveableList);
 		saveAndLoadManager.saveFile(saveFilePath);
+	}
+	
+	//stash the model as a JSON - will be called when the controller switches contexts
+	public JSONObject stash()
+	{
+		ArrayList<Sprite> spriteList = spriteManager.getSpriteList();
+		ArrayList<Saveable> saveableList = new ArrayList<>();
+		for (Sprite s : spriteList)
+		{
+			saveableList.add((Saveable)s);
+		}
+		saveAndLoadManager.addAll(saveableList);
+		return saveAndLoadManager.save();
+	}
+	
+	//restore the model from a stashed JSON - called when the controller switches contexts
+	public void restore(JSONObject stashedJSON)
+	{
+		saveAndLoadManager.load(stashedJSON);
+		ArrayList<Sprite> spriteList = saveAndLoadManager.getSprites();
+		resetSpriteManager();
+		spriteManager.addAll(spriteList);
+		notifyObservers();
 	}
 	
 	//Load all sprites from the file at saveFilePath

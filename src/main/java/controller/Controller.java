@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Timer;
 
+import org.json.simple.JSONObject;
 import org.json.simple.parser.ParseException;
 
 import command.Command;
@@ -28,6 +29,7 @@ import views.View;
 public class Controller implements Observer
 {
 	private Model model;
+	private JSONObject modelStash;
 	private View view;
 	private GameClock gameClock;
 	private Timer timer;
@@ -86,25 +88,37 @@ public class Controller implements Observer
 		 return model.getSpriteList();
 	 }
 	 
+	 //Stash the model, switch contexts to play mode, start the clock
 	 public void play()
 	 {
+		 modelStash = model.stash();
 		 gameClock = new GameClock();
 		 gameClock.register(this);
 		 timer = new Timer();
 		 timer.schedule(gameClock, (long)0.0, (long)gameClock.getMsBetweenTicks());
 	 }
 	 
+	 //Stop the clock
 	 public void pause()
 	 {
 		 timer.cancel();
 	 }
 	 
+	 //resume the clock
 	 public void resume()
 	 {
 		 gameClock = new GameClock();
 		 gameClock.register(this);
 		 timer = new Timer();
 		 timer.schedule(gameClock, (long)0.0, (long)gameClock.getMsBetweenTicks());
+	 }
+	 
+	 //Stop the clock, restore the stashed model, switch contexts to create mode
+	 public void stop()
+	 {
+		 timer.cancel();
+		 System.out.println(modelStash);
+		 model.restore(modelStash);
 	 }
 	 
 	 public void modifySprite(Sprite modifiedSprite)

@@ -54,20 +54,42 @@ public class SaveAndLoadManager {
 	public void load(JSONObject json) 
 	{
 		saveObjects.clear();
-		int size = ((Long) json.get("size")).intValue();
-		for (Integer i = 0; i < size; i++) 
+		int size = 0;
+		try
 		{
-			JSONObject entry = (JSONObject) json.get(i.toString());
-			String type = (String) entry.get("type");
-			switch (type) {
-			case "Sprite":
-				Sprite s = new Sprite();
-				s.load(entry);
-				saveObjects.add((Saveable) s);
-				break;
-			default:
-				System.out.println(type);
-				System.out.println("Tried to load something the save/load manager doesn't recognize");
+			size = ((Long) json.get("size")).intValue();
+			for (Integer i = 0; i < size; i++) 
+			{
+				JSONObject entry = (JSONObject) json.get(i.toString());
+				String type = (String) entry.get("type");
+				switch (type) {
+				case "Sprite":
+					Sprite s = new Sprite();
+					s.load(entry);
+					saveObjects.add((Saveable) s);
+					break;
+				default:
+					System.out.println(type);
+					System.out.println("Tried to load something the save/load manager doesn't recognize");
+				}
+			}
+		}catch(ClassCastException e)
+		{
+			size = (int)json.get("size");
+			for (Integer i = 0; i < size; i++) 
+			{
+				JSONObject entry = (JSONObject) json.get(i);
+				String type = (String) entry.get("type");
+				switch (type) {
+				case "Sprite":
+					Sprite s = new Sprite();
+					s.load(entry);
+					saveObjects.add((Saveable) s);
+					break;
+				default:
+					System.out.println(type);
+					System.out.println("Tried to load something the save/load manager doesn't recognize");
+				}
 			}
 		}
 //		System.out.println("SaveObjects:");

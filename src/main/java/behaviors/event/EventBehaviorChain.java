@@ -66,16 +66,33 @@ public class EventBehaviorChain implements EventBehavior
 	public void load(JSONObject saveJSON) 
 	{
 		clear();
-		int size = ((Long)saveJSON.get("size")).intValue();
-		if (size == 0)
+		int size = 0;
+		try
 		{
-			return;
-		}
-		for (Integer i=0; i<size; i++)
+			size = ((Long)saveJSON.get("size")).intValue();
+			if (size == 0)
+			{
+				return;
+			}
+			for (Integer i=0; i<size; i++)
+			{
+				EventBehavior e = EventBehaviorLoader.load((JSONObject)saveJSON.get(i.toString()));
+				//System.out.println(e);
+				add(e);
+			}
+		}catch(ClassCastException e)
 		{
-			EventBehavior e = EventBehaviorLoader.load((JSONObject)saveJSON.get(i.toString()));
-			//System.out.println(e);
-			add(e);
+			size = (int)saveJSON.get("size");
+			if (size == 0)
+			{
+				return;
+			}
+			for (Integer i=0; i<size; i++)
+			{
+				EventBehavior e2 = EventBehaviorLoader.load((JSONObject)saveJSON.get(i));
+				//System.out.println(e);
+				add(e2);
+			}
 		}
 	}
 
