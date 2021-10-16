@@ -131,6 +131,10 @@ public class SaveableRectangle implements SaveableShape, Drawable
 		}
 		return false;
 	}
+	
+	public String toString() {
+		return "Rectangle";
+	}
 
 	
 }

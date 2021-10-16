@@ -190,12 +190,6 @@
                               <ScrollPane fx:id="collisionBehaviorList" prefHeight="335.0" prefWidth="287.0" />
                               <AnchorPane fx:id="spriteBehaviorEditPane1" prefHeight="200.0" prefWidth="294.0">
                                  <children>
-                                    <Text layoutX="48.0" layoutY="80.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Select Collision Type" textAlignment="CENTER" wrappingWidth="200.0">
-                                       <font>
-                                          <Font size="15.0" />
-                                       </font>
-                                    </Text>
-                                    <ChoiceBox fx:id="spriteCollisionType" layoutX="73.0" layoutY="86.0" prefWidth="150.0" />
                                     <Text layoutX="14.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Collision Properties" wrappingWidth="200.0">
                                        <font>
                                           <Font size="18.0" />

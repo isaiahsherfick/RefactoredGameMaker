@@ -4,12 +4,13 @@ package views;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 import behaviors.collision.BounceCollisionBehaviorX;
 import behaviors.collision.BounceCollisionBehaviorXY;
 import behaviors.collision.BounceCollisionBehaviorY;
 import behaviors.collision.CollisionBehavior;
-import behaviors.collision.CustomCollisionMap;
+import behaviors.collision.CustomCollisionPair;
 import behaviors.collision.DestroyCollisionBehavior;
 import behaviors.event.EventBehavior;
 import behaviors.event.EventBehaviorChain;
@@ -26,6 +27,7 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import saveandload.SaveableEllipse;
 import saveandload.SaveableRectangle;
 import saveandload.SaveableShape;
 import sprite.NullSprite;
@@ -37,6 +39,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Slider;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
@@ -115,6 +118,7 @@ public class View implements Observer
 			
 			//Populate dropdown menus
 			spriteShapeDropdown.getItems().add(new SaveableRectangle());
+			spriteShapeDropdown.getItems().add(new SaveableEllipse());
 			
 			spriteBehaviorTypeDropdown.getItems().add("On Click Behavior");
 			spriteBehaviorTypeDropdown.getItems().add("On Key Press Behavior");
@@ -261,7 +265,7 @@ public class View implements Observer
 					if(clickedX <= s.getHitBox().getBottomRight().getX() && clickedY <= s.getHitBox().getBottomRight().getY()) {
 						//If click is within the hitbox, then make it currently selected sprite and adjust the properties pane;
 						currentlySelectedSprite = s;
-						setSpritePropertiesPane();
+						setPanesForCurrentlySelectedSprite();
 					}
 				}
 			}
@@ -282,7 +286,7 @@ public class View implements Observer
 		}
 		
 		//Sets the Sprite Properties pane values to the values of CurrentlySelectedSprite
-		public void setSpritePropertiesPane() {
+		public void setPanesForCurrentlySelectedSprite() {
 			//Set all labels to corresponding value of the sprite
 			spriteIdLabel.setText("" + currentlySelectedSprite.getSpriteId());
 			spriteXLabel.setText("" + currentlySelectedSprite.getX());
@@ -296,17 +300,8 @@ public class View implements Observer
 			spriteHeightSlider.setValue(currentlySelectedSprite.getAppearance().getHeight());
 			
 			
-			//Set the behavior lists 
-			spriteBehaviorList = new ScrollPane();
-			EventBehaviorChain behaviorsForSprite = currentlySelectedSprite.getEventBehaviorChain();
-			for(EventBehavior e: behaviorsForSprite.getChain()) {
-				//System.out.println("adding event behavior to the list");
-				//Label text = new Label();
-				//text.setText(e.toString());
-				//spriteBehaviorList.getChildrenUnmodifiable().add(text);
-			}
-			
-			
+			setCollisionBehaviorsPane();
+			setBehaviorsPane();
 		}
 		
 		//Controls for elements in MakerView.fxml
@@ -442,21 +437,36 @@ public class View implements Observer
 	    }
 	    @FXML
 	    public void addBehaviorButtonClicked(ActionEvent event) {
-	    	if(event.getSource().equals(addClickBehaviorButton)) {
-	    		//TODO
-	    		System.out.println("Click behavior clicked");
+	    	try {
+		    	if(event.getSource().equals(addClickBehaviorButton)) {
+		    		//TODO
+		    		System.out.println("Click behavior clicked");
+		    	}
+		    	else if(event.getSource().equals(addKeyBehaviorButton)) {
+		    		//TODO
+	
+		    		System.out.println("Key behavior clicked");
+		    	}
+		    	else if(event.getSource().equals(addTimedBehaviorButton)) {
+		    		//TODO
+		    		currentlySelectedSprite.addEventBehavior(timeBehaviorActions.getValue());
+		    		setPanesForCurrentlySelectedSprite();
+		    	}
+		    }
+	    	catch(Exception ex) {
+	    		
 	    	}
-	    	else if(event.getSource().equals(addKeyBehaviorButton)) {
-	    		//TODO
 
-	    		System.out.println("Key behavior clicked");
+	    }
+	    
+	    private void setBehaviorsPane() {
+	    	Text behaviors = new Text();
+	    	EventBehaviorChain behaviorsList = currentlySelectedSprite.getEventBehaviorChain();
+	    	for(int i = 0; i < behaviorsList.size(); i++) {
+	    		String collisionEntry = behaviorsList.get(i).toString();
+	    		behaviors.setText(behaviors.getText() + "\n" + collisionEntry);
 	    	}
-	    	else if(event.getSource().equals(addTimedBehaviorButton)) {
-	    		//TODO
-	    		currentlySelectedSprite.addEventBehavior(timeBehaviorActions.getValue());
-	    		setSpritePropertiesPane();
-	    	}
-
+	    	spriteBehaviorList.setContent(behaviors);
 	    }
 
 	    @FXML
@@ -465,19 +475,23 @@ public class View implements Observer
 	    		int spriteId = Integer.parseInt(spriteIdInput.getText());
 	    		CollisionBehavior toAdd = collisionBehaviorAction.getValue();
 	    		currentlySelectedSprite.addCustomCollision(spriteId, toAdd);
-	    		setCollisionsList();
+	    		setCollisionBehaviorsPane();
 	    	}
 	    	catch(Exception ex) {
-	    		
+	    		System.out.println("A field is missing or invalid");
 	    	}
 	    }
 	    
-	    //Populate collisions list with all sprite's collisions
-	    public void setCollisionsList() {
-	    	//collisionBehaviorList
-	    	CustomCollisionMap spriteCollisions = currentlySelectedSprite.getCustomCollisionMap();
-	    	
+	    private void setCollisionBehaviorsPane() {
+	    	Text collisions = new Text();
+	    	ArrayList<CustomCollisionPair> collisionsList = currentlySelectedSprite.getCustomCollisionPairs();
+	    	for(CustomCollisionPair c: collisionsList) {
+	    		String collisionEntry = c.getCollisionBehavior().toString() + " Colliding with Sprite ID: " + Integer.toString(c.getSpriteId());
+	    		collisions.setText(collisions.getText() + "\n" + collisionEntry);
+	    	}
+	    	collisionBehaviorList.setContent(collisions);
 	    }
+	  
 	    
 	    @FXML
 	    public void addGamePropertyButtonClicked(ActionEvent event) {
@@ -497,7 +511,7 @@ public class View implements Observer
 	    {
 	    	 controller.createSprite();
 	    	 currentlySelectedSprite = controller.getSpriteList().get(controller.getSpriteList().size() - 1);
-	    	 setSpritePropertiesPane();
+	    	 setPanesForCurrentlySelectedSprite();
 	    }
 
 	    @FXML
@@ -505,7 +519,7 @@ public class View implements Observer
 	    	//TODO
 	    	controller.duplicateSprite(currentlySelectedSprite.copy());
 	    	currentlySelectedSprite = controller.getSpriteList().get(controller.getSpriteList().size() - 1);
-	    	setSpritePropertiesPane();
+	    	setPanesForCurrentlySelectedSprite();
 	    }
 	    
 	    @FXML
@@ -586,7 +600,7 @@ public class View implements Observer
 	    
 	    public void modifySpriteCommand() {
 	    	controller.modifySprite(currentlySelectedSprite);
-	    	setSpritePropertiesPane();
+	    	setPanesForCurrentlySelectedSprite();
 	    }
 
 		@Override
