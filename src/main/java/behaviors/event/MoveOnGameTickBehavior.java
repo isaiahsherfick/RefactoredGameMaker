@@ -36,8 +36,16 @@ public class MoveOnGameTickBehavior implements MovementEventBehavior
 	@Override
 	public void load(JSONObject saveJSON) 
 	{
-		xVelocity = (int)saveJSON.get("xVelocity");
-		yVelocity = (int)saveJSON.get("yVelocity");
+		try
+		{
+			xVelocity = (int)saveJSON.get("xVelocity");
+			yVelocity = (int)saveJSON.get("yVelocity");
+		}
+		catch (ClassCastException c)
+		{
+			xVelocity = ((Long)saveJSON.get("xVelocity")).intValue();
+			yVelocity = ((Long)saveJSON.get("yVelocity")).intValue();
+		}
 	}
 
 	@Override

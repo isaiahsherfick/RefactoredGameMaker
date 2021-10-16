@@ -98,7 +98,6 @@ public class CustomCollisionMap implements Saveable
 			{
 				//Call that entry's collide method
 				collisionMap.get(key).collide(collidee,colliderId);
-				System.out.println("Collision detected!");
 				containsCustomCollision = true;
 			}
 		}
@@ -115,16 +114,16 @@ public class CustomCollisionMap implements Saveable
 			CustomCollisionMap other = (CustomCollisionMap)o;
 			if (!(defaultCollisionBehavior.equals(other.getDefaultCollisionBehavior())))
 			{
-				System.out.println("Defaults aren't equal.");
-				System.out.println(defaultCollisionBehavior);
-				System.out.println(other.getDefaultCollisionBehavior());
+//				System.out.println("Defaults aren't equal.");
+//				System.out.println(defaultCollisionBehavior);
+//				System.out.println(other.getDefaultCollisionBehavior());
 				return false;
 			}
 			for (Integer spriteId : collisionMap.keySet())
 			{
 				if (!(get(spriteId).equals(other.get(spriteId))))
 				{
-					System.out.println(String.format("Collision for spriteId%d doesn't match",spriteId));
+//					System.out.println(String.format("Collision for spriteId%d doesn't match",spriteId));
 					return false;
 				}
 			}
