@@ -118,7 +118,6 @@ public class Controller implements Observer
 	 public void stop()
 	 {
 		 timer.cancel();
-		 System.out.println(modelStash);
 		 model.restore(modelStash);
 	 }
 	 
