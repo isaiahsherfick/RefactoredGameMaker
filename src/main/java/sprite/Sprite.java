@@ -175,7 +175,13 @@ public class Sprite implements Drawable, Saveable
 		hitBox.load((JSONObject)saveJSON.get("hitBox"));
 		appearance = new Appearance();
 		appearance.load((JSONObject)saveJSON.get("appearance"));
-		spriteId = ((Long)saveJSON.get("spriteId")).intValue();
+		try
+		{
+			spriteId = ((Long)saveJSON.get("spriteId")).intValue();
+		}catch(ClassCastException e)
+		{
+			spriteId = (int)saveJSON.get("spriteId");
+		}
 		EventBehaviorChain ebc = new EventBehaviorChain();
 		ebc.load((JSONObject)saveJSON.get("eventBehaviorChain"));
 		eventBehaviorChain = ebc;
