@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import controller.Controller;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -24,7 +23,6 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ColorPicker;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Slider;
 import javafx.scene.input.MouseEvent;
@@ -198,6 +196,21 @@ public class View implements Observer
 					}
 				}
 			}
+		}
+		
+		//When the canvas is dragged, get the sprite and adjust it's x/y
+		@FXML 
+		public void canvasDragged(MouseEvent event) {
+			//TODO This is inefficient, but without a check for the new currently selected sprite it bugs out
+			canvasClicked(event);
+			
+			//Get the events x/y and set it to the sprite
+			double newX = event.getX();
+			double newY = event.getY();
+			System.out.println("Called: X: " + newX + " Y: " + newY);
+			currentlySelectedSprite.setX(newX);
+			currentlySelectedSprite.setY(newY);
+			modifySpriteCommand();
 		}
 		
 		//Sets the Sprite Properties pane values to the values of CurrentlySelectedSprite
