@@ -88,7 +88,10 @@ public class Controller implements Observer
 	 
 	 public void play()
 	 {
-		 timer.schedule(gameClock, (long)1.0, (long)gameClock.getMsBetweenTicks());
+		 gameClock = new GameClock();
+		 gameClock.register(this);
+		 timer = new Timer();
+		 timer.schedule(gameClock, (long)0.0, (long)gameClock.getMsBetweenTicks());
 	 }
 	 
 	 public void pause()
@@ -98,6 +101,9 @@ public class Controller implements Observer
 	 
 	 public void resume()
 	 {
+		 gameClock = new GameClock();
+		 gameClock.register(this);
+		 timer = new Timer();
 		 timer.schedule(gameClock, (long)0.0, (long)gameClock.getMsBetweenTicks());
 	 }
 	 
