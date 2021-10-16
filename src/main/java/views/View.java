@@ -595,7 +595,8 @@ public class View implements Observer
 
 	    @FXML
 	    public void usesWallsSelected(ActionEvent event) {
-
+	    	//Spawn four sprites in the walls
+	    	controller.addWalls();
 	    }
 
 	    
@@ -643,7 +644,6 @@ public class View implements Observer
 	    
 	    public void modifySpriteCommand() {
 	    	controller.modifySprite(currentlySelectedSprite);
-	    	//setPanesForCurrentlySelectedSprite();
 	    }
 
 		@Override
