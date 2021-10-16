@@ -31,3 +31,4 @@ hs_err_pid*
 .settings/org.eclipse.jdt.core.prefs
 .settings/org.eclipse.core.resources.prefs
 .classpath
+save.json
