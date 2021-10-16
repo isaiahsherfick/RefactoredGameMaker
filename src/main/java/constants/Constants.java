@@ -17,4 +17,7 @@ public class Constants
 	public static final int LOAD_SUCCESS = 0;
 	public static final int LOAD_BADFILE = 1;
 	public static final int LOAD_BADJSON = 2;
+	public static final int SCREEN_WIDTH = 600;
+	public static final int SCREEN_HEIGHT = 900;
+	public static final int CANVAS_HEIGHT = 826;
 }
