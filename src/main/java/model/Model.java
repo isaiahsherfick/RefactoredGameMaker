@@ -152,4 +152,8 @@ public class Model
 			o.update();
 		}
 	}
+	public SpriteManager getSpriteManager() 
+	{
+		return spriteManager;
+	}
 }

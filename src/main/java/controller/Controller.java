@@ -2,6 +2,7 @@ package controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Timer;
 
 import org.json.simple.parser.ParseException;
 
@@ -10,7 +11,9 @@ import command.CreateSpriteCommand;
 import command.ModifySpriteCommand;
 import constants.Constants;
 import model.Model;
+import pattern.Observer;
 import sprite.Sprite;
+import sprite.SpriteManager;
 import views.View;
 /**
  * @author ramya
@@ -20,18 +23,24 @@ import views.View;
 
 
 
-public class Controller 
+//Controller will observe the gameclock
+public class Controller implements Observer
 {
 	private Model model;
 	private View view;
 	private GameClock gameClock;
+	private Timer timer;
+	private CollisionManager collisionManager;
 	 
 	 //constructor
 	 public Controller(Model m, View v)
 	 {
 			model = m;
 			view = v;
+			collisionManager = new CollisionManager();
 			gameClock = new GameClock();
+			gameClock.register(this);
+			timer = new Timer();
 	 }  
 	 
 	 public Controller() 
@@ -69,19 +78,17 @@ public class Controller
 	 
 	 public void play()
 	 {
-		 //tell the view to switch buttons to the play buttons
-		 //turn on the game clock
-		 //enable keylisteners/mouselisteners for game engine
+		 timer.schedule(gameClock, (long)0.0, (long)gameClock.getMsBetweenTicks());
 	 }
 	 
 	 public void pause()
 	 {
-		 //pause the game clock
+		 timer.cancel();
 	 }
 	 
 	 public void resume()
 	 {
-		 //unpause the game clock
+		 timer.schedule(gameClock, (long)0.0, (long)gameClock.getMsBetweenTicks());
 	 }
 	 
 	 public void modifySprite(Sprite modifiedSprite)
@@ -136,6 +143,14 @@ public class Controller
 	{
 		return gameClock;
 	}
+
+	@Override
+	public void update() 
+	{
+		SpriteManager sm = model.getSpriteManager();
+		sm.onGameTick();
+		collisionManager.handleAllCollisions(sm);
+	}	
 	    	   
 
 }

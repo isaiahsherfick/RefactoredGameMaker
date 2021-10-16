@@ -1,32 +1,72 @@
 package controller;
 
+import java.util.ArrayList;
 import java.util.Timer;
+import java.util.TimerTask;
 
+import constants.Constants;
 import pattern.Observable;
 import pattern.Observer;
 
-public class GameClock implements Observable
+public class GameClock extends TimerTask implements Observable 
 {
-	Timer t = new Timer();
+	private int ticks;
+	private double msBetweenTicks;
+	private ArrayList<Observer> observers;
+	
+	public GameClock()
+	{
+		ticks = 0;
+		msBetweenTicks = Constants.MS_BETWEEN_TICKS;
+		observers = new ArrayList<>();
+	}
+	
 	@Override
 	public void register(Observer observer) 
 	{
-		// TODO Auto-generated method stub
-		
+		observers.add(observer);
 	}
 
 	@Override
 	public void unregister(Observer observer) 
 	{
-		// TODO Auto-generated method stub
-		
+		observers.remove(observer);
+	}
+
+	public void tick() 
+	{
+		ticks++;
+		notifyObservers();
 	}
 
 	@Override
-	public void tick() 
+	public void run() 
 	{
-		// TODO Auto-generated method stub
-		
+		tick();
+	}
+	
+	public double getMsBetweenTicks()
+	{
+		return msBetweenTicks;
+	}
+	
+	public void setMsBetweenTicks(double tps)
+	{
+		msBetweenTicks = tps;
+	}
+	
+	public int getTicks()
+	{
+		return ticks;
+	}
+
+	@Override
+	public void notifyObservers() 
+	{
+		for (Observer o: observers)
+		{
+			o.update();
+		}
 	}
 
 }

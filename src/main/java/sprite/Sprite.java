@@ -282,4 +282,10 @@ public class Sprite implements Drawable, Saveable
 		flipXVelocity();
 		flipYVelocity();
 	}
+
+
+	public void onGameTick() 
+	{
+		eventBehaviorChain.onGameTick(this);
+	}
 }

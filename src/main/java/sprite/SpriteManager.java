@@ -8,6 +8,8 @@ package sprite;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashMap.EntrySet;
+import java.util.Set;
 
 import constants.Constants;
 
@@ -88,6 +90,11 @@ public class SpriteManager
 		}
 		return spriteList;
 	}
+	
+	public Set<Integer> getSpriteIds()
+	{
+		return spriteMap.keySet();
+	}
 
 	//Overwrite a sprite already in the sprite manager
 	//takes in a sprite which has been modified by the controller
@@ -105,6 +112,14 @@ public class SpriteManager
 		for (Sprite s : spriteList)
 		{
 			add(s);
+		}
+	}
+
+	public void onGameTick() 
+	{
+		for (int spriteId : spriteMap.keySet())
+		{
+			spriteMap.get(spriteId).onGameTick();
 		}
 	}
 }

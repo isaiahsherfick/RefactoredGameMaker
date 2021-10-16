@@ -25,4 +25,5 @@ public class Constants
 	public static final int BOTTOM_LEFT = 5;
 	public static final int BOTTOM_CENTER = 6;
 	public static final int BOTTOM_RIGHT = 7;
+	public static final double MS_BETWEEN_TICKS = 0.166666666667;
 }
