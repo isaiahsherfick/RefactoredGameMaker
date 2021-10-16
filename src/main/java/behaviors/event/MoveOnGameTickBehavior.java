@@ -71,7 +71,9 @@ public class MoveOnGameTickBehavior implements MovementEventBehavior
 	}
 
 	@Override
+
 	public void onKeyPress(Sprite sprite, KeyCode keyCode) 
+
 	{
 		// TODO Auto-generated method stub
 		
