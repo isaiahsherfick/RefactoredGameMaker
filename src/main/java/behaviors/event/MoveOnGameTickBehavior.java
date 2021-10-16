@@ -5,21 +5,21 @@ import org.json.simple.JSONObject;
 import constants.Constants;
 import sprite.Sprite;
 
-public class MoveOnGameTickBehavior implements EventBehavior
+public class MoveOnGameTickBehavior implements MovementEventBehavior
 {
-	private double deltaX;
-	private double deltaY;
+	private int xVelocity;
+	private int yVelocity;
 	
 	public MoveOnGameTickBehavior()
 	{
-		deltaX = Constants.DEFAULT_SPRITE_VELOCITY_X;
-		deltaY = Constants.DEFAULT_SPRITE_VELOCITY_Y;
+		xVelocity = Constants.DEFAULT_SPRITE_VELOCITY_X;
+		yVelocity = Constants.DEFAULT_SPRITE_VELOCITY_Y;
 	}
 	
-	public MoveOnGameTickBehavior(double dx, double dy)
+	public MoveOnGameTickBehavior(int dx, int dy)
 	{
-		deltaX = dx;
-		deltaY = dy;
+		xVelocity = dx;
+		yVelocity = dy;
 	}
 
 	@SuppressWarnings("unchecked")
@@ -28,16 +28,16 @@ public class MoveOnGameTickBehavior implements EventBehavior
 	{
 		JSONObject json = new JSONObject();
 		json.put("type","MoveOnGameTickBehavior");
-		json.put("deltaX",deltaX);
-		json.put("deltaY",deltaY);
+		json.put("xVelocity",xVelocity);
+		json.put("yVelocity",yVelocity);
 		return json;
 	}
 
 	@Override
 	public void load(JSONObject saveJSON) 
 	{
-		deltaX = (double)saveJSON.get("deltaX");
-		deltaY = (double)saveJSON.get("deltaY");
+		xVelocity = (int)saveJSON.get("xVelocity");
+		yVelocity = (int)saveJSON.get("yVelocity");
 	}
 
 	@Override
@@ -71,10 +71,10 @@ public class MoveOnGameTickBehavior implements EventBehavior
 	@Override
 	public void onGameTick(Sprite sprite) 
 	{
-		double x = sprite.getX();
-		double y = sprite.getY();
-		sprite.setX(x + deltaX);
-		sprite.setY(y + deltaY);
+		int x = (int)sprite.getX();
+		int y = (int)sprite.getY();
+		sprite.setX(x + xVelocity);
+		sprite.setY(y + yVelocity);
 	}
 
 	@Override
@@ -87,7 +87,7 @@ public class MoveOnGameTickBehavior implements EventBehavior
 	@Override
 	public EventBehavior copy() 
 	{
-		return new MoveOnGameTickBehavior(deltaX, deltaY);
+		return new MoveOnGameTickBehavior(xVelocity, yVelocity);
 	}
 	
 	public boolean equals(Object o)
@@ -95,18 +95,27 @@ public class MoveOnGameTickBehavior implements EventBehavior
 		if (o instanceof MoveOnGameTickBehavior)
 		{
 			MoveOnGameTickBehavior m = (MoveOnGameTickBehavior)o;
-			return deltaX == m.getDeltaX() && deltaY == m.getDeltaY();
+			return xVelocity == m.getXVelocity() && yVelocity == m.getYVelocity();
 		}
 		return false;
 	}
 
-	private double getDeltaY() 
+	public int getYVelocity() 
 	{
-		return deltaY;
+		return yVelocity;
 	}
 
-	private double getDeltaX() 
+	public int getXVelocity() 
 	{
-		return deltaX;
+		return xVelocity;
+	}
+	
+	public void setYVelocity(int y)
+	{
+		yVelocity = y;
+	}
+	public void setXVelocity(int x)
+	{
+		xVelocity = x;
 	}
 }

@@ -5,7 +5,6 @@ import java.util.LinkedList;
 import org.json.simple.JSONObject;
 
 import saveandload.EventBehaviorLoader;
-import saveandload.Saveable;
 import sprite.Sprite;
 
 public class EventBehaviorChain implements EventBehavior
@@ -165,5 +164,83 @@ public class EventBehaviorChain implements EventBehavior
 			return true;
 		}
 		return false;
+	}
+
+	public void setYVelocity(int yvel) 
+	{
+		for (EventBehavior e : chain )
+		{
+			if (e instanceof MovementEventBehavior)
+			{
+				MovementEventBehavior m = (MovementEventBehavior)e;
+				m.setYVelocity(yvel);
+			}
+		}
+	}
+	public void setXVelocity(int xvel) 
+	{
+		for (EventBehavior e : chain )
+		{
+			if (e instanceof MovementEventBehavior)
+			{
+				MovementEventBehavior m = (MovementEventBehavior)e;
+				m.setXVelocity(xvel);
+			}
+		}
+	}
+	
+	public void flipXVelocity()
+	{
+		for (EventBehavior e : chain )
+		{
+			if (e instanceof MovementEventBehavior)
+			{
+				MovementEventBehavior m = (MovementEventBehavior)e;
+				m.setXVelocity(m.getXVelocity() * -1);
+			}
+		}
+	}
+	public void flipYVelocity()
+	{
+		for (EventBehavior e : chain )
+		{
+			if (e instanceof MovementEventBehavior)
+			{
+				MovementEventBehavior m = (MovementEventBehavior)e;
+				m.setYVelocity(m.getYVelocity() * -1);
+			}
+		}
+	}
+
+	public int getMaxXVelocity() 
+	{
+		int maxXVelocity = 0;
+		for (EventBehavior e : chain )
+		{
+			if (e instanceof MovementEventBehavior)
+			{
+				MovementEventBehavior m = (MovementEventBehavior)e;
+				int current = m.getXVelocity();
+				if (Math.abs(current) > Math.abs(maxXVelocity))
+					maxXVelocity = current;
+			}
+		}
+		return maxXVelocity;
+	}
+
+	public int getMaxYVelocity() 
+	{
+		int maxYVelocity = 0;
+		for (EventBehavior e : chain )
+		{
+			if (e instanceof MovementEventBehavior)
+			{
+				MovementEventBehavior m = (MovementEventBehavior)e;
+				int current = m.getYVelocity();
+				if (Math.abs(current) > Math.abs(maxYVelocity))
+					maxYVelocity = current;
+			}
+		}
+		return maxYVelocity;
 	}
 }

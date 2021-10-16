@@ -23,7 +23,7 @@ public class DestroyCollisionBehavior implements CollisionBehavior
 	}
 
 	@Override
-	public void collide(Sprite collidee, int colliderId) 
+	public void collide(Sprite collidee, int colliderId, int directionId) 
 	{
 		collidee.destroy();
 	}

@@ -22,7 +22,7 @@ public class DoNothingCollisionBehavior implements CollisionBehavior
 	}
 
 	@Override
-	public void collide(Sprite collidee, int colliderId) 
+	public void collide(Sprite collidee, int colliderId, int directionId) 
 	{
 		//do nothing
 	}
