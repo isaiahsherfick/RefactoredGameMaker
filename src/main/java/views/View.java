@@ -175,6 +175,7 @@ public class View implements Observer
 				saveButton.setDisable(true);
 				loadButton.setVisible(false);
 				loadButton.setDisable(true);
+				controller.play();
 			}
 			else if(playStopButton.getText().equals("Stop")) {
 				//If Stop is pressed, switch buttons back to maker context
@@ -185,6 +186,7 @@ public class View implements Observer
 				saveButton.setDisable(false);
 				loadButton.setVisible(true);
 				loadButton.setDisable(false);
+				//TODO leave play
 			}
 		}
 		
