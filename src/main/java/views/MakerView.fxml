@@ -44,7 +44,7 @@
                               <Font size="30.0" />
                            </font>
                         </Text>
-                        <Text layoutX="257.005859375" layoutY="253.373046875" strokeType="OUTSIDE" strokeWidth="0.0" text="Y:" wrappingWidth="87.240234375" AnchorPane.bottomAnchor="610.09765625" AnchorPane.rightAnchor="256.75390625" AnchorPane.topAnchor="221.0">
+                        <Text layoutX="284.24609375" layoutY="253.373046875" strokeType="OUTSIDE" strokeWidth="0.0" text="Y:" wrappingWidth="87.240234375" AnchorPane.bottomAnchor="610.09765625" AnchorPane.rightAnchor="229.513671875" AnchorPane.topAnchor="221.0">
                            <font>
                               <Font size="30.0" />
                            </font>
@@ -69,17 +69,17 @@
                               <Font size="30.0" />
                            </font>
                         </Text>
-                        <Label fx:id="spriteIdLabel" layoutX="171.0" layoutY="165.0" text="ID Label">
+                        <Label fx:id="spriteIdLabel" layoutX="171.0" layoutY="168.0" text="ID Label">
                            <font>
                               <Font size="30.0" />
                            </font>
                         </Label>
-                        <Label fx:id="spriteYLabel" layoutX="297.0" layoutY="221.0" prefHeight="38.0" prefWidth="73.0" text="Y " AnchorPane.bottomAnchor="612.0" AnchorPane.topAnchor="221.0">
+                        <Label fx:id="spriteYLabel" layoutX="322.0" layoutY="221.0" prefHeight="38.0" prefWidth="192.0" text="Y " AnchorPane.bottomAnchor="612.0" AnchorPane.topAnchor="221.0">
                            <font>
                               <Font size="30.0" />
                            </font>
                         </Label>
-                        <Label fx:id="spriteXLabel" layoutX="177.0" layoutY="221.0" prefHeight="38.0" prefWidth="76.0" text="X" AnchorPane.bottomAnchor="612.0" AnchorPane.leftAnchor="177.0" AnchorPane.rightAnchor="348.0" AnchorPane.topAnchor="221.0">
+                        <Label fx:id="spriteXLabel" layoutX="177.0" layoutY="221.0" prefHeight="38.0" prefWidth="103.0" text="X" AnchorPane.bottomAnchor="612.0" AnchorPane.leftAnchor="177.0" AnchorPane.rightAnchor="321.0" AnchorPane.topAnchor="221.0">
                            <font>
                               <Font size="30.0" />
                            </font>
