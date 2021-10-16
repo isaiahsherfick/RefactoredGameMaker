@@ -136,7 +136,7 @@ public class View implements Observer
 			
 			spriteBehaviorTypeDropdown.getItems().add("On Click Behavior");
 			spriteBehaviorTypeDropdown.getItems().add("On Key Press Behavior");
-			spriteBehaviorTypeDropdown.getItems().add("Timed Behavior");
+			spriteBehaviorTypeDropdown.getItems().add("On Game Tick Behavior");
 			
 	     	timeBehaviorActions.getItems().add(new MoveOnGameTickBehavior());
 			
@@ -223,7 +223,7 @@ public class View implements Observer
 				loadButton.setVisible(true);
 				loadButton.setDisable(false);
 				//TODO fix once difference between pause and stop
-				controller.pause();
+				controller.stop();
 			}
 		}
 		
@@ -554,7 +554,7 @@ public class View implements Observer
 	    	keyBehaviorPane.setDisable(true);
 	    	
 	    	switch(spriteBehaviorTypeDropdown.getSelectionModel().getSelectedItem()) {
-	    	case "Timed Behavior": timeBehaviorPane.setVisible(true); timeBehaviorPane.setDisable(false); break;
+	    	case "On Game Tick Behavior": timeBehaviorPane.setVisible(true); timeBehaviorPane.setDisable(false); break;
 	    	case "On Click Behavior": mouseBehaviorPane.setVisible(true); mouseBehaviorPane.setDisable(false); break;
 	    	case "On Key Press Behavior": keyBehaviorPane.setVisible(true); keyBehaviorPane.setDisable(false); break;
 	    	}

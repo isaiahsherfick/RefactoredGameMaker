@@ -157,14 +157,9 @@
                                     </AnchorPane>
                                     <AnchorPane fx:id="timeBehaviorPane" disable="true" prefHeight="200.0" prefWidth="294.0" visible="false">
                                        <children>
-                                          <Text layoutX="14.0" layoutY="14.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Timed Behavior Properties" wrappingWidth="282.0">
+                                          <Text layoutX="14.0" layoutY="14.0" strokeType="OUTSIDE" strokeWidth="0.0" text="On Game Tick Behavior Properties" wrappingWidth="282.0">
                                              <font>
                                                 <Font size="18.0" />
-                                             </font>
-                                          </Text>
-                                          <Text layoutX="48.0" layoutY="150.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Interval: (Seconds)" textAlignment="CENTER" wrappingWidth="200.0">
-                                             <font>
-                                                <Font size="15.0" />
                                              </font>
                                           </Text>
                                           <Text layoutX="48.0" layoutY="215.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Select Action" textAlignment="CENTER" wrappingWidth="200.0">
@@ -174,9 +169,6 @@
                                           </Text>
                                           <ComboBox fx:id="timeBehaviorActions" layoutX="73.0" layoutY="218.0" prefWidth="150.0" />
                                           <Button fx:id="addTimedBehaviorButton" layoutX="125.0" layoutY="500.0" mnemonicParsing="false" onAction="#addBehaviorButtonClicked" text="Add Behavior" />
-                                          <TextField fx:id="intervalField" layoutX="73.0" layoutY="153.0" />
-                                          <CheckBox fx:id="continuousInterval" layoutX="100.0" layoutY="100.0" mnemonicParsing="false" onAction="#continuousIntervalSelected" text="Continuous?" />
-                                          <Text layoutX="125.0" layoutY="125.0" strokeType="OUTSIDE" strokeWidth="0.0" text="or" />
                                        </children>
                                     </AnchorPane>
                                  </children>
@@ -202,12 +194,6 @@
                               <ScrollPane fx:id="collisionBehaviorList" prefHeight="335.0" prefWidth="287.0" />
                               <AnchorPane fx:id="spriteBehaviorEditPane1" prefHeight="200.0" prefWidth="294.0">
                                  <children>
-                                    <Text layoutX="48.0" layoutY="80.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Select Collision Type" textAlignment="CENTER" wrappingWidth="200.0">
-                                       <font>
-                                          <Font size="15.0" />
-                                       </font>
-                                    </Text>
-                                    <ChoiceBox fx:id="spriteCollisionType" layoutX="73.0" layoutY="86.0" prefWidth="150.0" />
                                     <Text layoutX="14.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Collision Properties" wrappingWidth="200.0">
                                        <font>
                                           <Font size="18.0" />
