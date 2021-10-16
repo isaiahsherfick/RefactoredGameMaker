@@ -88,7 +88,7 @@ public class Controller implements Observer
 	 
 	 public void play()
 	 {
-		 timer.schedule(gameClock, (long)0.0, (long)gameClock.getMsBetweenTicks());
+		 timer.schedule(gameClock, (long)1.0, (long)gameClock.getMsBetweenTicks());
 	 }
 	 
 	 public void pause()
@@ -160,6 +160,7 @@ public class Controller implements Observer
 		SpriteManager sm = model.getSpriteManager();
 		sm.onGameTick();
 		collisionManager.handleAllCollisions(sm);
+		model.notifyObservers();
 	}	
 	    	   
 

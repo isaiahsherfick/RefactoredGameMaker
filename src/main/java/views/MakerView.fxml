@@ -138,9 +138,9 @@
                                           </Text>
                                           <ChoiceBox fx:id="collisionAction11" layoutX="73.0" layoutY="255.0" prefWidth="150.0" />
                                           <Button fx:id="addKeyBehaviorButton" layoutX="125.0" layoutY="500.0" mnemonicParsing="false" onAction="#addBehaviorButtonClicked" text="Add Behavior" />
-                                          <ListView fx:id="keyList" layoutX="53.0" layoutY="45.0" prefHeight="189.0" prefWidth="192.0" />
+                                          <ListView layoutX="53.0" layoutY="45.0" prefHeight="189.0" prefWidth="192.0" />
                                           <Text layoutX="43.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Keys" wrappingWidth="106.134765625" />
-                                          <Button fx:id="addKeyButton" layoutX="175.0" layoutY="15.0" mnemonicParsing="false" onAction="#addKeyButtonClicked" text="Add Key" />
+                                          <Button fx:id="addKeyButton" layoutX="175.0" layoutY="15.0" mnemonicParsing="false" text="Add Key" />
                                        </children>
                                     </AnchorPane>
                                     <AnchorPane fx:id="timeBehaviorPane" disable="true" prefHeight="200.0" prefWidth="294.0" visible="false">
@@ -160,11 +160,11 @@
                                                 <Font size="15.0" />
                                              </font>
                                           </Text>
-                                          <ChoiceBox fx:id="collisionAction111" layoutX="73.0" layoutY="218.0" prefWidth="150.0" />
                                           <Button fx:id="addTimedBehaviorButton" layoutX="125.0" layoutY="500.0" mnemonicParsing="false" onAction="#addBehaviorButtonClicked" text="Add Behavior" />
                                           <TextField fx:id="intervalField" layoutX="73.0" layoutY="153.0" />
                                           <CheckBox fx:id="continuousInterval" layoutX="100.0" layoutY="100.0" mnemonicParsing="false" onAction="#continuousIntervalSelected" text="Continuous?" />
                                           <Text layoutX="125.0" layoutY="125.0" strokeType="OUTSIDE" strokeWidth="0.0" text="or" />
+                                          <ComboBox fx:id="timeBehaviorAction" layoutX="73.0" layoutY="218.0" prefWidth="150.0" />
                                        </children>
                                     </AnchorPane>
                                  </children>

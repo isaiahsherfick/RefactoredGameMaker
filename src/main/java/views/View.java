@@ -5,6 +5,9 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import behaviors.event.EventBehavior;
+import behaviors.event.MoveOnGameTickBehavior;
+import behaviors.event.MovementEventBehavior;
 import controller.Controller;
 import input.KeyPolling;
 import javafx.beans.value.ChangeListener;
@@ -113,6 +116,8 @@ public class View implements Observer
 			spriteBehaviorTypeDropdown.getItems().add("On Click Behavior");
 			spriteBehaviorTypeDropdown.getItems().add("On Key Press Behavior");
 			spriteBehaviorTypeDropdown.getItems().add("Timed Behavior");
+			
+			timeBehaviorAction.getItems().add(new MoveOnGameTickBehavior());
 		}
 		
 		public void showMaker()
@@ -179,6 +184,7 @@ public class View implements Observer
 				saveButton.setDisable(true);
 				loadButton.setVisible(false);
 				loadButton.setDisable(true);
+				
 				controller.play();
 			}
 			else if(playStopButton.getText().equals("Stop")) {
@@ -190,7 +196,8 @@ public class View implements Observer
 				saveButton.setDisable(false);
 				loadButton.setVisible(true);
 				loadButton.setDisable(false);
-				//TODO leave play
+				//TODO fix once difference between pause and stop
+				controller.pause();
 			}
 		}
 		
@@ -347,7 +354,7 @@ public class View implements Observer
 	    private CheckBox continuousInterval;
 	    
 	    @FXML
-	    private ChoiceBox<?> timeBehaviorAction;
+	    private ComboBox<EventBehavior> timeBehaviorAction;
 
 	    @FXML
 	    private CheckBox timeBehaviorContinousCheck;
@@ -363,7 +370,7 @@ public class View implements Observer
 	    private AnchorPane mouseBehaviorPane;
 	    
 	    @FXML
-	    private ChoiceBox<?> clickBehaviorAction;
+	    private ChoiceBox<EventBehavior> clickBehaviorAction;
 	    
 	    @FXML
 	    private Button addClickBehaviorButton;
@@ -432,6 +439,7 @@ public class View implements Observer
 	    	else if(event.getSource().equals(addTimedBehaviorButton)) {
 	    		//TODO
 	    		System.out.println("Timed behavior clicked");
+	    		currentlySelectedSprite.addEventBehavior(timeBehaviorAction.getValue());
 	    	}
 
 	    }
