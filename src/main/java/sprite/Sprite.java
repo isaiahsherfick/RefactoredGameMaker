@@ -2,6 +2,7 @@ package sprite;
 
 
 import java.util.ArrayList;
+import java.util.function.BooleanSupplier;
 
 import org.json.simple.JSONObject;
 
@@ -31,6 +32,10 @@ public class Sprite implements Drawable, Saveable
 	//map of spriteId : collisions against the corresponding sprite
 	protected CustomCollisionMap customCollisionMap;
 	
+	protected boolean enabled;
+	
+	protected boolean visible;
+	
 
 
 	public Sprite() 
@@ -42,6 +47,8 @@ public class Sprite implements Drawable, Saveable
 		appearance = new Appearance();
 		eventBehaviorChain = new EventBehaviorChain();
 		customCollisionMap = new CustomCollisionMap();
+		enabled = true;
+		visible = true;
 	}
 
 
@@ -135,6 +142,8 @@ public class Sprite implements Drawable, Saveable
 		json.put("appearance",appearance.save());
 		json.put("eventBehaviorChain",eventBehaviorChain.save());
 		json.put("customCollisionMap",customCollisionMap.save());
+		json.put("visible", visible);
+		json.put("enabled",enabled);
 
 		//TODO keep this growing as more stuff is added to Sprite class
 		
@@ -150,6 +159,8 @@ public class Sprite implements Drawable, Saveable
 		copySprite.setAppearance(appearance.copy());
 		copySprite.setEventBehaviorChain(eventBehaviorChain.copy());
 		copySprite.setCustomCollisionMap(customCollisionMap.copy());
+		copySprite.setVisible(visible);
+		copySprite.setEnabled(enabled);
 		return copySprite;
 	}
 
@@ -188,6 +199,8 @@ public class Sprite implements Drawable, Saveable
 		CustomCollisionMap ccm = new CustomCollisionMap();
 		ccm.load((JSONObject)saveJSON.get("customCollisionMap"));
 		customCollisionMap = ccm;
+		enabled = (boolean)saveJSON.get("enabled");
+		visible = (boolean)saveJSON.get("visible");
 	}
 	
 	@Override
@@ -223,8 +236,11 @@ public class Sprite implements Drawable, Saveable
 			{
 				//System.out.println("custom collision maps aren't equal");
 			}
+			boolean visibleEquals = s.isVisible() && visible;
 			
-			return spriteIdEquals && hitBoxEquals && appearanceEquals && eventBehaviorChainEquals && customCollisionMapEquals;
+			boolean enabledEquals = s.isEnabled() && enabled;
+			
+			return spriteIdEquals && hitBoxEquals && appearanceEquals && eventBehaviorChainEquals && customCollisionMapEquals && visibleEquals && enabledEquals;
 		}
 		return false;
 	}
@@ -306,5 +322,32 @@ public class Sprite implements Drawable, Saveable
 	public ArrayList<CustomCollisionPair> getCustomCollisionPairs()
 	{
 		return customCollisionMap.getCustomCollisionPairs();
+	}
+
+
+	public boolean isVisible() 
+	{
+		return visible;
+	}
+
+	public void setVisible(boolean v) 
+	{
+		visible = v;
+	}
+	public boolean isEnabled() 
+	{
+		return enabled;
+	}
+	public void enable() 
+	{
+		enabled = true;
+	}
+	public void disable() 
+	{
+		enabled = false;
+	}
+	public void setEnabled(boolean e)
+	{
+		enabled = e;
 	}
 }

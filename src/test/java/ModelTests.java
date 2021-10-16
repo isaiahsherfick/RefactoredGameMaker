@@ -287,4 +287,33 @@ class ModelTests {
 		loader.load(json);
 		assertEquals(customCollisionMap,loader);
 	}
+	
+	@Test
+	public void SpriteVisibilityTest() throws IOException, ParseException
+	{
+		Model m = new Model();
+		m.addSprite(new Sprite());
+		Sprite s = m.getSprite(0);
+		assertTrue(s.isVisible());
+		assertTrue(s.isEnabled());
+		s.setVisible(false);
+		assertFalse(s.isVisible());
+		assertTrue(s.isEnabled());
+		s.disable();
+		assertFalse(s.isVisible());
+		assertFalse(s.isEnabled());
+		s.enable();
+		assertTrue(s.isEnabled());
+		s.disable();
+		assertFalse(s.isVisible());
+		assertFalse(s.isEnabled());
+		m.modifySprite(s);
+		m.save();
+		m = new Model();
+		m.load();
+		s = m.getSprite(0);
+		assertFalse(s.isVisible());
+		assertFalse(s.isEnabled());
+		
+	}
 }
