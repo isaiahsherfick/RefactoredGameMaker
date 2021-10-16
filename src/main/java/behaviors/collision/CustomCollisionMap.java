@@ -98,6 +98,7 @@ public class CustomCollisionMap implements Saveable
 			{
 				//Call that entry's collide method
 				collisionMap.get(key).collide(collidee,colliderId);
+				System.out.println("Collision detected!");
 				containsCustomCollision = true;
 			}
 		}

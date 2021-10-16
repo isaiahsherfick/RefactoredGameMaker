@@ -12,7 +12,7 @@ import sprite.Sprite;
 
 class CollisionTests {
 	
-	//@Test
+	@Test
 	void flipVelocityTest()
 	{
 		Sprite s = new Sprite();
@@ -51,7 +51,7 @@ class CollisionTests {
 	
 	
 
-	//@Test
+	@Test
 	void collisionTest() 
 	{
 		Model m = new Model();
@@ -64,17 +64,20 @@ class CollisionTests {
 		Sprite s0 = c.getSprite(0);
 		s0.setX(20);
 		s0.addCustomCollision(1, new BounceCollisionBehaviorX()); //make the sprite bounce off s1
-		s0.addEventBehavior(new MoveOnGameTickBehavior(-1,0)); //make the sprite move left so it collides with s1
+		s0.addEventBehavior(new MoveOnGameTickBehavior(-5,0)); //make the sprite move left so it collides with s1
 		c.modifySprite(s0);
 		GameClock g = c.getClock(); 
 		for (int i = 0; i < 100; i++)
 		{
 			g.tick();
+			System.out.println("Clock ticked " + i);
 		}
 		
 		s0 = c.getSprite(0);
 		Sprite s1 = c.getSprite(1);
 		
+		System.out.println("s0 x" + s0.getX());
+		System.out.println("s1 x" + s1.getX());
 		assertTrue(s0.getX() > s1.getX()); //will only happen if s1 successfully bounced off of s0
 	}
 }

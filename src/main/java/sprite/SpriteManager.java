@@ -118,9 +118,7 @@ public class SpriteManager
 	{
 		for (int spriteId : spriteMap.keySet())
 		{
-			Sprite s = spriteMap.get(spriteId);
-			s.onGameTick();
-			add(s);
+			spriteMap.get(spriteId).onGameTick();
 		}
 	}
 }

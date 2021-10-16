@@ -27,6 +27,14 @@ public class BounceCollisionBehaviorX implements CollisionBehavior
 	public void collide(Sprite collidee, int colliderId) 
 	{
 		collidee.flipXVelocity();
+		if (collidee.getXVelocity() < 0)
+		{
+			collidee.setX(collidee.getX() - 1);
+		}
+		else
+		{
+			collidee.setX(collidee.getX() + 1);
+		}
 	}
 	
 	public boolean equals(Object o)
