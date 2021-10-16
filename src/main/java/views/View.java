@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import controller.Controller;
+import input.KeyPolling;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
@@ -19,17 +20,19 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import saveandload.SaveableRectangle;
 import saveandload.SaveableShape;
+import sprite.NullSprite;
 import sprite.Sprite;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ColorPicker;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Slider;
-import javafx.scene.image.Image;
+import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text; 
 
@@ -70,6 +73,9 @@ public class View implements Observer
 				playerStage.setScene(playerScene);
 				playerStage.setX(905);
 				playerStage.setY(50);
+				
+				//By default a null sprite
+				currentlySelectedSprite = new NullSprite();
 			}
 			catch(IOException ex) {
 				System.out.println("In View.java constructor: " + ex);
@@ -103,6 +109,10 @@ public class View implements Observer
 			
 			//Adds items to the possible shapes dropdown
 			spriteShapeDropdown.getItems().add(new SaveableRectangle());
+			
+			spriteBehaviorTypeDropdown.getItems().add("On Click Behavior");
+			spriteBehaviorTypeDropdown.getItems().add("On Key Press Behavior");
+			spriteBehaviorTypeDropdown.getItems().add("Timed Behavior");
 		}
 		
 		public void showMaker()
@@ -160,28 +170,69 @@ public class View implements Observer
 		// Event Listener on Button[#playStopButton].onAction
 		@FXML
 		public void playStopButtonClicked(ActionEvent event) {
-			// TODO 
+			if(playStopButton.getText().equals("Play")) {
+				//If play is pressed, switch buttons to Play Context
+				playStopButton.setText("Stop");
+				undoPauseButton.setText("Pause");
+				redoRestartButton.setText("Restart");
+				saveButton.setVisible(false);
+				saveButton.setDisable(true);
+				loadButton.setVisible(false);
+				loadButton.setDisable(true);
+				controller.play();
+			}
+			else if(playStopButton.getText().equals("Stop")) {
+				//If Stop is pressed, switch buttons back to maker context
+				playStopButton.setText("Play");
+				undoPauseButton.setText("Undo");
+				redoRestartButton.setText("Redo");
+				saveButton.setVisible(true);
+				saveButton.setDisable(false);
+				loadButton.setVisible(true);
+				loadButton.setDisable(false);
+				//TODO leave play
+			}
 		}
+		
+		
+		
 		// Event Listener on Button[#undoPauseButton].onAction
 		@FXML
 		public void undoPauseButtonClicked(ActionEvent event) 
 		{
-			controller.undo();
+			if(undoPauseButton.getText().equals("Undo")) {
+				controller.undo();
+			}
+			else if(undoPauseButton.getText().equals("Pause")) {
+				controller.pause();
+				undoPauseButton.setText("Resume");
+			}
+			else if(undoPauseButton.getText().equals("Resume")) {
+				controller.resume();
+				undoPauseButton.setText("Pause");
+			}
+			
 		}
 		// Event Listener on Button[#redoRestartButton].onAction
 		@FXML
 		public void redoRestartButtonClicked(ActionEvent event) {
-			// TODO
+			if(redoRestartButton.getText().equals("Redo")) {
+				//TODO redo is a stretch goal
+			}
+			else if(redoRestartButton.getText().equals("Restart")) {
+				//TODO restart
+			}
 		}
 		// Event Listener on Button[#saveButton].onAction
 		@FXML
 		public void saveButtonClicked(ActionEvent event) {
-			// TODO 
+			controller.save();
 		}
 		// Event Listener on Button[#loadButton].onAction
 		@FXML
 		public void loadButtonClicked(ActionEvent event) {
-			// TODO 
+			controller.load();
+			currentlySelectedSprite  = controller.getSpriteList().get(controller.getSpriteList().size() - 1);
 		}
 		
 		//On the canvas clicked, check to see if the click intersects with a sprite's hitbox, and if so make it the currently
@@ -233,44 +284,11 @@ public class View implements Observer
 		}
 		
 		//Controls for elements in MakerView.fxml
-	    @FXML
-	    private Button addGamePropertyButton;
-
-	    @FXML
-	    private ChoiceBox<?> collisionAction;
-
-	    @FXML
-	    private ChoiceBox<?> collisionObjectType;
-
-	    @FXML
-	    private Button createNewSpriteButton;
-
-	    @FXML
-	    private Button duplicateSpriteButton;
-
-	    @FXML
-	    private ChoiceBox<?> keyBehaviorAction;
-
-	    @FXML
-	    private Text keyBehaviorKeyInput;
-
-	    @FXML
-	    private Pane keyPressedBehaviorPane;
-
+		//Root Anchor Pane
 	    @FXML
 	    private AnchorPane makerPane;
-
-	    @FXML
-	    private Pane mouseEventBehaviorPane;
-
-	    @FXML
-	    private Button newBehaviorButton;
-
-	    @FXML
-	    private Button newCollisionBehaviorButton;
-
-	    @FXML
-	    private Button removeGamePropertyButton;
+	 
+	    //Sprite Behavior tab fields
 
 	    @FXML
 	    private AnchorPane spriteBehaviorEditPane;
@@ -282,10 +300,7 @@ public class View implements Observer
 	    private ScrollPane spriteBehaviorList;
 
 	    @FXML
-	    private ScrollPane spriteBehaviorList1;
-
-	    @FXML
-	    private ChoiceBox<?> spriteBehaviorType;
+	    private ComboBox<String> spriteBehaviorTypeDropdown;
 
 	    @FXML
 	    private Button spriteChooseImageButton;
@@ -313,7 +328,24 @@ public class View implements Observer
 
 	    @FXML
 	    private Label spriteYLabel;
+	  
+	    @FXML
+	    private Button createNewSpriteButton;
 
+	    @FXML
+	    private Button duplicateSpriteButton;
+
+	    
+	    //Fields for the timed behavior pane
+	    @FXML
+	    private AnchorPane timeBehaviorPane;
+	 
+	    @FXML 
+	    private TextField intervalField;
+	    
+	    @FXML 
+	    private CheckBox continuousInterval;
+	    
 	    @FXML
 	    private ChoiceBox<?> timeBehaviorAction;
 
@@ -322,12 +354,85 @@ public class View implements Observer
 
 	    @FXML
 	    private Text timeBehaviorIntervalInput;
+	    
+	    @FXML
+	    private Button addTimedBehaviorButton;
+	    
+	    //Fields for the mouse behavior pane
+	    @FXML
+	    private AnchorPane mouseBehaviorPane;
+	    
+	    @FXML
+	    private ChoiceBox<?> clickBehaviorAction;
+	    
+	    @FXML
+	    private Button addClickBehaviorButton;
+	    
+	    //Fields for the key behavior pane
+	    @FXML
+	    private AnchorPane keyBehaviorPane;
+	    
+	    @FXML
+	    private ChoiceBox<?> keyBehaviorAction;
 
 	    @FXML
-	    private Pane timeBehaviorPane;
+	    private Text keyBehaviorKeyInput;
+	    
+	    @FXML
+	    private Button addKeyBehaviorButton;
 
+	    @FXML
+	    private ListView keyList;
+	    
+	    //Fields for the collision behavior tab
+	    @FXML
+	    private Button newCollisionBehaviorButton;
+	   
+	    @FXML
+	    private ChoiceBox<?> collisionAction;
+
+	    @FXML
+	    private ChoiceBox<?> collisionObjectType;
+	    
+	    //Fields for the Game Properties tab
+
+	    @FXML
+	    private Button addGamePropertyButton;
+	    @FXML
+	    private Button removeGamePropertyButton;
+
+
+
+	    @FXML
+	    public void addKeyButtonClicked(ActionEvent event) {
+	    	
+	    }
+	    
+	    //if time behavior continuous checkbox is selected, disable the interval field
+	    @FXML 
+	    public void continuousIntervalSelected(ActionEvent event) {
+	    	if(continuousInterval.isSelected()) {
+	    		intervalField.setDisable(true);
+	    	}
+	    	else {
+	    		intervalField.setDisable(false);
+	    	}
+	    }
 	    @FXML
 	    public void addBehaviorButtonClicked(ActionEvent event) {
+	    	if(event.getSource().equals(addClickBehaviorButton)) {
+	    		//TODO
+	    		System.out.println("Click behavior clicked");
+	    	}
+	    	else if(event.getSource().equals(addKeyBehaviorButton)) {
+	    		//TODO
+
+	    		System.out.println("Key behavior clicked");
+	    	}
+	    	else if(event.getSource().equals(addTimedBehaviorButton)) {
+	    		//TODO
+	    		System.out.println("Timed behavior clicked");
+	    	}
 
 	    }
 
@@ -360,6 +465,25 @@ public class View implements Observer
 	    @FXML
 	    public void duplicateSpriteButtonClicked(ActionEvent event) {
 	    	//TODO
+	    	controller.duplicateSprite(currentlySelectedSprite.copy());
+	    	currentlySelectedSprite = controller.getSpriteList().get(controller.getSpriteList().size() - 1);
+	    	setSpritePropertiesPane();
+	    }
+	    
+	    @FXML
+	    void spriteBehaviorTypeSelected(ActionEvent event) {
+	    	timeBehaviorPane.setVisible(false);
+	    	timeBehaviorPane.setDisable(true);
+	    	mouseBehaviorPane.setVisible(false);
+	    	mouseBehaviorPane.setDisable(true);
+	    	keyBehaviorPane.setVisible(false);
+	    	keyBehaviorPane.setDisable(true);
+	    	
+	    	switch(spriteBehaviorTypeDropdown.getSelectionModel().getSelectedItem()) {
+	    	case "Timed Behavior": timeBehaviorPane.setVisible(true); timeBehaviorPane.setDisable(false); break;
+	    	case "On Click Behavior": mouseBehaviorPane.setVisible(true); mouseBehaviorPane.setDisable(false); break;
+	    	case "On Key Press Behavior": keyBehaviorPane.setVisible(true); keyBehaviorPane.setDisable(false); break;
+	    	}
 	    }
 
 	    @FXML

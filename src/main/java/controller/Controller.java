@@ -8,6 +8,7 @@ import org.json.simple.parser.ParseException;
 
 import command.Command;
 import command.CreateSpriteCommand;
+import command.DuplicateSpriteCommand;
 import command.ModifySpriteCommand;
 import constants.Constants;
 import model.Model;
@@ -57,6 +58,12 @@ public class Controller implements Observer
 	 {
 		 Command createSprite=new CreateSpriteCommand(model);
 		 model.receiveCommand(createSprite);
+	 }
+	 
+	 //Creates the duplicate sprite command and passes to commandInvoker
+	 public void duplicateSprite(Sprite s) {
+		 Command duplicateSprite = new DuplicateSpriteCommand(model, s);
+		 model.receiveCommand(duplicateSprite);
 	 }
 	 
 	 //returns true on success

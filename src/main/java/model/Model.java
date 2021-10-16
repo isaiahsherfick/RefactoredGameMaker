@@ -114,6 +114,8 @@ public class Model
 //		}
 		resetSpriteManager();
 		spriteManager.addAll(spriteList);
+		notifyObservers();
+		//TODO this needs to maintain image on load, not just shape
 	}
 	
 	public String getSaveFilePath()
