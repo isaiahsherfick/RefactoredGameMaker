@@ -27,7 +27,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Slider;
-import javafx.scene.image.Image;
+import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
@@ -103,6 +103,10 @@ public class View implements Observer
 			
 			//Adds items to the possible shapes dropdown
 			spriteShapeDropdown.getItems().add(new SaveableRectangle());
+			
+			spriteBehaviorTypeDropdown.getItems().add("On Click Behavior");
+			spriteBehaviorTypeDropdown.getItems().add("On Key Press Behavior");
+			spriteBehaviorTypeDropdown.getItems().add("Timed Behavior");
 		}
 		
 		public void showMaker()
@@ -254,14 +258,9 @@ public class View implements Observer
 	    @FXML
 	    private Text keyBehaviorKeyInput;
 
-	    @FXML
-	    private Pane keyPressedBehaviorPane;
 
 	    @FXML
 	    private AnchorPane makerPane;
-
-	    @FXML
-	    private Pane mouseEventBehaviorPane;
 
 	    @FXML
 	    private Button newBehaviorButton;
@@ -282,10 +281,7 @@ public class View implements Observer
 	    private ScrollPane spriteBehaviorList;
 
 	    @FXML
-	    private ScrollPane spriteBehaviorList1;
-
-	    @FXML
-	    private ChoiceBox<?> spriteBehaviorType;
+	    private ComboBox<String> spriteBehaviorTypeDropdown;
 
 	    @FXML
 	    private Button spriteChooseImageButton;
@@ -323,9 +319,34 @@ public class View implements Observer
 	    @FXML
 	    private Text timeBehaviorIntervalInput;
 
+	 
 	    @FXML
-	    private Pane timeBehaviorPane;
+	    private AnchorPane keyBehaviorPane;
+	    
+	    @FXML
+	    private AnchorPane mouseBehaviorPane;
+	    
+	    //Fields for the timed behavior pane
+	    @FXML
+	    private AnchorPane timeBehaviorPane;
+	 
+	    @FXML 
+	    private TextField intervalField;
+	    
+	    @FXML 
+	    private CheckBox continuousInterval;
 
+	    
+	    //if time behavior continuous checkbox is selected, disable the interval field
+	    @FXML 
+	    public void continuousIntervalSelected(ActionEvent event) {
+	    	if(continuousInterval.isSelected()) {
+	    		intervalField.setDisable(true);
+	    	}
+	    	else {
+	    		intervalField.setDisable(false);
+	    	}
+	    }
 	    @FXML
 	    public void addBehaviorButtonClicked(ActionEvent event) {
 
@@ -363,6 +384,22 @@ public class View implements Observer
 	    	controller.duplicateSprite(currentlySelectedSprite.copy());
 	    	currentlySelectedSprite = controller.getSpriteList().get(controller.getSpriteList().size() - 1);
 	    	setSpritePropertiesPane();
+	    }
+	    
+	    @FXML
+	    void spriteBehaviorTypeSelected(ActionEvent event) {
+	    	timeBehaviorPane.setVisible(false);
+	    	timeBehaviorPane.setDisable(true);
+	    	mouseBehaviorPane.setVisible(false);
+	    	mouseBehaviorPane.setDisable(true);
+	    	keyBehaviorPane.setVisible(false);
+	    	keyBehaviorPane.setDisable(true);
+	    	
+	    	switch(spriteBehaviorTypeDropdown.getSelectionModel().getSelectedItem()) {
+	    	case "Timed Behavior": timeBehaviorPane.setVisible(true); timeBehaviorPane.setDisable(false); break;
+	    	case "On Click Behavior": mouseBehaviorPane.setVisible(true); mouseBehaviorPane.setDisable(false); break;
+	    	case "On Key Press Behavior": keyBehaviorPane.setVisible(true); keyBehaviorPane.setDisable(false); break;
+	    	}
 	    }
 
 	    @FXML
