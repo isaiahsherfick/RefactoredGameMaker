@@ -17,6 +17,7 @@ import constants.Constants;
 import javafx.geometry.Point2D;
 import model.Model;
 import saveandload.SaveAndLoadManager;
+import saveandload.SaveableEllipse;
 import saveandload.SaveableRectangle;
 import sprite.Appearance;
 import sprite.HitBox;
@@ -120,6 +121,24 @@ class ModelTests {
 		
 		
 		assertEquals(rect,loader);
+	}
+
+	@Test
+	public void SaveableEllipseSaveTest()
+	{
+		SaveableEllipse ellipse = new SaveableEllipse();
+		ellipse.setX(1);
+		ellipse.setY(2);
+		ellipse.setWidth(3);
+		ellipse.setHeight(4);
+		
+		JSONObject json = ellipse.save();
+		
+		SaveableEllipse loader = new SaveableEllipse();
+		loader.load(json);
+		
+		
+		assertEquals(ellipse,loader);
 	}
 	
 	@Test
