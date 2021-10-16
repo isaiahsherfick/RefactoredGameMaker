@@ -45,7 +45,10 @@ public class Controller implements Observer
 	 
 	 public Controller() 
 	 {
-		// TODO Auto-generated constructor stub
+			collisionManager = new CollisionManager();
+			gameClock = new GameClock();
+			gameClock.register(this);
+			timer = new Timer();
 	 } 
 	 
 

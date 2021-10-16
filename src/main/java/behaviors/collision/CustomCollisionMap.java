@@ -89,6 +89,7 @@ public class CustomCollisionMap implements Saveable
 	//Will be the method actually called by Sprite on a collision
 	public void collide(Sprite collidee, int colliderId) 
 	{
+		boolean containsCustomCollision = false;
 		//Loop through the ids stored in the map
 		for (Integer key : collisionMap.keySet())
 		{
@@ -97,7 +98,12 @@ public class CustomCollisionMap implements Saveable
 			{
 				//Call that entry's collide method
 				collisionMap.get(key).collide(collidee,colliderId);
+				containsCustomCollision = true;
 			}
+		}
+		if (!containsCustomCollision)
+		{
+			defaultCollisionBehavior.collide(collidee,colliderId);
 		}
 	}
 	

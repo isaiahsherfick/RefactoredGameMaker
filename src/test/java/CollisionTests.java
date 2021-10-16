@@ -12,7 +12,7 @@ import sprite.Sprite;
 
 class CollisionTests {
 	
-	@Test
+	//@Test
 	void flipVelocityTest()
 	{
 		Sprite s = new Sprite();
@@ -28,9 +28,30 @@ class CollisionTests {
 		assertEquals(Constants.DEFAULT_SPRITE_VELOCITY_Y, s.getYVelocity());
 	}
 	
+	@Test
+	void gameTickBehaviorTest()
+	{
+		Model m = new Model();
+		Controller c = new Controller();
+		c.setModel(m);
+		GameClock g = c.getClock();
+		c.createSprite();
+		Sprite s = c.getSprite(0);
+		s.addEventBehavior(new MoveOnGameTickBehavior(1,1));
+		c.modifySprite(s);
+		assertEquals(s.getX(),Constants.DEFAULT_SPRITE_X);
+		assertEquals(s.getY(),Constants.DEFAULT_SPRITE_Y);
+		assertEquals(g.getTicks(), 0);
+		g.tick();
+		assertEquals(g.getTicks(), 1);
+		s = c.getSprite(0);
+		assertEquals(s.getX(),Constants.DEFAULT_SPRITE_X + 1);
+		assertEquals(s.getY(),Constants.DEFAULT_SPRITE_Y + 1);
+	}
+	
 	
 
-	@Test
+	//@Test
 	void collisionTest() 
 	{
 		Model m = new Model();

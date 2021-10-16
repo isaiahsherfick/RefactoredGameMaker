@@ -105,6 +105,11 @@ public class Sprite implements Drawable, Saveable
 		customCollisionMap.put(colliderSpriteId, collisionBehavior);
 	}
 	
+	public void collide(int colliderId)
+	{
+		customCollisionMap.collide(this, colliderId);
+	}
+	
 	//TODO how should we handle this discrepancy between appearance/hitbox? Should we just reconcile the two? Seems to violate single responsibilty
 	public double getX()
 	{
