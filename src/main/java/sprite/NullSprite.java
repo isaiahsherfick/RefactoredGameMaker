@@ -9,6 +9,8 @@ public class NullSprite extends Sprite
 	public NullSprite()
 	{
 		super();
+		hitBox.setWidth(0);
+		hitBox.setHeight(0);
 		spriteId = Constants.NULL_SPRITE_ID;
 	}
 	
