@@ -126,4 +126,8 @@ public class MoveOnGameTickBehavior implements MovementEventBehavior
 	{
 		xVelocity = x;
 	}
+	
+	public String toString() {
+		return "Move Continuously";
+	}
 }

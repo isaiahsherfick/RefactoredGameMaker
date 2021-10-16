@@ -33,5 +33,9 @@ public class BounceCollisionBehaviorX implements CollisionBehavior
 	{
 		return (o instanceof BounceCollisionBehaviorX);
 	}
+	
+	public String toString() {
+		return "Bounce Horizontally";
+	}
 
 }

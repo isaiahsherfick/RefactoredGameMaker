@@ -8,6 +8,7 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Ellipse;
 import sprite.Drawable;
+import sprite.Sprite;
 
 public class SaveableEllipse implements SaveableShape, Drawable
 {

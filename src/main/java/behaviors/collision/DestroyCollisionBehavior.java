@@ -32,4 +32,8 @@ public class DestroyCollisionBehavior implements CollisionBehavior
 	{
 		return (o instanceof DestroyCollisionBehavior);
 	}
+	
+	public String toString() {
+		return "Destroy Self on Collision";
+	}
 }

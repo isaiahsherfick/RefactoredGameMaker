@@ -220,7 +220,7 @@ public class Sprite implements Drawable, Saveable
 		return false;
 	}
 	
-	private CustomCollisionMap getCustomCollisionMap() 
+	public CustomCollisionMap getCustomCollisionMap() 
 	{
 		return customCollisionMap;
 	}
