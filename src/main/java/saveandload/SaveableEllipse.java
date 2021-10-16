@@ -6,23 +6,24 @@ import constants.Constants;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
+import javafx.scene.shape.Ellipse;
 import sprite.Drawable;
 import sprite.Sprite;
+import java.awt.geom.Ellipse2D;
 
-public class SaveableRectangle implements SaveableShape, Drawable
+public class SaveableEllipse implements SaveableShape, Drawable
 {
-	private Rectangle rect;
+	private Ellipse ellipse;
 	private double x,y,width,height;
 	private Color color;
 	
-	public SaveableRectangle()
+	public SaveableEllipse()
 	{
 		x = Constants.DEFAULT_SPRITE_X;
 		y = Constants.DEFAULT_SPRITE_Y;
 		width = Constants.DEFAULT_SPRITE_WIDTH;
 		height = Constants.DEFAULT_SPRITE_HEIGHT;
-		rect = new Rectangle(x,y,width,height);
+		ellipse = new Ellipse(x,y,width,height);
 		color = Color.web("#FF0000");
 	}
 
@@ -31,7 +32,7 @@ public class SaveableRectangle implements SaveableShape, Drawable
 	public JSONObject save() 
 	{
 		JSONObject json = new JSONObject();
-		json.put("type","SaveableRectangle");
+		json.put("type","SaveableEllipse");
 		json.put("x",x);
 		json.put("y",y);
 		json.put("width",width);
@@ -47,7 +48,7 @@ public class SaveableRectangle implements SaveableShape, Drawable
 		y = (double)saveJSON.get("y");
 		width = (double)saveJSON.get("width");
 		height = (double)saveJSON.get("height");
-		rect = new Rectangle(x,y,width,height);
+		ellipse = new Ellipse(x,y,width,height);
 		color = Color.web((String)saveJSON.get("color"));
 	}
 
@@ -63,10 +64,13 @@ public class SaveableRectangle implements SaveableShape, Drawable
 	
 
 	@Override
+	//Ellipses will have a weird draw method, since they are the exception to the rule of drawing from the top left corner in jfx
+	//to offset this for the user experience, we will draw the ellipse at x + .5w, y+ .5h
 	public void draw(GraphicsContext g) 
 	{
-		g.setFill(color);
-		g.fillRect(x,y,width,height);
+		Graphics2D g2 = (Graphics2D)g;
+		g2.setFill(color);
+		g2.fill(new Ellipse2D.Double(x,y,width,height));
 	}
 
 	@Override
@@ -85,14 +89,14 @@ public class SaveableRectangle implements SaveableShape, Drawable
 	public void setWidth(double w) 
 	{
 		width = w;
-		rect.setWidth(width);
+		ellipse.setRadiusX(width);
 	}
 
 	@Override
 	public void setHeight(double h) 
 	{
 		height = h;
-		rect.setHeight(h);
+		ellipse.setRadiusY(height);
 	}
 
 
@@ -112,21 +116,21 @@ public class SaveableRectangle implements SaveableShape, Drawable
 	public void setX(double newX) 
 	{
 		x = newX;
-		rect.setX(x);
+		ellipse.setCenterX(x);
 	}
 
 	@Override
 	public void setY(double newY) 
 	{
 		y = newY;
-		rect.setY(y);
+		ellipse.setCenterY(y);
 	}
 
 	public boolean equals(Object o)
 	{
-		if (o instanceof SaveableRectangle)
+		if (o instanceof SaveableEllipse)
 		{
-			SaveableRectangle r = (SaveableRectangle)o;
+			SaveableEllipse r = (SaveableEllipse)o;
 			return x == r.getX() && y == r.getY() && width == r.getWidth() && height == r.getHeight();
 		}
 		return false;
