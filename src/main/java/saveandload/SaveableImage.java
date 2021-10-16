@@ -104,5 +104,7 @@ public class SaveableImage implements Saveable, Drawable
 	public void draw(GraphicsContext g) 
 	{
 		//Create image, draw
+		image = new Image(path);
+		g.drawImage(image, x, y, width, height);
 	}
 }

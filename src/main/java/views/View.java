@@ -1,6 +1,7 @@
 //@Author Christian Dummer
 package views;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -14,6 +15,7 @@ import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import saveandload.SaveableRectangle;
 import saveandload.SaveableShape;
@@ -25,6 +27,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Slider;
+import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
@@ -205,9 +208,8 @@ public class View implements Observer
 			canvasClicked(event);
 			
 			//Get the events x/y and set it to the sprite
-			double newX = event.getX();
-			double newY = event.getY();
-			System.out.println("Called: X: " + newX + " Y: " + newY);
+			double newX = event.getX() - (currentlySelectedSprite.getAppearance().getWidth() * .5);
+			double newY = event.getY() - (currentlySelectedSprite.getAppearance().getHeight() * .5);
 			currentlySelectedSprite.setX(newX);
 			currentlySelectedSprite.setY(newY);
 			modifySpriteCommand();
@@ -367,8 +369,18 @@ public class View implements Observer
 
 	    @FXML
 	    public void spriteAppearanceSelected(ActionEvent event) {
-	    	currentlySelectedSprite.getAppearance().setShape(spriteShapeDropdown.getValue());
-	    	modifySpriteCommand();
+	    	if(event.getSource().equals(spriteShapeDropdown)) {
+	    		currentlySelectedSprite.getAppearance().setShape(spriteShapeDropdown.getValue());
+	    		modifySpriteCommand();
+	    	}
+	    	else if(event.getSource().equals(spriteChooseImageButton)) {
+	    		FileChooser fileChooser = new FileChooser();
+	    		File file = fileChooser.showOpenDialog(makerStage);
+				if (file != null) {
+					currentlySelectedSprite.getAppearance().setImage(file.toURI().toString());
+					modifySpriteCommand();
+				}
+	    	}
 	    }
 
 	    @FXML
@@ -411,6 +423,7 @@ public class View implements Observer
 	    
 	    public void modifySpriteCommand() {
 	    	controller.modifySprite(currentlySelectedSprite);
+	    	setSpritePropertiesPane();
 	    }
 
 		@Override
