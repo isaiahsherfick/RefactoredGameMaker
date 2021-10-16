@@ -4,13 +4,16 @@ package views;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 import behaviors.collision.BounceCollisionBehaviorX;
 import behaviors.collision.BounceCollisionBehaviorXY;
 import behaviors.collision.BounceCollisionBehaviorY;
 import behaviors.collision.CollisionBehavior;
+import behaviors.collision.CustomCollisionPair;
 import behaviors.collision.DestroyCollisionBehavior;
 import behaviors.event.EventBehavior;
+import behaviors.event.EventBehaviorChain;
 import behaviors.event.MoveOnGameTickBehavior;
 import controller.Controller;
 import javafx.beans.value.ChangeListener;
@@ -262,7 +265,7 @@ public class View implements Observer
 					if(clickedX <= s.getHitBox().getBottomRight().getX() && clickedY <= s.getHitBox().getBottomRight().getY()) {
 						//If click is within the hitbox, then make it currently selected sprite and adjust the properties pane;
 						currentlySelectedSprite = s;
-						setSpritePropertiesPane();
+						setPanesForCurrentlySelectedSprite();
 					}
 				}
 			}
@@ -283,7 +286,7 @@ public class View implements Observer
 		}
 		
 		//Sets the Sprite Properties pane values to the values of CurrentlySelectedSprite
-		public void setSpritePropertiesPane() {
+		public void setPanesForCurrentlySelectedSprite() {
 			//Set all labels to corresponding value of the sprite
 			spriteIdLabel.setText("" + currentlySelectedSprite.getSpriteId());
 			spriteXLabel.setText("" + currentlySelectedSprite.getX());
@@ -297,8 +300,8 @@ public class View implements Observer
 			spriteHeightSlider.setValue(currentlySelectedSprite.getAppearance().getHeight());
 			
 			
-			
-			
+			setCollisionBehaviorsPane();
+			setBehaviorsPane();
 		}
 		
 		//Controls for elements in MakerView.fxml
@@ -447,13 +450,23 @@ public class View implements Observer
 		    	else if(event.getSource().equals(addTimedBehaviorButton)) {
 		    		//TODO
 		    		currentlySelectedSprite.addEventBehavior(timeBehaviorActions.getValue());
-		    		setSpritePropertiesPane();
+		    		setPanesForCurrentlySelectedSprite();
 		    	}
 		    }
 	    	catch(Exception ex) {
 	    		
 	    	}
 
+	    }
+	    
+	    private void setBehaviorsPane() {
+	    	Text behaviors = new Text();
+	    	EventBehaviorChain behaviorsList = currentlySelectedSprite.getEventBehaviorChain();
+	    	for(int i = 0; i < behaviorsList.size(); i++) {
+	    		String collisionEntry = behaviorsList.get(i).toString();
+	    		behaviors.setText(behaviors.getText() + "\n" + collisionEntry);
+	    	}
+	    	spriteBehaviorList.setContent(behaviors);
 	    }
 
 	    @FXML
@@ -462,17 +475,21 @@ public class View implements Observer
 	    		int spriteId = Integer.parseInt(spriteIdInput.getText());
 	    		CollisionBehavior toAdd = collisionBehaviorAction.getValue();
 	    		currentlySelectedSprite.addCustomCollision(spriteId, toAdd);
-	    		Text collisionText = new Text();
-	    		collisionText.setText(collisionBehaviorAction.getValue().toString() + " Colliding with Sprite: " + spriteId);
-	    		collisionBehaviorList.setContent(collisionText);
+	    		setCollisionBehaviorsPane();
 	    	}
 	    	catch(Exception ex) {
-	    		System.out.println(ex);
+	    		System.out.println("A field is missing or invalid");
 	    	}
 	    }
 	    
 	    private void setCollisionBehaviorsPane() {
-	    	TextArea collisions = new TextArea();
+	    	Text collisions = new Text();
+	    	ArrayList<CustomCollisionPair> collisionsList = currentlySelectedSprite.getCustomCollisionPairs();
+	    	for(CustomCollisionPair c: collisionsList) {
+	    		String collisionEntry = c.getCollisionBehavior().toString() + " Colliding with Sprite ID: " + Integer.toString(c.getSpriteId());
+	    		collisions.setText(collisions.getText() + "\n" + collisionEntry);
+	    	}
+	    	collisionBehaviorList.setContent(collisions);
 	    }
 	  
 	    
@@ -494,7 +511,7 @@ public class View implements Observer
 	    {
 	    	 controller.createSprite();
 	    	 currentlySelectedSprite = controller.getSpriteList().get(controller.getSpriteList().size() - 1);
-	    	 setSpritePropertiesPane();
+	    	 setPanesForCurrentlySelectedSprite();
 	    }
 
 	    @FXML
@@ -502,7 +519,7 @@ public class View implements Observer
 	    	//TODO
 	    	controller.duplicateSprite(currentlySelectedSprite.copy());
 	    	currentlySelectedSprite = controller.getSpriteList().get(controller.getSpriteList().size() - 1);
-	    	setSpritePropertiesPane();
+	    	setPanesForCurrentlySelectedSprite();
 	    }
 	    
 	    @FXML
@@ -583,7 +600,7 @@ public class View implements Observer
 	    
 	    public void modifySpriteCommand() {
 	    	controller.modifySprite(currentlySelectedSprite);
-	    	setSpritePropertiesPane();
+	    	setPanesForCurrentlySelectedSprite();
 	    }
 
 		@Override
