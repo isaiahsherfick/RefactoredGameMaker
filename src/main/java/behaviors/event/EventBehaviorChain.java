@@ -129,6 +129,7 @@ public class EventBehaviorChain implements EventBehavior
 		for (EventBehavior e : chain)
 		{
 			e.onKeyPress(sprite,keyCode);
+
 		}
 	}
 
@@ -261,4 +262,6 @@ public class EventBehaviorChain implements EventBehavior
 		}
 		return maxYVelocity;
 	}
+
+	
 }
