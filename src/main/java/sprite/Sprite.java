@@ -359,13 +359,13 @@ public class Sprite implements Drawable, Saveable
 	
 		if(xVelocity==0 && yVelocity>0)// sprite moving down 
 		{
-			setY(Constants.SPRITE_COLLISION_WARP_DISTANCE + getY());
+			setY(getY() - Constants.SPRITE_COLLISION_WARP_DISTANCE);
 			xVelocity=yVelocity;//make sprite move right
 			yVelocity=0;
 		}
 		else if(xVelocity==0 && yVelocity<0)// sprite moving up 
 		{
-			setY(getY() - Constants.SPRITE_COLLISION_WARP_DISTANCE);
+			setY(Constants.SPRITE_COLLISION_WARP_DISTANCE + getY());
 			xVelocity=yVelocity; // make sprite move left
 			yVelocity=0;
 		} 
