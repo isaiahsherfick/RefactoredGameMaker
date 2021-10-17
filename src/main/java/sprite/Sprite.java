@@ -321,7 +321,7 @@ public class Sprite implements Drawable, Saveable
 	
 	public void  setYVelocity(int yVelocity)
 	{
-		eventBehaviorChain.setXVelocity( yVelocity);
+		eventBehaviorChain.setYVelocity( yVelocity);
 	}
 
 	public void flipBothVelocities() 
