@@ -221,10 +221,18 @@ public class MakerView {
 		    private TextField velocityYInput;
 		    
 		    @FXML
+		    private TextField intervalInput;
+		    
+		    @FXML
+		    private TextField spriteIdSpawnInput;
+		    
+		    @FXML
 		    private ComboBox<EventBehavior> timeBehaviorActions;
 		    
 		    @FXML
 		    private Button addTimedBehaviorButton;
+		    
+		   
 		    
 		    //Fields for the mouse behavior pane
 		    @FXML

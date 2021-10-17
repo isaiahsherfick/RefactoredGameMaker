@@ -23,7 +23,7 @@ public class PacManEventBehaviours implements EventBehavior {
 	public PacManEventBehaviours() {
 		movement = new MoveOnGameTickBehavior();
 		movement.setXVelocity(0);
-		movement.setYVelocity(1);
+		movement.setYVelocity(Constants.MOVE_UP);
 	}
 	
 	public PacManEventBehaviours(MovementEventBehavior m) {
