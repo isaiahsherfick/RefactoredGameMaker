@@ -142,6 +142,10 @@ public class Controller implements Observer
 	 public void setView(View view) {
 		 this.view = view;
 	 }
+	 
+	 public View getView() {
+		 return this.view;
+	 }
 
 	public Sprite getSprite(int spriteId) 
 	{
