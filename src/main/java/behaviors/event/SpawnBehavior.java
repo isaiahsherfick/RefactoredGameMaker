@@ -5,16 +5,15 @@ import org.json.simple.JSONObject;
 import constants.Constants;
 import javafx.scene.input.KeyCode;
 import model.Model;
-import sprite.NullSprite;
 import sprite.Sprite;
 
 public class SpawnBehavior implements EventBehavior{
 	
 	private int timeInterval;
-	private int totalTime = 0;
+	private double totalTime = 0;
 	private int spawnX = 0;
 	private int spawnY = 0;
-	private Sprite blueprint = new NullSprite();
+	private Sprite blueprint = new Sprite(); //default sprite
 	
 	private Model model;
 	
@@ -130,7 +129,8 @@ public class SpawnBehavior implements EventBehavior{
 
 	@Override
 	public void onGameTick(Sprite sprite) {
-		if(onTimeElapsed(totalTime,Constants.MS_BETWEEN_TICKS,timeInterval)) {
+		if(onTimeElapsed(Constants.MS_BETWEEN_TICKS,timeInterval)) {
+			System.out.println("Making a copy!");
 			Sprite copySprite = sprite.copy();
 			copySprite.setX(spawnX);
 			copySprite.setY(spawnY);
@@ -190,8 +190,9 @@ public class SpawnBehavior implements EventBehavior{
 		this.timeInterval = timeInterval;
 	}
 	
-	private boolean onTimeElapsed(double totalTime, double dt, int timeInterval) {
+	private boolean onTimeElapsed(double dt, int timeInterval) {
 		totalTime = totalTime + dt;
+		System.out.println(totalTime);
 		if((totalTime) > timeInterval) {
 			totalTime = 0;
 			return true;

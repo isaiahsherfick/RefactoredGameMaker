@@ -218,4 +218,12 @@ public class Model
 	{
 		return spriteManager;
 	}
+	public void onGameTick() 
+	{
+		ArrayList<Sprite> spriteList = spriteManager.getDirectReferenceSpriteList();
+		for (Sprite s : spriteList)
+		{
+			s.onGameTick();
+		}
+	}
 }

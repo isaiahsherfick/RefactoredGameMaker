@@ -90,6 +90,16 @@ public class SpriteManager
 		return spriteList;
 	}
 	
+	public ArrayList<Sprite> getDirectReferenceSpriteList()
+	{
+		ArrayList <Sprite> spriteList = new ArrayList<>();
+		for (int spriteId : spriteMap.keySet())
+		{
+			spriteList.add(spriteMap.get(spriteId));
+		}
+		return spriteList;
+	}
+	
 	public Set<Integer> getSpriteIds()
 	{
 		return spriteMap.keySet();
