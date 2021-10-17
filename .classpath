@@ -29,7 +29,6 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/My Workspace/Assignments/OOSD/Assignment 5/zulu8.56.0.21-ca-jdk8.0.302-win_x64"/>
 	<classpathentry kind="con" path="org.eclipse.fx.ide.jdt.core.JAVAFX_CONTAINER"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

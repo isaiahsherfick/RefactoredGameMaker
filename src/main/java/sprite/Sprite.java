@@ -11,6 +11,8 @@ import behaviors.collision.CustomCollisionPair;
 import behaviors.event.EventBehavior;
 import behaviors.event.EventBehaviorChain;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import saveandload.Saveable;
 import constants.Constants;
 
@@ -415,6 +417,13 @@ public class Sprite implements Drawable, Saveable
 	public double getWidth() 
 	{
 		return hitBox.getWidth();
+	}
+
+
+	public void onKeyPress(KeyEvent k) 
+	{
+		KeyCode kc = k.getCode();
+		eventBehaviorChain.onKeyPress(this,kc);
 	}
 }
 

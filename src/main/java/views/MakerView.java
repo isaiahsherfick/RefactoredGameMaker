@@ -13,6 +13,7 @@ import behaviors.collision.CustomCollisionPair;
 import behaviors.collision.DestroyCollisionBehavior;
 import behaviors.collision.DoNothingCollisionBehavior;
 import behaviors.collision.PacManRandomCollisionBehaviour;
+import behaviors.event.ChangeDirectionBehavior;
 import behaviors.event.EventBehavior;
 import behaviors.event.EventBehaviorChain;
 import behaviors.event.FroggerMovementBehavior;
@@ -131,7 +132,7 @@ public class MakerView {
      	
      	
      	keyBehaviorAction.getItems().add(new FroggerMovementBehavior());
-     	keyBehaviorAction.getItems().add(new PacManEventBehaviours());
+     	keyBehaviorAction.getItems().add(new ChangeDirectionBehavior());
 		
 		collisionBehaviorAction.getItems().add(new BounceCollisionBehaviorX());
 		collisionBehaviorAction.getItems().add(new BounceCollisionBehaviorY());

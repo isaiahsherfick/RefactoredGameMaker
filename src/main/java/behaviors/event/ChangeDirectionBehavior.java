@@ -40,42 +40,47 @@ public class ChangeDirectionBehavior implements EventBehavior
 	@Override
 	public void onKeyPress(Sprite sprite, KeyCode keyCode) 
 	{
+		System.out.println(keyCode);
 		int xSpeed = Math.abs(sprite.getXVelocity());
 		int ySpeed = Math.abs(sprite.getYVelocity());
+		int speed = Math.max(xSpeed,ySpeed);
+		System.out.println("xSpeed" + xSpeed);
+		System.out.println("ySpeed" + ySpeed);
 		
 		switch(keyCode)
 		{
 			case UP:
 				sprite.setXVelocity(0);
-				sprite.setYVelocity(-1 * ySpeed);
+				sprite.setYVelocity(-1 * speed);
 				break;
 			case W:
+				System.out.println("Hi moo");
 				sprite.setXVelocity(0);
-				sprite.setYVelocity(-1 * ySpeed);
+				sprite.setYVelocity(-1 * speed);
 				break;
 			case LEFT:
-				sprite.setXVelocity(xSpeed * -1);
+				sprite.setXVelocity(speed * -1);
 				sprite.setYVelocity(0);
 				break;
 			case A:
-				sprite.setXVelocity(xSpeed * -1);
+				sprite.setXVelocity(speed * -1);
 				sprite.setYVelocity(0);
 				break;
 			case RIGHT:
-				sprite.setXVelocity(xSpeed);
+				sprite.setXVelocity(speed);
 				sprite.setYVelocity(0);
 				break;
 			case D:
-				sprite.setXVelocity(xSpeed);
+				sprite.setXVelocity(speed);
 				sprite.setYVelocity(0);
 				break;
 			case DOWN:
 				sprite.setXVelocity(0);
-				sprite.setYVelocity(ySpeed);
+				sprite.setYVelocity(speed);
 				break;
 			case S:
 				sprite.setXVelocity(0);
-				sprite.setYVelocity(ySpeed);
+				sprite.setYVelocity(speed);
 				break;
 			default:
 				break;
@@ -95,9 +100,9 @@ public class ChangeDirectionBehavior implements EventBehavior
 	}
 
 	@Override
-	public EventBehavior copy() {
-		// TODO Auto-generated method stub
-		return null;
+	public EventBehavior copy() 
+	{
+		return new ChangeDirectionBehavior();
 	}
 
 }

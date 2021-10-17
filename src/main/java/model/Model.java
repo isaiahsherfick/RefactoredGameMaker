@@ -10,6 +10,7 @@ import command.Command;
 import command.CommandInvoker;
 import constants.Constants;
 import controller.Controller;
+import javafx.scene.input.KeyEvent;
 import views.Observer;
 import saveandload.SaveAndLoadManager;
 import saveandload.Saveable;
@@ -224,6 +225,13 @@ public class Model
 		for (Sprite s : spriteList)
 		{
 			s.onGameTick();
+		}
+	}
+	public void onKeyPress(KeyEvent k) {
+		ArrayList<Sprite> spriteList = spriteManager.getDirectReferenceSpriteList();
+		for (Sprite s : spriteList)
+		{
+			s.onKeyPress(k);
 		}
 	}
 }
