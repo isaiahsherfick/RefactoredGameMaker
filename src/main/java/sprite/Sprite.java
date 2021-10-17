@@ -2,7 +2,6 @@ package sprite;
 
 
 import java.util.ArrayList;
-import java.util.function.BooleanSupplier;
 
 import org.json.simple.JSONObject;
 

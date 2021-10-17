@@ -91,6 +91,7 @@ public class Model
 	//Catch the exception in controller
 	public void save() throws IOException
 	{
+		resetSaveAndLoadManager();
 		ArrayList<Sprite> spriteList = spriteManager.getSpriteList();
 		ArrayList<Saveable> saveableList = new ArrayList<>();
 		for (Sprite s : spriteList)
@@ -104,6 +105,7 @@ public class Model
 	//stash the model as a JSON - will be called when the controller switches contexts
 	public JSONObject stash()
 	{
+		resetSaveAndLoadManager();
 		ArrayList<Sprite> spriteList = spriteManager.getSpriteList();
 		ArrayList<Saveable> saveableList = new ArrayList<>();
 		for (Sprite s : spriteList)
@@ -117,6 +119,7 @@ public class Model
 	//restore the model from a stashed JSON - called when the controller switches contexts
 	public void restore(JSONObject stashedJSON)
 	{
+		resetSaveAndLoadManager();
 		saveAndLoadManager.load(stashedJSON);
 		ArrayList<Sprite> spriteList = saveAndLoadManager.getSprites();
 		resetSpriteManager();
@@ -130,6 +133,7 @@ public class Model
 	//ParseException : JSON is bad
 	public void load() throws IOException, ParseException
 	{
+		resetSaveAndLoadManager();
 		saveAndLoadManager.loadFile(saveFilePath);
 		ArrayList<Sprite> spriteList = saveAndLoadManager.getSprites();
 //		for (int i = 0; i<spriteList.size(); i++)

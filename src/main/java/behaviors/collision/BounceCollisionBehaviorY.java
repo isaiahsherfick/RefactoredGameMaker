@@ -13,7 +13,7 @@ public class BounceCollisionBehaviorY implements CollisionBehavior
 	public JSONObject save() 
 	{
 		JSONObject json = new JSONObject();
-		json.put("type","BounceCollisionBehavior");
+		json.put("type","BounceCollisionBehaviorY");
 		return json;
 	}
 
