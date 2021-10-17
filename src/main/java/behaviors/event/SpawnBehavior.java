@@ -136,6 +136,7 @@ public class SpawnBehavior implements EventBehavior{
 			copySprite.setX(spawnX);
 			copySprite.setY(spawnY);
 			model.addSprite(copySprite);
+			System.out.println("Made a copy!");
 		}
 		
 	}
