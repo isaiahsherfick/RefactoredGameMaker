@@ -464,14 +464,14 @@ public class MakerView {
 		    
 		    public void heightSliderChanged() {
 		    	boolean modifyNeeded = !(view.getCurrentlySelectedSprite().getAppearance().getHeight() == spriteHeightSlider.getValue());
-		    	view.getCurrentlySelectedSprite().setHeight(spriteHeightSlider.getValue());
+		    	view.getCurrentlySelectedSprite().getAppearance().setHeight(spriteHeightSlider.getValue());
 		    	if (modifyNeeded)
 		    		view.modifySpriteCommand();
 		    }
 		    
 		    public void widthSliderChanged() {
 		    	boolean modifyNeeded = !(view.getCurrentlySelectedSprite().getAppearance().getWidth() == spriteWidthSlider.getValue());
-		    	view.getCurrentlySelectedSprite().setWidth(spriteWidthSlider.getValue());
+		    	view.getCurrentlySelectedSprite().getAppearance().setWidth(spriteWidthSlider.getValue());
 		    	if (modifyNeeded)
 		    		view.modifySpriteCommand();
 		    }
