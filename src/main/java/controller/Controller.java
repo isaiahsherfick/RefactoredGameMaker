@@ -257,9 +257,8 @@ public class Controller implements Observer
 	@Override
 	public void update() 
 	{
-		SpriteManager sm = model.getSpriteManager();
-		sm.onGameTick();
-		collisionManager.handleAllCollisions(sm);
+		model.onGameTick();
+		collisionManager.handleAllCollisions(model.getSpriteManager());
 		model.notifyObservers();
 	}	
 	    	   

@@ -32,7 +32,7 @@ public class Constants
 	public static final Integer COLLISION_LOCKOUT_FRAMES = 10;
   
   /**Spawn Behavior**/
-	public static final int DEFAULT_SPAWN_TIME_INTERVAL = 3;
+	public static final int DEFAULT_SPAWN_TIME_INTERVAL = 3000;
 
 	public static final int CREATE_MODE_CONTEXT = 0;
 	public static final int PLAY_MODE_CONTEXT = 1;

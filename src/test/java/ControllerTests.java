@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import org.junit.jupiter.api.Test;
 
 import behaviors.event.MoveOnGameTickBehavior;
+import behaviors.event.SpawnBehavior;
 import command.CreateSpriteCommand;
 import command.ModifySpriteCommand;
 import constants.Constants;
@@ -149,6 +150,38 @@ class ControllerTests
 		sprite = c.getSprite(0);
 		assertFalse(sprite.isEnabled());
 		assertFalse(sprite.isVisible());
+	}
+	
+	@Test
+	public void SpawnBehaviorTest() throws InterruptedException
+	{
+		Model m = new Model();
+		Controller c = new Controller();
+		c.setModel(m);
+		c.createSprite();
+		c.createSprite();
+		Sprite spawner = c.getSprite(0);
+		Sprite blueprint = c.getSprite(1);
+		blueprint.addEventBehavior(new MoveOnGameTickBehavior());
+		blueprint.getAppearance().setHeight(200);
+		c.modifySprite(blueprint);
+		SpawnBehavior sb = new SpawnBehavior(m,1); //pass reference to model and spriteid of blueprint
+		spawner.addEventBehavior(sb);
+		c.modifySprite(spawner);
+		
+		assertEquals(2,m.getNumberOfSprites());
+		
+		c.play();
+		Thread.sleep(7000);
+		c.pause();
+		
+		assertNotEquals(2,m.getNumberOfSprites());
+		
+		c.stop();
+		
+		assertEquals(2,m.getNumberOfSprites());
+		
+		
 	}
 	
 }
