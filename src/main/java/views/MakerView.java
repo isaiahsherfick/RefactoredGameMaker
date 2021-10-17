@@ -271,6 +271,7 @@ public class MakerView {
 			    			((MovementEventBehavior) toAdd).setYVelocity(Integer.parseInt(velocityYInput.getText()));
 			    		}
 			    		view.getCurrentlySelectedSprite().addEventBehavior(toAdd);
+			    		view.modifySpriteCommand();
 			    		setPanesForCurrentlySelectedSprite();
 			    	}
 			    }
