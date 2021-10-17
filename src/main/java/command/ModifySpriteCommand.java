@@ -24,7 +24,7 @@ public class ModifySpriteCommand implements Command
 		//Store the previous state
 		swapState = model.getSprite(currentState.getSpriteId());
 		
-		System.out.println(swapState.getX() + " " + swapState.getY());
+//		System.out.println(swapState.getX() + " " + swapState.getY());
 		
 		//Update the state of the sprite to the new state
 		model.modifySprite(currentState);

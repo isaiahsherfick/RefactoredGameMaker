@@ -81,10 +81,6 @@ public class SaveableImage implements Saveable, Drawable
 		width = (double)json.get("width");
 		height = (double)json.get("height");
 		path = (String)json.get("path");
-		if (!path.equals(""))
-		{
-			image = new Image(path);
-		}
 	}
 	
 	public boolean equals(Object o)
@@ -109,7 +105,6 @@ public class SaveableImage implements Saveable, Drawable
 	public void setPath(String path) 
 	{
 		this.path = path;
-		image = new Image(path);
 	}
 
 	@Override

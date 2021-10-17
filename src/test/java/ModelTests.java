@@ -209,7 +209,7 @@ class ModelTests {
 		sprite2.setY(2);
 		sprite3.setWidth(3);
 		sprite4.setHeight(4);
-		sprite5.setImage("donkey_kong.jpeg");
+		sprite5.setImage("donkey_kong.jpg");
 		sprite6.addEventBehavior(new MoveOnGameTickBehavior());
 		assertEquals(1,sprite6.getEventBehaviorChainSize());
 		sprite6.addEventBehavior(new DoNothingBehavior());
