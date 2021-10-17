@@ -14,7 +14,7 @@ public class SpawnBehavior implements EventBehavior{
 	private int totalTime = 0;
 	private int spawnX = 0;
 	private int spawnY = 0;
-	private Sprite blueprint;
+	private Sprite blueprint = new NullSprite();
 	
 	private Model model;
 	
@@ -25,8 +25,6 @@ public class SpawnBehavior implements EventBehavior{
 	
 	public Sprite getBlueprint()
 	{
-		if (blueprint == null)
-			return new NullSprite();
 		return blueprint;
 	}
 	
@@ -143,7 +141,29 @@ public class SpawnBehavior implements EventBehavior{
 		if (o instanceof SpawnBehavior)
 		{
 			SpawnBehavior s = (SpawnBehavior)o;
-			return s.getSpawnX() == spawnX && s.getSpawnY() == spawnY && timeInterval == s.getTimeInterval() && s.getBlueprint().equals(blueprint);
+			boolean xEquals = spawnX == s.getSpawnX();
+			if (!xEquals)
+			{
+//				System.out.println("Xs don't equal");
+			}
+			boolean yEquals = spawnY == s.getSpawnY();
+			if (!yEquals)
+			{
+//				System.out.println("Ys don't equal");
+			}
+			boolean intervalEquals = timeInterval == s.getTimeInterval();
+			if (!intervalEquals)
+			{
+//				System.out.println("Intervals don't equal");
+			}
+			boolean spritesEqual = s.getBlueprint().equals(blueprint);
+			if (!spritesEqual)
+			{
+//				System.out.println("Sprites don't equal");
+//				System.out.println(blueprint);
+//				System.out.println(s.getBlueprint());
+			}
+			return xEquals && yEquals && intervalEquals && spritesEqual;
 		}
 		return false;
 	}

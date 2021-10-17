@@ -13,6 +13,7 @@ import behaviors.collision.DestroyCollisionBehavior;
 import behaviors.collision.DoNothingCollisionBehavior;
 import behaviors.event.DoNothingBehavior;
 import behaviors.event.MoveOnGameTickBehavior;
+import behaviors.event.SpawnBehavior;
 import constants.Constants;
 import javafx.geometry.Point2D;
 import model.Model;
@@ -318,8 +319,18 @@ class ModelTests {
 	}
 	
 	@Test
-	public void SpawnBehaviorTest()
+	public void SpawnBehaviorTest() throws IOException, ParseException
 	{
-		
+		Model m = new Model();
+		SpawnBehavior s = new SpawnBehavior(m);
+		assertEquals(s,s);
+		Sprite sprite = new Sprite();
+		sprite.addEventBehavior(s);
+		m.addSprite(sprite);
+		m.save();
+		m = new Model();
+		m.load();
+		Sprite spriteAfter = m.getSprite(0);
+		assertEquals(sprite,spriteAfter);
 	}
 }
