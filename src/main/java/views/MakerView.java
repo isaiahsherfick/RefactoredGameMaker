@@ -11,6 +11,8 @@ import behaviors.collision.BounceCollisionBehaviorY;
 import behaviors.collision.CollisionBehavior;
 import behaviors.collision.CustomCollisionPair;
 import behaviors.collision.DestroyCollisionBehavior;
+import behaviors.collision.DoNothingCollisionBehavior;
+import behaviors.event.DoNothingBehavior;
 import behaviors.event.EventBehavior;
 import behaviors.event.EventBehaviorChain;
 import behaviors.event.MoveOnGameTickBehavior;
@@ -123,9 +125,10 @@ public class MakerView {
      	timeBehaviorActions.getItems().add(new MoveOnGameTickBehavior());
 		
 		collisionBehaviorAction.getItems().add(new BounceCollisionBehaviorX());
-		collisionBehaviorAction.getItems().add(new BounceCollisionBehaviorXY());
 		collisionBehaviorAction.getItems().add(new BounceCollisionBehaviorY());
+		collisionBehaviorAction.getItems().add(new BounceCollisionBehaviorXY());
 		collisionBehaviorAction.getItems().add(new DestroyCollisionBehavior());
+		collisionBehaviorAction.getItems().add(new DoNothingCollisionBehavior());
 		
 	}
 	

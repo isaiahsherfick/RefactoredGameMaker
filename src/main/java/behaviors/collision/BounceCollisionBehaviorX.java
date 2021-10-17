@@ -14,7 +14,6 @@ public class BounceCollisionBehaviorX implements CollisionBehavior
 	{
 		JSONObject json = new JSONObject();
 		json.put("type","BounceCollisionBehaviorX");
-
 		return json;
 	}
 

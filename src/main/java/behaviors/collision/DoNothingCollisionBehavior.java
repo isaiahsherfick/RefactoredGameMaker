@@ -31,5 +31,9 @@ public class DoNothingCollisionBehavior implements CollisionBehavior
 	{
 		return o instanceof DoNothingCollisionBehavior;
 	}
+	
+	public String toString() {
+		return "Do Nothing";
+	}
 
 }
