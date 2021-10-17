@@ -38,9 +38,9 @@ public class Constants
 	public static final int PLAY_MODE_CONTEXT = 1;
 	
 	/**PAC MAN**/
-	public static final int MOVE_LEFT = 10;
-	public static final int MOVE_RIGHT = 10;
-	public static final int MOVE_UP = 10;
-	public static final int MOVE_DOWN = 10;
+	public static final int MOVE_LEFT = -3;
+	public static final int MOVE_RIGHT = 3;
+	public static final int MOVE_UP = -3;
+	public static final int MOVE_DOWN = 3;
 
 }

@@ -3,28 +3,32 @@ package behaviors.event;
 import org.json.simple.JSONObject;
 
 import constants.Constants;
+import input.KeyPolling;
 import javafx.scene.input.KeyCode;
 
 import sprite.Sprite;
 
 public class PacManEventBehaviours implements EventBehavior {
-	 private KeyCode keyCode = KeyCode.UP;
 	 private MovementEventBehavior movement=new MoveOnGameTickBehavior();
-	 public KeyCode getKeyCode()
-	 {
-	        return keyCode;
-	 }
-	 public void setKeyCode(KeyCode keyCode)
-	 {
-	        this.keyCode = keyCode;
-	 }
-	 
 	@Override
 	public JSONObject save() {
 		// TODO Auto-generated method stub
-		return null;
+		JSONObject json = new JSONObject();
+		json.put("type","PacManEventBehaviours");
+		json.put("movement",movement);
+		return json;
 	}
 
+	
+	public PacManEventBehaviours() {
+		movement = new MoveOnGameTickBehavior();
+		movement.setXVelocity(0);
+		movement.setYVelocity(1);
+	}
+	
+	public PacManEventBehaviours(MovementEventBehavior m) {
+		this.movement = m;
+	}
 	@Override
 	public void load(JSONObject saveJSON) {
 		// TODO Auto-generated method stub
@@ -52,40 +56,40 @@ public class PacManEventBehaviours implements EventBehavior {
 	@Override
 	public void onKeyPress(Sprite sprite,  KeyCode keyCode)
 	{
-		int currentYVelocity=0;
-		int currentXVelocity=0;
-		  if (this.keyCode.equals(KeyCode.UP))
-	      {
-			  currentYVelocity=movement.getYVelocity();
-			  movement.setYVelocity(currentYVelocity-Constants.MOVE_UP); //add  to constants file
-	           
-	      }
-		  else if (this.keyCode.equals(KeyCode.DOWN)) //add  to constants file
-	      {
-			  currentYVelocity=movement.getYVelocity();
-			  movement.setYVelocity(currentYVelocity+Constants.MOVE_DOWN);//add  to constants file
-	           
-	      }
-		  else if (this.keyCode.equals(KeyCode.RIGHT))
-	      {
-			  currentYVelocity=movement.getXVelocity();
-			  movement.setYVelocity(currentXVelocity+Constants.MOVE_RIGHT);//add  to constants file
-	           
-	      }
-		  else if (this.keyCode.equals(KeyCode.LEFT))
-	      {
-			  currentYVelocity=movement.getXVelocity();
-			  movement.setYVelocity(currentXVelocity-Constants.MOVE_LEFT);  //add  to constants file
-	      }
-		  
 	        
-	    }
+	 }
+	
+	public void onKeyPress() {
+		  if (KeyPolling.shared.isDown(KeyCode.UP))
+	      {
+			  movement.setYVelocity(Constants.MOVE_UP); //add  to constants file
+			  movement.setXVelocity(0);
+	           
+	      }
+		  else if (KeyPolling.shared.isDown(KeyCode.DOWN)) //add  to constants file
+	      {
+			  movement.setYVelocity(Constants.MOVE_DOWN);//add  to constants file
+	          movement.setXVelocity(0);
+	      }
+		  else if (KeyPolling.shared.isDown(KeyCode.RIGHT))
+	      {
+			  movement.setXVelocity(Constants.MOVE_RIGHT);//add  to constants file
+			  movement.setYVelocity(0);
+	           
+	      }
+		  else if (KeyPolling.shared.isDown(KeyCode.LEFT))
+	      {
+			  movement.setXVelocity(Constants.MOVE_LEFT);  //add  to constants file
+			  movement.setYVelocity(0);
+	      }
+	}
+	
 
 
 	@Override
 	public void onGameTick(Sprite sprite) {
-		movement.onGameStart(sprite);
-
+		onKeyPress();
+		movement.onGameTick(sprite);
 	}
 
 	@Override
@@ -97,9 +101,12 @@ public class PacManEventBehaviours implements EventBehavior {
 	@Override
 	public EventBehavior copy() {
 		// TODO Auto-generated method stub
-		return null;
+		return new PacManEventBehaviours(movement);
 	}
 
+	public String toString() {
+		return "Continuous Movement Changed on KeyPress";
+	}
 	
 
 }

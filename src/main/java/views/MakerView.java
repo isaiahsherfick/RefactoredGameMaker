@@ -18,6 +18,7 @@ import behaviors.event.EventBehaviorChain;
 import behaviors.event.FroggerMovementBehavior;
 import behaviors.event.MoveOnGameTickBehavior;
 import behaviors.event.MovementEventBehavior;
+import behaviors.event.PacManEventBehaviours;
 import behaviors.event.SpawnBehavior;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -127,7 +128,9 @@ public class MakerView {
      	timeBehaviorActions.getItems().add(new MoveOnGameTickBehavior());
      	timeBehaviorActions.getItems().add(new SpawnBehavior());
      	
+     	
      	keyBehaviorAction.getItems().add(new FroggerMovementBehavior());
+     	keyBehaviorAction.getItems().add(new PacManEventBehaviours());
 		
 		collisionBehaviorAction.getItems().add(new BounceCollisionBehaviorX());
 		collisionBehaviorAction.getItems().add(new BounceCollisionBehaviorY());

@@ -7,6 +7,7 @@ import behaviors.event.DoNothingBehavior;
 import behaviors.event.EventBehavior;
 import behaviors.event.FroggerMovementBehavior;
 import behaviors.event.MoveOnGameTickBehavior;
+import behaviors.event.PacManEventBehaviours;
 import behaviors.event.SpawnBehavior;
 import main.GameMaker;
 import model.Model;
@@ -34,6 +35,10 @@ public class EventBehaviorLoader
 				FroggerMovementBehavior f = new FroggerMovementBehavior();
 				f.load(json);
 				return f;
+			case "PacManEventBehaviours":
+				PacManEventBehaviours p = new PacManEventBehaviours();
+				p.load(json);
+				return p;
 			default:
 				System.out.println("BehaviorLoader was given something it doesn't have a case for: " + type);
 				return new DoNothingBehavior();
