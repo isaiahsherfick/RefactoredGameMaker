@@ -24,8 +24,8 @@
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <Button fx:id="createNewSpriteButton" layoutX="53.0" layoutY="14.0" mnemonicParsing="false" onAction="#createSpriteButtonClicked" prefHeight="47.0" prefWidth="190.0" text="Create New Sprite" AnchorPane.bottomAnchor="807.5" AnchorPane.leftAnchor="53.0" AnchorPane.rightAnchor="358.0" AnchorPane.topAnchor="14.0" />
-                        <Button fx:id="duplicateSpriteButton" layoutX="361.0" layoutY="14.0" mnemonicParsing="false" onAction="#duplicateSpriteButtonClicked" prefHeight="47.0" prefWidth="190.0" text="Duplicate" />
+                        <Button fx:id="createNewSpriteButton" layoutX="16.0" layoutY="14.0" mnemonicParsing="false" onAction="#createSpriteButtonClicked" prefHeight="47.0" prefWidth="190.0" text="Create New Sprite" AnchorPane.bottomAnchor="807.5" AnchorPane.leftAnchor="16.0" AnchorPane.rightAnchor="395.0" AnchorPane.topAnchor="14.0" />
+                        <Button fx:id="duplicateSpriteButton" layoutX="210.0" layoutY="14.0" mnemonicParsing="false" onAction="#duplicateSpriteButtonClicked" prefHeight="47.0" prefWidth="190.0" text="Duplicate" />
                         <Line endX="500.0" layoutX="101.0" layoutY="76.0" startX="-100.0" />
                         <Text layoutX="25.0" layoutY="139.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sprite Properties" wrappingWidth="500.0">
                            <font>
@@ -37,12 +37,12 @@
                               <Font size="30.0" />
                            </font>
                         </Text>
-                        <Text layoutX="34.0" layoutY="250.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Position X:" wrappingWidth="153.240234375" AnchorPane.bottomAnchor="612.171875" AnchorPane.leftAnchor="34.0" AnchorPane.rightAnchor="413.759765625" AnchorPane.topAnchor="221.0">
+                        <Text layoutX="68.0" layoutY="249.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Position X:" wrappingWidth="198.240234375" AnchorPane.bottomAnchor="612.9248046875" AnchorPane.leftAnchor="68.0" AnchorPane.rightAnchor="334.759765625" AnchorPane.topAnchor="221.1533203125">
                            <font>
                               <Font size="30.0" />
                            </font>
                         </Text>
-                        <Text layoutX="257.005859375" layoutY="253.373046875" strokeType="OUTSIDE" strokeWidth="0.0" text="Y:" wrappingWidth="87.240234375" AnchorPane.bottomAnchor="610.09765625" AnchorPane.rightAnchor="256.75390625" AnchorPane.topAnchor="221.0">
+                        <Text layoutX="300.0" layoutY="249.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Y:" wrappingWidth="87.240234375" AnchorPane.bottomAnchor="612.9248046875" AnchorPane.rightAnchor="213.759765625" AnchorPane.topAnchor="221.1533203125">
                            <font>
                               <Font size="30.0" />
                            </font>
@@ -57,27 +57,27 @@
                               <Font size="30.0" />
                            </font>
                         </Text>
-                        <Text layoutX="34.0" layoutY="498.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Color: " wrappingWidth="153.240234375">
+                        <Text layoutX="25.0" layoutY="495.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Color: " wrappingWidth="153.240234375">
                            <font>
                               <Font size="30.0" />
                            </font>
                         </Text>
                         <Text layoutX="27.0" layoutY="548.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Appearance:" wrappingWidth="167.240234375">
                            <font>
-                              <Font size="30.0" />
+                              <Font size="25.0" />
                            </font>
                         </Text>
-                        <Label fx:id="spriteIdLabel" layoutX="171.0" layoutY="167.0" text="ID Label">
+                        <Label fx:id="spriteIdLabel" layoutX="182.0" layoutY="172.0" text="ID Label">
                            <font>
                               <Font size="30.0" />
                            </font>
                         </Label>
-                        <Label fx:id="spriteYLabel" layoutX="297.0" layoutY="221.0" prefHeight="38.0" prefWidth="125.0" text="Y " AnchorPane.bottomAnchor="612.0" AnchorPane.topAnchor="221.0">
+                        <Label fx:id="spriteYLabel" layoutX="413.0" layoutY="221.0" prefHeight="38.0" prefWidth="125.0" text="Y " AnchorPane.bottomAnchor="612.0" AnchorPane.topAnchor="221.0">
                            <font>
                               <Font size="30.0" />
                            </font>
                         </Label>
-                        <Label fx:id="spriteXLabel" layoutX="177.0" layoutY="221.0" prefHeight="38.0" prefWidth="76.0" text="X" AnchorPane.bottomAnchor="612.0" AnchorPane.leftAnchor="177.0" AnchorPane.rightAnchor="348.0" AnchorPane.topAnchor="221.0">
+                        <Label fx:id="spriteXLabel" layoutX="241.0" layoutY="221.0" prefHeight="38.0" prefWidth="76.0" text="X" AnchorPane.bottomAnchor="612.0" AnchorPane.leftAnchor="241.0" AnchorPane.rightAnchor="284.0" AnchorPane.topAnchor="221.0">
                            <font>
                               <Font size="30.0" />
                            </font>
@@ -96,12 +96,12 @@
                         <Slider fx:id="hitboxHeightSlider" layoutX="173.0" layoutY="419.0" max="900.0" prefHeight="38.0" prefWidth="300.0" showTickLabels="true" showTickMarks="true" />
                         <Text layoutX="3.0" layoutY="392.0" strokeType="OUTSIDE" strokeWidth="0.0" text="HitBox Width:" wrappingWidth="164.240234375">
                            <font>
-                              <Font size="26.0" />
+                              <Font size="23.0" />
                            </font>
                         </Text>
                         <Text layoutX="1.0" layoutY="434.0" strokeType="OUTSIDE" strokeWidth="0.0" text="HitBox Height:" wrappingWidth="168.240234375">
                            <font>
-                              <Font size="26.0" />
+                              <Font size="23.0" />
                            </font>
                         </Text>
                         <CheckBox fx:id="visibleCheckbox" layoutX="35.0" layoutY="584.0" mnemonicParsing="false" onAction="#visibleCheckboxClicked" text="Not Visible During Gameplay">
@@ -114,6 +114,7 @@
                               <Font size="30.0" />
                            </font>
                         </CheckBox>
+                        <Button fx:id="deleteSpriteButton" layoutX="409.0" layoutY="14.0" mnemonicParsing="false" onAction="#deleteSpriteButtonClicked" prefHeight="47.0" prefWidth="186.0" text="Delete" />
                      </children>
                   </AnchorPane>
             </content>
@@ -232,7 +233,7 @@
                               <Font size="30.0" />
                            </font>
                         </Label>
-                        <Label fx:id="collisionSpriteIdLabel" layoutX="346.0" layoutY="41.0" prefHeight="45.0" prefWidth="206.0" text="Sprite ID">
+                        <Label fx:id="collisionSpriteIdLabel" layoutX="380.0" layoutY="37.0" prefHeight="45.0" prefWidth="206.0" text="Sprite ID">
                            <font>
                               <Font size="30.0" />
                            </font>
@@ -244,7 +245,7 @@
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                       <children>
-                         <Text layoutX="12.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Game Properties" wrappingWidth="372.765625">
+                         <Text layoutX="10.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Game Properties" wrappingWidth="621.765625">
                             <font>
                                <Font name="System Bold" size="40.0" />
                             </font>
@@ -264,13 +265,13 @@
                               <Font size="30.0" />
                            </font>
                         </Label>
-                        <ColorPicker fx:id="backgroundColorPicker" layoutX="284.0" layoutY="283.0" onAction="#backgroundColorPicked" />
+                        <ColorPicker fx:id="backgroundColorPicker" layoutX="307.0" layoutY="276.0" onAction="#backgroundColorPicked" />
                         <Label layoutX="13.0" layoutY="328.0" text="Image Background:">
                            <font>
                               <Font size="30.0" />
                            </font>
                         </Label>
-                        <Button fx:id="imageBackgroundButton" layoutX="290.0" layoutY="340.0" mnemonicParsing="false" onAction="#imageBackgroundButtonClicked" prefHeight="25.0" prefWidth="95.0" text="Upload Image" />
+                        <Button fx:id="imageBackgroundButton" layoutX="321.0" layoutY="339.0" mnemonicParsing="false" onAction="#imageBackgroundButtonClicked" prefHeight="25.0" prefWidth="95.0" text="Upload Image" />
                       </children>
               	</AnchorPane>
               </content>

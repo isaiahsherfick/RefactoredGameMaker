@@ -9,6 +9,7 @@ import org.json.simple.parser.ParseException;
 
 import command.Command;
 import command.CreateSpriteCommand;
+import command.DeleteSpriteCommand;
 import command.DuplicateSpriteCommand;
 import command.ModifySpriteCommand;
 import constants.Constants;
@@ -268,6 +269,12 @@ public class Controller implements Observer
 	public void onKeyPress(KeyEvent k) 
 	{
 		model.onKeyPress(k);
+	}
+
+	public void deleteSprite(int spriteId) 
+	{
+		DeleteSpriteCommand c = new DeleteSpriteCommand(spriteId,model);
+		model.receiveCommand(c);
 	}	
 	    	   
 

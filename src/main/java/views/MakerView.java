@@ -234,6 +234,9 @@ public class MakerView {
 		    @FXML
 		    private Button addTimedBehaviorButton;
 		    
+		    @FXML
+		    private Button deleteSpriteButton;
+		    
 		   
 		    
 		    //Fields for the mouse behavior pane
@@ -317,6 +320,12 @@ public class MakerView {
 		    		
 		    	}
 
+		    }
+		    
+		    @FXML
+		    private void deleteSpriteButtonClicked(ActionEvent event)
+		    {
+		    		view.getController().deleteSprite(view.getCurrentlySelectedSprite().getSpriteId());
 		    }
 		    
 		    private void setBehaviorsPane() {
