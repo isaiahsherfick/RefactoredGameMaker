@@ -82,8 +82,8 @@
                               <Font size="30.0" />
                            </font>
                         </Label>
-                        <Slider fx:id="spriteWidthSlider" layoutX="175.0" layoutY="285.0" max="200.0" prefHeight="38.0" prefWidth="300.0" showTickLabels="true" showTickMarks="true" />
-                        <Slider fx:id="spriteHeightSlider" layoutX="175.0" layoutY="336.0" max="200.0" prefHeight="38.0" prefWidth="300.0" showTickLabels="true" showTickMarks="true" />
+                        <Slider fx:id="spriteWidthSlider" layoutX="175.0" layoutY="285.0" max="900.0" prefHeight="38.0" prefWidth="300.0" showTickLabels="true" showTickMarks="true" />
+                        <Slider fx:id="spriteHeightSlider" layoutX="175.0" layoutY="336.0" max="900.0" prefHeight="38.0" prefWidth="300.0" showTickLabels="true" showTickMarks="true" />
                         <ColorPicker fx:id="spriteColorPicker" layoutX="124.0" layoutY="473.0" onAction="#spriteColorSelected" />
                         <ComboBox fx:id="spriteShapeDropdown" layoutX="216.0" layoutY="528.0" onAction="#spriteAppearanceSelected" prefHeight="25.0" prefWidth="116.0" />
                         <Text layoutX="344.0" layoutY="547.0" strokeType="OUTSIDE" strokeWidth="0.0" text="or" wrappingWidth="33.240234375">
@@ -92,8 +92,8 @@
                            </font>
                         </Text>
                         <Button fx:id="spriteChooseImageButton" layoutX="388.0" layoutY="528.0" mnemonicParsing="false" onAction="#spriteAppearanceSelected" prefHeight="25.0" prefWidth="116.0" text="Choose Image" />
-                        <Slider fx:id="hitboxWidthSlider" layoutX="174.0" layoutY="375.0" max="200.0" prefHeight="38.0" prefWidth="300.0" showTickLabels="true" showTickMarks="true" />
-                        <Slider fx:id="hitboxHeightSlider" layoutX="173.0" layoutY="419.0" max="200.0" prefHeight="38.0" prefWidth="300.0" showTickLabels="true" showTickMarks="true" />
+                        <Slider fx:id="hitboxWidthSlider" layoutX="174.0" layoutY="375.0" max="900.0" prefHeight="38.0" prefWidth="300.0" showTickLabels="true" showTickMarks="true" />
+                        <Slider fx:id="hitboxHeightSlider" layoutX="173.0" layoutY="419.0" max="900.0" prefHeight="38.0" prefWidth="300.0" showTickLabels="true" showTickMarks="true" />
                         <Text layoutX="3.0" layoutY="392.0" strokeType="OUTSIDE" strokeWidth="0.0" text="HitBox Width:" wrappingWidth="164.240234375">
                            <font>
                               <Font size="26.0" />
