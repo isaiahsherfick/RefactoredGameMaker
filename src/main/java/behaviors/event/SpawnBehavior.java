@@ -130,7 +130,6 @@ public class SpawnBehavior implements EventBehavior{
 	@Override
 	public void onGameTick(Sprite sprite) {
 		if(onTimeElapsed(Constants.MS_BETWEEN_TICKS,timeInterval)) {
-			System.out.println("Making a copy!");
 			Sprite copySprite = blueprint.copy();
 			copySprite.setX(spawnX);
 			copySprite.setY(spawnY);
@@ -192,7 +191,6 @@ public class SpawnBehavior implements EventBehavior{
 	
 	private boolean onTimeElapsed(double dt, int timeInterval) {
 		totalTime = totalTime + dt;
-		System.out.println(totalTime);
 		if((totalTime) > timeInterval) {
 			totalTime = 0;
 			return true;
