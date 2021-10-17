@@ -181,5 +181,9 @@ public class SpawnBehavior implements EventBehavior{
 		}
 		
 	}
+	
+	public String toString() {
+		return "Spawn Sprite on Tick";
+	}
 
 }

@@ -73,6 +73,10 @@ public class FroggerMovementBehavior implements EventBehavior{
 		return null;
 	}
 	
+	public String toString() {
+		return "Move on Arrow Keys";
+	}
+	
 		
 
 }

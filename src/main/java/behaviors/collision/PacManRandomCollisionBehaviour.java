@@ -31,4 +31,8 @@ public class PacManRandomCollisionBehaviour implements CollisionBehavior
 	{
 		return o instanceof DoNothingCollisionBehavior;
 	}
+	
+	public String toString() {
+		return "Random Collision Behavior";
+	}
 }
