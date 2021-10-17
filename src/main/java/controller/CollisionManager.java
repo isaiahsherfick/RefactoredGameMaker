@@ -36,7 +36,6 @@ public class CollisionManager
 			Sprite currentSprite = spriteManager.get(spriteId);
 			HitBox currentHitBox = currentSprite.getHitBox();
 			
-			//This is O(n2), could be O(n) if we want to do some clever hash map stuff but that's not important right now
 			for (Integer spriteId2 : spriteIds)
 			{
 				if (!(spriteId == spriteId2))

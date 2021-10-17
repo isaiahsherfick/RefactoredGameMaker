@@ -7,6 +7,20 @@ import sprite.Sprite;
 
 public class ChangeDirectionBehavior implements EventBehavior 
 {
+	private Integer speed;
+	private boolean speedSet = false;
+	
+	public ChangeDirectionBehavior()
+	{
+		
+	}
+	
+	public ChangeDirectionBehavior(Integer speed, boolean speedSet)
+	{
+		this.speed = speed;
+		this.speedSet = speedSet;
+	}
+	
 	@SuppressWarnings("unchecked")
 	@Override
 	public JSONObject save() 
@@ -40,12 +54,14 @@ public class ChangeDirectionBehavior implements EventBehavior
 	@Override
 	public void onKeyPress(Sprite sprite, KeyCode keyCode) 
 	{
-		System.out.println(keyCode);
-		int xSpeed = Math.abs(sprite.getXVelocity());
-		int ySpeed = Math.abs(sprite.getYVelocity());
-		int speed = Math.max(xSpeed,ySpeed);
-		System.out.println("xSpeed" + xSpeed);
-		System.out.println("ySpeed" + ySpeed);
+		if (!speedSet)
+		{
+			int xSpeed = Math.abs(sprite.getXVelocity());
+			int ySpeed = Math.abs(sprite.getYVelocity());
+			speed = Math.max(xSpeed,ySpeed);
+			speedSet = true;
+		}
+		System.out.println(speed);
 		
 		switch(keyCode)
 		{
@@ -54,7 +70,6 @@ public class ChangeDirectionBehavior implements EventBehavior
 				sprite.setYVelocity(-1 * speed);
 				break;
 			case W:
-				System.out.println("Hi moo");
 				sprite.setXVelocity(0);
 				sprite.setYVelocity(-1 * speed);
 				break;
@@ -102,7 +117,12 @@ public class ChangeDirectionBehavior implements EventBehavior
 	@Override
 	public EventBehavior copy() 
 	{
-		return new ChangeDirectionBehavior();
+		return new ChangeDirectionBehavior(speed, speedSet);
+	}
+	
+	public String toString()
+	{
+		return "Change Direction";
 	}
 
 }
