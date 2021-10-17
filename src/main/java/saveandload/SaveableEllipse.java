@@ -25,6 +25,16 @@ public class SaveableEllipse implements SaveableShape, Drawable
 		ellipse = new Ellipse(x,y,width,height);
 		color = Color.web("#FF0000");
 	}
+	
+	public SaveableEllipse(double x, double y,  double width,  double height,  String colorString)
+	{
+		this.x = x;
+		this.y = y;
+		this.width = width;
+		this.height = height;
+		this.color = Color.web(colorString);
+		ellipse = new Ellipse();
+	}
 
 	@SuppressWarnings("unchecked")
 	@Override
@@ -134,6 +144,11 @@ public class SaveableEllipse implements SaveableShape, Drawable
 
 	public String toString() {
 		return "Ellipse";
+	}
+	
+	public SaveableShape copy()
+	{
+		return new SaveableEllipse(x,y,width,height,color.toString());
 	}
 	
 }

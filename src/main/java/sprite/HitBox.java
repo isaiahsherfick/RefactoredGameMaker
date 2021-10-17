@@ -140,6 +140,8 @@ public class HitBox implements Saveable
 
 	public HitBox copy() 
 	{
-		return new HitBox(location, size);
+		Point2D locationCopy = new Point2D(location.getX(), location.getY());
+		Point2D sizeCopy = new Point2D(size.getX(), size.getY());
+		return new HitBox(locationCopy, sizeCopy);
 	}
 }

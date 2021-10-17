@@ -18,6 +18,16 @@ public class SaveableImage implements Saveable, Drawable
 	{
 		path = "";
 	}
+	
+	public SaveableImage(double x, double y, double width, double height, String path)
+	{
+		this.x = x;
+		this.y = y;
+		this.width = width;
+		this.height = height;
+		this.path = path;
+	}
+
 
 	public void setX(double x) 
 	{
@@ -71,9 +81,10 @@ public class SaveableImage implements Saveable, Drawable
 		width = (double)json.get("width");
 		height = (double)json.get("height");
 		path = (String)json.get("path");
-		
-		//TODO
-		//image = new Image( $whatever arguments go here to make an image)
+		if (!path.equals(""))
+		{
+			image = new Image(path);
+		}
 	}
 	
 	public boolean equals(Object o)
@@ -98,13 +109,18 @@ public class SaveableImage implements Saveable, Drawable
 	public void setPath(String path) 
 	{
 		this.path = path;
+		image = new Image(path);
 	}
 
 	@Override
 	public void draw(GraphicsContext g) 
 	{
-		//Create image, draw
 		image = new Image(path);
 		g.drawImage(image, x, y, width, height);
+	}
+
+	public SaveableImage copy() 
+	{
+		return new SaveableImage(x,y,width,height,path);
 	}
 }

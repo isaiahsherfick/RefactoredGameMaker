@@ -202,6 +202,8 @@ public class Appearance implements Drawable, Saveable
 
 	public Appearance copy() 
 	{
-		return new Appearance(location, size, image, shape, shapeOrImage);
+		Point2D locationCopy = new Point2D(location.getX(), location.getY());
+		Point2D sizeCopy = new Point2D(size.getX(), size.getY());
+		return new Appearance(location, size, image.copy(), shape.copy(), shapeOrImage);
 	}
 }
