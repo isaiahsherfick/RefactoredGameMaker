@@ -8,5 +8,10 @@ public class TestData {
 	public static final int SHAPE = 1;
 	
 	public static final String DEFAULTCOLLISION="Do Nothing" ;
+	
+	public static final int XVELOCITY=100;
+	public static final int YVELOCITY=200;
+	
+	
 
 }
