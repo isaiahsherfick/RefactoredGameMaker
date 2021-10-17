@@ -40,6 +40,7 @@ import saveandload.SaveableEllipse;
 import saveandload.SaveableRectangle;
 import saveandload.SaveableShape;
 import sprite.HitboxView;
+import sprite.Sprite;
 
 public class MakerView {
 
@@ -363,7 +364,28 @@ public class MakerView {
 		    @FXML
 		    public void spriteAppearanceSelected(ActionEvent event) {
 		    	if(event.getSource().equals(spriteShapeDropdown)) {
-		    		view.getCurrentlySelectedSprite().getAppearance().setShape(spriteShapeDropdown.getValue());
+		    		//Stores all the width height information and sets it after the new shape is created, as setting  a new
+		    		//shape to the sprites appearance defaults the values
+		    		Sprite current  = view.getCurrentlySelectedSprite();
+		    		double positionX = current.getX();
+		    		double positionY = current.getY();
+		    		double currentWidth = current.getAppearance().getWidth();
+		    		double currentHeight = current.getAppearance().getHeight();
+		    		double hitboxWidth = current.getHitBox().getWidth();
+		    		double hitboxHeight = current.getHitBox().getHeight();
+		    
+		    		//Change all of the sprite's properties to match what it was before the change, with only the shape changing
+		    		current.getAppearance().setShape(spriteShapeDropdown.getValue());
+		    		current.setX(positionX);
+		    		current.setY(positionY);
+		    		current.getAppearance().setWidth(currentWidth);
+		    		current.getAppearance().setHeight(currentHeight);
+		    		current.getHitBox().setWidth(hitboxWidth);
+		    		current.getHitBox().setHeight(hitboxHeight);
+		    		
+		    		//Set the currentSprite to this modified sprite,
+		    		view.setCurrentlySelectedSprite(current);
+		    		//tell model to update it's sprite to this newly edited one
 		    		view.modifySpriteCommand();
 		    	}
 		    	else if(event.getSource().equals(spriteChooseImageButton)) {
