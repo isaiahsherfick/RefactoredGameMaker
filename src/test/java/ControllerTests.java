@@ -125,4 +125,30 @@ class ControllerTests
 		assertEquals(Constants.DEFAULT_SPRITE_Y, sprite.getY());
 	}
 	
+	@Test
+	public void modifySpriteVisibilityTest()
+	{
+		Model m = new Model();
+		Controller c = new Controller();
+		c.setModel(m);
+		c.createSprite();
+		Sprite sprite = c.getSprite(0);
+		assertTrue(sprite.isVisible());
+		sprite.setVisible(false);
+		c.modifySprite(sprite);
+		c.play(); //force a context switch so the model is stashed and restored in ram
+		c.stop();
+		sprite = c.getSprite(0);
+		assertFalse(sprite.isVisible());
+		assertTrue(sprite.isEnabled());
+		sprite.disable();
+		assertFalse(sprite.isEnabled());
+		c.modifySprite(sprite);
+		c.play(); //force a context switch so the model is stashed and restored in ram
+		c.stop();
+		sprite = c.getSprite(0);
+		assertFalse(sprite.isEnabled());
+		assertFalse(sprite.isVisible());
+	}
+	
 }
