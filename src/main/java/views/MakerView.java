@@ -28,8 +28,10 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Slider;
+import javafx.scene.control.TabPane;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -132,7 +134,8 @@ public class MakerView {
 			//Root Anchor Pane
 		    @FXML
 		    private AnchorPane makerPane;
-		 
+		    @FXML
+		    private TabPane tabPane;
 		    //Sprite Behavior tab fields
 
 		    @FXML
@@ -380,12 +383,18 @@ public class MakerView {
 		    
 		    @FXML 
 		    public void backgroundColorPicked(ActionEvent event){
-		
+		    	Color c = backgroundColorPicker.getValue();
+		    	makerPane.setStyle( "-fx-background-color: #" + c.toString().substring(2, 8) + ";");
+		    	
 		    }
 		    
 		    @FXML
 		    public void imageBackgroundButtonClicked(ActionEvent event) {
-		    	
+		    	FileChooser fileChooser = new FileChooser();
+	    		File file = fileChooser.showOpenDialog(makerStage);
+				if (file != null) {
+					makerPane.setStyle("-fx-background-image: url(" + file.toURI().toString() + ");");
+				}
 		    }
 		    
 		    public void usesLevelsSelected(ActionEvent event) {
