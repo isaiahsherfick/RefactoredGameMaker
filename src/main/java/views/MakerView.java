@@ -193,6 +193,12 @@ public class MakerView {
 
 		    @FXML
 		    private Button duplicateSpriteButton;
+		    
+		    @FXML
+		    private CheckBox visibleCheckbox;
+		    
+		    @FXML
+		    private CheckBox disableCheckbox;
 
 		    
 		    //Fields for the timed behavior pane
@@ -350,6 +356,18 @@ public class MakerView {
 		    		view.getController().duplicateSprite(view.getCurrentlySelectedSprite().copy());
 		    		view.setCurrentlySelectedSprite(view.getController().getSpriteList().get(view.getController().getSpriteList().size() - 1));
 		    		setPanesForCurrentlySelectedSprite();
+		    }
+		    
+		    @FXML
+		    public void disableCheckboxClicked(ActionEvent event) {
+		    	view.getCurrentlySelectedSprite().setEnabled(!view.getCurrentlySelectedSprite().isEnabled());
+		    	view.modifySpriteCommand();
+		    }
+		    
+		    @FXML
+		    public void visibleCheckboxClicked(ActionEvent event) {
+		    	view.getCurrentlySelectedSprite().setVisible(!view.getCurrentlySelectedSprite().isVisible());
+		    	view.modifySpriteCommand();
 		    }
 		    
 		    @FXML

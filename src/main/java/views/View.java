@@ -8,7 +8,6 @@ import javafx.scene.canvas.Canvas;
 import javafx.stage.Stage;
 import sprite.NullSprite;
 import sprite.Sprite;
-import javafx.scene.paint.Color;
 import javafx.stage.WindowEvent;
 
 public class View implements Observer
@@ -17,6 +16,7 @@ public class View implements Observer
 		private Sprite currentlySelectedSprite;
 		private PlayerView playerView;
 		private MakerView makerView;
+		private boolean playing;
 
 		//Displays both views, called by Main.java when program is launched.
 		public View(Stage primaryStage) {
@@ -27,6 +27,7 @@ public class View implements Observer
 			});
 			this.makerView = new MakerView(primaryStage, this);
 			this.playerView = new PlayerView(this);
+			playing = false;
 			//By default a null sprite
 			currentlySelectedSprite = new NullSprite();
 		}
@@ -43,6 +44,14 @@ public class View implements Observer
 		
 		public MakerView getMakerView() {
 			return this.makerView;
+		}
+		
+		public boolean getPlaying() {
+			return this.playing;
+		}
+		
+		public void setPlaying(boolean p) {
+			this.playing = p;
 		}
 	
 		public void showStages()

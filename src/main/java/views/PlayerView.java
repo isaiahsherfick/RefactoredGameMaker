@@ -92,6 +92,7 @@ public class PlayerView {
 					loadButton.setVisible(false);
 					loadButton.setDisable(true);
 					
+					view.setPlaying(!view.getPlaying());
 					view.getMakerView().getTabPane().setDisable(true);;
 					view.getController().play();
 				}
@@ -104,6 +105,7 @@ public class PlayerView {
 					loadButton.setVisible(true);
 					loadButton.setDisable(false);
 
+					view.setPlaying(!view.getPlaying());
 					view.getMakerView().getTabPane().setDisable(false);
 					view.getController().stop();
 				}
@@ -144,6 +146,7 @@ public class PlayerView {
 			//selected Sprite.
 			@FXML
 			public void canvasClicked(MouseEvent event) {
+				if(!view.getPlaying()) {
 					double clickedX = event.getX();
 					double clickedY = event.getY();
 					for(Sprite s: view.getController().getSpriteList()) {
@@ -155,7 +158,7 @@ public class PlayerView {
 							}
 						}
 					}
-				
+				}
 			}
 			
 			public void clearCanvas()
@@ -168,7 +171,7 @@ public class PlayerView {
 			@FXML 
 			public void canvasDragged(MouseEvent event) {
 				//TODO This is inefficient, but without a check for the new currently selected sprite it bugs out
-				
+				if(!view.getPlaying()) {
 					canvasClicked(event);
 					Sprite currentlySelectedSprite = view.getCurrentlySelectedSprite();
 					//Get the events x/y and set it to the sprite
@@ -178,14 +181,16 @@ public class PlayerView {
 					currentlySelectedSprite.setY(newY);
 					view.drawAllExcept(currentlySelectedSprite.getSpriteId());
 					currentlySelectedSprite.draw(gameCanvas.getGraphicsContext2D());
-				
+				}
 			}
 			
 			//When the canvas is released, update the sprite
 			@FXML
 			public void canvasReleased(MouseEvent event)
 			{
+				if(!view.getPlaying()) {
 					view.modifySpriteCommand();
+				}
 			}
 			
 	

@@ -104,6 +104,16 @@
                               <Font size="26.0" />
                            </font>
                         </Text>
+                        <CheckBox fx:id="visibleCheckbox" layoutX="38.0" layoutY="583.0" mnemonicParsing="false" onAction="#visibleCheckboxClicked" text="Visible">
+                           <font>
+                              <Font size="30.0" />
+                           </font>
+                        </CheckBox>
+                        <CheckBox fx:id="disableCheckbox" layoutX="286.0" layoutY="583.0" mnemonicParsing="false" onAction="#disableCheckboxClicked" text="Disable">
+                           <font>
+                              <Font size="30.0" />
+                           </font>
+                        </CheckBox>
                      </children>
                   </AnchorPane>
             </content>
