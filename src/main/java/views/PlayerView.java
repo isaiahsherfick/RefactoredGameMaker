@@ -11,6 +11,7 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import sprite.Sprite;
 
@@ -142,12 +143,18 @@ public class PlayerView {
 						if(clickedX >= s.getHitBox().getTopLeft().getX() && clickedY >= s.getHitBox().getTopLeft().getY()) {
 							if(clickedX <= s.getHitBox().getBottomRight().getX() && clickedY <= s.getHitBox().getBottomRight().getY()) {
 								//If click is within the hitbox, then make it currently selected sprite and adjust the properties pane;
-								view.setCurrentlySelectedSprite(s);;
+								view.setCurrentlySelectedSprite(s);
 								view.getMakerView().setPanesForCurrentlySelectedSprite();
 							}
 						}
 					}
 				
+			}
+			
+			public void clearCanvas()
+			{
+				gameCanvas.getGraphicsContext2D().setFill(Color.WHITE);
+				gameCanvas.getGraphicsContext2D().fillRect(0, 0, gameCanvas.getWidth(), gameCanvas.getHeight());
 			}
 			
 			//When the canvas is dragged, get the sprite and adjust it's x/y
@@ -162,8 +169,17 @@ public class PlayerView {
 					double newY = event.getY() - (currentlySelectedSprite.getAppearance().getHeight() * .5);
 					currentlySelectedSprite.setX(newX);
 					currentlySelectedSprite.setY(newY);
-					view.getController().modifySprite(currentlySelectedSprite);
+					view.drawAllExcept(currentlySelectedSprite.getSpriteId());
+					currentlySelectedSprite.draw(gameCanvas.getGraphicsContext2D());
 				
+			}
+			
+			//When the canvas is released, update the sprite
+			@FXML
+			public void canvasReleased(MouseEvent event)
+			{
+					Sprite currentlySelectedSprite = view.getCurrentlySelectedSprite();
+					view.getController().modifySprite(currentlySelectedSprite);
 			}
 			
 	

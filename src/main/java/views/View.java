@@ -67,15 +67,26 @@ public class View implements Observer
 	    
 	    public void drawAll()
 	    {
-	    	Canvas gameCanvas = playerView.getGameCanvas();
-	    	gameCanvas.getGraphicsContext2D().setFill(Color.WHITE);
-	    	gameCanvas.getGraphicsContext2D().fillRect(0, 0, gameCanvas.getWidth(), gameCanvas.getHeight());
+	    	playerView.clearCanvas();
 	    	ArrayList<Sprite> allSprites = controller.getSpriteList();
 	    	for (Sprite s : allSprites)
 	    	{
-	    		s.draw(gameCanvas.getGraphicsContext2D());
+	    		s.draw(playerView.getGameCanvas().getGraphicsContext2D());
 	    	}
 	    }
+	    
+	    //Used for dragging currentlySelectedSprite
+	    public void drawAllExcept(int spriteId)
+	    {
+	    	playerView.clearCanvas();
+	    	ArrayList<Sprite> allSprites = controller.getSpriteList();
+	    	for (Sprite s : allSprites)
+	    	{
+	    		if (s.getSpriteId() != spriteId)
+	    			s.draw(playerView.getGameCanvas().getGraphicsContext2D());
+	    	}
+	    }
+	    
 	    
 		@Override
 		public void update() 
