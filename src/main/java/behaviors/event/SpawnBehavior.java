@@ -35,6 +35,8 @@ public class SpawnBehavior implements EventBehavior{
 		timeInterval = Constants.DEFAULT_SPAWN_TIME_INTERVAL;
 		model = m;
 		blueprint = model.getSprite(blueprintSpriteId);
+		spawnX = (int)blueprint.getX();
+		spawnY = (int)blueprint.getY();
 	}
 	
 	public SpawnBehavior(int timeInterval, int spawnX, int spawnY, Sprite blueprint, Model m)

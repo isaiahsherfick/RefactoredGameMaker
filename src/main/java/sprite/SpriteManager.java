@@ -26,6 +26,22 @@ public class SpriteManager
 		size = 0;
 	}
 	
+	public int addCopy(Sprite sprite)
+	{
+		//We don't want to insert null sprites
+		if (sprite.getSpriteId() == Constants.NULL_SPRITE_ID)
+		{
+			return Constants.NULL_SPRITE_ID;
+		}
+		
+		currentHighestSpriteId++;
+		sprite.setSpriteId(currentHighestSpriteId);
+		currentHighestSpriteId = sprite.getSpriteId();
+		spriteMap.put(sprite.getSpriteId(), sprite);
+		size++;
+		return sprite.getSpriteId();
+	}
+	
 	//Add a new sprite to the spritemanager
 	public int add(Sprite sprite)
 	{
