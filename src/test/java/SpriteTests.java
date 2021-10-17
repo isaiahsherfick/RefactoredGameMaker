@@ -5,10 +5,13 @@ import java.util.LinkedList;
 
 import org.junit.jupiter.api.Test;
 
+import behaviors.collision.BounceCollisionBehaviorX;
 import behaviors.collision.CollisionBehavior;
 import behaviors.collision.CustomCollisionMap;
+import behaviors.collision.DestroyCollisionBehavior;
 import behaviors.event.EventBehavior;
 import behaviors.event.EventBehaviorChain;
+import behaviors.event.MoveOnGameTickBehavior;
 import sprite.Appearance;
 import sprite.HitBox;
 import sprite.Sprite;
@@ -281,5 +284,63 @@ public class SpriteTests
 		assertEquals(TestData.DEFAULTCOLLISION,defaultCollisionBehavior.toString());
 		
 	}
+	
+	@Test 
+	void setDefaultCollisionBehaviorTest()
+	{
+		Sprite sprite=new Sprite();
+		CustomCollisionMap collisionmap=new CustomCollisionMap();
+		CollisionBehavior bounce=new BounceCollisionBehaviorX();
+		sprite.setCustomCollisionMap(collisionmap);
+		sprite.setDefaultCollisionBehavior(bounce); //sprite method to be tested
+		
+		CollisionBehavior actual=collisionmap.getdDefaultCollisionBehaviour();
+		assertEquals(bounce,actual);
+		
+	}
+	
+	@Test 
+	void getDefaultCollisionBehaviorTest()
+	{
+		Sprite sprite=new Sprite();
+		CustomCollisionMap collisionmap=new CustomCollisionMap();
+		CollisionBehavior destroy=new DestroyCollisionBehavior();
+		sprite.setCustomCollisionMap(collisionmap);
+		sprite.setDefaultCollisionBehavior(destroy); 
+		
+		CollisionBehavior actual=sprite.getDefaultCollisionBehavior();//sprite method to be tested
+		assertEquals(destroy,actual);
+	}
+	
+	
+	@Test
+	void setgetXVelocityTest()
+	{
+		Sprite sprite=new Sprite();
+		sprite.addEventBehavior(new MoveOnGameTickBehavior());
+		sprite.setXVelocity(TestData.XVELOCITY);//sprite method to be tested
+		int actual= sprite.getXVelocity(); //sprite method to be tested
+		assertEquals(TestData.XVELOCITY,actual);
+		
+		sprite.setXVelocity(1000); //sprite method to be tested
+		actual= sprite.getXVelocity();//sprite method to be tested
+		assertEquals(1000,actual);
+	}
+	
+	@Test
+	void setgetYVelocityTest()  
+	{
+		Sprite sprite=new Sprite();
+		sprite.addEventBehavior(new MoveOnGameTickBehavior());
+		sprite.setYVelocity(TestData.YVELOCITY); //sprite method to be tested
+		int actual= sprite.getYVelocity();//sprite method to be tested
+		assertEquals(TestData.YVELOCITY,actual);
+		
+		sprite.setYVelocity(2000); //sprite method to be tested
+		actual= sprite.getYVelocity();//sprite method to be tested
+		assertEquals(2000,actual);
+	}
+	
+
 
 }

@@ -31,6 +31,11 @@ public class CustomCollisionMap implements Saveable
 		defaultCollisionBehavior = newDefault;
 	}
 	
+	public CollisionBehavior getdDefaultCollisionBehaviour()
+	{
+		return defaultCollisionBehavior;
+	}
+	
 	public void put(int spriteId, CollisionBehavior customCollision)
 	{
 		collisionMap.put(spriteId, customCollision);
