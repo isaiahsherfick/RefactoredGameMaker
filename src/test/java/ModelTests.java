@@ -104,6 +104,82 @@ class ModelTests {
 		
 		Point2D bottomRight = new Point2D(hitBox.getX() + Constants.DEFAULT_SPRITE_WIDTH, hitBox.getY() + Constants.DEFAULT_SPRITE_HEIGHT);
 		assertEquals(bottomRight, hitBox.getBottomRight());
+		
+		double x = hitBox.getX();
+		assertEquals(Constants.DEFAULT_SPRITE_X, x);
+		
+		double y = hitBox.getY();
+		assertEquals(Constants.DEFAULT_SPRITE_Y, y);
+		
+		hitBox.setX(10);
+		assertEquals(hitBox.getX(),10);
+		
+		hitBox.setY(10);
+		assertEquals(hitBox.getY(),10);
+		
+		double height = hitBox.getHeight();
+		assertEquals(Constants.DEFAULT_SPRITE_HEIGHT, height);
+		
+		double width = hitBox.getWidth();
+		assertEquals(Constants.DEFAULT_SPRITE_WIDTH, width);
+		
+		hitBox.setHeight(15);
+		assertEquals(hitBox.getHeight(),15);
+		
+		hitBox.setWidth(15);
+		assertEquals(hitBox.getWidth(),15);
+		
+		Point2D size = new Point2D(15,15);
+		assertEquals(size,hitBox.getSize());
+		
+		Point2D location = new Point2D(10,10);
+		assertEquals(location,hitBox.getLocation());
+		
+		HitBox hitBoxCopy = hitBox.copy();
+		assertEquals(hitBoxCopy.getLocation(),location);
+		assertEquals(hitBoxCopy.getSize(),size);
+	}
+	
+	@Test
+	public void AppearanceTest()
+	{
+		Appearance appearance = new Appearance();
+		
+		double x = appearance.getX();
+		assertEquals(Constants.DEFAULT_SPRITE_X, x);
+		
+		double y = appearance.getY();
+		assertEquals(Constants.DEFAULT_SPRITE_Y, y);
+		
+		appearance.setX(10);
+		assertEquals(appearance.getX(),10);
+		
+		appearance.setY(10);
+		assertEquals(appearance.getY(),10);
+		
+		double height = appearance.getHeight();
+		assertEquals(Constants.DEFAULT_SPRITE_HEIGHT, height);
+		
+		double width = appearance.getWidth();
+		assertEquals(Constants.DEFAULT_SPRITE_WIDTH, width);
+		
+		appearance.setHeight(15);
+		assertEquals(appearance.getHeight(),15);
+		
+		appearance.setWidth(15);
+		assertEquals(appearance.getWidth(),15);
+		
+		Point2D size = new Point2D(15,15);
+		assertEquals(size,appearance.getSize());
+		
+		Point2D location = new Point2D(10,10);
+		assertEquals(location,appearance.getLocation());
+		
+		Appearance appearanceCopy = appearance.copy();
+		assertEquals(appearanceCopy.getLocation(),location);
+		assertEquals(appearanceCopy.getSize(),size);
+		
+		
 	}
 	
 	@Test
