@@ -396,5 +396,17 @@ public class Sprite implements Drawable, Saveable
 	{
 		enabled = e;
 	}
+
+
+	public double getHeight() 
+	{
+		return hitBox.getHeight();
+	}
+
+
+	public double getWidth() 
+	{
+		return hitBox.getWidth();
+	}
 }
 

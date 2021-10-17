@@ -178,8 +178,7 @@ public class PlayerView {
 			@FXML
 			public void canvasReleased(MouseEvent event)
 			{
-					Sprite currentlySelectedSprite = view.getCurrentlySelectedSprite();
-					view.getController().modifySprite(currentlySelectedSprite);
+					view.modifySpriteCommand();
 			}
 			
 	
