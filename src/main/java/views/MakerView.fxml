@@ -219,35 +219,33 @@
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                       <children>
-                         <Button fx:id="addGamePropertyButton" layoutX="53.0" layoutY="14.0" mnemonicParsing="false" onAction="#addGamePropertyButtonClicked" prefHeight="47.0" prefWidth="145.0" text="Add" />
-                         <Button fx:id="removeGamePropertyButton" layoutX="361.0" layoutY="14.0" mnemonicParsing="false" onAction="#removeGamePropertyButtonClicked" prefHeight="47.0" prefWidth="145.0" text="Remove" />
-                         <Line endX="500.0" layoutX="100.0" layoutY="76.0" startX="-100.0" />
-                         <Text layoutX="12.0" layoutY="119.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Game Properties" wrappingWidth="372.765625">
+                         <Text layoutX="12.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Game Properties" wrappingWidth="372.765625">
                             <font>
                                <Font name="System Bold" size="40.0" />
                             </font>
                          </Text>
-                         <CheckBox fx:id="usesLevelsCheckbox" layoutX="10.0" layoutY="150.0" mnemonicParsing="false" onAction="#usesLevelsSelected" prefHeight="45.0" prefWidth="255.0" text="Uses Levels">
+                         <CheckBox fx:id="usesLevelsCheckbox" layoutX="10.0" layoutY="60.0" mnemonicParsing="false" onAction="#usesLevelsSelected" prefHeight="45.0" prefWidth="255.0" text="Uses Levels">
                             <font>
                                <Font size="30.0" />
                             </font>
                          </CheckBox>
-                         <CheckBox layoutX="10.0" layoutY="200.0" mnemonicParsing="false" onAction="#usesWallsSelected" prefHeight="45.0" prefWidth="255.0" text="Uses Walls">
+                         <CheckBox layoutX="10.0" layoutY="115.0" mnemonicParsing="false" onAction="#usesWallsSelected" prefHeight="45.0" prefWidth="255.0" text="Uses Walls">
                             <font>
                                <Font size="30.0" />
                             </font>
                          </CheckBox>
-                         <CheckBox layoutX="10.0" layoutY="300.0" mnemonicParsing="false" onAction="#backgroundOptionSelected" prefHeight="45.0" prefWidth="342.0" text="Color Background">
-                            <font>
-                               <Font size="30.0" />
-                            </font>
-                         </CheckBox>
-                         <CheckBox layoutX="10.0" layoutY="350.0" mnemonicParsing="false" onAction="#backgroundOptionSelected" prefHeight="45.0" prefWidth="342.0" text="Image Background">
-                            <font>
-                               <Font size="30.0" />
-                            </font>
-                         </CheckBox>
-                         <Text layoutX="147.0" layoutY="355.0" strokeType="OUTSIDE" strokeWidth="0.0" text="or" />
+                        <Label layoutX="15.0" layoutY="270.0" text="Color Background:">
+                           <font>
+                              <Font size="30.0" />
+                           </font>
+                        </Label>
+                        <ColorPicker fx:id="backgroundColorPicker" layoutX="284.0" layoutY="283.0" onAction="#backgroundColorPicked" />
+                        <Label layoutX="13.0" layoutY="328.0" text="Image Background:">
+                           <font>
+                              <Font size="30.0" />
+                           </font>
+                        </Label>
+                        <Button fx:id="imageBackgroundButton" layoutX="290.0" layoutY="340.0" mnemonicParsing="false" onAction="#imageBackgroundButtonClicked" prefHeight="25.0" prefWidth="95.0" text="Upload Image" />
                       </children>
               	</AnchorPane>
               </content>

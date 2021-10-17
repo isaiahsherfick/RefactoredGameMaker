@@ -1,3 +1,4 @@
+//@Author Christian Dummer
 package views;
 
 import java.io.File;
@@ -242,9 +243,9 @@ public class MakerView {
 		    //Fields for the Game Properties tab
 
 		    @FXML
-		    private Button addGamePropertyButton;
+		    private Button imageBackgroundButton;
 		    @FXML
-		    private Button removeGamePropertyButton;
+		    private ColorPicker backgroundColorPicker;
 		    @FXML
 		    private CheckBox usesLevelsCheckbox;
 		    @FXML 
@@ -318,17 +319,6 @@ public class MakerView {
 		    	}
 		    	collisionBehaviorList.setContent(collisions);
 		    }
-		  
-		    
-		    @FXML
-		    public void addGamePropertyButtonClicked(ActionEvent event) {
-
-		    }
-
-		    @FXML
-		    public void backgroundOptionSelected(ActionEvent event) {
-
-		    }
 
 		    
 		    @FXML
@@ -392,7 +382,17 @@ public class MakerView {
 		    	view.modifySpriteCommand();
 		    }
 
+		    
+		    @FXML 
+		    public void backgroundColorPicked(ActionEvent event){
+		
+		    }
+		    
 		    @FXML
+		    public void imageBackgroundButtonClicked(ActionEvent event) {
+		    	
+		    }
+		    
 		    public void usesLevelsSelected(ActionEvent event) {
 		    	//TODO uses levels
 		    	
