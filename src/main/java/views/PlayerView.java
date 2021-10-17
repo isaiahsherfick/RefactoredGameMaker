@@ -84,7 +84,7 @@ public class PlayerView {
 					loadButton.setVisible(false);
 					loadButton.setDisable(true);
 					
-					view.playOrStopGame();
+					view.getMakerView().getTabPane().setDisable(true);;
 					view.getController().play();
 				}
 				else if(playStopButton.getText().equals("Stop")) {
@@ -96,7 +96,7 @@ public class PlayerView {
 					loadButton.setVisible(true);
 					loadButton.setDisable(false);
 
-					view.playOrStopGame();
+					view.getMakerView().getTabPane().setDisable(false);
 					view.getController().stop();
 				}
 			}
@@ -136,7 +136,6 @@ public class PlayerView {
 			//selected Sprite.
 			@FXML
 			public void canvasClicked(MouseEvent event) {
-				if(!view.getPlayingGame()) {
 					double clickedX = event.getX();
 					double clickedY = event.getY();
 					for(Sprite s: view.getController().getSpriteList()) {
@@ -148,14 +147,14 @@ public class PlayerView {
 							}
 						}
 					}
-				}
+				
 			}
 			
 			//When the canvas is dragged, get the sprite and adjust it's x/y
 			@FXML 
 			public void canvasDragged(MouseEvent event) {
 				//TODO This is inefficient, but without a check for the new currently selected sprite it bugs out
-				if(!view.getPlayingGame()) {
+				
 					canvasClicked(event);
 					Sprite currentlySelectedSprite = view.getCurrentlySelectedSprite();
 					//Get the events x/y and set it to the sprite
@@ -164,7 +163,7 @@ public class PlayerView {
 					currentlySelectedSprite.setX(newX);
 					currentlySelectedSprite.setY(newY);
 					view.getController().modifySprite(currentlySelectedSprite);
-				}
+				
 			}
 			
 	

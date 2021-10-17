@@ -15,7 +15,6 @@ public class View implements Observer
 		private Sprite currentlySelectedSprite;
 		private PlayerView playerView;
 		private MakerView makerView;
-		private boolean playingGame;
 
 		//Displays both views, called by Main.java when program is launched.
 		public View(Stage primaryStage) {
@@ -38,14 +37,7 @@ public class View implements Observer
 		public MakerView getMakerView() {
 			return this.makerView;
 		}
-		
-		public boolean getPlayingGame() {
-			return this.playingGame;
-		}
-		
-		public void playOrStopGame() {
-			playingGame = !playingGame;
-		}
+	
 		public void showStages()
 		{
 			this.makerView.showMaker();

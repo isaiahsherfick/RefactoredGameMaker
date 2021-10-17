@@ -74,6 +74,10 @@ public class MakerView {
 		return this.makerStage;
 	}
 	
+	public TabPane getTabPane() {
+		return this.tabPane;
+	}
+	
 	public void initializeUIElements() {
 		
 		//Initializes slider layouts since there is no ChangeListener in fxml
