@@ -2,19 +2,22 @@ package behaviors.event;
 
 import org.json.simple.JSONObject;
 
+import input.KeyPolling;
 import javafx.scene.input.KeyCode;
 import sprite.Sprite;
 
 public class FroggerMovementBehavior implements EventBehavior{
-	KeyCode up = KeyCode.UP;
-	KeyCode down = KeyCode.DOWN;
-	KeyCode left = KeyCode.LEFT;
-	KeyCode right = KeyCode.RIGHT;
+	
+	public FroggerMovementBehavior() {
+		//Does nothing atm
+	}
 	
 	@Override
 	public JSONObject save() {
 		// TODO Auto-generated method stub
-		return null;
+		JSONObject json = new JSONObject();
+		json.put("type","FroggerMovementBehavior");
+		return json;
 	}
 
 	@Override
@@ -44,21 +47,21 @@ public class FroggerMovementBehavior implements EventBehavior{
 	@Override
 	public void onKeyPress(Sprite sprite, KeyCode keyCode) {
 		// TODO Auto-generated method stub
-		if(keyCode == up) {
-			sprite.setY(sprite.getY() + sprite.getHitBox().getHeight());
-		}
-		if (keyCode == left) {
-			sprite.setX(sprite.getX() - sprite.getHitBox().getWidth());
-		}
-		if (keyCode == right) {
-			sprite.setX(sprite.getX() + sprite.getHitBox().getWidth());
-		}
+		
 	}
 
 	@Override
 	public void onGameTick(Sprite sprite) {
 		// TODO Auto-generated method stub
-		
+		if(KeyPolling.shared.isDown(KeyCode.W) || KeyPolling.shared.isDown(KeyCode.UP)) {
+			sprite.setY(sprite.getY() - sprite.getHitBox().getHeight());
+		}
+		if (KeyPolling.shared.isDown(KeyCode.A)  || KeyPolling.shared.isDown(KeyCode.LEFT)) {
+			sprite.setX(sprite.getX() - sprite.getHitBox().getWidth());
+		}
+		if (KeyPolling.shared.isDown(KeyCode.D)  || KeyPolling.shared.isDown(KeyCode.RIGHT)) {
+			sprite.setX(sprite.getX() + sprite.getHitBox().getWidth());
+		}
 	}
 
 	@Override
@@ -70,7 +73,21 @@ public class FroggerMovementBehavior implements EventBehavior{
 	@Override
 	public EventBehavior copy() {
 		// TODO Auto-generated method stub
-		return null;
+		return new FroggerMovementBehavior();
+	}
+	
+	public boolean equals(Object o)
+	{
+		if (o instanceof FroggerMovementBehavior)
+		{
+			FroggerMovementBehavior m = (FroggerMovementBehavior)o;
+			return true;
+		}
+		return false;
+	}
+	
+	public String toString() {
+		return "Move on Arrow Keys";
 	}
 	
 		

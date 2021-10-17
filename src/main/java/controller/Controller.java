@@ -12,6 +12,7 @@ import command.CreateSpriteCommand;
 import command.DuplicateSpriteCommand;
 import command.ModifySpriteCommand;
 import constants.Constants;
+import input.KeyPolling;
 import javafx.scene.paint.Color;
 import model.Model;
 import pattern.Observer;
@@ -113,6 +114,7 @@ public class Controller implements Observer
 		 gameClock.register(this);
 		 timer = new Timer();
 		 timer.schedule(gameClock, (long)0.0, (long)gameClock.getMsBetweenTicks());
+		 KeyPolling.shared.pollScene(view.getPlayerView().getScene());
 	 }
 	 
 	 //Stop the clock

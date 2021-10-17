@@ -12,10 +12,14 @@ import behaviors.collision.CollisionBehavior;
 import behaviors.collision.CustomCollisionPair;
 import behaviors.collision.DestroyCollisionBehavior;
 import behaviors.collision.DoNothingCollisionBehavior;
+import behaviors.collision.PacManRandomCollisionBehaviour;
 import behaviors.event.EventBehavior;
 import behaviors.event.EventBehaviorChain;
+import behaviors.event.FroggerMovementBehavior;
 import behaviors.event.MoveOnGameTickBehavior;
 import behaviors.event.MovementEventBehavior;
+import behaviors.event.PacManEventBehaviours;
+import behaviors.event.SpawnBehavior;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
@@ -122,12 +126,18 @@ public class MakerView {
 		
 		//TODO add behaviors as they are created to proper views
      	timeBehaviorActions.getItems().add(new MoveOnGameTickBehavior());
+     	timeBehaviorActions.getItems().add(new SpawnBehavior());
+     	
+     	
+     	keyBehaviorAction.getItems().add(new FroggerMovementBehavior());
+     	keyBehaviorAction.getItems().add(new PacManEventBehaviours());
 		
 		collisionBehaviorAction.getItems().add(new BounceCollisionBehaviorX());
 		collisionBehaviorAction.getItems().add(new BounceCollisionBehaviorY());
 		collisionBehaviorAction.getItems().add(new BounceCollisionBehaviorXY());
 		collisionBehaviorAction.getItems().add(new DestroyCollisionBehavior());
 		collisionBehaviorAction.getItems().add(new DoNothingCollisionBehavior());
+		collisionBehaviorAction.getItems().add(new PacManRandomCollisionBehaviour());
 		
 	}
 	
@@ -269,6 +279,7 @@ public class MakerView {
 			    	}
 			    	else if(event.getSource().equals(addKeyBehaviorButton)) {
 			    		view.getCurrentlySelectedSprite().addEventBehavior(keyBehaviorAction.getValue());
+			    		view.modifySpriteCommand();
 			    		setPanesForCurrentlySelectedSprite();
 			    	}
 			    	else if(event.getSource().equals(addTimedBehaviorButton)) {
