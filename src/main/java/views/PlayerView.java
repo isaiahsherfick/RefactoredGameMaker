@@ -1,3 +1,4 @@
+//@Author Christian Dummer
 package views;
 
 import java.io.IOException;
@@ -24,8 +25,6 @@ public class PlayerView {
 	private Button playStopButton;
 	@FXML
 	private Button undoPauseButton;
-	@FXML
-	private Button redoRestartButton;
 	@FXML
 	private Button saveButton;
 	@FXML
@@ -80,7 +79,6 @@ public class PlayerView {
 					//If play is pressed, switch buttons to Play Context
 					playStopButton.setText("Stop");
 					undoPauseButton.setText("Pause");
-					redoRestartButton.setText("Restart");
 					saveButton.setVisible(false);
 					saveButton.setDisable(true);
 					loadButton.setVisible(false);
@@ -92,7 +90,6 @@ public class PlayerView {
 					//If Stop is pressed, switch buttons back to maker context
 					playStopButton.setText("Play");
 					undoPauseButton.setText("Undo");
-					redoRestartButton.setText("Redo");
 					saveButton.setVisible(true);
 					saveButton.setDisable(false);
 					loadButton.setVisible(true);
@@ -120,16 +117,6 @@ public class PlayerView {
 					undoPauseButton.setText("Pause");
 				}
 				
-			}
-			// Event Listener on Button[#redoRestartButton].onAction
-			@FXML
-			public void redoRestartButtonClicked(ActionEvent event) {
-				if(redoRestartButton.getText().equals("Redo")) {
-					//TODO redo is a stretch goal
-				}
-				else if(redoRestartButton.getText().equals("Restart")) {
-					//TODO restart
-				}
 			}
 			// Event Listener on Button[#saveButton].onAction
 			@FXML
