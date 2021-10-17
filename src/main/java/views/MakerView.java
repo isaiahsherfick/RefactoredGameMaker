@@ -242,6 +242,9 @@ public class MakerView {
 		    @FXML 
 		    private TextField spriteIdInput;
 		    
+		    @FXML
+		    private Label collisionSpriteIdLabel;
+		    
 		    //Fields for the Game Properties tab
 
 		    @FXML
@@ -484,6 +487,7 @@ public class MakerView {
 			public void setPanesForCurrentlySelectedSprite() {
 				//Set all labels to corresponding value of the sprite
 				spriteIdLabel.setText("" + view.getCurrentlySelectedSprite().getSpriteId());
+				collisionSpriteIdLabel.setText("" + view.getCurrentlySelectedSprite().getSpriteId());
 				spriteXLabel.setText("" + view.getCurrentlySelectedSprite().getX());
 				spriteYLabel.setText("" + view.getCurrentlySelectedSprite().getY());
 				
