@@ -11,6 +11,8 @@ import behaviors.collision.CustomCollisionPair;
 import behaviors.event.EventBehavior;
 import behaviors.event.EventBehaviorChain;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import saveandload.Saveable;
 import constants.Constants;
 
@@ -355,21 +357,25 @@ public class Sprite implements Drawable, Saveable
 	
 		if(xVelocity==0 && yVelocity>0)// sprite moving down 
 		{
+			setY(Constants.SPRITE_COLLISION_WARP_DISTANCE + getY());
 			xVelocity=yVelocity;//make sprite move right
 			yVelocity=0;
 		}
 		else if(xVelocity==0 && yVelocity<0)// sprite moving up 
 		{
+			setY(getY() - Constants.SPRITE_COLLISION_WARP_DISTANCE);
 			xVelocity=yVelocity; // make sprite move left
 			yVelocity=0;
 		} 
 		else if(yVelocity==0 && xVelocity>0)// sprite moving right
 		{
+			setX(getX() - Constants.SPRITE_COLLISION_WARP_DISTANCE);
 			yVelocity=-(xVelocity);// sprite moving up
 			xVelocity=0;
 		}
 		else if((yVelocity==0 && xVelocity<0))// sprite moving left
 		{
+			setX(getX() + Constants.SPRITE_COLLISION_WARP_DISTANCE);
 			yVelocity=-(xVelocity);// sprite will move down
 			xVelocity=0;
 		}
@@ -415,6 +421,13 @@ public class Sprite implements Drawable, Saveable
 	public double getWidth() 
 	{
 		return hitBox.getWidth();
+	}
+
+
+	public void onKeyPress(KeyEvent k) 
+	{
+		KeyCode kc = k.getCode();
+		eventBehaviorChain.onKeyPress(this,kc);
 	}
 }
 

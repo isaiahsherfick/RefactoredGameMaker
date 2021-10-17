@@ -29,7 +29,7 @@ public class PacManRandomCollisionBehaviour implements CollisionBehavior
 	
 	public boolean equals(Object o)
 	{
-		return o instanceof DoNothingCollisionBehavior;
+		return o instanceof PacManRandomCollisionBehaviour;
 	}
 	
 	public String toString() {

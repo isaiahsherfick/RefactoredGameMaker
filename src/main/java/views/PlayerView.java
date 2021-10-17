@@ -12,6 +12,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.control.Button;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
@@ -20,6 +21,8 @@ import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.Stage;
 import sprite.Sprite;
 import javafx.stage.WindowEvent;
+import javafx.event.EventHandler;
+import javafx.scene.input.KeyEvent;
 
 public class PlayerView {
 
@@ -54,6 +57,14 @@ public class PlayerView {
 			playerWindowLoader.setController(this);
 			AnchorPane playerLayout = (AnchorPane)playerWindowLoader.load();
 			playerScene = new Scene(playerLayout);
+			playerScene.setOnKeyPressed(new EventHandler<KeyEvent>()
+			{
+				@Override public void handle(KeyEvent k)
+				{
+					System.out.println("DHSAJKDSHAKLDAS");
+					view.getController().onKeyPress(k);
+				}
+			});
 			playerStage.setScene(playerScene);
 			playerStage.setX(905);
 			playerStage.setY(50);
@@ -114,6 +125,7 @@ public class PlayerView {
 					view.getController().stop();
 				}
 			}
+			
 			
 			
 			
@@ -184,7 +196,7 @@ public class PlayerView {
 			public void canvasDragged(MouseEvent event) {
 				//TODO This is inefficient, but without a check for the new currently selected sprite it bugs out
 				if(!view.getPlaying()) {
-					canvasClicked(event);
+					//canvasClicked(event);
 					Sprite currentlySelectedSprite = view.getCurrentlySelectedSprite();
 					//Get the events x/y and set it to the sprite
 					double newX = event.getX() - (currentlySelectedSprite.getAppearance().getWidth() * .5);
