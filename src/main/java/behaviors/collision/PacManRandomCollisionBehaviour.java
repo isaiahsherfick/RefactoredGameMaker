@@ -2,40 +2,33 @@ package behaviors.collision;
 
 import org.json.simple.JSONObject;
 
-import constants.Constants;
 import sprite.Sprite;
 
-public class BounceCollisionBehaviorY implements CollisionBehavior
+public class PacManRandomCollisionBehaviour implements CollisionBehavior 
 {
 
-	@SuppressWarnings("unchecked")
 	@Override
 	public JSONObject save() 
 	{
 		JSONObject json = new JSONObject();
-		json.put("type","BounceCollisionBehaviorY");
+		json.put("type","PacManRandomCollisionBehaviour");
 		return json;
 	}
 
 	@Override
 	public void load(JSONObject saveJSON) 
 	{
-		
+
 	}
 
 	@Override
 	public void collide(Sprite collidee, int colliderId) 
 	{
-		collidee.flipYVelocity();
+		collidee.changeDirection();
 	}
 	
 	public boolean equals(Object o)
 	{
-		return (o instanceof BounceCollisionBehaviorY);
+		return o instanceof DoNothingCollisionBehavior;
 	}
-	
-	public String toString() {
-		return "Bounce Vertically";
-	}
-
 }

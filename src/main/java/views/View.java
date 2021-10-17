@@ -1,602 +1,127 @@
 //@Author Christian Dummer
 package views;
 
-import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
-
-import behaviors.collision.BounceCollisionBehaviorX;
-import behaviors.collision.BounceCollisionBehaviorXY;
-import behaviors.collision.BounceCollisionBehaviorY;
-import behaviors.collision.CollisionBehavior;
-import behaviors.collision.CustomCollisionMap;
-import behaviors.collision.DestroyCollisionBehavior;
-import behaviors.event.EventBehavior;
-import behaviors.event.EventBehaviorChain;
-import behaviors.event.MoveOnGameTickBehavior;
 import controller.Controller;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
-import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
+import javafx.application.Platform;
 import javafx.scene.canvas.Canvas;
-import javafx.scene.control.Button;
-import javafx.scene.layout.AnchorPane;
-import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import saveandload.SaveableRectangle;
-import saveandload.SaveableShape;
 import sprite.NullSprite;
 import sprite.Sprite;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.ColorPicker;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.ScrollPane;
-import javafx.scene.control.Slider;
-import javafx.scene.control.TextField;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.paint.Color;
-import javafx.scene.text.Text; 
+import javafx.stage.WindowEvent;
 
 public class View implements Observer
 {
-
-	
-		private Scene makerScene;
-		private Stage makerStage;
-		private Scene playerScene;
-		private Stage playerStage;
 		private Controller controller;
 		private Sprite currentlySelectedSprite;
+		private PlayerView playerView;
+		private MakerView makerView;
+		private boolean playing;
 
 		//Displays both views, called by Main.java when program is launched.
 		public View(Stage primaryStage) {
-			try {
-				//Loads and shows the makerView
-				makerStage = primaryStage;
-				makerStage.setTitle("Maker View");
-				FXMLLoader windowLoader = new FXMLLoader();
-				windowLoader.setLocation(View.class.getResource("MakerView.fxml"));
-				windowLoader.setController(this);
-				AnchorPane makerLayout = (AnchorPane)windowLoader.load();
-				makerScene = new Scene(makerLayout);
-				makerStage.setScene(makerScene);
-				makerStage.setX(300);
-				makerStage.setY(50);
-				
-				//Loads and shows the playerView
-				playerStage = new Stage();
-				playerStage.setTitle("Player View");
-				FXMLLoader playerWindowLoader = new FXMLLoader();
-				playerWindowLoader.setLocation(View.class.getResource("PlayerView.fxml"));
-				playerWindowLoader.setController(this);
-				AnchorPane playerLayout = (AnchorPane)playerWindowLoader.load();
-				playerScene = new Scene(playerLayout);
-				playerStage.setScene(playerScene);
-				playerStage.setX(905);
-				playerStage.setY(50);
-				
-				//By default a null sprite
-				currentlySelectedSprite = new NullSprite();
-			}
-			catch(IOException ex) {
-				System.out.println("In View.java constructor: " + ex);
-			}
+			primaryStage.setOnCloseRequest( (WindowEvent event1) ->
+			{
+				Platform.exit();
+				System.exit(0);
+			});
+			this.makerView = new MakerView(primaryStage, this);
+			this.playerView = new PlayerView(this);
+			playing = false;
+			//By default a null sprite
+			currentlySelectedSprite = new NullSprite();
 		}
 		
 		//Just for unit tests
 		public View()
 		{
-			gameCanvas = new Canvas();
+			playerView.setGameCanvas(new Canvas());
 		}
 		
-		public void initializeUIElements() {
-			
-			//Initializes slider layouts since there is no ChangeListener in fxml
-			spriteWidthSlider.valueProperty().addListener(new ChangeListener<Object>() {
-				@Override
-				public void changed(ObservableValue<?> observable, Object oldValue, Object newValue) {
-					widthSliderChanged();
-				}
-			});
-			spriteHeightSlider.valueProperty().addListener(new ChangeListener<Object>() {
-
-				@Override
-				public void changed(ObservableValue<?> observable, Object oldValue, Object newValue) {
-					heightSliderChanged();
-					
-				}
-				
-			});
-			
-			//Populate dropdown menus
-			spriteShapeDropdown.getItems().add(new SaveableRectangle());
-			
-			spriteBehaviorTypeDropdown.getItems().add("On Click Behavior");
-			spriteBehaviorTypeDropdown.getItems().add("On Key Press Behavior");
-			spriteBehaviorTypeDropdown.getItems().add("Timed Behavior");
-			
-	     	timeBehaviorActions.getItems().add(new MoveOnGameTickBehavior());
-			
-			collisionBehaviorAction.getItems().add(new BounceCollisionBehaviorX());
-			collisionBehaviorAction.getItems().add(new BounceCollisionBehaviorXY());
-			collisionBehaviorAction.getItems().add(new BounceCollisionBehaviorY());
-			collisionBehaviorAction.getItems().add(new DestroyCollisionBehavior());
+		public PlayerView getPlayerView() {
+			return this.playerView;
 		}
 		
-		public void showMaker()
-		{
-			makerStage.show();
-			initializeUIElements();
+		public MakerView getMakerView() {
+			return this.makerView;
 		}
 		
-		public void showPlayer()
-		{
-			playerStage.show();
+		public boolean getPlaying() {
+			return this.playing;
 		}
 		
+		public void setPlaying(boolean p) {
+			this.playing = p;
+		}
+	
 		public void showStages()
 		{
-			showMaker();
-			showPlayer();
+			this.makerView.showMaker();
+			this.playerView.showPlayer();
 		}
 		
 		public void setController(Controller c) {
 			this.controller = c;
 		}
 	
-		
-		public Scene getPlayerScene() {
-			return this.playerScene;
+		public Controller getController() {
+			return this.controller;
 		}
 		
-		public Scene getMakerScene() {
-			return this.makerScene;
+		//sets currentlySelectedSprite
+		public void setCurrentlySelectedSprite(Sprite s) {
+			this.currentlySelectedSprite = s;
 		}
 		
-		public Stage getPlayerStage() {
-			return this.playerStage;
+		public Sprite getCurrentlySelectedSprite() {
+			return this.currentlySelectedSprite;
 		}
 		
-		public Stage getMakerStage() {
-			return this.makerStage;
+		public void modifySpriteCommand() {
+			this.controller.modifySprite(currentlySelectedSprite);
 		}
-		
-		//Controls for elements in PlayerView.fxml
-		@FXML
-		private Button playStopButton;
-		@FXML
-		private Button undoPauseButton;
-		@FXML
-		private Button redoRestartButton;
-		@FXML
-		private Button saveButton;
-		@FXML
-		private Button loadButton;
-		@FXML 
-		private Canvas gameCanvas;
-
-		// Event Listener on Button[#playStopButton].onAction
-		@FXML
-		public void playStopButtonClicked(ActionEvent event) {
-			if(playStopButton.getText().equals("Play")) {
-				//If play is pressed, switch buttons to Play Context
-				playStopButton.setText("Stop");
-				undoPauseButton.setText("Pause");
-				redoRestartButton.setText("Restart");
-				saveButton.setVisible(false);
-				saveButton.setDisable(true);
-				loadButton.setVisible(false);
-				loadButton.setDisable(true);
-				
-				controller.play();
-			}
-			else if(playStopButton.getText().equals("Stop")) {
-				//If Stop is pressed, switch buttons back to maker context
-				playStopButton.setText("Play");
-				undoPauseButton.setText("Undo");
-				redoRestartButton.setText("Redo");
-				saveButton.setVisible(true);
-				saveButton.setDisable(false);
-				loadButton.setVisible(true);
-				loadButton.setDisable(false);
-				//TODO fix once difference between pause and stop
-				controller.pause();
-			}
-		}
-		
-		
-		
-		// Event Listener on Button[#undoPauseButton].onAction
-		@FXML
-		public void undoPauseButtonClicked(ActionEvent event) 
-		{
-			if(undoPauseButton.getText().equals("Undo")) {
-				controller.undo();
-			}
-			else if(undoPauseButton.getText().equals("Pause")) {
-				controller.pause();
-				undoPauseButton.setText("Resume");
-			}
-			else if(undoPauseButton.getText().equals("Resume")) {
-				controller.resume();
-				undoPauseButton.setText("Pause");
-			}
-			
-		}
-		// Event Listener on Button[#redoRestartButton].onAction
-		@FXML
-		public void redoRestartButtonClicked(ActionEvent event) {
-			if(redoRestartButton.getText().equals("Redo")) {
-				//TODO redo is a stretch goal
-			}
-			else if(redoRestartButton.getText().equals("Restart")) {
-				//TODO restart
-			}
-		}
-		// Event Listener on Button[#saveButton].onAction
-		@FXML
-		public void saveButtonClicked(ActionEvent event) {
-			controller.save();
-		}
-		// Event Listener on Button[#loadButton].onAction
-		@FXML
-		public void loadButtonClicked(ActionEvent event) {
-			controller.load();
-			currentlySelectedSprite  = controller.getSpriteList().get(controller.getSpriteList().size() - 1);
-		}
-		
-		//On the canvas clicked, check to see if the click intersects with a sprite's hitbox, and if so make it the currently
-		//selected Sprite.
-		@FXML
-		public void canvasClicked(MouseEvent event) {
-			double clickedX = event.getX();
-			double clickedY = event.getY();
-			for(Sprite s: controller.getSpriteList()) {
-				if(clickedX >= s.getHitBox().getTopLeft().getX() && clickedY >= s.getHitBox().getTopLeft().getY()) {
-					if(clickedX <= s.getHitBox().getBottomRight().getX() && clickedY <= s.getHitBox().getBottomRight().getY()) {
-						//If click is within the hitbox, then make it currently selected sprite and adjust the properties pane;
-						currentlySelectedSprite = s;
-						setSpritePropertiesPane();
-					}
-				}
-			}
-		}
-		
-		//When the canvas is dragged, get the sprite and adjust it's x/y
-		@FXML 
-		public void canvasDragged(MouseEvent event) {
-			//TODO This is inefficient, but without a check for the new currently selected sprite it bugs out
-			canvasClicked(event);
-			
-			//Get the events x/y and set it to the sprite
-			double newX = event.getX() - (currentlySelectedSprite.getAppearance().getWidth() * .5);
-			double newY = event.getY() - (currentlySelectedSprite.getAppearance().getHeight() * .5);
-			currentlySelectedSprite.setX(newX);
-			currentlySelectedSprite.setY(newY);
-			modifySpriteCommand();
-		}
-		
-		//Sets the Sprite Properties pane values to the values of CurrentlySelectedSprite
-		public void setSpritePropertiesPane() {
-			//Set all labels to corresponding value of the sprite
-			spriteIdLabel.setText("" + currentlySelectedSprite.getSpriteId());
-			spriteXLabel.setText("" + currentlySelectedSprite.getX());
-			spriteYLabel.setText("" + currentlySelectedSprite.getY());
-			
-			//Set the color selector
-			spriteColorPicker.setValue(currentlySelectedSprite.getAppearance().getColor());
-			
-			//Set width and height slider values
-			spriteWidthSlider.setValue(currentlySelectedSprite.getAppearance().getWidth());
-			spriteHeightSlider.setValue(currentlySelectedSprite.getAppearance().getHeight());
-			
-			
-			//Set the behavior lists 
-			spriteBehaviorList = new ScrollPane();
-			EventBehaviorChain behaviorsForSprite = currentlySelectedSprite.getEventBehaviorChain();
-			for(EventBehavior e: behaviorsForSprite.getChain()) {
-				//System.out.println("adding event behavior to the list");
-				//Label text = new Label();
-				//text.setText(e.toString());
-				//spriteBehaviorList.getChildrenUnmodifiable().add(text);
-			}
-			
-			
-		}
-		
-		//Controls for elements in MakerView.fxml
-		//Root Anchor Pane
-	    @FXML
-	    private AnchorPane makerPane;
-	 
-	    //Sprite Behavior tab fields
-
-	    @FXML
-	    private AnchorPane spriteBehaviorEditPane;
-
-	    @FXML
-	    private AnchorPane spriteBehaviorEditPane1;
-
-	    @FXML
-	    private ScrollPane spriteBehaviorList;
-
-	    @FXML
-	    private ComboBox<String> spriteBehaviorTypeDropdown;
-
-	    @FXML
-	    private Button spriteChooseImageButton;
-
-	    @FXML
-	    private ChoiceBox<?> spriteCollisionType;
-
-	    @FXML
-	    private ColorPicker spriteColorPicker;
-
-	    @FXML
-	    private Slider spriteHeightSlider;
-
-	    @FXML
-	    private Label spriteIdLabel;
-
-	    @FXML
-	    private ComboBox<SaveableShape> spriteShapeDropdown;
-
-	    @FXML
-	    private Slider spriteWidthSlider;
-
-	    @FXML
-	    private Label spriteXLabel;
-
-	    @FXML
-	    private Label spriteYLabel;
-	  
-	    @FXML
-	    private Button createNewSpriteButton;
-
-	    @FXML
-	    private Button duplicateSpriteButton;
-
-	    
-	    //Fields for the timed behavior pane
-	    @FXML
-	    private AnchorPane timeBehaviorPane;
-	 
-	    @FXML 
-	    private TextField intervalField;
-	    
-	    @FXML 
-	    private CheckBox continuousInterval;
-	    
-	    @FXML
-	    private ComboBox<EventBehavior> timeBehaviorActions;
-
-	    @FXML
-	    private CheckBox timeBehaviorContinousCheck;
-
-	    @FXML
-	    private Text timeBehaviorIntervalInput;
-	    
-	    @FXML
-	    private Button addTimedBehaviorButton;
-	    
-	    //Fields for the mouse behavior pane
-	    @FXML
-	    private AnchorPane mouseBehaviorPane;
-	    
-	    @FXML
-	    private ChoiceBox<EventBehavior> clickBehaviorAction;
-	    
-	    @FXML
-	    private Button addClickBehaviorButton;
-	    
-	    //Fields for the key behavior pane
-	    @FXML
-	    private AnchorPane keyBehaviorPane;
-	    
-	    @FXML
-	    private ChoiceBox<?> keyBehaviorAction;
-
-	    @FXML
-	    private Text keyBehaviorKeyInput;
-	    
-	    @FXML
-	    private Button addKeyBehaviorButton;
-	    
-	    //Fields for the collision behavior tab
-	    @FXML
-	    private Button newCollisionBehaviorButton;
-	   
-	    @FXML
-	    private ComboBox<CollisionBehavior> collisionBehaviorAction;
-	    
-	    @FXML 
-	    private TextField spriteIdInput;
-	    
-	    //Fields for the Game Properties tab
-
-	    @FXML
-	    private Button addGamePropertyButton;
-	    @FXML
-	    private Button removeGamePropertyButton;
-	    @FXML
-	    private CheckBox usesLevelsCheckbox;
-	    @FXML 
-	    private ScrollPane collisionBehaviorList;
-	    
-	    
-	    
-	    //if time behavior continuous checkbox is selected, disable the interval field
-	    @FXML 
-	    public void continuousIntervalSelected(ActionEvent event) {
-	    	if(continuousInterval.isSelected()) {
-	    		intervalField.setDisable(true);
-	    	}
-	    	else {
-	    		intervalField.setDisable(false);
-	    	}
-	    }
-	    @FXML
-	    public void addBehaviorButtonClicked(ActionEvent event) {
-	    	if(event.getSource().equals(addClickBehaviorButton)) {
-	    		//TODO
-	    		System.out.println("Click behavior clicked");
-	    	}
-	    	else if(event.getSource().equals(addKeyBehaviorButton)) {
-	    		//TODO
-
-	    		System.out.println("Key behavior clicked");
-	    	}
-	    	else if(event.getSource().equals(addTimedBehaviorButton)) {
-	    		//TODO
-	    		currentlySelectedSprite.addEventBehavior(timeBehaviorActions.getValue());
-	    		setSpritePropertiesPane();
-	    	}
-
-	    }
-
-	    @FXML
-	    public void addCollisionBehaviorButtonClicked(ActionEvent event) {
-	    	try {
-	    		int spriteId = Integer.parseInt(spriteIdInput.getText());
-	    		CollisionBehavior toAdd = collisionBehaviorAction.getValue();
-	    		currentlySelectedSprite.addCustomCollision(spriteId, toAdd);
-	    		setCollisionsList();
-	    	}
-	    	catch(Exception ex) {
-	    		
-	    	}
-	    }
-	    
-	    //Populate collisions list with all sprite's collisions
-	    public void setCollisionsList() {
-	    	//collisionBehaviorList
-	    	CustomCollisionMap spriteCollisions = currentlySelectedSprite.getCustomCollisionMap();
-	    	
-	    }
-	    
-	    @FXML
-	    public void addGamePropertyButtonClicked(ActionEvent event) {
-
-	    }
-
-	    @FXML
-	    public void backgroundOptionSelected(ActionEvent event) {
-
-	    }
-
-	    
-	    @FXML
-	    //@author Ramya 
-	    // Requests the controller to add new sprite 
-	    public void createSpriteButtonClicked(ActionEvent event) 
-	    {
-	    	 controller.createSprite();
-	    	 currentlySelectedSprite = controller.getSpriteList().get(controller.getSpriteList().size() - 1);
-	    	 setSpritePropertiesPane();
-	    }
-
-	    @FXML
-	    public void duplicateSpriteButtonClicked(ActionEvent event) {
-	    	//TODO
-	    	controller.duplicateSprite(currentlySelectedSprite.copy());
-	    	currentlySelectedSprite = controller.getSpriteList().get(controller.getSpriteList().size() - 1);
-	    	setSpritePropertiesPane();
-	    }
-	    
-	    @FXML
-	    void spriteBehaviorTypeSelected(ActionEvent event) {
-	    	timeBehaviorPane.setVisible(false);
-	    	timeBehaviorPane.setDisable(true);
-	    	mouseBehaviorPane.setVisible(false);
-	    	mouseBehaviorPane.setDisable(true);
-	    	keyBehaviorPane.setVisible(false);
-	    	keyBehaviorPane.setDisable(true);
-	    	
-	    	switch(spriteBehaviorTypeDropdown.getSelectionModel().getSelectedItem()) {
-	    	case "Timed Behavior": timeBehaviorPane.setVisible(true); timeBehaviorPane.setDisable(false); break;
-	    	case "On Click Behavior": mouseBehaviorPane.setVisible(true); mouseBehaviorPane.setDisable(false); break;
-	    	case "On Key Press Behavior": keyBehaviorPane.setVisible(true); keyBehaviorPane.setDisable(false); break;
-	    	}
-	    }
-
-	    @FXML
-	    public void removeGamePropertyButtonClicked(ActionEvent event) {
-	    	//TODO
-	    }
-
-	    @FXML
-	    public void spriteAppearanceSelected(ActionEvent event) {
-	    	if(event.getSource().equals(spriteShapeDropdown)) {
-	    		currentlySelectedSprite.getAppearance().setShape(spriteShapeDropdown.getValue());
-	    		modifySpriteCommand();
-	    	}
-	    	else if(event.getSource().equals(spriteChooseImageButton)) {
-	    		FileChooser fileChooser = new FileChooser();
-	    		File file = fileChooser.showOpenDialog(makerStage);
-				if (file != null) {
-					currentlySelectedSprite.getAppearance().setImage(file.toURI().toString());
-					modifySpriteCommand();
-				}
-	    	}
-	    }
-
-	    @FXML
-	    public void spriteColorSelected(ActionEvent event) {
-	    	currentlySelectedSprite.getAppearance().setColor(spriteColorPicker.getValue());
-	    	modifySpriteCommand();
-	    }
-
-	    @FXML
-	    public void usesLevelsSelected(ActionEvent event) {
-	    	//TODO uses levels
-	    	
-	    }
-
-	    @FXML
-	    public void usesWallsSelected(ActionEvent event) {
-
-	    }
-
-	    
-	    public void heightSliderChanged() {
-	    	currentlySelectedSprite.setHeight(spriteHeightSlider.getValue());
-	    	modifySpriteCommand();
-	    }
-	    
-	    public void widthSliderChanged() {
-	    	currentlySelectedSprite.setWidth(spriteWidthSlider.getValue());
-	    	modifySpriteCommand();
-	    }
 	    
 	    public void drawAll()
 	    {
-	    	gameCanvas.getGraphicsContext2D().setFill(Color.WHITE);
-	    	gameCanvas.getGraphicsContext2D().fillRect(0, 0, gameCanvas.getWidth(), gameCanvas.getHeight());
+	    	playerView.clearCanvas();
 	    	ArrayList<Sprite> allSprites = controller.getSpriteList();
 	    	for (Sprite s : allSprites)
 	    	{
-	    		s.draw(gameCanvas.getGraphicsContext2D());
+	    		//If sprite is not visible, only make it disappear on game run
+	    		if(!s.isVisible() && !playing) {
+	    				s.draw(playerView.getGameCanvas().getGraphicsContext2D());
+	    		}
+	    		//Otherwise always draw if visible
+	    		else if(s.isVisible()) {
+	    			s.draw(playerView.getGameCanvas().getGraphicsContext2D());
+	    		}
 	    	}
 	    }
 	    
-	    public void modifySpriteCommand() {
-	    	controller.modifySprite(currentlySelectedSprite);
-	    	setSpritePropertiesPane();
+	    //Used for dragging currentlySelectedSprite
+	    public void drawAllExcept(int spriteId)
+	    {
+	    	playerView.clearCanvas();
+	    	ArrayList<Sprite> allSprites = controller.getSpriteList();
+	    	for (Sprite s : allSprites)
+	    	{
+	    		if (s.getSpriteId() != spriteId)
+	    			//If sprite is not visible, only make it disappear on game run
+	    			if(!s.isVisible() && !playing) {
+	    				s.draw(playerView.getGameCanvas().getGraphicsContext2D());
+	    			}
+	    			//Otherwise always draw if visible
+	    			else if(s.isVisible()) {
+	    				s.draw(playerView.getGameCanvas().getGraphicsContext2D());
+	    			}
+	    	}
 	    }
-
+	    
+	    
 		@Override
 		public void update() 
 		{
 			drawAll();
 		}
-
-	
-
-		
 }
 

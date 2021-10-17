@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import org.junit.jupiter.api.Test;
 
+import behaviors.event.MoveOnGameTickBehavior;
 import command.CreateSpriteCommand;
 import command.ModifySpriteCommand;
 import constants.Constants;
@@ -85,6 +86,69 @@ class ControllerTests
 			Sprite current = sprites.get(i);
 			assertEquals(current,c.getSprite(i));
 		}
+	}
+	
+	//Test switching play/create context
+	//play should stash the model
+	//pause should pause the clock
+	//resume should resume it
+	//stop should restore the stashed model
+	@Test
+	public void playPauseResumeStopTest() throws InterruptedException
+	{
+		Model m = new Model();
+		Controller c = new Controller();
+		c.setModel(m);
+		c.createSprite();
+		Sprite sprite = c.getSprite(0);
+		sprite.addEventBehavior(new MoveOnGameTickBehavior());
+		c.modifySprite(sprite);
+		assertEquals(Constants.DEFAULT_SPRITE_X, sprite.getX());
+		assertEquals(Constants.DEFAULT_SPRITE_Y, sprite.getY());
+		c.play();
+		Thread.sleep(1000); //expect 60 ticks
+		c.pause();
+		sprite = c.getSprite(0);
+		double x = sprite.getX();
+		double y = sprite.getY();
+		assertNotEquals(Constants.DEFAULT_SPRITE_X, x);
+		assertNotEquals(Constants.DEFAULT_SPRITE_Y, y);
+		c.resume();
+		Thread.sleep(1000);
+		c.pause();
+		sprite = c.getSprite(0);
+		assertNotEquals(x, sprite.getX());
+		assertNotEquals(y, sprite.getY());
+		c.stop();
+		sprite = c.getSprite(0);
+		assertEquals(Constants.DEFAULT_SPRITE_X, sprite.getX());
+		assertEquals(Constants.DEFAULT_SPRITE_Y, sprite.getY());
+	}
+	
+	@Test
+	public void modifySpriteVisibilityTest()
+	{
+		Model m = new Model();
+		Controller c = new Controller();
+		c.setModel(m);
+		c.createSprite();
+		Sprite sprite = c.getSprite(0);
+		assertTrue(sprite.isVisible());
+		sprite.setVisible(false);
+		c.modifySprite(sprite);
+		c.play(); //force a context switch so the model is stashed and restored in ram
+		c.stop();
+		sprite = c.getSprite(0);
+		assertFalse(sprite.isVisible());
+		assertTrue(sprite.isEnabled());
+		sprite.disable();
+		assertFalse(sprite.isEnabled());
+		c.modifySprite(sprite);
+		c.play(); //force a context switch so the model is stashed and restored in ram
+		c.stop();
+		sprite = c.getSprite(0);
+		assertFalse(sprite.isEnabled());
+		assertFalse(sprite.isVisible());
 	}
 	
 }

@@ -31,6 +31,10 @@ public class Sprite implements Drawable, Saveable
 	//map of spriteId : collisions against the corresponding sprite
 	protected CustomCollisionMap customCollisionMap;
 	
+	protected boolean enabled;
+	
+	protected boolean visible;
+	
 
 
 	public Sprite() 
@@ -42,13 +46,15 @@ public class Sprite implements Drawable, Saveable
 		appearance = new Appearance();
 		eventBehaviorChain = new EventBehaviorChain();
 		customCollisionMap = new CustomCollisionMap();
+		enabled = true;
+		visible = true;
 	}
 
 
 	@Override
 	public void draw(GraphicsContext g) 
 	{
-		appearance.draw(g);
+			appearance.draw(g);
 	}
 
 	public int getSpriteId() 
@@ -135,6 +141,8 @@ public class Sprite implements Drawable, Saveable
 		json.put("appearance",appearance.save());
 		json.put("eventBehaviorChain",eventBehaviorChain.save());
 		json.put("customCollisionMap",customCollisionMap.save());
+		json.put("visible", visible);
+		json.put("enabled",enabled);
 
 		//TODO keep this growing as more stuff is added to Sprite class
 		
@@ -150,6 +158,8 @@ public class Sprite implements Drawable, Saveable
 		copySprite.setAppearance(appearance.copy());
 		copySprite.setEventBehaviorChain(eventBehaviorChain.copy());
 		copySprite.setCustomCollisionMap(customCollisionMap.copy());
+		copySprite.setVisible(visible);
+		copySprite.setEnabled(enabled);
 		return copySprite;
 	}
 
@@ -175,13 +185,21 @@ public class Sprite implements Drawable, Saveable
 		hitBox.load((JSONObject)saveJSON.get("hitBox"));
 		appearance = new Appearance();
 		appearance.load((JSONObject)saveJSON.get("appearance"));
-		spriteId = ((Long)saveJSON.get("spriteId")).intValue();
+		try
+		{
+			spriteId = ((Long)saveJSON.get("spriteId")).intValue();
+		}catch(ClassCastException e)
+		{
+			spriteId = (int)saveJSON.get("spriteId");
+		}
 		EventBehaviorChain ebc = new EventBehaviorChain();
 		ebc.load((JSONObject)saveJSON.get("eventBehaviorChain"));
 		eventBehaviorChain = ebc;
 		CustomCollisionMap ccm = new CustomCollisionMap();
 		ccm.load((JSONObject)saveJSON.get("customCollisionMap"));
 		customCollisionMap = ccm;
+		enabled = (boolean)saveJSON.get("enabled");
+		visible = (boolean)saveJSON.get("visible");
 	}
 	
 	@Override
@@ -217,8 +235,11 @@ public class Sprite implements Drawable, Saveable
 			{
 				//System.out.println("custom collision maps aren't equal");
 			}
+			boolean visibleEquals = s.isVisible() && visible;
 			
-			return spriteIdEquals && hitBoxEquals && appearanceEquals && eventBehaviorChainEquals && customCollisionMapEquals;
+			boolean enabledEquals = s.isEnabled() && enabled;
+			
+			return spriteIdEquals && hitBoxEquals && appearanceEquals && eventBehaviorChainEquals && customCollisionMapEquals && visibleEquals && enabledEquals;
 		}
 		return false;
 	}
@@ -264,6 +285,10 @@ public class Sprite implements Drawable, Saveable
 	{
 		customCollisionMap.setDefaultCollisionBehavior(c);
 	}
+	
+	public CollisionBehavior getDefaultCollisionBehavior() {
+		return customCollisionMap.getDefaultCollisionBehavior();
+	}
 
 	public void flipYVelocity() 
 	{
@@ -284,6 +309,15 @@ public class Sprite implements Drawable, Saveable
 	{
 		return eventBehaviorChain.getMaxYVelocity();
 	}
+	public void  setXVelocity(int xVelocity)
+	{
+		eventBehaviorChain.setXVelocity( xVelocity);
+	}
+	
+	public void  setYVelocity(int yVelocity)
+	{
+		eventBehaviorChain.setXVelocity( yVelocity);
+	}
 
 	public void flipBothVelocities() 
 	{
@@ -301,4 +335,81 @@ public class Sprite implements Drawable, Saveable
 	{
 		return customCollisionMap.getCustomCollisionPairs();
 	}
+
+
+
+	/**
+	 * The following method tries all possible direction for the sprite object to move when it impacts another sprite 
+	 * Ex: Ghost sprite in pac man must change course whenever it comes across a wall
+	 */
+	public void changeDirection() 
+	{
+		int xVelocity=this.getXVelocity();
+		int yVelocity=this.getYVelocity();
+		
+	
+		if(xVelocity==0 && yVelocity>0)// sprite moving down 
+		{
+			xVelocity=yVelocity;//make sprite move right
+			yVelocity=0;
+		}
+		else if(xVelocity==0 && yVelocity<0)// sprite moving up 
+		{
+			xVelocity=yVelocity; // make sprite move left
+			yVelocity=0;
+		} 
+		else if(yVelocity==0 && xVelocity>0)// sprite moving right
+		{
+			yVelocity=-(xVelocity);// sprite moving up
+			xVelocity=0;
+		}
+		else if((yVelocity==0 && xVelocity<0))// sprite moving left
+		{
+			yVelocity=-(xVelocity);// sprite will move down
+			xVelocity=0;
+		}
+		
+		this.setXVelocity(xVelocity);
+		this.setYVelocity(yVelocity);
+			
+	}
+		
+	public boolean isVisible() 
+	{
+		return visible;
+	}
+
+	public void setVisible(boolean v) 
+	{
+		visible = v;
+	}
+	public boolean isEnabled() 
+	{
+		return enabled;
+	}
+	public void enable() 
+	{
+		enabled = true;
+	}
+	public void disable() 
+	{
+		enabled = false;
+	}
+	public void setEnabled(boolean e)
+	{
+		enabled = e;
+	}
+
+
+	public double getHeight() 
+	{
+		return hitBox.getHeight();
+	}
+
+
+	public double getWidth() 
+	{
+		return hitBox.getWidth();
+	}
 }
+

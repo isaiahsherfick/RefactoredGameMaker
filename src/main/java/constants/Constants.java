@@ -30,5 +30,17 @@ public class Constants
 //	public static final int BOTTOM_RIGHT = 7;
 	public static final double MS_BETWEEN_TICKS = 16.666666667;
 	public static final Integer COLLISION_LOCKOUT_FRAMES = 10;
+  
+  /**Spawn Behavior**/
 	public static final int DEFAULT_SPAWN_TIME_INTERVAL = 3;
+
+	public static final int CREATE_MODE_CONTEXT = 0;
+	public static final int PLAY_MODE_CONTEXT = 1;
+	
+	/**PAC MAN**/
+	public static final int MOVE_LEFT = 10;
+	public static final int MOVE_RIGHT = 10;
+	public static final int MOVE_UP = 10;
+	public static final int MOVE_DOWN = 10;
+
 }

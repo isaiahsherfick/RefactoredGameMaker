@@ -12,8 +12,12 @@ public class CollisionBehaviorLoader
 			case "DoNothingCollisionBehavior":
 				return new DoNothingCollisionBehavior();
 				
-			case "BounceCollisionBehavior":
+			case "BounceCollisionBehaviorX":
 				return new BounceCollisionBehaviorX();
+			case "BounceCollisionBehaviorY":
+				return new BounceCollisionBehaviorY();
+			case "BounceCollisionBehaviorXY":
+				return new BounceCollisionBehaviorXY();
 				
 			case "DestroyCollisionBehavior":
 				return new DestroyCollisionBehavior();

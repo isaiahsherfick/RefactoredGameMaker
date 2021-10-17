@@ -135,6 +135,7 @@ public class Appearance implements Drawable, Saveable
 		saveObj.put("height",height);
 		saveObj.put("shape",shape.save());
 		saveObj.put("image",image.save()); 
+		saveObj.put("shapeOrImage",shapeOrImage);
 		return saveObj;
 	}
 
@@ -151,6 +152,12 @@ public class Appearance implements Drawable, Saveable
 		shape = ShapeLoader.loadShape((JSONObject)saveJSON.get("shape"));
 		image = new SaveableImage();
 		image.load((JSONObject)saveJSON.get("image"));
+		try {
+		shapeOrImage = (int)saveJSON.get("shapeOrImage");
+		}catch(ClassCastException c)
+		{
+			shapeOrImage = ((Long)saveJSON.get("shapeOrImage")).intValue();
+		}
 	}
 
 	@Override
@@ -202,6 +209,8 @@ public class Appearance implements Drawable, Saveable
 
 	public Appearance copy() 
 	{
-		return new Appearance(location, size, image, shape, shapeOrImage);
+		Point2D locationCopy = new Point2D(location.getX(), location.getY());
+		Point2D sizeCopy = new Point2D(size.getX(), size.getY());
+		return new Appearance(location, size, image.copy(), shape.copy(), shapeOrImage);
 	}
 }

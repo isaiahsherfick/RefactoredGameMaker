@@ -209,7 +209,7 @@ class ModelTests {
 		sprite2.setY(2);
 		sprite3.setWidth(3);
 		sprite4.setHeight(4);
-		sprite5.setImage("donkey_kong.jpeg");
+		sprite5.setImage("donkey_kong.jpg");
 		sprite6.addEventBehavior(new MoveOnGameTickBehavior());
 		assertEquals(1,sprite6.getEventBehaviorChainSize());
 		sprite6.addEventBehavior(new DoNothingBehavior());
@@ -286,5 +286,34 @@ class ModelTests {
 		CustomCollisionMap loader = new CustomCollisionMap();
 		loader.load(json);
 		assertEquals(customCollisionMap,loader);
+	}
+	
+	@Test
+	public void SpriteVisibilityTest() throws IOException, ParseException
+	{
+		Model m = new Model();
+		m.addSprite(new Sprite());
+		Sprite s = m.getSprite(0);
+		assertTrue(s.isVisible());
+		assertTrue(s.isEnabled());
+		s.setVisible(false);
+		assertFalse(s.isVisible());
+		assertTrue(s.isEnabled());
+		s.disable();
+		assertFalse(s.isVisible());
+		assertFalse(s.isEnabled());
+		s.enable();
+		assertTrue(s.isEnabled());
+		s.disable();
+		assertFalse(s.isVisible());
+		assertFalse(s.isEnabled());
+		m.modifySprite(s);
+		m.save();
+		m = new Model();
+		m.load();
+		s = m.getSprite(0);
+		assertFalse(s.isVisible());
+		assertFalse(s.isEnabled());
+		
 	}
 }

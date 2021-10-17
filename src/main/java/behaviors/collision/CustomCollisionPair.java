@@ -22,12 +22,12 @@ public class CustomCollisionPair implements Saveable
 		collisionBehavior = new DoNothingCollisionBehavior();
 	}
 	
-	int getSpriteId()
+	public int getSpriteId()
 	{
 		return spriteId;
 	}
 	
-	CollisionBehavior getCollisionBehavior()
+	public CollisionBehavior getCollisionBehavior()
 	{
 		return collisionBehavior;
 	}

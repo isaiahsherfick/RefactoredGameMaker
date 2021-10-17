@@ -2,7 +2,7 @@ package behaviors.collision;
 
 import org.json.simple.JSONObject;
 
-import constants.Constants;
+
 import sprite.Sprite;
 
 public class BounceCollisionBehaviorX implements CollisionBehavior
@@ -13,7 +13,7 @@ public class BounceCollisionBehaviorX implements CollisionBehavior
 	public JSONObject save() 
 	{
 		JSONObject json = new JSONObject();
-		json.put("type","BounceCollisionBehavior");
+		json.put("type","BounceCollisionBehaviorX");
 		return json;
 	}
 

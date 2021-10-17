@@ -18,4 +18,5 @@ public interface SaveableShape extends Saveable
 	public double getHeight();
 	public void setWidth(double w);
 	public void setHeight(double h);
+	public SaveableShape copy();
 }

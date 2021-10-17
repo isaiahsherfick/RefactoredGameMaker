@@ -85,7 +85,7 @@ public class SpriteManager
 		ArrayList <Sprite> spriteList = new ArrayList<>();
 		for (int spriteId : spriteMap.keySet())
 		{
-			spriteList.add(spriteMap.get(spriteId));
+			spriteList.add(spriteMap.get(spriteId).copy());
 		}
 		return spriteList;
 	}

@@ -3,6 +3,7 @@ package model;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import org.json.simple.JSONObject;
 import org.json.simple.parser.ParseException;
 
 import command.Command;
@@ -90,6 +91,7 @@ public class Model
 	//Catch the exception in controller
 	public void save() throws IOException
 	{
+		resetSaveAndLoadManager();
 		ArrayList<Sprite> spriteList = spriteManager.getSpriteList();
 		ArrayList<Saveable> saveableList = new ArrayList<>();
 		for (Sprite s : spriteList)
@@ -100,12 +102,38 @@ public class Model
 		saveAndLoadManager.saveFile(saveFilePath);
 	}
 	
+	//stash the model as a JSON - will be called when the controller switches contexts
+	public JSONObject stash()
+	{
+		resetSaveAndLoadManager();
+		ArrayList<Sprite> spriteList = spriteManager.getSpriteList();
+		ArrayList<Saveable> saveableList = new ArrayList<>();
+		for (Sprite s : spriteList)
+		{
+			saveableList.add((Saveable)s);
+		}
+		saveAndLoadManager.addAll(saveableList);
+		return saveAndLoadManager.save();
+	}
+	
+	//restore the model from a stashed JSON - called when the controller switches contexts
+	public void restore(JSONObject stashedJSON)
+	{
+		resetSaveAndLoadManager();
+		saveAndLoadManager.load(stashedJSON);
+		ArrayList<Sprite> spriteList = saveAndLoadManager.getSprites();
+		resetSpriteManager();
+		spriteManager.addAll(spriteList);
+		notifyObservers();
+	}
+	
 	//Load all sprites from the file at saveFilePath
 	//Catch the exceptions in controller
 	//IOExeption : file can't be found
 	//ParseException : JSON is bad
 	public void load() throws IOException, ParseException
 	{
+		resetSaveAndLoadManager();
 		saveAndLoadManager.loadFile(saveFilePath);
 		ArrayList<Sprite> spriteList = saveAndLoadManager.getSprites();
 //		for (int i = 0; i<spriteList.size(); i++)

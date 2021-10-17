@@ -20,12 +20,14 @@ public class CommandInvoker
 	{
 		c.execute();
 		commandStack.push(c);
+		//System.out.println(c);
 	}
 	
 	public void undo()
 	{
 		try {
 		Command toUndo = commandStack.pop();
+		//System.out.println(toUndo);
 		toUndo.unexecute();
 		undoneCommands.push(toUndo);
 		} catch(EmptyStackException e)

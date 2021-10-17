@@ -26,6 +26,16 @@ public class SaveableRectangle implements SaveableShape, Drawable
 		color = Color.web("#FF0000");
 	}
 
+	public SaveableRectangle(double x, double y,  double width,  double height,  String colorString)
+	{
+		this.x = x;
+		this.y = y;
+		this.width = width;
+		this.height = height;
+		this.color = Color.web(colorString);
+		rect = new Rectangle();
+	}
+
 	@SuppressWarnings("unchecked")
 	@Override
 	public JSONObject save() 
@@ -130,6 +140,15 @@ public class SaveableRectangle implements SaveableShape, Drawable
 			return x == r.getX() && y == r.getY() && width == r.getWidth() && height == r.getHeight();
 		}
 		return false;
+	}
+	
+	public String toString() {
+		return "Rectangle";
+	}
+	
+	public SaveableShape copy()
+	{
+		return new SaveableRectangle(x,y,width,height,color.toString());
 	}
 
 	

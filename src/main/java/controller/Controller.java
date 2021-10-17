@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Timer;
 
+import org.json.simple.JSONObject;
 import org.json.simple.parser.ParseException;
 
 import command.Command;
@@ -11,6 +12,7 @@ import command.CreateSpriteCommand;
 import command.DuplicateSpriteCommand;
 import command.ModifySpriteCommand;
 import constants.Constants;
+import javafx.scene.paint.Color;
 import model.Model;
 import pattern.Observer;
 import sprite.Sprite;
@@ -28,6 +30,7 @@ import views.View;
 public class Controller implements Observer
 {
 	private Model model;
+	private JSONObject modelStash;
 	private View view;
 	private GameClock gameClock;
 	private Timer timer;
@@ -86,19 +89,36 @@ public class Controller implements Observer
 		 return model.getSpriteList();
 	 }
 	 
+	 //Stash the model, switch contexts to play mode, start the clock
 	 public void play()
 	 {
-		 timer.schedule(gameClock, (long)1.0, (long)gameClock.getMsBetweenTicks());
+		 modelStash = model.stash();
+		 gameClock = new GameClock();
+		 gameClock.register(this);
+		 timer = new Timer();
+		 timer.schedule(gameClock, (long)0.0, (long)gameClock.getMsBetweenTicks());
 	 }
 	 
+	 //Stop the clock
 	 public void pause()
 	 {
 		 timer.cancel();
 	 }
 	 
+	 //resume the clock
 	 public void resume()
 	 {
+		 gameClock = new GameClock();
+		 gameClock.register(this);
+		 timer = new Timer();
 		 timer.schedule(gameClock, (long)0.0, (long)gameClock.getMsBetweenTicks());
+	 }
+	 
+	 //Stop the clock, restore the stashed model, switch contexts to create mode
+	 public void stop()
+	 {
+		 timer.cancel();
+		 model.restore(modelStash);
 	 }
 	 
 	 public void modifySprite(Sprite modifiedSprite)
@@ -120,6 +140,10 @@ public class Controller implements Observer
 
 	 public void setView(View view) {
 		 this.view = view;
+	 }
+	 
+	 public View getView() {
+		 return this.view;
 	 }
 
 	public Sprite getSprite(int spriteId) 
@@ -152,6 +176,44 @@ public class Controller implements Observer
 	public GameClock getClock() 
 	{
 		return gameClock;
+	}
+	
+	public void addWalls() {
+		//Create and modify the leftWall
+		createSprite();
+		Sprite leftWall = getSpriteList().get(getSpriteList().size() - 1);
+		leftWall.setHeight(Constants.CANVAS_HEIGHT);
+		leftWall.setWidth(5);
+		leftWall.getAppearance().setColor(Color.BLACK);
+		modifySprite(leftWall); 
+		
+		//Create and modify the topWall
+		createSprite();
+		Sprite topWall = getSpriteList().get(getSpriteList().size() - 1);
+		topWall.setHeight(5);
+		topWall.setWidth(Constants.SCREEN_WIDTH);
+		topWall.getAppearance().setColor(Color.BLACK);
+		modifySprite(topWall);
+		
+		//Create and modify the rightWall
+		createSprite();
+		Sprite rightWall = getSpriteList().get(getSpriteList().size() - 1);
+		rightWall.setX(Constants.SCREEN_WIDTH - 5);
+		rightWall.setHeight(Constants.CANVAS_HEIGHT);
+		rightWall.setWidth(5);
+		rightWall.getAppearance().setColor(Color.BLACK);
+		modifySprite(rightWall);
+		
+		//Create and modify bottomWall
+		createSprite();
+		Sprite bottomWall = getSpriteList().get(getSpriteList().size() - 1);
+		bottomWall.setY(Constants.CANVAS_HEIGHT - 5);
+		bottomWall.setHeight(5);
+		bottomWall.setWidth(Constants.SCREEN_WIDTH);
+		bottomWall.getAppearance().setColor(Color.BLACK);
+		modifySprite(bottomWall);
+		
+		model.notifyObservers();
 	}
 
 	@Override
