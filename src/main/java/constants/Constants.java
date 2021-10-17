@@ -30,7 +30,7 @@ public class Constants
 //	public static final int BOTTOM_RIGHT = 7;
 	public static final double MS_BETWEEN_TICKS = 16.666666667;
 	public static final Integer COLLISION_LOCKOUT_FRAMES = 10;
-  
+	public static final Integer SPRITE_COLLISION_WARP_DISTANCE = 2;
   /**Spawn Behavior**/
 	public static final int DEFAULT_SPAWN_TIME_INTERVAL = 3000;
 

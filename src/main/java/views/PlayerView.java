@@ -29,6 +29,7 @@ public class PlayerView {
 	private Scene playerScene;
 	private Stage playerStage;
 	private View view;
+	private Color canvasColor;
 
 	//Controls for elements in PlayerView.fxml
 	@FXML
@@ -68,6 +69,7 @@ public class PlayerView {
 			playerStage.setScene(playerScene);
 			playerStage.setX(905);
 			playerStage.setY(50);
+			canvasColor = Color.WHITE;
 		}
 		catch(IOException ioe) {
 			System.out.println("Failed to load PlayerView");
@@ -91,6 +93,9 @@ public class PlayerView {
 		this.gameCanvas = c;
 	}
 	
+	public void setCanvasColor(Color c) {
+		this.canvasColor = c;
+	}
 	public Canvas getGameCanvas() {
 		return this.gameCanvas;
 	}
@@ -187,7 +192,7 @@ public class PlayerView {
 			
 			public void clearCanvas()
 			{
-				gameCanvas.getGraphicsContext2D().setFill(Color.WHITE);
+				gameCanvas.getGraphicsContext2D().setFill(canvasColor);
 				gameCanvas.getGraphicsContext2D().fillRect(0, 0, gameCanvas.getWidth(), gameCanvas.getHeight());
 			}
 			
@@ -196,7 +201,7 @@ public class PlayerView {
 			public void canvasDragged(MouseEvent event) {
 				//TODO This is inefficient, but without a check for the new currently selected sprite it bugs out
 				if(!view.getPlaying()) {
-					canvasClicked(event);
+					//canvasClicked(event);
 					Sprite currentlySelectedSprite = view.getCurrentlySelectedSprite();
 					//Get the events x/y and set it to the sprite
 					double newX = event.getX() - (currentlySelectedSprite.getAppearance().getWidth() * .5);
