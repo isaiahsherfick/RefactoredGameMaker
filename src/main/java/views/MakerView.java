@@ -331,20 +331,16 @@ public class MakerView {
 		    // Requests the controller to add new sprite 
 		    public void createSpriteButtonClicked(ActionEvent event) 
 		    {
-		    	if(!view.getPlayingGame()) {
 		    		view.getController().createSprite();
 		    	 	view.setCurrentlySelectedSprite(view.getController().getSpriteList().get(view.getController().getSpriteList().size() - 1));
 		    	 	setPanesForCurrentlySelectedSprite();
-		    	}
 		    }
 
 		    @FXML
 		    public void duplicateSpriteButtonClicked(ActionEvent event) {
-		    	if(!view.getPlayingGame()) {
 		    		view.getController().duplicateSprite(view.getCurrentlySelectedSprite().copy());
 		    		view.setCurrentlySelectedSprite(view.getController().getSpriteList().get(view.getController().getSpriteList().size() - 1));
 		    		setPanesForCurrentlySelectedSprite();
-		    	}
 		    }
 		    
 		    @FXML
