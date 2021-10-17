@@ -84,6 +84,21 @@ public class Controller implements Observer
 		 return true;
 	 }
 	 
+	 //returns true on success
+	 //false on IOException (bad filepath)
+	 public boolean saveToFile(String filePath)
+	 {
+		 try 
+		 {
+			model.saveToFile(filePath);
+		 } 
+		 catch (IOException e) 
+		 {
+			 return false;
+		 }
+		 return true;
+	 }
+	 
 	 public ArrayList<Sprite> getSpriteList()
 	 {
 		 return model.getSpriteList();
@@ -160,6 +175,28 @@ public class Controller implements Observer
 		try
 		{
 			model.load();
+			return Constants.LOAD_SUCCESS;
+		}
+		catch(IOException e)
+		{
+			return Constants.LOAD_BADFILE;
+		}
+		catch(ParseException e)
+		{
+			return Constants.LOAD_BADJSON;
+		}
+
+	}
+
+	//Returns constants depending on success
+	// 0 for success
+	// 1 for IOError (bad filepath)
+	// 2 for ParseError (corrupted JSON)
+	public int loadFromFile(String filePath) 
+	{
+		try
+		{
+			model.loadFromFile(filePath);
 			return Constants.LOAD_SUCCESS;
 		}
 		catch(IOException e)
