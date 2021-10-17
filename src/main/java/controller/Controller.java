@@ -94,6 +94,7 @@ public class Controller implements Observer
 		 } 
 		 catch (IOException e) 
 		 {
+			 System.out.println(e);
 			 return false;
 		 }
 		 return true;

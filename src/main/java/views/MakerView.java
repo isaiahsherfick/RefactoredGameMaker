@@ -12,7 +12,6 @@ import behaviors.collision.CollisionBehavior;
 import behaviors.collision.CustomCollisionPair;
 import behaviors.collision.DestroyCollisionBehavior;
 import behaviors.collision.DoNothingCollisionBehavior;
-import behaviors.event.DoNothingBehavior;
 import behaviors.event.EventBehavior;
 import behaviors.event.EventBehaviorChain;
 import behaviors.event.MoveOnGameTickBehavior;

@@ -1,6 +1,7 @@
 //@Author Christian Dummer
 package views;
 
+import java.io.File;
 import java.io.IOException;
 
 import javafx.application.Platform;
@@ -13,6 +14,8 @@ import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
+import javafx.stage.FileChooser;
+import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.Stage;
 import sprite.Sprite;
 import javafx.stage.WindowEvent;
@@ -133,13 +136,19 @@ public class PlayerView {
 			// Event Listener on Button[#saveButton].onAction
 			@FXML
 			public void saveButtonClicked(ActionEvent event) {
-				view.getController().save();
+					view.getController().save();
+					/*FileChooser fileChooser = new FileChooser();
+					fileChooser.getExtensionFilters().add(new ExtensionFilter("Save Files", "*.json"));
+					File file = fileChooser.showSaveDialog(view.getMakerView().getStage());
+					System.out.println("Filepath: " + file.toURI().toString());
+					System.out.println(view.getController().saveToFile(file.toURI().toString()));*/
 			}
 			// Event Listener on Button[#loadButton].onAction
 			@FXML
 			public void loadButtonClicked(ActionEvent event) {
-				view.getController().load();
-				view.setCurrentlySelectedSprite(view.getController().getSpriteList().get(view.getController().getSpriteList().size() - 1));
+				FileChooser fileChooser = new FileChooser();
+				File file = fileChooser.showOpenDialog(view.getMakerView().getStage());
+				view.getController().loadFromFile(file.toURI().toString().substring(6));
 			}
 			
 			//On the canvas clicked, check to see if the click intersects with a sprite's hitbox, and if so make it the currently
