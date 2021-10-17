@@ -3,6 +3,7 @@ package views;
 
 import java.io.IOException;
 
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -14,6 +15,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import sprite.Sprite;
+import javafx.stage.WindowEvent;
 
 public class PlayerView {
 
@@ -37,6 +39,11 @@ public class PlayerView {
 			view = v;
 			//Loads and shows the playerView
 			playerStage = new Stage();
+			playerStage.setOnCloseRequest( (WindowEvent event1) ->
+			{
+				Platform.exit();
+				System.exit(0);
+			});
 			playerStage.setTitle("Player View");
 			FXMLLoader playerWindowLoader = new FXMLLoader();
 			playerWindowLoader.setLocation(View.class.getResource("PlayerView.fxml"));
