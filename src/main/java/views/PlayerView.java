@@ -62,7 +62,6 @@ public class PlayerView {
 			{
 				@Override public void handle(KeyEvent k)
 				{
-					System.out.println("DHSAJKDSHAKLDAS");
 					view.getController().onKeyPress(k);
 				}
 			});

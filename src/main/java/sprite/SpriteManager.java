@@ -33,12 +33,11 @@ public class SpriteManager
 		{
 			return Constants.NULL_SPRITE_ID;
 		}
-		
 		currentHighestSpriteId++;
 		sprite.setSpriteId(currentHighestSpriteId);
 		currentHighestSpriteId = sprite.getSpriteId();
 		spriteMap.put(sprite.getSpriteId(), sprite);
-		size++;
+		size++;	
 		return sprite.getSpriteId();
 	}
 	
