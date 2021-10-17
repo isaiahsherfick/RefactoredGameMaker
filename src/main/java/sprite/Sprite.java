@@ -54,7 +54,6 @@ public class Sprite implements Drawable, Saveable
 	@Override
 	public void draw(GraphicsContext g) 
 	{
-		if (visible)
 			appearance.draw(g);
 	}
 

@@ -87,7 +87,14 @@ public class View implements Observer
 	    	ArrayList<Sprite> allSprites = controller.getSpriteList();
 	    	for (Sprite s : allSprites)
 	    	{
-	    		s.draw(playerView.getGameCanvas().getGraphicsContext2D());
+	    		//If sprite is not visible, only make it disappear on game run
+	    		if(!s.isVisible() && !playing) {
+	    				s.draw(playerView.getGameCanvas().getGraphicsContext2D());
+	    		}
+	    		//Otherwise always draw if visible
+	    		else if(s.isVisible()) {
+	    			s.draw(playerView.getGameCanvas().getGraphicsContext2D());
+	    		}
 	    	}
 	    }
 	    
@@ -99,7 +106,14 @@ public class View implements Observer
 	    	for (Sprite s : allSprites)
 	    	{
 	    		if (s.getSpriteId() != spriteId)
-	    			s.draw(playerView.getGameCanvas().getGraphicsContext2D());
+	    			//If sprite is not visible, only make it disappear on game run
+	    			if(!s.isVisible() && !playing) {
+	    				s.draw(playerView.getGameCanvas().getGraphicsContext2D());
+	    			}
+	    			//Otherwise always draw if visible
+	    			else if(s.isVisible()) {
+	    				s.draw(playerView.getGameCanvas().getGraphicsContext2D());
+	    			}
 	    	}
 	    }
 	    

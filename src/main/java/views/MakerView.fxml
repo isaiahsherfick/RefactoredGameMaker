@@ -104,12 +104,12 @@
                               <Font size="26.0" />
                            </font>
                         </Text>
-                        <CheckBox fx:id="visibleCheckbox" layoutX="38.0" layoutY="583.0" mnemonicParsing="false" onAction="#visibleCheckboxClicked" text="Visible">
+                        <CheckBox fx:id="visibleCheckbox" layoutX="35.0" layoutY="584.0" mnemonicParsing="false" onAction="#visibleCheckboxClicked" text="Not Visible During Gameplay">
                            <font>
                               <Font size="30.0" />
                            </font>
                         </CheckBox>
-                        <CheckBox fx:id="disableCheckbox" layoutX="286.0" layoutY="583.0" mnemonicParsing="false" onAction="#disableCheckboxClicked" text="Disable">
+                        <CheckBox fx:id="disableCheckbox" layoutX="37.0" layoutY="650.0" mnemonicParsing="false" onAction="#disableCheckboxClicked" text="Disable">
                            <font>
                               <Font size="30.0" />
                            </font>
@@ -176,8 +176,8 @@
                                           <Button fx:id="addTimedBehaviorButton" layoutX="125.0" layoutY="500.0" mnemonicParsing="false" onAction="#addBehaviorButtonClicked" text="Add Behavior" />
                                           <Label layoutX="10.0" layoutY="100.0" text="Velocity X:" />
                                           <Label layoutX="10.0" layoutY="150.0" text="Velocity Y:" />
-                                          <TextField fx:id="velocityXInput" layoutX="100.0" layoutY="100.0" />
-                                          <TextField fx:id="velocityYInput" layoutX="100.0" layoutY="150.0" />
+                                          <TextField fx:id="velocityXInput" layoutX="100.0" layoutY="100.0" text="0" />
+                                          <TextField fx:id="velocityYInput" layoutX="100.0" layoutY="150.0" text="0" />
                                        </children>
                                     </AnchorPane>
                                  </children>
