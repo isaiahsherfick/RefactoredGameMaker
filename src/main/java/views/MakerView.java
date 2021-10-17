@@ -299,11 +299,12 @@ public class MakerView {
 			    			((MovementEventBehavior) toAdd).setYVelocity(Integer.parseInt(velocityYInput.getText()));
 			    		}
 			    		if(toAdd instanceof SpawnBehavior) {
-			    			toAdd = new SpawnBehavior(GameMaker.getModel());
+			    			int spriteID = Integer.parseInt(spriteIdSpawnInput.getText());
+			    			toAdd = new SpawnBehavior(GameMaker.getModel(), spriteID);
+
 			    			((SpawnBehavior) toAdd).setTimeInterval(Integer.parseInt(intervalInput.getText()));
-			    			((SpawnBehavior) toAdd).setBlueprintSprite(Integer.parseInt(spriteIdSpawnInput.getText()));
-			    			((SpawnBehavior) toAdd).setSpawnX((int)view.getCurrentlySelectedSprite().getX());
-			    			((SpawnBehavior) toAdd).setSpawnY((int)view.getCurrentlySelectedSprite().getY());
+			    		//	((SpawnBehavior) toAdd).setSpawnX((int)view.getController().getSprite(spriteID).getX());
+			    		//	((SpawnBehavior) toAdd).setSpawnY((int)view.getController().getSprite(spriteID).getY());
 			    			
 			    		}
 			    		view.getCurrentlySelectedSprite().addEventBehavior(toAdd);
