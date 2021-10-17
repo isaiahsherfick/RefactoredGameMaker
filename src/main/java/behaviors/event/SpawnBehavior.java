@@ -23,6 +23,10 @@ public class SpawnBehavior implements EventBehavior{
 		model = m;
 	}
 	
+	public SpawnBehavior() {
+		//Only for use in dropdown
+	}
+	
 	public Sprite getBlueprint()
 	{
 		if (blueprint == null)
