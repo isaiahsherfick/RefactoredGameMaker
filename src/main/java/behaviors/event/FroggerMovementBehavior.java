@@ -2,19 +2,22 @@ package behaviors.event;
 
 import org.json.simple.JSONObject;
 
+import input.KeyPolling;
 import javafx.scene.input.KeyCode;
 import sprite.Sprite;
 
 public class FroggerMovementBehavior implements EventBehavior{
-	KeyCode up = KeyCode.UP;
-	KeyCode down = KeyCode.DOWN;
-	KeyCode left = KeyCode.LEFT;
-	KeyCode right = KeyCode.RIGHT;
+	
+	public FroggerMovementBehavior() {
+		//Does nothing atm
+	}
 	
 	@Override
 	public JSONObject save() {
 		// TODO Auto-generated method stub
-		return null;
+		JSONObject json = new JSONObject();
+		json.put("type","FroggerMovementBehavior");
+		return json;
 	}
 
 	@Override
@@ -42,23 +45,33 @@ public class FroggerMovementBehavior implements EventBehavior{
 	}
 
 	@Override
-	public void onKeyPress(Sprite sprite, KeyCode keyCode) {
-		// TODO Auto-generated method stub
-		if(keyCode == up) {
-			sprite.setY(sprite.getY() + sprite.getHitBox().getHeight());
-		}
-		if (keyCode == left) {
-			sprite.setX(sprite.getX() - sprite.getHitBox().getWidth());
-		}
-		if (keyCode == right) {
-			sprite.setX(sprite.getX() + sprite.getHitBox().getWidth());
+	public void onKeyPress(Sprite sprite, KeyCode keyCode) 
+	{
+		switch (keyCode)
+		{
+			case W:
+				sprite.setY(sprite.getY() - sprite.getHitBox().getHeight());
+				break;
+			case UP:
+				sprite.setY(sprite.getY() - sprite.getHitBox().getHeight());
+				break;
+			case A:
+				sprite.setX(sprite.getX() - sprite.getHitBox().getWidth());
+				break;
+			case LEFT:
+				sprite.setX(sprite.getX() - sprite.getHitBox().getWidth());
+				break;
+			case D:
+				sprite.setX(sprite.getX() + sprite.getHitBox().getWidth());
+				break;
+			case RIGHT:
+				sprite.setX(sprite.getX() + sprite.getHitBox().getWidth());
+				break;
 		}
 	}
 
 	@Override
 	public void onGameTick(Sprite sprite) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
@@ -70,7 +83,17 @@ public class FroggerMovementBehavior implements EventBehavior{
 	@Override
 	public EventBehavior copy() {
 		// TODO Auto-generated method stub
-		return null;
+		return new FroggerMovementBehavior();
+	}
+	
+	public boolean equals(Object o)
+	{
+		if (o instanceof FroggerMovementBehavior)
+		{
+			FroggerMovementBehavior m = (FroggerMovementBehavior)o;
+			return true;
+		}
+		return false;
 	}
 	
 	public String toString() {

@@ -162,22 +162,26 @@
                                     </AnchorPane>
                                     <AnchorPane fx:id="timeBehaviorPane" disable="true" prefHeight="200.0" prefWidth="294.0" visible="false">
                                        <children>
+                                          <TextField fx:id="spriteIdSpawnInput" layoutX="100.0" layoutY="200.0" text="0" />
                                           <Text layoutX="14.0" layoutY="14.0" strokeType="OUTSIDE" strokeWidth="0.0" text="On Game Tick Behavior Properties" wrappingWidth="282.0">
                                              <font>
                                                 <Font size="18.0" />
                                              </font>
                                           </Text>
-                                          <Text layoutX="48.0" layoutY="215.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Select Action" textAlignment="CENTER" wrappingWidth="200.0">
+                                          <Text layoutX="48.0" layoutY="380.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Select Action" textAlignment="CENTER" wrappingWidth="200.0">
                                              <font>
                                                 <Font size="15.0" />
                                              </font>
                                           </Text>
-                                          <ComboBox fx:id="timeBehaviorActions" layoutX="73.0" layoutY="218.0" prefWidth="150.0" />
+                                          <ComboBox fx:id="timeBehaviorActions" layoutX="73.0" layoutY="400.0" prefWidth="150.0" />
                                           <Button fx:id="addTimedBehaviorButton" layoutX="125.0" layoutY="500.0" mnemonicParsing="false" onAction="#addBehaviorButtonClicked" text="Add Behavior" />
                                           <Label layoutX="10.0" layoutY="100.0" text="Velocity X:" />
                                           <Label layoutX="10.0" layoutY="150.0" text="Velocity Y:" />
                                           <TextField fx:id="velocityXInput" layoutX="100.0" layoutY="100.0" text="0" />
                                           <TextField fx:id="velocityYInput" layoutX="100.0" layoutY="150.0" text="0" />
+                                          <TextField fx:id="intervalInput" layoutX="100.0" layoutY="250.0" text="1" />
+                                          <Label layoutX="10.0" layoutY="200.0" text="Sprite Id(Spawn)" />
+                                          <Label layoutX="10.0" layoutY="250.0" text="Interval(Spawn)" />
                                        </children>
                                     </AnchorPane>
                                  </children>

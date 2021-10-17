@@ -18,6 +18,7 @@ import behaviors.event.EventBehaviorChain;
 import behaviors.event.FroggerMovementBehavior;
 import behaviors.event.MoveOnGameTickBehavior;
 import behaviors.event.MovementEventBehavior;
+import behaviors.event.PacManEventBehaviours;
 import behaviors.event.SpawnBehavior;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -39,6 +40,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import main.GameMaker;
 import saveandload.SaveableEllipse;
 import saveandload.SaveableRectangle;
 import saveandload.SaveableShape;
@@ -127,7 +129,9 @@ public class MakerView {
      	timeBehaviorActions.getItems().add(new MoveOnGameTickBehavior());
      	timeBehaviorActions.getItems().add(new SpawnBehavior());
      	
+     	
      	keyBehaviorAction.getItems().add(new FroggerMovementBehavior());
+     	keyBehaviorAction.getItems().add(new PacManEventBehaviours());
 		
 		collisionBehaviorAction.getItems().add(new BounceCollisionBehaviorX());
 		collisionBehaviorAction.getItems().add(new BounceCollisionBehaviorY());
@@ -218,10 +222,18 @@ public class MakerView {
 		    private TextField velocityYInput;
 		    
 		    @FXML
+		    private TextField intervalInput;
+		    
+		    @FXML
+		    private TextField spriteIdSpawnInput;
+		    
+		    @FXML
 		    private ComboBox<EventBehavior> timeBehaviorActions;
 		    
 		    @FXML
 		    private Button addTimedBehaviorButton;
+		    
+		   
 		    
 		    //Fields for the mouse behavior pane
 		    @FXML
@@ -276,6 +288,7 @@ public class MakerView {
 			    	}
 			    	else if(event.getSource().equals(addKeyBehaviorButton)) {
 			    		view.getCurrentlySelectedSprite().addEventBehavior(keyBehaviorAction.getValue());
+			    		view.modifySpriteCommand();
 			    		setPanesForCurrentlySelectedSprite();
 			    	}
 			    	else if(event.getSource().equals(addTimedBehaviorButton)) {
@@ -284,6 +297,15 @@ public class MakerView {
 			    		if(toAdd instanceof MovementEventBehavior) {
 			    			((MovementEventBehavior) toAdd).setXVelocity(Integer.parseInt(velocityXInput.getText()));
 			    			((MovementEventBehavior) toAdd).setYVelocity(Integer.parseInt(velocityYInput.getText()));
+			    		}
+			    		if(toAdd instanceof SpawnBehavior) {
+			    			int spriteID = Integer.parseInt(spriteIdSpawnInput.getText());
+			    			toAdd = new SpawnBehavior(GameMaker.getModel(), spriteID);
+
+			    			((SpawnBehavior) toAdd).setTimeInterval(Integer.parseInt(intervalInput.getText()));
+			    		//	((SpawnBehavior) toAdd).setSpawnX((int)view.getController().getSprite(spriteID).getX());
+			    		//	((SpawnBehavior) toAdd).setSpawnY((int)view.getController().getSprite(spriteID).getY());
+			    			
 			    		}
 			    		view.getCurrentlySelectedSprite().addEventBehavior(toAdd);
 			    		view.modifySpriteCommand();
@@ -470,14 +492,14 @@ public class MakerView {
 		    
 		    public void heightSliderChanged() {
 		    	boolean modifyNeeded = !(view.getCurrentlySelectedSprite().getAppearance().getHeight() == spriteHeightSlider.getValue());
-		    	view.getCurrentlySelectedSprite().getAppearance().setHeight(spriteHeightSlider.getValue());
+		    	view.getCurrentlySelectedSprite().setHeight(spriteHeightSlider.getValue());
 		    	if (modifyNeeded)
 		    		view.modifySpriteCommand();
 		    }
 		    
 		    public void widthSliderChanged() {
 		    	boolean modifyNeeded = !(view.getCurrentlySelectedSprite().getAppearance().getWidth() == spriteWidthSlider.getValue());
-		    	view.getCurrentlySelectedSprite().getAppearance().setWidth(spriteWidthSlider.getValue());
+		    	view.getCurrentlySelectedSprite().setWidth(spriteWidthSlider.getValue());
 		    	if (modifyNeeded)
 		    		view.modifySpriteCommand();
 		    }

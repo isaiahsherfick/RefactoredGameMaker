@@ -5,16 +5,15 @@ import org.json.simple.JSONObject;
 import constants.Constants;
 import javafx.scene.input.KeyCode;
 import model.Model;
-import sprite.NullSprite;
 import sprite.Sprite;
 
 public class SpawnBehavior implements EventBehavior{
 	
 	private int timeInterval;
-	private int totalTime = 0;
+	private double totalTime = 0;
 	private int spawnX = 0;
 	private int spawnY = 0;
-	private Sprite blueprint;
+	private Sprite blueprint = new Sprite(); //default sprite
 	
 	private Model model;
 	
@@ -29,8 +28,6 @@ public class SpawnBehavior implements EventBehavior{
 	
 	public Sprite getBlueprint()
 	{
-		if (blueprint == null)
-			return new NullSprite();
 		return blueprint;
 	}
 	
@@ -38,6 +35,8 @@ public class SpawnBehavior implements EventBehavior{
 		timeInterval = Constants.DEFAULT_SPAWN_TIME_INTERVAL;
 		model = m;
 		blueprint = model.getSprite(blueprintSpriteId);
+		spawnX = (int)blueprint.getX();
+		spawnY = (int)blueprint.getY();
 	}
 	
 	public SpawnBehavior(int timeInterval, int spawnX, int spawnY, Sprite blueprint, Model m)
@@ -132,8 +131,8 @@ public class SpawnBehavior implements EventBehavior{
 
 	@Override
 	public void onGameTick(Sprite sprite) {
-		if(onTimeElapsed(totalTime,Constants.MS_BETWEEN_TICKS,timeInterval)) {
-			Sprite copySprite = sprite.copy();
+		if(onTimeElapsed(Constants.MS_BETWEEN_TICKS,timeInterval)) {
+			Sprite copySprite = blueprint.copy();
 			copySprite.setX(spawnX);
 			copySprite.setY(spawnY);
 			model.addSprite(copySprite);
@@ -147,7 +146,29 @@ public class SpawnBehavior implements EventBehavior{
 		if (o instanceof SpawnBehavior)
 		{
 			SpawnBehavior s = (SpawnBehavior)o;
-			return s.getSpawnX() == spawnX && s.getSpawnY() == spawnY && timeInterval == s.getTimeInterval() && s.getBlueprint().equals(blueprint);
+			boolean xEquals = spawnX == s.getSpawnX();
+			if (!xEquals)
+			{
+//				System.out.println("Xs don't equal");
+			}
+			boolean yEquals = spawnY == s.getSpawnY();
+			if (!yEquals)
+			{
+//				System.out.println("Ys don't equal");
+			}
+			boolean intervalEquals = timeInterval == s.getTimeInterval();
+			if (!intervalEquals)
+			{
+//				System.out.println("Intervals don't equal");
+			}
+			boolean spritesEqual = s.getBlueprint().equals(blueprint);
+			if (!spritesEqual)
+			{
+//				System.out.println("Sprites don't equal");
+//				System.out.println(blueprint);
+//				System.out.println(s.getBlueprint());
+			}
+			return xEquals && yEquals && intervalEquals && spritesEqual;
 		}
 		return false;
 	}
@@ -170,7 +191,7 @@ public class SpawnBehavior implements EventBehavior{
 		this.timeInterval = timeInterval;
 	}
 	
-	private boolean onTimeElapsed(double totalTime, double dt, int timeInterval) {
+	private boolean onTimeElapsed(double dt, int timeInterval) {
 		totalTime = totalTime + dt;
 		if((totalTime) > timeInterval) {
 			totalTime = 0;

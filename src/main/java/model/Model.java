@@ -35,7 +35,7 @@ public class Model
 	//Adds a sprite to the sprite manager, returns its assigned spriteId
 	public int addSprite(Sprite sprite)
 	{
-		int returnVal =  spriteManager.add(sprite);
+		int returnVal =  spriteManager.addCopy(sprite);
 		notifyObservers();
 		return returnVal;
 	}
@@ -217,5 +217,13 @@ public class Model
 	public SpriteManager getSpriteManager() 
 	{
 		return spriteManager;
+	}
+	public void onGameTick() 
+	{
+		ArrayList<Sprite> spriteList = spriteManager.getDirectReferenceSpriteList();
+		for (Sprite s : spriteList)
+		{
+			s.onGameTick();
+		}
 	}
 }

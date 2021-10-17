@@ -181,6 +181,11 @@ public class Sprite implements Drawable, Saveable
 	@Override
 	public void load(JSONObject saveJSON) 
 	{
+		boolean nullSprite = ((String)saveJSON.get("type")).equals("NullSprite");
+		if (nullSprite)
+		{
+			return;
+		}
 		hitBox = new HitBox();
 		hitBox.load((JSONObject)saveJSON.get("hitBox"));
 		appearance = new Appearance();
@@ -316,7 +321,7 @@ public class Sprite implements Drawable, Saveable
 	
 	public void  setYVelocity(int yVelocity)
 	{
-		eventBehaviorChain.setXVelocity( yVelocity);
+		eventBehaviorChain.setYVelocity( yVelocity);
 	}
 
 	public void flipBothVelocities() 

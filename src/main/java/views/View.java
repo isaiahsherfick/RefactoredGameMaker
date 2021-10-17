@@ -3,6 +3,7 @@ package views;
 
 import java.util.ArrayList;
 import controller.Controller;
+import input.KeyPolling;
 import javafx.application.Platform;
 import javafx.scene.canvas.Canvas;
 import javafx.stage.Stage;
