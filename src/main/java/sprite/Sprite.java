@@ -290,6 +290,15 @@ public class Sprite implements Drawable, Saveable
 	{
 		return eventBehaviorChain.getMaxYVelocity();
 	}
+	public void  setXVelocity(int xVelocity)
+	{
+		eventBehaviorChain.setXVelocity( xVelocity);
+	}
+	
+	public void  setYVelocity(int yVelocity)
+	{
+		eventBehaviorChain.setXVelocity( yVelocity);
+	}
 
 	public void flipBothVelocities() 
 	{
@@ -307,4 +316,45 @@ public class Sprite implements Drawable, Saveable
 	{
 		return customCollisionMap.getCustomCollisionPairs();
 	}
+
+
+	/**
+	 * The following method tries all possible direction for the sprite object to move when it impacts another sprite 
+	 * Ex: Ghost sprite in pac man must change course whenever it comes across a wall
+	 */
+	public void changeDirection() 
+	{
+		int xVelocity=this.getXVelocity();
+		int yVelocity=this.getYVelocity();
+		
+	
+		if(xVelocity==0 && yVelocity>0)// sprite moving down 
+		{
+			xVelocity=yVelocity;//make sprite move right
+			yVelocity=0;
+		}
+		else if(xVelocity==0 && yVelocity<0)// sprite moving up 
+		{
+			xVelocity=yVelocity; // make sprite move left
+			yVelocity=0;
+		} 
+		else if(yVelocity==0 && xVelocity>0)// sprite moving right
+		{
+			yVelocity=-(xVelocity);// sprite moving up
+			xVelocity=0;
+		}
+		else if((yVelocity==0 && xVelocity<0))// sprite moving left
+		{
+			yVelocity=-(xVelocity);// sprite will move down
+			xVelocity=0;
+		}
+		
+		this.setXVelocity(xVelocity);
+		this.setYVelocity(yVelocity);
+			
+	}
+		
 }
+	
+	
+	

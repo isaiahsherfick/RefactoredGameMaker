@@ -1,16 +1,13 @@
-package strategies;
+package behaviors.event;
 
 import org.json.simple.JSONObject;
 
-import behaviors.event.EventBehavior;
-import behaviors.event.MoveOnGameTickBehavior;
-import behaviors.event.MovementEventBehavior;
 import constants.Constants;
 import javafx.scene.input.KeyCode;
 
 import sprite.Sprite;
 
-public class PacManStartegy implements EventBehavior {
+public class PacManEventBehaviours implements EventBehavior {
 	 private KeyCode keyCode = KeyCode.UP;
 	 private MovementEventBehavior movement=new MoveOnGameTickBehavior();
 	 public KeyCode getKeyCode()
