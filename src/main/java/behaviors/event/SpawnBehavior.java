@@ -131,7 +131,7 @@ public class SpawnBehavior implements EventBehavior{
 	public void onGameTick(Sprite sprite) {
 		if(onTimeElapsed(Constants.MS_BETWEEN_TICKS,timeInterval)) {
 			System.out.println("Making a copy!");
-			Sprite copySprite = sprite.copy();
+			Sprite copySprite = blueprint.copy();
 			copySprite.setX(spawnX);
 			copySprite.setY(spawnY);
 			model.addSprite(copySprite);
