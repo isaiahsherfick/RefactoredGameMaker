@@ -34,7 +34,7 @@ final public class KeyPolling {
 		}
 	}
 
-	private void setScene(Scene scene) {
+	public void setScene(Scene scene) {
 		KeyPolling.scene = scene;
 
 		KeyPolling.scene.setOnKeyPressed((keyEvent -> {

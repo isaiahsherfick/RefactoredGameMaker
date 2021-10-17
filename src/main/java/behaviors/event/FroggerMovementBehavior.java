@@ -45,23 +45,33 @@ public class FroggerMovementBehavior implements EventBehavior{
 	}
 
 	@Override
-	public void onKeyPress(Sprite sprite, KeyCode keyCode) {
-		// TODO Auto-generated method stub
-		
+	public void onKeyPress(Sprite sprite, KeyCode keyCode) 
+	{
+		switch (keyCode)
+		{
+			case W:
+				sprite.setY(sprite.getY() - sprite.getHitBox().getHeight());
+				break;
+			case UP:
+				sprite.setY(sprite.getY() - sprite.getHitBox().getHeight());
+				break;
+			case A:
+				sprite.setX(sprite.getX() - sprite.getHitBox().getWidth());
+				break;
+			case LEFT:
+				sprite.setX(sprite.getX() - sprite.getHitBox().getWidth());
+				break;
+			case D:
+				sprite.setX(sprite.getX() + sprite.getHitBox().getWidth());
+				break;
+			case RIGHT:
+				sprite.setX(sprite.getX() + sprite.getHitBox().getWidth());
+				break;
+		}
 	}
 
 	@Override
 	public void onGameTick(Sprite sprite) {
-		// TODO Auto-generated method stub
-		if(KeyPolling.shared.isDown(KeyCode.W) || KeyPolling.shared.isDown(KeyCode.UP)) {
-			sprite.setY(sprite.getY() - sprite.getHitBox().getHeight());
-		}
-		if (KeyPolling.shared.isDown(KeyCode.A)  || KeyPolling.shared.isDown(KeyCode.LEFT)) {
-			sprite.setX(sprite.getX() - sprite.getHitBox().getWidth());
-		}
-		if (KeyPolling.shared.isDown(KeyCode.D)  || KeyPolling.shared.isDown(KeyCode.RIGHT)) {
-			sprite.setX(sprite.getX() + sprite.getHitBox().getWidth());
-		}
 	}
 
 	@Override
