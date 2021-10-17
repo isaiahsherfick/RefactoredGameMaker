@@ -17,6 +17,7 @@ public class DuplicateSpriteCommand implements Command
 {
 	private Model model;
 	private Sprite toDuplicate;
+	private int spriteId;
 	
 	public DuplicateSpriteCommand(Model m, Sprite spriteToDuplicate)
 	{
@@ -32,7 +33,7 @@ public class DuplicateSpriteCommand implements Command
 	public void execute() 
 	{
 		//adds a duplicate sprite to the model and updates the spriteId in the ModifySpriteCommand with new ID.
-		toDuplicate.setSpriteId(model.addSprite(toDuplicate));
+		spriteId = model.addSprite(toDuplicate);
 	}
 
 	@Override
@@ -40,7 +41,7 @@ public class DuplicateSpriteCommand implements Command
 	public void unexecute() 
 	{
 		//remove the sprite at spriteId
-		model.removeSprite(toDuplicate.getSpriteId());
+		model.removeSprite(spriteId);
 	}
 
 }
