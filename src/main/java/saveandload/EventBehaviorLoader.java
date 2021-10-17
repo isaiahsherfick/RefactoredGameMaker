@@ -6,9 +6,13 @@ import behaviors.collision.DestroyCollisionBehavior;
 import behaviors.event.DoNothingBehavior;
 import behaviors.event.EventBehavior;
 import behaviors.event.MoveOnGameTickBehavior;
+import behaviors.event.SpawnBehavior;
+import main.GameMaker;
+import model.Model;
 
 public class EventBehaviorLoader 
 {
+	private static final Model model = GameMaker.getModel();
 	public static EventBehavior load(JSONObject json)
 	{
 		String type = (String)json.get("type");
@@ -21,6 +25,10 @@ public class EventBehaviorLoader
 				MoveOnGameTickBehavior moveOnGameTickBehavior = new MoveOnGameTickBehavior();
 				moveOnGameTickBehavior.load(json);
 				return moveOnGameTickBehavior;
+			case "SpawnBehavior":
+				SpawnBehavior s = new SpawnBehavior(model);
+				s.load(json);
+				return s;
 			default:
 				System.out.println("BehaviorLoader was given something it doesn't have a case for: " + type);
 				return new DoNothingBehavior();
