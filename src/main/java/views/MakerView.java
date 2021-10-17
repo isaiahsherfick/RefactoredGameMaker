@@ -378,8 +378,10 @@ public class MakerView {
 
 		    @FXML
 		    public void spriteColorSelected(ActionEvent event) {
+		    	boolean modifyNeeded = !(view.getCurrentlySelectedSprite().getAppearance().getColor().equals(spriteColorPicker.getValue()));
 		    	view.getCurrentlySelectedSprite().getAppearance().setColor(spriteColorPicker.getValue());
-		    	view.modifySpriteCommand();
+		    	if (modifyNeeded)
+		    		view.modifySpriteCommand();
 		    }
 
 		    
@@ -414,25 +416,37 @@ public class MakerView {
 
 		    
 		    public void heightSliderChanged() {
+		    	boolean modifyNeeded = !(view.getCurrentlySelectedSprite().getAppearance().getHeight() == spriteHeightSlider.getValue());
 		    	view.getCurrentlySelectedSprite().setHeight(spriteHeightSlider.getValue());
-		    	view.modifySpriteCommand();
+		    	if (modifyNeeded)
+		    		view.modifySpriteCommand();
 		    }
 		    
 		    public void widthSliderChanged() {
+		    	boolean modifyNeeded = !(view.getCurrentlySelectedSprite().getAppearance().getWidth() == spriteWidthSlider.getValue());
 		    	view.getCurrentlySelectedSprite().setWidth(spriteWidthSlider.getValue());
-		    	view.modifySpriteCommand();
+		    	if (modifyNeeded)
+		    		view.modifySpriteCommand();
 		    }
 		    
 		    public void hitboxWidthSliderChanged() {
+		    	boolean modifyNeeded = !(view.getCurrentlySelectedSprite().getHitBox().getWidth() == hitboxWidthSlider.getValue());
 		    	view.getCurrentlySelectedSprite().getHitBox().setWidth(hitboxWidthSlider.getValue());
-		    	view.modifySpriteCommand();
-		    	showHitbox();
+		    	if (modifyNeeded)
+		    	{
+		    		view.modifySpriteCommand();
+		    		showHitbox();
+		    	}
 		    }
 		    
 		    public void hitboxHeightSliderChanged() {
+		    	boolean modifyNeeded = !(view.getCurrentlySelectedSprite().getHitBox().getHeight() == hitboxHeightSlider.getValue());
 		    	view.getCurrentlySelectedSprite().getHitBox().setHeight(hitboxHeightSlider.getValue());
-		    	view.modifySpriteCommand();
-		    	showHitbox();
+		    	if (modifyNeeded)
+		    	{
+		    		view.modifySpriteCommand();
+		    		showHitbox();
+		    	}
 		    }
 		    
 		    public void showHitbox() {

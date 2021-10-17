@@ -3,11 +3,13 @@ package views;
 
 import java.util.ArrayList;
 import controller.Controller;
+import javafx.application.Platform;
 import javafx.scene.canvas.Canvas;
 import javafx.stage.Stage;
 import sprite.NullSprite;
 import sprite.Sprite;
 import javafx.scene.paint.Color;
+import javafx.stage.WindowEvent;
 
 public class View implements Observer
 {
@@ -18,6 +20,11 @@ public class View implements Observer
 
 		//Displays both views, called by Main.java when program is launched.
 		public View(Stage primaryStage) {
+			primaryStage.setOnCloseRequest( (WindowEvent event1) ->
+			{
+				Platform.exit();
+				System.exit(0);
+			});
 			this.makerView = new MakerView(primaryStage, this);
 			this.playerView = new PlayerView(this);
 			//By default a null sprite
@@ -67,15 +74,26 @@ public class View implements Observer
 	    
 	    public void drawAll()
 	    {
-	    	Canvas gameCanvas = playerView.getGameCanvas();
-	    	gameCanvas.getGraphicsContext2D().setFill(Color.WHITE);
-	    	gameCanvas.getGraphicsContext2D().fillRect(0, 0, gameCanvas.getWidth(), gameCanvas.getHeight());
+	    	playerView.clearCanvas();
 	    	ArrayList<Sprite> allSprites = controller.getSpriteList();
 	    	for (Sprite s : allSprites)
 	    	{
-	    		s.draw(gameCanvas.getGraphicsContext2D());
+	    		s.draw(playerView.getGameCanvas().getGraphicsContext2D());
 	    	}
 	    }
+	    
+	    //Used for dragging currentlySelectedSprite
+	    public void drawAllExcept(int spriteId)
+	    {
+	    	playerView.clearCanvas();
+	    	ArrayList<Sprite> allSprites = controller.getSpriteList();
+	    	for (Sprite s : allSprites)
+	    	{
+	    		if (s.getSpriteId() != spriteId)
+	    			s.draw(playerView.getGameCanvas().getGraphicsContext2D());
+	    	}
+	    }
+	    
 	    
 		@Override
 		public void update() 
