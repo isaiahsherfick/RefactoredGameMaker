@@ -3,6 +3,7 @@ package saveandload;
 import org.json.simple.JSONObject;
 
 import behaviors.collision.DestroyCollisionBehavior;
+import behaviors.event.ChangeDirectionBehavior;
 import behaviors.event.DoNothingBehavior;
 import behaviors.event.EventBehavior;
 import behaviors.event.FroggerMovementBehavior;
@@ -39,6 +40,8 @@ public class EventBehaviorLoader
 				PacManEventBehaviours p = new PacManEventBehaviours();
 				p.load(json);
 				return p;
+			case "ChangeDirectionBehavior":
+				return new ChangeDirectionBehavior();
 			default:
 				System.out.println("BehaviorLoader was given something it doesn't have a case for: " + type);
 				return new DoNothingBehavior();
