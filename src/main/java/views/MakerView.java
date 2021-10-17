@@ -397,6 +397,7 @@ public class MakerView {
 		    		File file = fileChooser.showOpenDialog(makerStage);
 					if (file != null) {
 						view.getCurrentlySelectedSprite().getAppearance().setImage(file.toURI().toString());
+						System.out.println(file.toURI().toString());
 						view.modifySpriteCommand();
 					}
 		    	}
