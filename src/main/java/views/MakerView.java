@@ -112,12 +112,14 @@ public class MakerView {
 		spriteBehaviorTypeDropdown.getItems().add("On Key Press Behavior");
 		spriteBehaviorTypeDropdown.getItems().add("On Game Tick Behavior");
 		
+		//TODO add behaviors as they are created to proper views
      	timeBehaviorActions.getItems().add(new MoveOnGameTickBehavior());
 		
 		collisionBehaviorAction.getItems().add(new BounceCollisionBehaviorX());
 		collisionBehaviorAction.getItems().add(new BounceCollisionBehaviorXY());
 		collisionBehaviorAction.getItems().add(new BounceCollisionBehaviorY());
 		collisionBehaviorAction.getItems().add(new DestroyCollisionBehavior());
+		
 	}
 	
 	public void showMaker()
@@ -212,7 +214,7 @@ public class MakerView {
 		    private AnchorPane mouseBehaviorPane;
 		    
 		    @FXML
-		    private ChoiceBox<EventBehavior> clickBehaviorAction;
+		    private ComboBox<EventBehavior> clickBehaviorAction;
 		    
 		    @FXML
 		    private Button addClickBehaviorButton;
@@ -222,10 +224,7 @@ public class MakerView {
 		    private AnchorPane keyBehaviorPane;
 		    
 		    @FXML
-		    private ChoiceBox<?> keyBehaviorAction;
-
-		    @FXML
-		    private Text keyBehaviorKeyInput;
+		    private ComboBox<EventBehavior> keyBehaviorAction;
 		    
 		    @FXML
 		    private Button addKeyBehaviorButton;
@@ -267,13 +266,12 @@ public class MakerView {
 		    public void addBehaviorButtonClicked(ActionEvent event) {
 		    	try {
 			    	if(event.getSource().equals(addClickBehaviorButton)) {
-			    		//TODO
-			    		System.out.println("Click behavior clicked");
+			    		view.getCurrentlySelectedSprite().addEventBehavior(clickBehaviorAction.getValue());
+			    		setPanesForCurrentlySelectedSprite();
 			    	}
 			    	else if(event.getSource().equals(addKeyBehaviorButton)) {
-			    		//TODO
-		
-			    		System.out.println("Key behavior clicked");
+			    		view.getCurrentlySelectedSprite().addEventBehavior(keyBehaviorAction.getValue());
+			    		setPanesForCurrentlySelectedSprite();
 			    	}
 			    	else if(event.getSource().equals(addTimedBehaviorButton)) {
 			    		//TODO
@@ -356,11 +354,6 @@ public class MakerView {
 		    }
 
 		    @FXML
-		    public void removeGamePropertyButtonClicked(ActionEvent event) {
-		    	//TODO
-		    }
-
-		    @FXML
 		    public void spriteAppearanceSelected(ActionEvent event) {
 		    	if(event.getSource().equals(spriteShapeDropdown)) {
 		    		view.getCurrentlySelectedSprite().getAppearance().setShape(spriteShapeDropdown.getValue());
@@ -382,6 +375,8 @@ public class MakerView {
 		    	view.modifySpriteCommand();
 		    }
 
+		    
+		    //Controls for game properties
 		    
 		    @FXML 
 		    public void backgroundColorPicked(ActionEvent event){
