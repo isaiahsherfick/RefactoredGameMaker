@@ -1,3 +1,4 @@
+//@Author Christian Dummer
 package views;
 
 import java.io.File;
@@ -27,8 +28,10 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Slider;
+import javafx.scene.control.TabPane;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -71,6 +74,10 @@ public class MakerView {
 		return this.makerStage;
 	}
 	
+	public TabPane getTabPane() {
+		return this.tabPane;
+	}
+	
 	public void initializeUIElements() {
 		
 		//Initializes slider layouts since there is no ChangeListener in fxml
@@ -111,12 +118,14 @@ public class MakerView {
 		spriteBehaviorTypeDropdown.getItems().add("On Key Press Behavior");
 		spriteBehaviorTypeDropdown.getItems().add("On Game Tick Behavior");
 		
+		//TODO add behaviors as they are created to proper views
      	timeBehaviorActions.getItems().add(new MoveOnGameTickBehavior());
 		
 		collisionBehaviorAction.getItems().add(new BounceCollisionBehaviorX());
 		collisionBehaviorAction.getItems().add(new BounceCollisionBehaviorXY());
 		collisionBehaviorAction.getItems().add(new BounceCollisionBehaviorY());
 		collisionBehaviorAction.getItems().add(new DestroyCollisionBehavior());
+		
 	}
 	
 	public void showMaker()
@@ -129,7 +138,8 @@ public class MakerView {
 			//Root Anchor Pane
 		    @FXML
 		    private AnchorPane makerPane;
-		 
+		    @FXML
+		    private TabPane tabPane;
 		    //Sprite Behavior tab fields
 
 		    @FXML
@@ -211,7 +221,7 @@ public class MakerView {
 		    private AnchorPane mouseBehaviorPane;
 		    
 		    @FXML
-		    private ChoiceBox<EventBehavior> clickBehaviorAction;
+		    private ComboBox<EventBehavior> clickBehaviorAction;
 		    
 		    @FXML
 		    private Button addClickBehaviorButton;
@@ -221,10 +231,7 @@ public class MakerView {
 		    private AnchorPane keyBehaviorPane;
 		    
 		    @FXML
-		    private ChoiceBox<?> keyBehaviorAction;
-
-		    @FXML
-		    private Text keyBehaviorKeyInput;
+		    private ComboBox<EventBehavior> keyBehaviorAction;
 		    
 		    @FXML
 		    private Button addKeyBehaviorButton;
@@ -242,9 +249,9 @@ public class MakerView {
 		    //Fields for the Game Properties tab
 
 		    @FXML
-		    private Button addGamePropertyButton;
+		    private Button imageBackgroundButton;
 		    @FXML
-		    private Button removeGamePropertyButton;
+		    private ColorPicker backgroundColorPicker;
 		    @FXML
 		    private CheckBox usesLevelsCheckbox;
 		    @FXML 
@@ -266,13 +273,12 @@ public class MakerView {
 		    public void addBehaviorButtonClicked(ActionEvent event) {
 		    	try {
 			    	if(event.getSource().equals(addClickBehaviorButton)) {
-			    		//TODO
-			    		System.out.println("Click behavior clicked");
+			    		view.getCurrentlySelectedSprite().addEventBehavior(clickBehaviorAction.getValue());
+			    		setPanesForCurrentlySelectedSprite();
 			    	}
 			    	else if(event.getSource().equals(addKeyBehaviorButton)) {
-			    		//TODO
-		
-			    		System.out.println("Key behavior clicked");
+			    		view.getCurrentlySelectedSprite().addEventBehavior(keyBehaviorAction.getValue());
+			    		setPanesForCurrentlySelectedSprite();
 			    	}
 			    	else if(event.getSource().equals(addTimedBehaviorButton)) {
 			    		//TODO
@@ -331,17 +337,6 @@ public class MakerView {
 		    	}
 		    	collisionBehaviorList.setContent(collisions);
 		    }
-		  
-		    
-		    @FXML
-		    public void addGamePropertyButtonClicked(ActionEvent event) {
-
-		    }
-
-		    @FXML
-		    public void backgroundOptionSelected(ActionEvent event) {
-
-		    }
 
 		    
 		    @FXML
@@ -349,17 +344,16 @@ public class MakerView {
 		    // Requests the controller to add new sprite 
 		    public void createSpriteButtonClicked(ActionEvent event) 
 		    {
-		    	 view.getController().createSprite();
-		    	 view.setCurrentlySelectedSprite(view.getController().getSpriteList().get(view.getController().getSpriteList().size() - 1));
-		    	 setPanesForCurrentlySelectedSprite();
+		    		view.getController().createSprite();
+		    	 	view.setCurrentlySelectedSprite(view.getController().getSpriteList().get(view.getController().getSpriteList().size() - 1));
+		    	 	setPanesForCurrentlySelectedSprite();
 		    }
 
 		    @FXML
 		    public void duplicateSpriteButtonClicked(ActionEvent event) {
-		    	//TODO
-		    	view.getController().duplicateSprite(view.getCurrentlySelectedSprite().copy());
-		    	view.setCurrentlySelectedSprite(view.getController().getSpriteList().get(view.getController().getSpriteList().size() - 1));
-		    	setPanesForCurrentlySelectedSprite();
+		    		view.getController().duplicateSprite(view.getCurrentlySelectedSprite().copy());
+		    		view.setCurrentlySelectedSprite(view.getController().getSpriteList().get(view.getController().getSpriteList().size() - 1));
+		    		setPanesForCurrentlySelectedSprite();
 		    }
 		    
 		    @FXML
@@ -376,11 +370,6 @@ public class MakerView {
 		    	case "On Click Behavior": mouseBehaviorPane.setVisible(true); mouseBehaviorPane.setDisable(false); break;
 		    	case "On Key Press Behavior": keyBehaviorPane.setVisible(true); keyBehaviorPane.setDisable(false); break;
 		    	}
-		    }
-
-		    @FXML
-		    public void removeGamePropertyButtonClicked(ActionEvent event) {
-		    	//TODO
 		    }
 
 		    @FXML
@@ -405,7 +394,25 @@ public class MakerView {
 		    	view.modifySpriteCommand();
 		    }
 
+		    
+		    //Controls for game properties
+		    
+		    @FXML 
+		    public void backgroundColorPicked(ActionEvent event){
+		    	Color c = backgroundColorPicker.getValue();
+		    	makerPane.setStyle( "-fx-background-color: #" + c.toString().substring(2, 8) + ";");
+		    	
+		    }
+		    
 		    @FXML
+		    public void imageBackgroundButtonClicked(ActionEvent event) {
+		    	FileChooser fileChooser = new FileChooser();
+	    		File file = fileChooser.showOpenDialog(makerStage);
+				if (file != null) {
+					makerPane.setStyle("-fx-background-image: url(" + file.toURI().toString() + ");");
+				}
+		    }
+		    
 		    public void usesLevelsSelected(ActionEvent event) {
 		    	//TODO uses levels
 		    	

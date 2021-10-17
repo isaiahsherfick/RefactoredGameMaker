@@ -37,7 +37,7 @@ public class View implements Observer
 		public MakerView getMakerView() {
 			return this.makerView;
 		}
-		
+	
 		public void showStages()
 		{
 			this.makerView.showMaker();
