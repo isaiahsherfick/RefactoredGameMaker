@@ -13,6 +13,7 @@ import behaviors.collision.CustomCollisionPair;
 import behaviors.collision.DestroyCollisionBehavior;
 import behaviors.collision.DoNothingCollisionBehavior;
 import behaviors.collision.PacManRandomCollisionBehaviour;
+import behaviors.collision.StopCollisionBehavior;
 import behaviors.event.ChangeDirectionBehavior;
 import behaviors.event.EventBehavior;
 import behaviors.event.EventBehaviorChain;
@@ -140,6 +141,7 @@ public class MakerView {
 		collisionBehaviorAction.getItems().add(new DestroyCollisionBehavior());
 		collisionBehaviorAction.getItems().add(new DoNothingCollisionBehavior());
 		collisionBehaviorAction.getItems().add(new PacManRandomCollisionBehaviour());
+		collisionBehaviorAction.getItems().add(new StopCollisionBehavior());
 		
 	}
 	

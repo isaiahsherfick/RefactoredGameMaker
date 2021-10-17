@@ -24,6 +24,9 @@ public class CollisionBehaviorLoader
 				
 			case "PacManRandomCollisionBehaviour":
 				return new PacManRandomCollisionBehaviour();
+				
+			case "StopCollisionBehavior":
+				return new StopCollisionBehavior();
 
 			default:
 				System.out.println("CollisionBehaviorLoader was given something it doesn't know how to load : " + type);
