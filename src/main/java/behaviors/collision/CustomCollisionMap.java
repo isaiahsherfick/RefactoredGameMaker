@@ -133,7 +133,7 @@ public class CustomCollisionMap implements Saveable
 		return false;
 	}
 
-	private CollisionBehavior getDefaultCollisionBehavior() 
+	public CollisionBehavior getDefaultCollisionBehavior() 
 	{
 		return defaultCollisionBehavior;
 	}

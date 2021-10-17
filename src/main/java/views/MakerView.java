@@ -23,7 +23,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
-import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ColorPicker;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
@@ -158,9 +157,6 @@ public class MakerView {
 
 		    @FXML
 		    private Button spriteChooseImageButton;
-
-		    @FXML
-		    private ChoiceBox<?> spriteCollisionType;
 
 		    @FXML
 		    private ColorPicker spriteColorPicker;
@@ -327,6 +323,8 @@ public class MakerView {
 		    		String collisionEntry = c.getCollisionBehavior().toString() + " Colliding with Sprite ID: " + Integer.toString(c.getSpriteId());
 		    		collisions.setText(collisions.getText() + "\n" + collisionEntry);
 		    	}
+		    	String defaultCollisionBehavior = view.getCurrentlySelectedSprite().getDefaultCollisionBehavior().toString() + " On any Default Collision";
+		    	collisions.setText(defaultCollisionBehavior + " \n" + collisions.getText());
 		    	collisionBehaviorList.setContent(collisions);
 		    }
 

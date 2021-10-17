@@ -286,6 +286,10 @@ public class Sprite implements Drawable, Saveable
 	{
 		customCollisionMap.setDefaultCollisionBehavior(c);
 	}
+	
+	public CollisionBehavior getDefaultCollisionBehavior() {
+		return customCollisionMap.getDefaultCollisionBehavior();
+	}
 
 	public void flipYVelocity() 
 	{
