@@ -40,6 +40,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import main.GameMaker;
 import saveandload.SaveableEllipse;
 import saveandload.SaveableRectangle;
 import saveandload.SaveableShape;
@@ -297,6 +298,15 @@ public class MakerView {
 			    			((MovementEventBehavior) toAdd).setXVelocity(Integer.parseInt(velocityXInput.getText()));
 			    			((MovementEventBehavior) toAdd).setYVelocity(Integer.parseInt(velocityYInput.getText()));
 			    		}
+			    		if(toAdd instanceof SpawnBehavior) {
+			    			int spriteID = Integer.parseInt(spriteIdSpawnInput.getText());
+			    			toAdd = new SpawnBehavior(GameMaker.getModel(), spriteID);
+
+			    			((SpawnBehavior) toAdd).setTimeInterval(Integer.parseInt(intervalInput.getText()));
+			    		//	((SpawnBehavior) toAdd).setSpawnX((int)view.getController().getSprite(spriteID).getX());
+			    		//	((SpawnBehavior) toAdd).setSpawnY((int)view.getController().getSprite(spriteID).getY());
+			    			
+			    		}
 			    		view.getCurrentlySelectedSprite().addEventBehavior(toAdd);
 			    		view.modifySpriteCommand();
 			    		setPanesForCurrentlySelectedSprite();
@@ -482,14 +492,14 @@ public class MakerView {
 		    
 		    public void heightSliderChanged() {
 		    	boolean modifyNeeded = !(view.getCurrentlySelectedSprite().getAppearance().getHeight() == spriteHeightSlider.getValue());
-		    	view.getCurrentlySelectedSprite().getAppearance().setHeight(spriteHeightSlider.getValue());
+		    	view.getCurrentlySelectedSprite().setHeight(spriteHeightSlider.getValue());
 		    	if (modifyNeeded)
 		    		view.modifySpriteCommand();
 		    }
 		    
 		    public void widthSliderChanged() {
 		    	boolean modifyNeeded = !(view.getCurrentlySelectedSprite().getAppearance().getWidth() == spriteWidthSlider.getValue());
-		    	view.getCurrentlySelectedSprite().getAppearance().setWidth(spriteWidthSlider.getValue());
+		    	view.getCurrentlySelectedSprite().setWidth(spriteWidthSlider.getValue());
 		    	if (modifyNeeded)
 		    		view.modifySpriteCommand();
 		    }
