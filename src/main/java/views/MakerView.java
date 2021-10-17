@@ -276,6 +276,7 @@ public class MakerView {
 			    	}
 			    	else if(event.getSource().equals(addKeyBehaviorButton)) {
 			    		view.getCurrentlySelectedSprite().addEventBehavior(keyBehaviorAction.getValue());
+			    		view.modifySpriteCommand();
 			    		setPanesForCurrentlySelectedSprite();
 			    	}
 			    	else if(event.getSource().equals(addTimedBehaviorButton)) {
