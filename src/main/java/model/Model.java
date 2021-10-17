@@ -117,6 +117,7 @@ public class Model
 	//restore the model from a stashed JSON - called when the controller switches contexts
 	public void restore(JSONObject stashedJSON)
 	{
+		resetSaveAndLoadManager();
 		saveAndLoadManager.load(stashedJSON);
 		ArrayList<Sprite> spriteList = saveAndLoadManager.getSprites();
 		resetSpriteManager();
