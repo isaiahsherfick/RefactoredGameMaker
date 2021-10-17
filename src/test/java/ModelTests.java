@@ -316,4 +316,10 @@ class ModelTests {
 		assertFalse(s.isEnabled());
 		
 	}
+	
+	@Test
+	public void SpawnBehaviorTest()
+	{
+		
+	}
 }

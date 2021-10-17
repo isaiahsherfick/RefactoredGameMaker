@@ -5,39 +5,101 @@ import org.json.simple.JSONObject;
 import constants.Constants;
 import javafx.scene.input.KeyCode;
 import model.Model;
+import sprite.NullSprite;
 import sprite.Sprite;
 
 public class SpawnBehavior implements EventBehavior{
 	
 	private int timeInterval;
 	private int totalTime = 0;
+	private int spawnX = 0;
+	private int spawnY = 0;
+	private Sprite blueprint;
 	
-	private Model model = new Model();
+	private Model model;
 	
-	public SpawnBehavior() {
+	public SpawnBehavior(Model m)
+	{
+		model = m;
+	}
+	
+	public Sprite getBlueprint()
+	{
+		if (blueprint == null)
+			return new NullSprite();
+		return blueprint;
+	}
+	
+	public SpawnBehavior(Model m, int blueprintSpriteId) {
 		timeInterval = Constants.DEFAULT_SPAWN_TIME_INTERVAL;
+		model = m;
+		blueprint = model.getSprite(blueprintSpriteId);
 	}
 	
-	public SpawnBehavior(int dt) {
-		timeInterval = dt;
+	public SpawnBehavior(int timeInterval, int spawnX, int spawnY, Sprite blueprint, Model m)
+	{
+		this.timeInterval = timeInterval;
+		this.spawnX = spawnX;
+		this.spawnY = spawnY;
+		this.blueprint = blueprint;
+		model = m;
 	}
 	
-	//instance of model
-	//add getter function to get model in controller
+	public void setBlueprintSprite(int blueprintSpriteId)
+	{
+		blueprint = model.getSprite(blueprintSpriteId);
+	}
 	
+	public void setSpawnX(int x)
+	{
+		spawnX = x;
+	}
+	
+	public void setSpawnY(int y)
+	{
+		spawnY = y;
+	}
+	
+	public int getSpawnX()
+	{
+		return spawnX;
+	}
+	
+	public int getSpawnY()
+	{
+		return spawnY;
+	}
+	
+	@SuppressWarnings("unchecked")
 	@Override
-	public JSONObject save() {
-		// TODO Auto-generated method stub
+	public JSONObject save() 
+	{
 		JSONObject json = new JSONObject();
-		json.put("type","MoveOnGameTickBehavior");
+		json.put("type","SpawnBehavior");
 		json.put("timeInterval",timeInterval);
+		json.put("spawnX", spawnX);
+		json.put("spawnY",spawnY);
+		json.put("blueprint",blueprint.save());
 		return json;
 	}
 
 	@Override
-	public void load(JSONObject saveJSON) {
-		// TODO Auto-generated method stub
-		timeInterval = (int)saveJSON.get("timeInterval");
+	public void load(JSONObject saveJSON) 
+	{
+		try
+		{
+			timeInterval = (int)saveJSON.get("timeInterval");
+			spawnX = (int)saveJSON.get("spawnX");
+			spawnY = (int)saveJSON.get("spawnY");
+		}
+		catch(ClassCastException e)
+		{
+			timeInterval = ((Long)saveJSON.get("timeInterval")).intValue();
+			spawnX = ((Long)saveJSON.get("spawnX")).intValue();
+			spawnY = ((Long)saveJSON.get("spawnY")).intValue();
+		}
+		blueprint = new Sprite();
+		blueprint.load((JSONObject)saveJSON.get("blueprint"));
 	}
 
 	@Override
@@ -66,29 +128,34 @@ public class SpawnBehavior implements EventBehavior{
 
 	@Override
 	public void onGameTick(Sprite sprite) {
-		// TODO Auto-generated method stub
 		if(onTimeElapsed(totalTime,Constants.MS_BETWEEN_TICKS,timeInterval)) {
 			Sprite copySprite = sprite.copy();
+			copySprite.setX(spawnX);
+			copySprite.setY(spawnY);
 			model.addSprite(copySprite);
-			copySprite.setHeight(copySprite.getHitBox().getHeight()*10);
-			copySprite.setWidth(copySprite.getHitBox().getWidth()*10);
-			copySprite.setX(0);
-			copySprite.setY(0);
-			model.modifySprite(sprite);
 		}
 		
+	}
+	
+	@Override
+	public boolean equals(Object o)
+	{
+		if (o instanceof SpawnBehavior)
+		{
+			SpawnBehavior s = (SpawnBehavior)o;
+			return s.getSpawnX() == spawnX && s.getSpawnY() == spawnY && timeInterval == s.getTimeInterval() && s.getBlueprint().equals(blueprint);
+		}
+		return false;
 	}
 
 	@Override
 	public void onLevelIncrease(Sprite sprite) {
-		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
 	public EventBehavior copy() {
-		// TODO Auto-generated method stub
-		return null;
+		return new SpawnBehavior(timeInterval,spawnX,spawnY,blueprint,model);
 	}
 
 	public int getTimeInterval() {
