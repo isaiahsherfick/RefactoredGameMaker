@@ -176,6 +176,7 @@ class ControllerTests
 		c.pause();
 		
 		assertNotEquals(2,m.getNumberOfSprites());
+
 		
 		c.stop();
 		
