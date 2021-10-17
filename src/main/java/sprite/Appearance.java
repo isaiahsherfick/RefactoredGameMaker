@@ -52,6 +52,12 @@ public class Appearance implements Drawable, Saveable
 		shapeOrImage = shpOrImg;
 	}
 	
+	public int getShapeOrImage()
+	{
+		return shapeOrImage;
+	}
+	
+	
 	public void setImage(String path)
 	{
 		shapeOrImage = Constants.IMAGE;

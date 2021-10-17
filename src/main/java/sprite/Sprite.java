@@ -70,12 +70,12 @@ public class Sprite implements Drawable, Saveable
 	
 
 
-	private void setAppearance(Appearance appearance2) 
+	public void setAppearance(Appearance appearance2) 
 	{
 		appearance = appearance2;
 	}
 
-	private void setHitBox(HitBox h) 
+	public void setHitBox(HitBox h) 
 	{
 		hitBox = h;
 	}
@@ -163,7 +163,7 @@ public class Sprite implements Drawable, Saveable
 		return copySprite;
 	}
 
-	private void setCustomCollisionMap(CustomCollisionMap ccm) 
+	public void setCustomCollisionMap(CustomCollisionMap ccm) 
 	{
 		customCollisionMap = ccm;
 	}

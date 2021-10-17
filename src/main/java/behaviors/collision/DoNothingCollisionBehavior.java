@@ -6,6 +6,8 @@ import sprite.Sprite;
 
 public class DoNothingCollisionBehavior implements CollisionBehavior 
 {
+	
+
 
 	@Override
 	public JSONObject save() 
@@ -18,7 +20,7 @@ public class DoNothingCollisionBehavior implements CollisionBehavior
 	@Override
 	public void load(JSONObject saveJSON) 
 	{
-
+		
 	}
 
 	@Override
