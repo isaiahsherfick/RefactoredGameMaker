@@ -302,6 +302,19 @@ public class MakerView {
 		    		System.out.println("A field is missing or invalid");
 		    	}
 		    }
+
+		    @FXML
+		    public void defaultCollisionBehaviorButtonClicked(ActionEvent event) {
+		    	try {
+		    		int spriteId = Integer.parseInt(spriteIdInput.getText());
+		    		CollisionBehavior toAdd = collisionBehaviorAction.getValue();
+		    		view.getCurrentlySelectedSprite().setDefaultCollisionBehavior(toAdd);
+		    		setCollisionBehaviorsPane();
+		    	}
+		    	catch(Exception ex) {
+		    		System.out.println("A field is missing or invalid");
+		    	}
+		    }
 		    
 		    private void setCollisionBehaviorsPane() {
 		    	Text collisions = new Text();

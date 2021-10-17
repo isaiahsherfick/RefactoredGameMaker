@@ -82,9 +82,5 @@ public class View implements Observer
 		{
 			drawAll();
 		}
-
-	
-
-		
 }
 

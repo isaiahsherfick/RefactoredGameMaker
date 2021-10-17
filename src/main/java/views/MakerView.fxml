@@ -190,7 +190,7 @@
                         <Line endX="500.0" layoutX="99.0" layoutY="115.0" startX="-100.0" />
                         <SplitPane dividerPositions="0.5" layoutY="115.0" prefHeight="478.0" prefWidth="601.0">
                            <items>
-                              <ScrollPane fx:id="collisionBehaviorList" prefHeight="335.0" prefWidth="287.0" />
+                              <ScrollPane fx:id="collisionBehaviorList" prefHeight="846.0" prefWidth="272.0" />
                               <AnchorPane fx:id="spriteBehaviorEditPane1" prefHeight="200.0" prefWidth="294.0">
                                  <children>
                                     <Text layoutX="14.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Collision Properties" wrappingWidth="200.0">
@@ -203,10 +203,12 @@
                                           <Font size="15.0" />
                                        </font>
                                     </Text>
-                                    <Button fx:id="newCollisionBehaviorButton" layoutX="65.0" layoutY="316.0" mnemonicParsing="false" onAction="#addCollisionBehaviorButtonClicked" prefHeight="25.0" prefWidth="166.0" text="Add new Collision Behavior" AnchorPane.bottomAnchor="506.0" AnchorPane.leftAnchor="65.0" AnchorPane.rightAnchor="65.0" AnchorPane.topAnchor="316.0" />
-                                    <Label layoutX="14.0" layoutY="245.0" prefHeight="17.0" prefWidth="160.0" text="Sprite ID to Collide Width:" />
+                                    <Button fx:id="newCollisionBehaviorButton" layoutX="65.0" layoutY="316.0" mnemonicParsing="false" onAction="#addCollisionBehaviorButtonClicked" prefHeight="25.0" prefWidth="166.0" text="Add Custom Collision" AnchorPane.bottomAnchor="506.0" AnchorPane.leftAnchor="65.0" AnchorPane.rightAnchor="65.0" AnchorPane.topAnchor="316.0" />
+                                    <Label layoutX="6.0" layoutY="225.0" prefHeight="33.0" prefWidth="134.0" text="Sprite ID for which" />
                                     <TextField fx:id="spriteIdInput" layoutX="157.0" layoutY="241.0" prefHeight="25.0" prefWidth="130.0" />
                                     <ComboBox fx:id="collisionBehaviorAction" layoutX="73.0" layoutY="170.0" prefWidth="150.0" />
+                                    <Button fx:id="defaultCollisionBehaviorButton" layoutX="65.0" layoutY="354.0" mnemonicParsing="false" onAction="#defaultCollisionBehaviorButtonClicked" prefHeight="25.0" prefWidth="166.0" text="Set Default Behavior" AnchorPane.bottomAnchor="468.0" AnchorPane.leftAnchor="65.0" AnchorPane.rightAnchor="65.0" AnchorPane.topAnchor="354.0" />
+                                    <Label layoutX="6.0" layoutY="250.0" prefHeight="33.0" prefWidth="155.0" text="this behavior occurs" /> 
                                  </children>
                               </AnchorPane>
                            </items>
