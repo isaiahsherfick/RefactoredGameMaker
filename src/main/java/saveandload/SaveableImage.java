@@ -106,11 +106,19 @@ public class SaveableImage implements Saveable, Drawable
 	{
 		this.path = path;
 	}
+	
+	public void loadImage()
+	{
+		image = new Image(path);
+	}
 
 	@Override
 	public void draw(GraphicsContext g) 
 	{
-		image = new Image(path);
+		if (image == null)
+		{
+			loadImage();
+		}
 		g.drawImage(image, x, y, width, height);
 	}
 
