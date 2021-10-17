@@ -466,8 +466,9 @@ public class MakerView {
 		    @FXML 
 		    public void backgroundColorPicked(ActionEvent event){
 		    	Color c = backgroundColorPicker.getValue();
-		    	makerPane.setStyle( "-fx-background-color: #" + c.toString().substring(2, 8) + ";");
-		    	
+		    //	makerPane.setStyle( "-fx-background-color: #" + c.toString().substring(2, 8) + ";");
+		    	view.getPlayerView().setCanvasColor(c);
+		    	view.drawAll();
 		    }
 		    
 		    @FXML

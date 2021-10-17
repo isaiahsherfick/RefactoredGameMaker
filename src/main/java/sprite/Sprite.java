@@ -286,6 +286,8 @@ public class Sprite implements Drawable, Saveable
 	{
 		//TODO
 		//probably just set visible to false and play any explosions etc
+		setVisible(false);
+		disable();
 	}
 	
 	public void setDefaultCollisionBehavior(CollisionBehavior c)
