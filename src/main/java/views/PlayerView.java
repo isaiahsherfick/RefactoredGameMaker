@@ -196,7 +196,7 @@ public class PlayerView {
 			public void canvasDragged(MouseEvent event) {
 				//TODO This is inefficient, but without a check for the new currently selected sprite it bugs out
 				if(!view.getPlaying()) {
-					canvasClicked(event);
+					//canvasClicked(event);
 					Sprite currentlySelectedSprite = view.getCurrentlySelectedSprite();
 					//Get the events x/y and set it to the sprite
 					double newX = event.getX() - (currentlySelectedSprite.getAppearance().getWidth() * .5);
