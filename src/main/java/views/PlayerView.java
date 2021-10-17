@@ -136,19 +136,21 @@ public class PlayerView {
 			// Event Listener on Button[#saveButton].onAction
 			@FXML
 			public void saveButtonClicked(ActionEvent event) {
-					view.getController().save();
-					/*FileChooser fileChooser = new FileChooser();
+					FileChooser fileChooser = new FileChooser();
 					fileChooser.getExtensionFilters().add(new ExtensionFilter("Save Files", "*.json"));
 					File file = fileChooser.showSaveDialog(view.getMakerView().getStage());
-					System.out.println("Filepath: " + file.toURI().toString());
-					System.out.println(view.getController().saveToFile(file.toURI().toString()));*/
+					if(file != null) {
+						view.getController().saveToFile(file.toURI().toString().substring(6));
+					}
 			}
 			// Event Listener on Button[#loadButton].onAction
 			@FXML
 			public void loadButtonClicked(ActionEvent event) {
 				FileChooser fileChooser = new FileChooser();
 				File file = fileChooser.showOpenDialog(view.getMakerView().getStage());
-				view.getController().loadFromFile(file.toURI().toString().substring(6));
+				if(file != null) {
+					view.getController().loadFromFile(file.toURI().toString().substring(6));
+				}
 			}
 			
 			//On the canvas clicked, check to see if the click intersects with a sprite's hitbox, and if so make it the currently
