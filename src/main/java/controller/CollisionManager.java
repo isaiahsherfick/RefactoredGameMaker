@@ -17,9 +17,6 @@ public class CollisionManager
 {
 	private ArrayList<Sprite> sprites;
 	private HashMap<Point2D,Integer> collisionTTLMap; //Will contain a TTL value for each pair of spriteIds in the system which gets decremented every handleallcollisions call
-	
-	private Set<Integer> checkedIds;
-	
 	public CollisionManager()
 	{
 		sprites = new ArrayList<>();
@@ -36,58 +33,55 @@ public class CollisionManager
 		}
 		for (Integer spriteId : spriteIds)
 		{
-			if (!checkedIds.contains(spriteId))
+			Sprite currentSprite = spriteManager.get(spriteId);
+			HitBox currentHitBox = currentSprite.getHitBox();
+			
+			for (Integer spriteId2 : spriteIds)
 			{
-				Sprite currentSprite = spriteManager.get(spriteId);
-				HitBox currentHitBox = currentSprite.getHitBox();
-				
-				for (Integer spriteId2 : spriteIds)
+				if (!(spriteId == spriteId2))
 				{
-					if (!(spriteId == spriteId2))
+					Sprite spriteToCheck = spriteManager.get(spriteId2);
+					if (spriteToCheck.isEnabled())
 					{
-						Sprite spriteToCheck = spriteManager.get(spriteId2);
-						if (spriteToCheck.isEnabled())
+						HitBox toCheckHitBox = spriteToCheck.getHitBox();
+						
+						Point2D currentTopRight = currentHitBox.getTopRight();
+						Point2D currentBottomLeft = currentHitBox.getBottomLeft();
+						int currentX = (int)currentBottomLeft.getX();
+						int currentY = (int)currentTopRight.getY();
+						int currentW = (int)(currentTopRight.getX() - currentBottomLeft.getX());
+						int currentH = (int)(currentBottomLeft.getY() - currentTopRight.getY());
+						
+						Point2D toCheckTopRight = toCheckHitBox.getTopRight();
+						Point2D toCheckBottomLeft = toCheckHitBox.getBottomLeft();
+						int toCheckX = (int)toCheckBottomLeft.getX();
+						int toCheckY = (int)toCheckTopRight.getY();
+						int toCheckW = (int)(toCheckTopRight.getX() - toCheckBottomLeft.getX());
+						int toCheckH = (int)(toCheckBottomLeft.getY() - toCheckTopRight.getY());
+						
+						Rectangle currentRect = new Rectangle(currentX, currentY, currentW, currentH);
+						Rectangle toCheckRect = new Rectangle(toCheckX, toCheckY, toCheckW, toCheckH);
+						
+						Point2D idPoint = new Point2D(currentSprite.getSpriteId(), spriteToCheck.getSpriteId());
+						
+						if (currentRect.intersects(toCheckRect))
 						{
-							HitBox toCheckHitBox = spriteToCheck.getHitBox();
-							
-							Point2D currentTopRight = currentHitBox.getTopRight();
-							Point2D currentBottomLeft = currentHitBox.getBottomLeft();
-							int currentX = (int)currentBottomLeft.getX();
-							int currentY = (int)currentTopRight.getY();
-							int currentW = (int)(currentTopRight.getX() - currentBottomLeft.getX());
-							int currentH = (int)(currentBottomLeft.getY() - currentTopRight.getY());
-							
-							Point2D toCheckTopRight = toCheckHitBox.getTopRight();
-							Point2D toCheckBottomLeft = toCheckHitBox.getBottomLeft();
-							int toCheckX = (int)toCheckBottomLeft.getX();
-							int toCheckY = (int)toCheckTopRight.getY();
-							int toCheckW = (int)(toCheckTopRight.getX() - toCheckBottomLeft.getX());
-							int toCheckH = (int)(toCheckBottomLeft.getY() - toCheckTopRight.getY());
-							
-							Rectangle currentRect = new Rectangle(currentX, currentY, currentW, currentH);
-							Rectangle toCheckRect = new Rectangle(toCheckX, toCheckY, toCheckW, toCheckH);
-							
-							Point2D idPoint = new Point2D(currentSprite.getSpriteId(), spriteToCheck.getSpriteId());
-							
-							if (currentRect.intersects(toCheckRect))
+							if (collisionTTLMap.keySet().contains(idPoint))
 							{
-								if (collisionTTLMap.keySet().contains(idPoint))
-								{
-									if (collisionTTLMap.get(idPoint) == 0)
-									{
-										currentSprite.collide(spriteToCheck.getSpriteId());
-										spriteManager.modifySprite(currentSprite);
-										collisionTTLMap.put(idPoint, Constants.COLLISION_LOCKOUT_FRAMES);
-									}
-								}
-								else
+								if (collisionTTLMap.get(idPoint) == 0)
 								{
 									currentSprite.collide(spriteToCheck.getSpriteId());
 									spriteManager.modifySprite(currentSprite);
 									collisionTTLMap.put(idPoint, Constants.COLLISION_LOCKOUT_FRAMES);
 								}
-								
 							}
+							else
+							{
+								currentSprite.collide(spriteToCheck.getSpriteId());
+								spriteManager.modifySprite(currentSprite);
+								collisionTTLMap.put(idPoint, Constants.COLLISION_LOCKOUT_FRAMES);
+							}
+							
 						}
 					}
 				}
