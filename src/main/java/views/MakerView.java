@@ -14,6 +14,7 @@ import behaviors.collision.DestroyCollisionBehavior;
 import behaviors.event.EventBehavior;
 import behaviors.event.EventBehaviorChain;
 import behaviors.event.MoveOnGameTickBehavior;
+import behaviors.event.MovementEventBehavior;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
@@ -199,19 +200,13 @@ public class MakerView {
 		    private AnchorPane timeBehaviorPane;
 		 
 		    @FXML 
-		    private TextField intervalField;
-		    
-		    @FXML 
-		    private CheckBox continuousInterval;
+		    private TextField velocityXInput;
+		   
+		    @FXML
+		    private TextField velocityYInput;
 		    
 		    @FXML
 		    private ComboBox<EventBehavior> timeBehaviorActions;
-
-		    @FXML
-		    private CheckBox timeBehaviorContinousCheck;
-
-		    @FXML
-		    private Text timeBehaviorIntervalInput;
 		    
 		    @FXML
 		    private Button addTimedBehaviorButton;
@@ -257,18 +252,6 @@ public class MakerView {
 		    @FXML 
 		    private ScrollPane collisionBehaviorList;
 		    
-		    
-		    
-		    //if time behavior continuous checkbox is selected, disable the interval field
-		    @FXML 
-		    public void continuousIntervalSelected(ActionEvent event) {
-		    	if(continuousInterval.isSelected()) {
-		    		intervalField.setDisable(true);
-		    	}
-		    	else {
-		    		intervalField.setDisable(false);
-		    	}
-		    }
 		    @FXML
 		    public void addBehaviorButtonClicked(ActionEvent event) {
 		    	try {
@@ -282,7 +265,12 @@ public class MakerView {
 			    	}
 			    	else if(event.getSource().equals(addTimedBehaviorButton)) {
 			    		//TODO
-			    		view.getCurrentlySelectedSprite().addEventBehavior(timeBehaviorActions.getValue());
+			    		EventBehavior toAdd = timeBehaviorActions.getValue();
+			    		if(toAdd instanceof MovementEventBehavior) {
+			    			((MovementEventBehavior) toAdd).setXVelocity(Integer.parseInt(velocityXInput.getText()));
+			    			((MovementEventBehavior) toAdd).setYVelocity(Integer.parseInt(velocityYInput.getText()));
+			    		}
+			    		view.getCurrentlySelectedSprite().addEventBehavior(toAdd);
 			    		setPanesForCurrentlySelectedSprite();
 			    	}
 			    }
