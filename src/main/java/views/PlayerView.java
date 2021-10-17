@@ -84,6 +84,7 @@ public class PlayerView {
 					loadButton.setVisible(false);
 					loadButton.setDisable(true);
 					
+					view.playOrStopGame();
 					view.getController().play();
 				}
 				else if(playStopButton.getText().equals("Stop")) {
@@ -94,7 +95,8 @@ public class PlayerView {
 					saveButton.setDisable(false);
 					loadButton.setVisible(true);
 					loadButton.setDisable(false);
-					//TODO fix once difference between pause and stop
+
+					view.playOrStopGame();
 					view.getController().stop();
 				}
 			}
@@ -134,14 +136,16 @@ public class PlayerView {
 			//selected Sprite.
 			@FXML
 			public void canvasClicked(MouseEvent event) {
-				double clickedX = event.getX();
-				double clickedY = event.getY();
-				for(Sprite s: view.getController().getSpriteList()) {
-					if(clickedX >= s.getHitBox().getTopLeft().getX() && clickedY >= s.getHitBox().getTopLeft().getY()) {
-						if(clickedX <= s.getHitBox().getBottomRight().getX() && clickedY <= s.getHitBox().getBottomRight().getY()) {
-							//If click is within the hitbox, then make it currently selected sprite and adjust the properties pane;
-							view.setCurrentlySelectedSprite(s);;
-							view.getMakerView().setPanesForCurrentlySelectedSprite();
+				if(!view.getPlayingGame()) {
+					double clickedX = event.getX();
+					double clickedY = event.getY();
+					for(Sprite s: view.getController().getSpriteList()) {
+						if(clickedX >= s.getHitBox().getTopLeft().getX() && clickedY >= s.getHitBox().getTopLeft().getY()) {
+							if(clickedX <= s.getHitBox().getBottomRight().getX() && clickedY <= s.getHitBox().getBottomRight().getY()) {
+								//If click is within the hitbox, then make it currently selected sprite and adjust the properties pane;
+								view.setCurrentlySelectedSprite(s);;
+								view.getMakerView().setPanesForCurrentlySelectedSprite();
+							}
 						}
 					}
 				}
@@ -151,14 +155,16 @@ public class PlayerView {
 			@FXML 
 			public void canvasDragged(MouseEvent event) {
 				//TODO This is inefficient, but without a check for the new currently selected sprite it bugs out
-				canvasClicked(event);
-				Sprite currentlySelectedSprite = view.getCurrentlySelectedSprite();
-				//Get the events x/y and set it to the sprite
-				double newX = event.getX() - (currentlySelectedSprite.getAppearance().getWidth() * .5);
-				double newY = event.getY() - (currentlySelectedSprite.getAppearance().getHeight() * .5);
-				currentlySelectedSprite.setX(newX);
-				currentlySelectedSprite.setY(newY);
-				view.getController().modifySprite(currentlySelectedSprite);
+				if(!view.getPlayingGame()) {
+					canvasClicked(event);
+					Sprite currentlySelectedSprite = view.getCurrentlySelectedSprite();
+					//Get the events x/y and set it to the sprite
+					double newX = event.getX() - (currentlySelectedSprite.getAppearance().getWidth() * .5);
+					double newY = event.getY() - (currentlySelectedSprite.getAppearance().getHeight() * .5);
+					currentlySelectedSprite.setX(newX);
+					currentlySelectedSprite.setY(newY);
+					view.getController().modifySprite(currentlySelectedSprite);
+				}
 			}
 			
 	
