@@ -344,49 +344,6 @@ public class Sprite implements Drawable, Saveable
 	{
 		return customCollisionMap.getCustomCollisionPairs();
 	}
-
-
-
-	/**
-	 * The following method tries all possible direction for the sprite object to move when it impacts another sprite 
-	 * Ex: Ghost sprite in pac man must change course whenever it comes across a wall
-	 */
-	public void changeDirection() 
-	{
-		int xVelocity=this.getXVelocity();
-		int yVelocity=this.getYVelocity();
-		
-	
-		if(xVelocity==0 && yVelocity>0)// sprite moving down 
-		{
-			setY(Constants.SPRITE_COLLISION_WARP_DISTANCE + getY());
-			xVelocity=yVelocity;//make sprite move right
-			yVelocity=0;
-		}
-		else if(xVelocity==0 && yVelocity<0)// sprite moving up 
-		{
-			setY(getY() - Constants.SPRITE_COLLISION_WARP_DISTANCE);
-			xVelocity=yVelocity; // make sprite move left
-			yVelocity=0;
-		} 
-		else if(yVelocity==0 && xVelocity>0)// sprite moving right
-		{
-			setX(getX() - Constants.SPRITE_COLLISION_WARP_DISTANCE);
-			yVelocity=-(xVelocity);// sprite moving up
-			xVelocity=0;
-		}
-		else if((yVelocity==0 && xVelocity<0))// sprite moving left
-		{
-			setX(getX() + Constants.SPRITE_COLLISION_WARP_DISTANCE);
-			yVelocity=-(xVelocity);// sprite will move down
-			xVelocity=0;
-		}
-		
-		this.setXVelocity(xVelocity);
-		this.setYVelocity(yVelocity);
-			
-	}
-		
 	public boolean isVisible() 
 	{
 		return visible;

@@ -1,8 +1,15 @@
 package constants;
 
+import java.util.Random;
+
 public class Constants 
 {
 	public static final int DEFAULT_SPRITE_ID = -2;
+	public static final Random RANDOM = new Random();
+	public static final int DIRECTION_DOWN = 0;
+	public static final int DIRECTION_LEFT = 1;
+	public static final int DIRECTION_RIGHT = 2;
+	public static final int DIRECTION_UP = 3;
 	public static final int SPRITE_MANAGER_DEFAULT_ID = -1;
 	public static final int NULL_SPRITE_ID = -3;
 	public static final double DEFAULT_SPRITE_X = 0;
@@ -30,7 +37,7 @@ public class Constants
 //	public static final int BOTTOM_RIGHT = 7;
 	public static final double MS_BETWEEN_TICKS = 16.666666667;
 	public static final Integer COLLISION_LOCKOUT_FRAMES = 10;
-	public static final Integer SPRITE_COLLISION_WARP_DISTANCE = 2;
+	public static final Integer SPRITE_COLLISION_WARP_DISTANCE = 5;
   /**Spawn Behavior**/
 	public static final int DEFAULT_SPAWN_TIME_INTERVAL = 3000;
 
