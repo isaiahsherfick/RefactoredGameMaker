@@ -27,6 +27,15 @@ public class CollisionBehaviorLoader
 				
 			case "StopCollisionBehavior":
 				return new StopCollisionBehavior();
+				
+			case "MoveDownOnCollisionBehavior":
+				return new MoveDownOnCollisionBehavior();
+			case "MoveHorizontalOnCollisionBehavior":
+				return new MoveHorizontalOnCollisionBehavior();
+			case "MoveLeftOnCollisionBehavior":
+				return new MoveLeftOnCollisionBehavior();
+			case "MoveRightOnCollisionBehavior":
+				return new MoveRightOnCollisionBehavior();
 
 			default:
 				System.out.println("CollisionBehaviorLoader was given something it doesn't know how to load : " + type);
