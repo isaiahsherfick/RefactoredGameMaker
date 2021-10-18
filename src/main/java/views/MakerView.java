@@ -25,6 +25,7 @@ import behaviors.event.FroggerMovementBehavior;
 import behaviors.event.MoveOnGameTickBehavior;
 import behaviors.event.MovementEventBehavior;
 import behaviors.event.PacManEventBehaviours;
+import behaviors.event.SmoothMoveOnKeyPress;
 import behaviors.event.SpaceInvadersStepMovement;
 import behaviors.event.SpawnBehavior;
 import behaviors.event.SpawnOnKeyPressBehavior;
@@ -142,6 +143,7 @@ public class MakerView {
      	keyBehaviorAction.getItems().add(new FroggerMovementBehavior());
      	keyBehaviorAction.getItems().add(new ChangeDirectionBehavior());
      	keyBehaviorAction.getItems().add(new SpawnOnKeyPressBehavior(GameMaker.getModel()));
+     	keyBehaviorAction.getItems().add(new SmoothMoveOnKeyPress());
 		
 		collisionBehaviorAction.getItems().add(new BounceCollisionBehaviorX());
 		collisionBehaviorAction.getItems().add(new BounceCollisionBehaviorY());
