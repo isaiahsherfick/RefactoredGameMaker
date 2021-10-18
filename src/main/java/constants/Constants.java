@@ -52,5 +52,6 @@ public class Constants
 	public static final int SPACE_INVADERS_STEP_LEFT = 0;
 	public static final int SPACE_INVADERS_MS_BETWEEN_STEPS = 1000;
 	public static final int SPACE_INVADERS_STEP_RIGHT = 1;
+	public static final int SPACE_INVADERS_HORIZONTAL_STEPS_UNTIL_FLIPPING_DIRECTIONS = 5;
 
 }

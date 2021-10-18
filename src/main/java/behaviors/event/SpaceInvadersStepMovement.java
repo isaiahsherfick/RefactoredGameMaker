@@ -13,6 +13,7 @@ public class SpaceInvadersStepMovement implements EventBehavior
 	private double totalTime = 0;
 	private int stepLeftOrRight = Constants.SPACE_INVADERS_STEP_LEFT;
 	private boolean previousStepWasHorizontal = false;
+	private int horizontalSteps;
 	
 	public SpaceInvadersStepMovement()
 	{
@@ -67,19 +68,31 @@ public class SpaceInvadersStepMovement implements EventBehavior
 			if (previousStepWasHorizontal)
 			{
 				sprite.setY(sprite.getY() - sprite.getHeight());
+				previousStepWasHorizontal = false;
 			}
 			else
 			{
 				if (stepLeftOrRight == Constants.SPACE_INVADERS_STEP_LEFT)
 				{
+					sprite.setX(sprite.getX() - sprite.getWidth());
 					horizontalSteps++;
+					if (horizontalSteps > Constants.SPACE_INVADERS_HORIZONTAL_STEPS_UNTIL_FLIPPING_DIRECTIONS)
+					{
+						stepLeftOrRight = Constants.SPACE_INVADERS_STEP_RIGHT;
+						horizontalSteps = 0;
+					}
 				}
-				//step right then down
 				else
 				{
-					
+					sprite.setX(sprite.getX() + sprite.getWidth());
+					horizontalSteps++;
+					if (horizontalSteps > Constants.SPACE_INVADERS_HORIZONTAL_STEPS_UNTIL_FLIPPING_DIRECTIONS)
+					{
+						stepLeftOrRight = Constants.SPACE_INVADERS_STEP_RIGHT;
+						horizontalSteps = 0;
+					}
 				}
-				
+				previousStepWasHorizontal = true;
 			}
 		}
 	}
