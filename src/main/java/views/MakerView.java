@@ -289,17 +289,17 @@ public class MakerView {
 		    public void addBehaviorButtonClicked(ActionEvent event) {
 		    	try {
 			    	if(event.getSource().equals(addClickBehaviorButton)) {
-			    		view.getCurrentlySelectedSprite().addEventBehavior(clickBehaviorAction.getValue());
+			    		view.getCurrentlySelectedSprite().addEventBehavior(clickBehaviorAction.getValue().copy());
 			    		setPanesForCurrentlySelectedSprite();
 			    	}
 			    	else if(event.getSource().equals(addKeyBehaviorButton)) {
-			    		view.getCurrentlySelectedSprite().addEventBehavior(keyBehaviorAction.getValue());
+			    		view.getCurrentlySelectedSprite().addEventBehavior(keyBehaviorAction.getValue().copy());
 			    		view.modifySpriteCommand();
 			    		setPanesForCurrentlySelectedSprite();
 			    	}
 			    	else if(event.getSource().equals(addTimedBehaviorButton)) {
 			    		//TODO
-			    		EventBehavior toAdd = timeBehaviorActions.getValue();
+			    		EventBehavior toAdd = timeBehaviorActions.getValue().copy();
 			    		if(toAdd instanceof MovementEventBehavior) {
 			    			((MovementEventBehavior) toAdd).setXVelocity(Integer.parseInt(velocityXInput.getText()));
 			    			((MovementEventBehavior) toAdd).setYVelocity(Integer.parseInt(velocityYInput.getText()));
