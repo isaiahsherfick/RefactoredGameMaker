@@ -166,12 +166,12 @@ public class PlayerView {
 			// Event Listener on Button[#saveButton].onAction
 			@FXML
 			public void saveButtonClicked(ActionEvent event) {
-					FileChooser fileChooser = new FileChooser();
-					fileChooser.getExtensionFilters().add(new ExtensionFilter("Save Files", "*.json"));
-					File file = fileChooser.showSaveDialog(view.getMakerView().getStage());
-					if(file != null) {
-						view.getController().saveToFile(file.toURI().toString().substring(6));
-					}
+				FileChooser fileChooser = new FileChooser();
+				fileChooser.getExtensionFilters().add(new ExtensionFilter("Save Files", "*.json"));
+				File file = fileChooser.showSaveDialog(view.getMakerView().getStage());
+				if(file != null) {
+					view.getController().saveToFile(file.toURI().toString().substring(6));
+				}
 			}
 			// Event Listener on Button[#loadButton].onAction
 			@FXML
