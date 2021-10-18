@@ -263,6 +263,9 @@ public class MakerView {
 		    @FXML
 		    private Button addKeyBehaviorButton;
 		    
+		    @FXML
+		    private TextField keyBehaviorSpriteIdField;
+		    
 		    //Fields for the collision behavior tab
 		    @FXML
 		    private Button newCollisionBehaviorButton;
@@ -295,7 +298,12 @@ public class MakerView {
 			    		setPanesForCurrentlySelectedSprite();
 			    	}
 			    	else if(event.getSource().equals(addKeyBehaviorButton)) {
-			    		view.getCurrentlySelectedSprite().addEventBehavior(keyBehaviorAction.getValue().copy());
+			    		EventBehavior toAdd = keyBehaviorAction.getValue().copy();
+			    		if(toAdd instanceof SpawnOnKeyPressBehavior) {
+			    			int spriteID = Integer.parseInt(spriteIdSpawnInput.getText());
+			    			toAdd = new SpawnOnKeyPressBehavior(GameMaker.getModel(), Integer.parseInt(keyBehaviorSpriteIdField.getText()));
+			    		}
+			    		view.getCurrentlySelectedSprite().addEventBehavior(toAdd);
 			    		view.modifySpriteCommand();
 			    		setPanesForCurrentlySelectedSprite();
 			    	}
@@ -309,11 +317,7 @@ public class MakerView {
 			    		if(toAdd instanceof SpawnBehavior) {
 			    			int spriteID = Integer.parseInt(spriteIdSpawnInput.getText());
 			    			toAdd = new SpawnBehavior(GameMaker.getModel(), spriteID);
-
 			    			((SpawnBehavior) toAdd).setTimeInterval(Integer.parseInt(intervalInput.getText()));
-			    		//	((SpawnBehavior) toAdd).setSpawnX((int)view.getController().getSprite(spriteID).getX());
-			    		//	((SpawnBehavior) toAdd).setSpawnY((int)view.getController().getSprite(spriteID).getY());
-			    			
 			    		}
 			    		view.getCurrentlySelectedSprite().addEventBehavior(toAdd);
 			    		view.modifySpriteCommand();

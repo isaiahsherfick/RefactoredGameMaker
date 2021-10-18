@@ -86,7 +86,7 @@ public class SpawnOnKeyPressBehavior implements EventBehavior
 	@Override
 	public void onKeyPress(Sprite sprite, KeyCode keyCode) 
 	{
-		if (keyCode == KeyCode.SPACE)
+		if (keyCode == KeyCode.X)
 		{
 			double x = sprite.getX();
 			double y = sprite.getY();
@@ -128,7 +128,7 @@ public class SpawnOnKeyPressBehavior implements EventBehavior
 	
 	public String toString() 
 	{
-		return "Spawn a sprite on spacebar";
+		return "Spawn a sprite on X";
 	}
 
 }

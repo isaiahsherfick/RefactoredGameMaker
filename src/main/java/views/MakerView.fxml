@@ -159,6 +159,8 @@
                                           </Text>
                                           <Button fx:id="addKeyBehaviorButton" layoutX="125.0" layoutY="500.0" mnemonicParsing="false" onAction="#addBehaviorButtonClicked" text="Add Behavior" />
                                           <ComboBox fx:id="keyBehaviorAction" layoutX="73.0" layoutY="255.0" prefWidth="150.0" />
+                                          <TextField fx:id="keyBehaviorSpriteIdField" layoutX="100.0" layoutY="100.0" text="0" />
+                                          <Label layoutX="50.0" layoutY="100.0" text="Sprite Id: " />
                                        </children>
                                     </AnchorPane>
                                     <AnchorPane fx:id="timeBehaviorPane" disable="true" prefHeight="200.0" prefWidth="294.0" visible="false">
