@@ -47,7 +47,9 @@ public class EventBehaviorLoader
 				return new ChangeDirectionBehavior();
 				
 			case "SpawnOnKeyPressBehavior":
-				return new SpawnOnKeyPressBehavior();
+				SpawnOnKeyPressBehavior sp = new SpawnOnKeyPressBehavior(model);
+				sp.load(json);
+				return sp;
 				
 			case "SpaceInvadersStepMovement":
 				return new SpaceInvadersStepMovement();
