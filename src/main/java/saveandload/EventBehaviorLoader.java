@@ -9,6 +9,7 @@ import behaviors.event.EventBehavior;
 import behaviors.event.FroggerMovementBehavior;
 import behaviors.event.MoveOnGameTickBehavior;
 import behaviors.event.PacManEventBehaviours;
+import behaviors.event.SpaceInvadersStepMovement;
 import behaviors.event.SpawnBehavior;
 import behaviors.event.SpawnOnKeyPressBehavior;
 import main.GameMaker;
@@ -46,6 +47,9 @@ public class EventBehaviorLoader
 				
 			case "SpawnOnKeyPressBehavior":
 				return new SpawnOnKeyPressBehavior();
+				
+			case "SpaceInvadersStepMovement":
+				return new SpaceInvadersStepMovement();
 			default:
 				System.out.println("BehaviorLoader was given something it doesn't have a case for: " + type);
 				return new DoNothingBehavior();
