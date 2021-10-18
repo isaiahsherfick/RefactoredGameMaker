@@ -27,7 +27,7 @@ public class MoveDownOnCollisionBehavior implements CollisionBehavior
 	public void collide(Sprite collidee, int colliderId) 
 	{
 		collidee.setXVelocity(0);
-		collidee.setYVelocity(1);
+		collidee.setYVelocity(2);
 	}
 	
 	public boolean equals(Object o)
