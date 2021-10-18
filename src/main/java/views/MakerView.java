@@ -22,6 +22,7 @@ import behaviors.event.MoveOnGameTickBehavior;
 import behaviors.event.MovementEventBehavior;
 import behaviors.event.PacManEventBehaviours;
 import behaviors.event.SpawnBehavior;
+import behaviors.event.SpawnOnKeyPressBehavior;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
@@ -134,6 +135,7 @@ public class MakerView {
      	
      	keyBehaviorAction.getItems().add(new FroggerMovementBehavior());
      	keyBehaviorAction.getItems().add(new ChangeDirectionBehavior());
+     	keyBehaviorAction.getItems().add(new SpawnOnKeyPressBehavior(GameMaker.getModel()));
 		
 		collisionBehaviorAction.getItems().add(new BounceCollisionBehaviorX());
 		collisionBehaviorAction.getItems().add(new BounceCollisionBehaviorY());
