@@ -12,6 +12,10 @@ import behaviors.collision.CollisionBehavior;
 import behaviors.collision.CustomCollisionPair;
 import behaviors.collision.DestroyCollisionBehavior;
 import behaviors.collision.DoNothingCollisionBehavior;
+import behaviors.collision.MoveDownOnCollisionBehavior;
+import behaviors.collision.MoveHorizontalOnCollisionBehavior;
+import behaviors.collision.MoveLeftOnCollisionBehavior;
+import behaviors.collision.MoveRightOnCollisionBehavior;
 import behaviors.collision.PacManRandomCollisionBehaviour;
 import behaviors.collision.StopCollisionBehavior;
 import behaviors.event.ChangeDirectionBehavior;
@@ -144,6 +148,10 @@ public class MakerView {
 		collisionBehaviorAction.getItems().add(new DoNothingCollisionBehavior());
 		collisionBehaviorAction.getItems().add(new PacManRandomCollisionBehaviour());
 		collisionBehaviorAction.getItems().add(new StopCollisionBehavior());
+		collisionBehaviorAction.getItems().add(new MoveDownOnCollisionBehavior());
+		collisionBehaviorAction.getItems().add(new MoveLeftOnCollisionBehavior());
+		collisionBehaviorAction.getItems().add(new MoveRightOnCollisionBehavior());
+
 		
 	}
 	
@@ -214,6 +222,12 @@ public class MakerView {
 		    
 		    @FXML
 		    private CheckBox disableCheckbox;
+		    
+		    @FXML
+		    private CheckBox useClockCheckbox;
+		    
+		    @FXML
+		    private CheckBox useScoreCheckbox;
 
 		    
 		    //Fields for the timed behavior pane
@@ -414,6 +428,16 @@ public class MakerView {
 		    public void visibleCheckboxClicked(ActionEvent event) {
 		    	view.getCurrentlySelectedSprite().setVisible(!view.getCurrentlySelectedSprite().isVisible());
 		    	view.modifySpriteCommand();
+		    }
+		    
+		    @FXML
+		    public void useClockCheckboxClicked(ActionEvent event) {
+		    	view.setTimerEnabled(!view.getTimerEnabled());
+		    }
+		    
+		    @FXML
+		    public void useScoreCheckboxClicked(ActionEvent event) {
+		    	view.setScoreEnabled(!view.getScoreEnabled());
 		    }
 		    
 		    @FXML

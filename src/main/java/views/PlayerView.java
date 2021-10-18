@@ -12,6 +12,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -42,6 +43,10 @@ public class PlayerView {
 	private Button loadButton;
 	@FXML 
 	private Canvas gameCanvas;
+	@FXML
+	private Label scoreLabel;
+	@FXML 
+	private Label timerLabel;
 	public PlayerView(View v) {
 		try {
 			view = v;
@@ -98,6 +103,14 @@ public class PlayerView {
 	public Canvas getGameCanvas() {
 		return this.gameCanvas;
 	}
+	
+	public void useClock() {
+		this.timerLabel.setVisible(true);
+	}
+	
+	public void useScore() {
+		this.scoreLabel.setVisible(false);
+	}
 
 			// Event Listener on Button[#playStopButton].onAction
 			@FXML
@@ -153,12 +166,12 @@ public class PlayerView {
 			// Event Listener on Button[#saveButton].onAction
 			@FXML
 			public void saveButtonClicked(ActionEvent event) {
-					FileChooser fileChooser = new FileChooser();
-					fileChooser.getExtensionFilters().add(new ExtensionFilter("Save Files", "*.json"));
-					File file = fileChooser.showSaveDialog(view.getMakerView().getStage());
-					if(file != null) {
-						view.getController().saveToFile(file.toURI().toString().substring(6));
-					}
+				FileChooser fileChooser = new FileChooser();
+				fileChooser.getExtensionFilters().add(new ExtensionFilter("Save Files", "*.json"));
+				File file = fileChooser.showSaveDialog(view.getMakerView().getStage());
+				if(file != null) {
+					view.getController().saveToFile(file.toURI().toString().substring(6));
+				}
 			}
 			// Event Listener on Button[#loadButton].onAction
 			@FXML

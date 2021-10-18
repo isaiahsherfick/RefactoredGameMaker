@@ -115,6 +115,16 @@
                            </font>
                         </CheckBox>
                         <Button fx:id="deleteSpriteButton" layoutX="409.0" layoutY="14.0" mnemonicParsing="false" onAction="#deleteSpriteButtonClicked" prefHeight="47.0" prefWidth="186.0" text="Delete" />
+                        <CheckBox fx:id="useClockCheckbox" layoutX="37.0" layoutY="721.0" mnemonicParsing="false" onAction="#useClockCheckboxClicked" text="Use Clock">
+                           <font>
+                              <Font size="30.0" />
+                           </font>
+                        </CheckBox>
+                        <CheckBox fx:id="useScoreCheckbox" layoutX="37.0" layoutY="786.0" mnemonicParsing="false" onAction="#useScoreCheckboxClicked" text="Use Score">
+                           <font>
+                              <Font size="30.0" />
+                           </font>
+                        </CheckBox>
                      </children>
                   </AnchorPane>
             </content>
