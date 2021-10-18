@@ -212,6 +212,12 @@ public class MakerView {
 		    
 		    @FXML
 		    private CheckBox disableCheckbox;
+		    
+		    @FXML
+		    private CheckBox useClockCheckbox;
+		    
+		    @FXML
+		    private CheckBox useScoreCheckbox;
 
 		    
 		    //Fields for the timed behavior pane
@@ -408,6 +414,16 @@ public class MakerView {
 		    public void visibleCheckboxClicked(ActionEvent event) {
 		    	view.getCurrentlySelectedSprite().setVisible(!view.getCurrentlySelectedSprite().isVisible());
 		    	view.modifySpriteCommand();
+		    }
+		    
+		    @FXML
+		    public void useClockCheckboxClicked(ActionEvent event) {
+		    	view.setTimerEnabled(!view.getTimerEnabled());
+		    }
+		    
+		    @FXML
+		    public void useScoreCheckboxClicked(ActionEvent event) {
+		    	view.setScoreEnabled(!view.getScoreEnabled());
 		    }
 		    
 		    @FXML

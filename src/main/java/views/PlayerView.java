@@ -12,6 +12,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -42,6 +43,10 @@ public class PlayerView {
 	private Button loadButton;
 	@FXML 
 	private Canvas gameCanvas;
+	@FXML
+	private Label scoreLabel;
+	@FXML 
+	private Label timerLabel;
 	public PlayerView(View v) {
 		try {
 			view = v;
@@ -97,6 +102,14 @@ public class PlayerView {
 	}
 	public Canvas getGameCanvas() {
 		return this.gameCanvas;
+	}
+	
+	public void useClock() {
+		this.timerLabel.setVisible(true);
+	}
+	
+	public void useScore() {
+		this.scoreLabel.setVisible(false);
 	}
 
 			// Event Listener on Button[#playStopButton].onAction

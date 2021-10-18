@@ -18,6 +18,8 @@ public class View implements Observer
 		private PlayerView playerView;
 		private MakerView makerView;
 		private boolean playing;
+		private boolean scoreEnabled;
+		private boolean timerEnabled;
 
 		//Displays both views, called by Main.java when program is launched.
 		public View(Stage primaryStage) {
@@ -29,6 +31,8 @@ public class View implements Observer
 			this.makerView = new MakerView(primaryStage, this);
 			this.playerView = new PlayerView(this);
 			playing = false;
+			scoreEnabled = false;
+			timerEnabled = false;
 			//By default a null sprite
 			currentlySelectedSprite = new NullSprite();
 		}
@@ -53,6 +57,22 @@ public class View implements Observer
 		
 		public void setPlaying(boolean p) {
 			this.playing = p;
+		}
+		
+		public boolean getScoreEnabled() {
+			return this.scoreEnabled;
+		}
+		
+		public void setScoreEnabled(boolean b) {
+			this.scoreEnabled = b;			
+		}
+		
+		public boolean getTimerEnabled() {
+			return this.timerEnabled;
+		}
+		
+		public void setTimerEnabled(boolean b) {
+			this.timerEnabled = b;
 		}
 	
 		public void showStages()
@@ -122,6 +142,12 @@ public class View implements Observer
 		@Override
 		public void update() 
 		{
+			if(timerEnabled) {
+				playerView.useClock();
+			}
+			if(scoreEnabled) {
+				playerView.useScore();
+			}
 			drawAll();
 		}
 }
