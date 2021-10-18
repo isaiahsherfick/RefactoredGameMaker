@@ -25,6 +25,7 @@ import behaviors.event.FroggerMovementBehavior;
 import behaviors.event.MoveOnGameTickBehavior;
 import behaviors.event.MovementEventBehavior;
 import behaviors.event.PacManEventBehaviours;
+import behaviors.event.SpaceInvadersStepMovement;
 import behaviors.event.SpawnBehavior;
 import behaviors.event.SpawnOnKeyPressBehavior;
 import javafx.beans.value.ChangeListener;
@@ -135,6 +136,7 @@ public class MakerView {
 		//TODO add behaviors as they are created to proper views
      	timeBehaviorActions.getItems().add(new MoveOnGameTickBehavior());
      	timeBehaviorActions.getItems().add(new SpawnBehavior());
+     	timeBehaviorActions.getItems().add(new SpaceInvadersStepMovement());
      	
      	
      	keyBehaviorAction.getItems().add(new FroggerMovementBehavior());
