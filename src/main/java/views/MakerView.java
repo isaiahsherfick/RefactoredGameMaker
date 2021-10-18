@@ -26,6 +26,7 @@ import behaviors.event.MoveOnGameTickBehavior;
 import behaviors.event.MovementEventBehavior;
 import behaviors.event.PacManEventBehaviours;
 import behaviors.event.SpawnBehavior;
+import behaviors.event.SpawnOnKeyPressBehavior;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
@@ -138,6 +139,7 @@ public class MakerView {
      	
      	keyBehaviorAction.getItems().add(new FroggerMovementBehavior());
      	keyBehaviorAction.getItems().add(new ChangeDirectionBehavior());
+     	keyBehaviorAction.getItems().add(new SpawnOnKeyPressBehavior(GameMaker.getModel()));
 		
 		collisionBehaviorAction.getItems().add(new BounceCollisionBehaviorX());
 		collisionBehaviorAction.getItems().add(new BounceCollisionBehaviorY());
@@ -275,6 +277,9 @@ public class MakerView {
 		    @FXML
 		    private Button addKeyBehaviorButton;
 		    
+		    @FXML
+		    private TextField keyBehaviorSpriteIdField;
+		    
 		    //Fields for the collision behavior tab
 		    @FXML
 		    private Button newCollisionBehaviorButton;
@@ -307,7 +312,12 @@ public class MakerView {
 			    		setPanesForCurrentlySelectedSprite();
 			    	}
 			    	else if(event.getSource().equals(addKeyBehaviorButton)) {
-			    		view.getCurrentlySelectedSprite().addEventBehavior(keyBehaviorAction.getValue().copy());
+			    		EventBehavior toAdd = keyBehaviorAction.getValue().copy();
+			    		if(toAdd instanceof SpawnOnKeyPressBehavior) {
+			    			int spriteID = Integer.parseInt(spriteIdSpawnInput.getText());
+			    			toAdd = new SpawnOnKeyPressBehavior(GameMaker.getModel(), Integer.parseInt(keyBehaviorSpriteIdField.getText()));
+			    		}
+			    		view.getCurrentlySelectedSprite().addEventBehavior(toAdd);
 			    		view.modifySpriteCommand();
 			    		setPanesForCurrentlySelectedSprite();
 			    	}
@@ -321,11 +331,7 @@ public class MakerView {
 			    		if(toAdd instanceof SpawnBehavior) {
 			    			int spriteID = Integer.parseInt(spriteIdSpawnInput.getText());
 			    			toAdd = new SpawnBehavior(GameMaker.getModel(), spriteID);
-
 			    			((SpawnBehavior) toAdd).setTimeInterval(Integer.parseInt(intervalInput.getText()));
-			    		//	((SpawnBehavior) toAdd).setSpawnX((int)view.getController().getSprite(spriteID).getX());
-			    		//	((SpawnBehavior) toAdd).setSpawnY((int)view.getController().getSprite(spriteID).getY());
-			    			
 			    		}
 			    		view.getCurrentlySelectedSprite().addEventBehavior(toAdd);
 			    		view.modifySpriteCommand();

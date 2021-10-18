@@ -10,6 +10,7 @@ import behaviors.event.FroggerMovementBehavior;
 import behaviors.event.MoveOnGameTickBehavior;
 import behaviors.event.PacManEventBehaviours;
 import behaviors.event.SpawnBehavior;
+import behaviors.event.SpawnOnKeyPressBehavior;
 import main.GameMaker;
 import model.Model;
 
@@ -42,6 +43,9 @@ public class EventBehaviorLoader
 				return p;
 			case "ChangeDirectionBehavior":
 				return new ChangeDirectionBehavior();
+				
+			case "SpawnOnKeyPressBehavior":
+				return new SpawnOnKeyPressBehavior();
 			default:
 				System.out.println("BehaviorLoader was given something it doesn't have a case for: " + type);
 				return new DoNothingBehavior();
