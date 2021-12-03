@@ -1,1 +1,2 @@
 # Team1-Week4
+This project is a game maker that I and three others made in two weeks in Fall 2021 P532 Object Oriented Software Development at Indiana University. A huge catch with this project is that it was an inherited codebase from another team. We were only allowed to change a small amount in each commit. On top of this, the codebase we were handed was an absolute disaster. In two weeks' time, we managed to get the program to a place where the user can make rudimentary versions of pac-man, space invaders, frogger, and donkey kong from scratch using just our tool.
